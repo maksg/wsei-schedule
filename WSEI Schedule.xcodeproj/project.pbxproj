@@ -8,12 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		57109B55223F9A150000AB88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B54223F9A150000AB88 /* AppDelegate.swift */; };
-		57109B57223F9A150000AB88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B56223F9A150000AB88 /* ViewController.swift */; };
-		57109B5A223F9A150000AB88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109B58223F9A150000AB88 /* Main.storyboard */; };
+		57109B5A223F9A150000AB88 /* TabBarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109B58223F9A150000AB88 /* TabBarController.storyboard */; };
 		57109B5C223F9A170000AB88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57109B5B223F9A170000AB88 /* Assets.xcassets */; };
 		57109B5F223F9A170000AB88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109B5D223F9A170000AB88 /* LaunchScreen.storyboard */; };
 		57109B6A223F9A170000AB88 /* WSEI_ScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B69223F9A170000AB88 /* WSEI_ScheduleTests.swift */; };
 		57109B75223F9A170000AB88 /* WSEI_ScheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B74223F9A170000AB88 /* WSEI_ScheduleUITests.swift */; };
+		57109B84223F9BEA0000AB88 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B83223F9BEA0000AB88 /* TabBarController.swift */; };
+		57109B86223F9C050000AB88 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B85223F9C050000AB88 /* TabBarViewModel.swift */; };
+		57109B89223F9EAD0000AB88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57109B88223F9EAD0000AB88 /* Localizable.strings */; };
+		57109B8D223F9F560000AB88 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B8C223F9F560000AB88 /* String+Localized.swift */; };
+		57109B8F223F9F740000AB88 /* UIColor+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B8E223F9F740000AB88 /* UIColor+Named.swift */; };
+		57109B91223F9FC50000AB88 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B90223F9FC50000AB88 /* Translation.swift */; };
+		57109B93223FA1FD0000AB88 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B92223FA1FD0000AB88 /* View.swift */; };
+		57109B95223FA2050000AB88 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B94223FA2050000AB88 /* ViewModel.swift */; };
+		57109B97223FA3F00000AB88 /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B96223FA3F00000AB88 /* RawRepresentable+String.swift */; };
+		57109B9B223FA6560000AB88 /* ScheduleViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109B9A223FA6560000AB88 /* ScheduleViewController.storyboard */; };
+		57109B9D223FA6800000AB88 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B9C223FA6800000AB88 /* ScheduleViewController.swift */; };
+		57109B9F223FA68C0000AB88 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B9E223FA68C0000AB88 /* ScheduleViewModel.swift */; };
+		57109BA4223FADE40000AB88 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */; };
+		57109BA5223FADE40000AB88 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109BA2223FADE40000AB88 /* SettingsViewController.swift */; };
+		57109BA6223FADE40000AB88 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109BA3223FADE40000AB88 /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +50,7 @@
 /* Begin PBXFileReference section */
 		57109B51223F9A150000AB88 /* WSEI Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WSEI Schedule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57109B54223F9A150000AB88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		57109B56223F9A150000AB88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		57109B59223F9A150000AB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57109B59223F9A150000AB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabBarController.storyboard; sourceTree = "<group>"; };
 		57109B5B223F9A170000AB88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57109B5E223F9A170000AB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57109B60223F9A170000AB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +60,21 @@
 		57109B70223F9A170000AB88 /* WSEI ScheduleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WSEI ScheduleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57109B74223F9A170000AB88 /* WSEI_ScheduleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSEI_ScheduleUITests.swift; sourceTree = "<group>"; };
 		57109B76223F9A170000AB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57109B83223F9BEA0000AB88 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		57109B85223F9C050000AB88 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		57109B88223F9EAD0000AB88 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		57109B8C223F9F560000AB88 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		57109B8E223F9F740000AB88 /* UIColor+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
+		57109B90223F9FC50000AB88 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		57109B92223FA1FD0000AB88 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		57109B94223FA2050000AB88 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		57109B96223FA3F00000AB88 /* RawRepresentable+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RawRepresentable+String.swift"; sourceTree = "<group>"; };
+		57109B9A223FA6560000AB88 /* ScheduleViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScheduleViewController.storyboard; sourceTree = "<group>"; };
+		57109B9C223FA6800000AB88 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		57109B9E223FA68C0000AB88 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
+		57109BA2223FADE40000AB88 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		57109BA3223FADE40000AB88 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				57109B53223F9A150000AB88 /* WSEI Schedule */,
+				57109B60223F9A170000AB88 /* Info.plist */,
 				57109B68223F9A170000AB88 /* WSEI ScheduleTests */,
 				57109B73223F9A170000AB88 /* WSEI ScheduleUITests */,
 				57109B52223F9A150000AB88 /* Products */,
@@ -98,11 +127,10 @@
 			isa = PBXGroup;
 			children = (
 				57109B54223F9A150000AB88 /* AppDelegate.swift */,
-				57109B56223F9A150000AB88 /* ViewController.swift */,
-				57109B58223F9A150000AB88 /* Main.storyboard */,
-				57109B5B223F9A170000AB88 /* Assets.xcassets */,
-				57109B5D223F9A170000AB88 /* LaunchScreen.storyboard */,
-				57109B60223F9A170000AB88 /* Info.plist */,
+				57109B8A223F9F270000AB88 /* Extensions */,
+				57109B8B223F9F350000AB88 /* Generics */,
+				57109B82223F9ADF0000AB88 /* Screens */,
+				57109B87223F9C230000AB88 /* Resources */,
 			);
 			path = "WSEI Schedule";
 			sourceTree = "<group>";
@@ -123,6 +151,68 @@
 				57109B76223F9A170000AB88 /* Info.plist */,
 			);
 			path = "WSEI ScheduleUITests";
+			sourceTree = "<group>";
+		};
+		57109B82223F9ADF0000AB88 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				57109B98223FA62B0000AB88 /* Schedule */,
+				57109B99223FA6330000AB88 /* Settings */,
+				57109B85223F9C050000AB88 /* TabBarViewModel.swift */,
+				57109B83223F9BEA0000AB88 /* TabBarController.swift */,
+				57109B58223F9A150000AB88 /* TabBarController.storyboard */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		57109B87223F9C230000AB88 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				57109B5B223F9A170000AB88 /* Assets.xcassets */,
+				57109B5D223F9A170000AB88 /* LaunchScreen.storyboard */,
+				57109B88223F9EAD0000AB88 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		57109B8A223F9F270000AB88 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				57109B8C223F9F560000AB88 /* String+Localized.swift */,
+				57109B8E223F9F740000AB88 /* UIColor+Named.swift */,
+				57109B96223FA3F00000AB88 /* RawRepresentable+String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		57109B8B223F9F350000AB88 /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				57109B92223FA1FD0000AB88 /* View.swift */,
+				57109B94223FA2050000AB88 /* ViewModel.swift */,
+				57109B90223F9FC50000AB88 /* Translation.swift */,
+			);
+			path = Generics;
+			sourceTree = "<group>";
+		};
+		57109B98223FA62B0000AB88 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				57109B9E223FA68C0000AB88 /* ScheduleViewModel.swift */,
+				57109B9C223FA6800000AB88 /* ScheduleViewController.swift */,
+				57109B9A223FA6560000AB88 /* ScheduleViewController.storyboard */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		57109B99223FA6330000AB88 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				57109BA3223FADE40000AB88 /* SettingsViewModel.swift */,
+				57109BA2223FADE40000AB88 /* SettingsViewController.swift */,
+				57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +320,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				57109B5F223F9A170000AB88 /* LaunchScreen.storyboard in Resources */,
+				57109B89223F9EAD0000AB88 /* Localizable.strings in Resources */,
+				57109B9B223FA6560000AB88 /* ScheduleViewController.storyboard in Resources */,
 				57109B5C223F9A170000AB88 /* Assets.xcassets in Resources */,
-				57109B5A223F9A150000AB88 /* Main.storyboard in Resources */,
+				57109BA4223FADE40000AB88 /* SettingsViewController.storyboard in Resources */,
+				57109B5A223F9A150000AB88 /* TabBarController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +349,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57109B57223F9A150000AB88 /* ViewController.swift in Sources */,
+				57109B86223F9C050000AB88 /* TabBarViewModel.swift in Sources */,
+				57109B84223F9BEA0000AB88 /* TabBarController.swift in Sources */,
+				57109B8D223F9F560000AB88 /* String+Localized.swift in Sources */,
+				57109B97223FA3F00000AB88 /* RawRepresentable+String.swift in Sources */,
 				57109B55223F9A150000AB88 /* AppDelegate.swift in Sources */,
+				57109B9D223FA6800000AB88 /* ScheduleViewController.swift in Sources */,
+				57109B9F223FA68C0000AB88 /* ScheduleViewModel.swift in Sources */,
+				57109B8F223F9F740000AB88 /* UIColor+Named.swift in Sources */,
+				57109BA6223FADE40000AB88 /* SettingsViewModel.swift in Sources */,
+				57109B93223FA1FD0000AB88 /* View.swift in Sources */,
+				57109B95223FA2050000AB88 /* ViewModel.swift in Sources */,
+				57109B91223F9FC50000AB88 /* Translation.swift in Sources */,
+				57109BA5223FADE40000AB88 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,12 +397,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		57109B58223F9A150000AB88 /* Main.storyboard */ = {
+		57109B58223F9A150000AB88 /* TabBarController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				57109B59223F9A150000AB88 /* Base */,
 			);
-			name = Main.storyboard;
+			name = TabBarController.storyboard;
 			sourceTree = "<group>";
 		};
 		57109B5D223F9A170000AB88 /* LaunchScreen.storyboard */ = {
@@ -434,7 +538,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5S8XF46499;
-				INFOPLIST_FILE = "WSEI Schedule/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,7 +557,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5S8XF46499;
-				INFOPLIST_FILE = "WSEI Schedule/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
