@@ -14,6 +14,12 @@
 		570287AC2240EBB20041B3A7 /* ScheduleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287AB2240EBB20041B3A7 /* ScheduleCellViewModel.swift */; };
 		570287AE2240EBBF0041B3A7 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287AD2240EBBF0041B3A7 /* CellView.swift */; };
 		570287B02240EBC70041B3A7 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287AF2240EBC70041B3A7 /* CellViewModel.swift */; };
+		570287B222411D460041B3A7 /* Date+StripTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287B122411D460041B3A7 /* Date+StripTime.swift */; };
+		570287B42241205F0041B3A7 /* Dictionary+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287B32241205F0041B3A7 /* Dictionary+Index.swift */; };
+		570287B82241263E0041B3A7 /* ScheduleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287B72241263E0041B3A7 /* ScheduleHeader.swift */; };
+		570287BA2241264D0041B3A7 /* ScheduleHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570287B92241264D0041B3A7 /* ScheduleHeader.xib */; };
+		570287BC224126C60041B3A7 /* ScheduleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287BB224126C60041B3A7 /* ScheduleHeaderViewModel.swift */; };
+		570287BE22412E7C0041B3A7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 570287BD22412E7C0041B3A7 /* Colors.xcassets */; };
 		57109B55223F9A150000AB88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B54223F9A150000AB88 /* AppDelegate.swift */; };
 		57109B5A223F9A150000AB88 /* TabBarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109B58223F9A150000AB88 /* TabBarController.storyboard */; };
 		57109B5C223F9A170000AB88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57109B5B223F9A170000AB88 /* Assets.xcassets */; };
@@ -63,6 +69,12 @@
 		570287AB2240EBB20041B3A7 /* ScheduleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellViewModel.swift; sourceTree = "<group>"; };
 		570287AD2240EBBF0041B3A7 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		570287AF2240EBC70041B3A7 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		570287B122411D460041B3A7 /* Date+StripTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StripTime.swift"; sourceTree = "<group>"; };
+		570287B32241205F0041B3A7 /* Dictionary+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Index.swift"; sourceTree = "<group>"; };
+		570287B72241263E0041B3A7 /* ScheduleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeader.swift; sourceTree = "<group>"; };
+		570287B92241264D0041B3A7 /* ScheduleHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleHeader.xib; sourceTree = "<group>"; };
+		570287BB224126C60041B3A7 /* ScheduleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderViewModel.swift; sourceTree = "<group>"; };
+		570287BD22412E7C0041B3A7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		57109B51223F9A150000AB88 /* WSEI Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WSEI Schedule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57109B54223F9A150000AB88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57109B59223F9A150000AB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabBarController.storyboard; sourceTree = "<group>"; };
@@ -135,6 +147,24 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		570287B52241258D0041B3A7 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				570287B62241259B0041B3A7 /* Schedule */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		570287B62241259B0041B3A7 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				570287BB224126C60041B3A7 /* ScheduleHeaderViewModel.swift */,
+				570287B72241263E0041B3A7 /* ScheduleHeader.swift */,
+				570287B92241264D0041B3A7 /* ScheduleHeader.xib */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		57109B48223F9A150000AB88 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +193,7 @@
 				57109B8A223F9F270000AB88 /* Extensions */,
 				57109B8B223F9F350000AB88 /* Generics */,
 				57795B19223FEF8700CAF402 /* Models */,
+				570287B52241258D0041B3A7 /* Headers */,
 				570287A32240EB300041B3A7 /* Cells */,
 				57109B82223F9ADF0000AB88 /* Screens */,
 				57109B87223F9C230000AB88 /* Resources */,
@@ -204,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				57109B5B223F9A170000AB88 /* Assets.xcassets */,
+				570287BD22412E7C0041B3A7 /* Colors.xcassets */,
 				57109B5D223F9A170000AB88 /* LaunchScreen.storyboard */,
 				5702879F2240E75D0041B3A7 /* Localizable.strings */,
 			);
@@ -216,6 +248,8 @@
 				57109B8C223F9F560000AB88 /* String+Localized.swift */,
 				57109B8E223F9F740000AB88 /* UIColor+Named.swift */,
 				57109B96223FA3F00000AB88 /* RawRepresentable+String.swift */,
+				570287B122411D460041B3A7 /* Date+StripTime.swift */,
+				570287B32241205F0041B3A7 /* Dictionary+Index.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -366,7 +400,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570287BE22412E7C0041B3A7 /* Colors.xcassets in Resources */,
 				570287AA2240EB9F0041B3A7 /* ScheduleCell.xib in Resources */,
+				570287BA2241264D0041B3A7 /* ScheduleHeader.xib in Resources */,
 				57109B5F223F9A170000AB88 /* LaunchScreen.storyboard in Resources */,
 				5702879D2240E75D0041B3A7 /* Localizable.strings in Resources */,
 				57109B9B223FA6560000AB88 /* ScheduleViewController.storyboard in Resources */,
@@ -399,6 +435,7 @@
 			files = (
 				57109B86223F9C050000AB88 /* TabBarViewModel.swift in Sources */,
 				57109B84223F9BEA0000AB88 /* TabBarController.swift in Sources */,
+				570287BC224126C60041B3A7 /* ScheduleHeaderViewModel.swift in Sources */,
 				57109B8D223F9F560000AB88 /* String+Localized.swift in Sources */,
 				57109B97223FA3F00000AB88 /* RawRepresentable+String.swift in Sources */,
 				57109B55223F9A150000AB88 /* AppDelegate.swift in Sources */,
@@ -406,15 +443,18 @@
 				57109B9F223FA68C0000AB88 /* ScheduleViewModel.swift in Sources */,
 				57109B8F223F9F740000AB88 /* UIColor+Named.swift in Sources */,
 				570287AE2240EBBF0041B3A7 /* CellView.swift in Sources */,
+				570287B82241263E0041B3A7 /* ScheduleHeader.swift in Sources */,
 				57109BA6223FADE40000AB88 /* SettingsViewModel.swift in Sources */,
 				57795B1B223FEFC200CAF402 /* Lecture.swift in Sources */,
 				570287A92240EB9F0041B3A7 /* ScheduleCell.swift in Sources */,
 				570287B02240EBC70041B3A7 /* CellViewModel.swift in Sources */,
+				570287B222411D460041B3A7 /* Date+StripTime.swift in Sources */,
 				570287AC2240EBB20041B3A7 /* ScheduleCellViewModel.swift in Sources */,
 				570287A22240E9A80041B3A7 /* WSEIScript.swift in Sources */,
 				57109B93223FA1FD0000AB88 /* View.swift in Sources */,
 				57109B95223FA2050000AB88 /* ViewModel.swift in Sources */,
 				57109B91223F9FC50000AB88 /* Translation.swift in Sources */,
+				570287B42241205F0041B3A7 /* Dictionary+Index.swift in Sources */,
 				57109BA5223FADE40000AB88 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

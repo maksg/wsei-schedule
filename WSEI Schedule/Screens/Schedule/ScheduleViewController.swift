@@ -32,7 +32,13 @@ class ScheduleViewController: UIViewController, View {
         super.viewDidLoad()
         
         configureTableView()
-        configureWebView(with: viewModel.scheduleURL)
+        configureWebView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        reloadSchedule(with: viewModel.scheduleURL)
     }
     
     // MARK: Methods
@@ -44,18 +50,22 @@ class ScheduleViewController: UIViewController, View {
         tableView.estimatedRowHeight = 70.0
         tableView.rowHeight = UITableView.automaticDimension
         
-        let nib = UINib(nibName: "ScheduleCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "ScheduleCell")
+        tableView.estimatedSectionHeaderHeight = 40.0
+        tableView.sectionHeaderHeight = 40.0
+        
+        let cellNib = UINib(nibName: "ScheduleCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "ScheduleCell")
+        
+        let headerNib = UINib(nibName: "ScheduleHeader", bundle: nil)
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "ScheduleHeader")
     }
     
-    private func configureWebView(with url: URL) {
+    private func configureWebView() {
         webView = WKWebView()
         webView.navigationDelegate = self
-        
-        let websiteDataTypes = Set<String>(arrayLiteral: WKWebsiteDataTypeCookies)
-        let date = Date(timeIntervalSince1970: 0)
-        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes, modifiedSince: date, completionHandler:{ })
-        
+    }
+    
+    private func reloadSchedule(with url: URL) {
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         webView.load(request)
     }
@@ -65,29 +75,52 @@ class ScheduleViewController: UIViewController, View {
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.scheduleCellViewModels.keys.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.lectures.count
+        return viewModel.scheduleCellViewModels[section]?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let date = Array(viewModel.scheduleCellViewModels.keys.sorted())[section]
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ScheduleHeader") as? ScheduleHeader
+        header?.viewModel = ScheduleHeaderViewModel(date: date)
+        return header
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
-        cell.viewModel = viewModel.scheduleCellViewModels[indexPath.row]
+        let cellViewModels = viewModel.scheduleCellViewModels[indexPath.section]
+        let cellViewModel = cellViewModels?[indexPath.row]
+        if indexPath.section == 0 && indexPath.row == 0 {
+            cellViewModel?.toggleDetails()
+        }
+        cell.viewModel = cellViewModel
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        viewModel.scheduleCellViewModels[indexPath.row].toggleDetails()
+        let viewModels = viewModel.scheduleCellViewModels[indexPath.section]
+        viewModels?[indexPath.row].toggleDetails()
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
 }
 
 extension ScheduleViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print(error)
+        reloadSchedule(with: viewModel.scheduleURL)
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print(error)
+        reloadSchedule(with: viewModel.scheduleURL)
+    }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url == viewModel.scheduleURL {

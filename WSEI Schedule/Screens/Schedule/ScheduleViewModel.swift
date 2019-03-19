@@ -22,13 +22,13 @@ class ScheduleViewModel: ViewModel {
     
     var lectures: [Lecture]
     
-    var scheduleCellViewModels: [ScheduleCellViewModel]
+    var scheduleCellViewModels: [Date : [ScheduleCellViewModel]]
     
     // MARK: Initialization
     
     init() {
         self.lectures = []
-        self.scheduleCellViewModels = []
+        self.scheduleCellViewModels = [:]
     }
     
     // MARK: Methods
@@ -45,7 +45,16 @@ class ScheduleViewModel: ViewModel {
         }
         
         lectures = filteredData.map { Lecture(fromDictionary: $0) }
-        scheduleCellViewModels = lectures.map { ScheduleCellViewModel(lecture: $0) }
+        scheduleCellViewModels = lectures.reduce(into: [Date : [ScheduleCellViewModel]]()) {
+            let viewModel = ScheduleCellViewModel(lecture: $1)
+            let date = $1.fromDate.strippedFromTime
+            if $0[date] == nil {
+                $0[date] = [viewModel]
+            } else {
+                $0[date]! += [viewModel]
+            }
+            
+        }
     }
     
 }

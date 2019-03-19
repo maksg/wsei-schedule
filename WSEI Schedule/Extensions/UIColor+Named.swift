@@ -14,4 +14,8 @@ extension UIColor {
         return UIColor(named: "Main")!
     }
     
+    static var sectionHeader: UIColor {
+        return UIColor(named: "SectionHeader")!
+    }
+    
 }
