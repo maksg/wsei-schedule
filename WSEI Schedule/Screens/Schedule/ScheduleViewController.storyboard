@@ -18,26 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61D-Ic-WIU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="quJ-HW-Ark">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsPictureInPictureMediaPlayback="NO">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="t6e-3p-MN4" firstAttribute="trailing" secondItem="61D-Ic-WIU" secondAttribute="trailing" id="1ee-tp-tYc"/>
-                            <constraint firstItem="61D-Ic-WIU" firstAttribute="leading" secondItem="t6e-3p-MN4" secondAttribute="leading" id="XIW-jv-IRb"/>
-                            <constraint firstItem="t6e-3p-MN4" firstAttribute="bottom" secondItem="61D-Ic-WIU" secondAttribute="bottom" id="XS1-sp-bF1"/>
-                            <constraint firstItem="61D-Ic-WIU" firstAttribute="top" secondItem="t6e-3p-MN4" secondAttribute="top" id="gsd-53-JdP"/>
+                            <constraint firstItem="t6e-3p-MN4" firstAttribute="bottom" secondItem="quJ-HW-Ark" secondAttribute="bottom" id="DOd-Ic-xtH"/>
+                            <constraint firstItem="quJ-HW-Ark" firstAttribute="leading" secondItem="t6e-3p-MN4" secondAttribute="leading" id="Zqv-4d-5V0"/>
+                            <constraint firstItem="quJ-HW-Ark" firstAttribute="top" secondItem="t6e-3p-MN4" secondAttribute="top" id="bS3-Yh-XlK"/>
+                            <constraint firstItem="t6e-3p-MN4" firstAttribute="trailing" secondItem="quJ-HW-Ark" secondAttribute="trailing" id="uxh-00-57I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="t6e-3p-MN4"/>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="61D-Ic-WIU" id="CHC-vx-wmG"/>
+                        <outlet property="tableView" destination="quJ-HW-Ark" id="GqV-Fj-VYH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSd-LK-Wdx" userLabel="First Responder" sceneMemberID="firstResponder"/>

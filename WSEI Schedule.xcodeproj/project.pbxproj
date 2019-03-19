@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5702879D2240E75D0041B3A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5702879F2240E75D0041B3A7 /* Localizable.strings */; };
+		570287A22240E9A80041B3A7 /* WSEIScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287A12240E9A80041B3A7 /* WSEIScript.swift */; };
+		570287A92240EB9F0041B3A7 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287A72240EB9F0041B3A7 /* ScheduleCell.swift */; };
+		570287AA2240EB9F0041B3A7 /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570287A82240EB9F0041B3A7 /* ScheduleCell.xib */; };
+		570287AC2240EBB20041B3A7 /* ScheduleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287AB2240EBB20041B3A7 /* ScheduleCellViewModel.swift */; };
+		570287AE2240EBBF0041B3A7 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287AD2240EBBF0041B3A7 /* CellView.swift */; };
+		570287B02240EBC70041B3A7 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287AF2240EBC70041B3A7 /* CellViewModel.swift */; };
 		57109B55223F9A150000AB88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B54223F9A150000AB88 /* AppDelegate.swift */; };
 		57109B5A223F9A150000AB88 /* TabBarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109B58223F9A150000AB88 /* TabBarController.storyboard */; };
 		57109B5C223F9A170000AB88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57109B5B223F9A170000AB88 /* Assets.xcassets */; };
@@ -15,7 +22,6 @@
 		57109B75223F9A170000AB88 /* WSEI_ScheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B74223F9A170000AB88 /* WSEI_ScheduleUITests.swift */; };
 		57109B84223F9BEA0000AB88 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B83223F9BEA0000AB88 /* TabBarController.swift */; };
 		57109B86223F9C050000AB88 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B85223F9C050000AB88 /* TabBarViewModel.swift */; };
-		57109B89223F9EAD0000AB88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57109B88223F9EAD0000AB88 /* Localizable.strings */; };
 		57109B8D223F9F560000AB88 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B8C223F9F560000AB88 /* String+Localized.swift */; };
 		57109B8F223F9F740000AB88 /* UIColor+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B8E223F9F740000AB88 /* UIColor+Named.swift */; };
 		57109B91223F9FC50000AB88 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109B90223F9FC50000AB88 /* Translation.swift */; };
@@ -28,6 +34,7 @@
 		57109BA4223FADE40000AB88 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */; };
 		57109BA5223FADE40000AB88 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109BA2223FADE40000AB88 /* SettingsViewController.swift */; };
 		57109BA6223FADE40000AB88 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109BA3223FADE40000AB88 /* SettingsViewModel.swift */; };
+		57795B1B223FEFC200CAF402 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57795B1A223FEFC200CAF402 /* Lecture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5702879E2240E75D0041B3A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		570287A02240E76B0041B3A7 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		570287A12240E9A80041B3A7 /* WSEIScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSEIScript.swift; sourceTree = "<group>"; };
+		570287A72240EB9F0041B3A7 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		570287A82240EB9F0041B3A7 /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
+		570287AB2240EBB20041B3A7 /* ScheduleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellViewModel.swift; sourceTree = "<group>"; };
+		570287AD2240EBBF0041B3A7 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		570287AF2240EBC70041B3A7 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		57109B51223F9A150000AB88 /* WSEI Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WSEI Schedule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57109B54223F9A150000AB88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57109B59223F9A150000AB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabBarController.storyboard; sourceTree = "<group>"; };
@@ -62,7 +77,6 @@
 		57109B76223F9A170000AB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57109B83223F9BEA0000AB88 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		57109B85223F9C050000AB88 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
-		57109B88223F9EAD0000AB88 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		57109B8C223F9F560000AB88 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		57109B8E223F9F740000AB88 /* UIColor+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
 		57109B90223F9FC50000AB88 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
@@ -75,6 +89,7 @@
 		57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
 		57109BA2223FADE40000AB88 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		57109BA3223FADE40000AB88 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		57795B1A223FEFC200CAF402 /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +117,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570287A32240EB300041B3A7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				570287A42240EB3C0041B3A7 /* Schedule */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		570287A42240EB3C0041B3A7 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				570287AB2240EBB20041B3A7 /* ScheduleCellViewModel.swift */,
+				570287A72240EB9F0041B3A7 /* ScheduleCell.swift */,
+				570287A82240EB9F0041B3A7 /* ScheduleCell.xib */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		57109B48223F9A150000AB88 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +162,8 @@
 				57109B54223F9A150000AB88 /* AppDelegate.swift */,
 				57109B8A223F9F270000AB88 /* Extensions */,
 				57109B8B223F9F350000AB88 /* Generics */,
+				57795B19223FEF8700CAF402 /* Models */,
+				570287A32240EB300041B3A7 /* Cells */,
 				57109B82223F9ADF0000AB88 /* Screens */,
 				57109B87223F9C230000AB88 /* Resources */,
 			);
@@ -170,7 +205,7 @@
 			children = (
 				57109B5B223F9A170000AB88 /* Assets.xcassets */,
 				57109B5D223F9A170000AB88 /* LaunchScreen.storyboard */,
-				57109B88223F9EAD0000AB88 /* Localizable.strings */,
+				5702879F2240E75D0041B3A7 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -190,6 +225,8 @@
 			children = (
 				57109B92223FA1FD0000AB88 /* View.swift */,
 				57109B94223FA2050000AB88 /* ViewModel.swift */,
+				570287AD2240EBBF0041B3A7 /* CellView.swift */,
+				570287AF2240EBC70041B3A7 /* CellViewModel.swift */,
 				57109B90223F9FC50000AB88 /* Translation.swift */,
 			);
 			path = Generics;
@@ -213,6 +250,15 @@
 				57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		57795B19223FEF8700CAF402 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				570287A12240E9A80041B3A7 /* WSEIScript.swift */,
+				57795B1A223FEFC200CAF402 /* Lecture.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +347,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pl,
 			);
 			mainGroup = 57109B48223F9A150000AB88;
 			productRefGroup = 57109B52223F9A150000AB88 /* Products */;
@@ -319,8 +366,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570287AA2240EB9F0041B3A7 /* ScheduleCell.xib in Resources */,
 				57109B5F223F9A170000AB88 /* LaunchScreen.storyboard in Resources */,
-				57109B89223F9EAD0000AB88 /* Localizable.strings in Resources */,
+				5702879D2240E75D0041B3A7 /* Localizable.strings in Resources */,
 				57109B9B223FA6560000AB88 /* ScheduleViewController.storyboard in Resources */,
 				57109B5C223F9A170000AB88 /* Assets.xcassets in Resources */,
 				57109BA4223FADE40000AB88 /* SettingsViewController.storyboard in Resources */,
@@ -357,7 +405,13 @@
 				57109B9D223FA6800000AB88 /* ScheduleViewController.swift in Sources */,
 				57109B9F223FA68C0000AB88 /* ScheduleViewModel.swift in Sources */,
 				57109B8F223F9F740000AB88 /* UIColor+Named.swift in Sources */,
+				570287AE2240EBBF0041B3A7 /* CellView.swift in Sources */,
 				57109BA6223FADE40000AB88 /* SettingsViewModel.swift in Sources */,
+				57795B1B223FEFC200CAF402 /* Lecture.swift in Sources */,
+				570287A92240EB9F0041B3A7 /* ScheduleCell.swift in Sources */,
+				570287B02240EBC70041B3A7 /* CellViewModel.swift in Sources */,
+				570287AC2240EBB20041B3A7 /* ScheduleCellViewModel.swift in Sources */,
+				570287A22240E9A80041B3A7 /* WSEIScript.swift in Sources */,
 				57109B93223FA1FD0000AB88 /* View.swift in Sources */,
 				57109B95223FA2050000AB88 /* ViewModel.swift in Sources */,
 				57109B91223F9FC50000AB88 /* Translation.swift in Sources */,
@@ -397,6 +451,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5702879F2240E75D0041B3A7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5702879E2240E75D0041B3A7 /* en */,
+				570287A02240E76B0041B3A7 /* pl */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		57109B58223F9A150000AB88 /* TabBarController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -420,6 +483,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -467,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -481,6 +545,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -522,7 +587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

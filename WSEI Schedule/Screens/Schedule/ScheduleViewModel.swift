@@ -8,51 +8,9 @@
 
 import Foundation
 
-enum WSEIScript {
-    
-    case selectType
-    case selectSearch
-    case selectAlbumNumber(number: String)
-    case getScheduleContent
-    
-    var content: String {
-        switch self {
-        case .selectType:
-            return """
-            var typeSelect = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_66');
-            typeSelect.selectedIndex = 1;
-            typeSelect.onchange();
-            """
-        case .selectSearch:
-            return """
-            var searchSelect = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_83');
-            searchSelect.selectedIndex = 1;
-            searchSelect.onchange();
-            """
-        case .selectAlbumNumber(let number):
-            return """
-            var numberField = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_82');
-            numberField.value = '\(number)';
-            numberField.onchange();
-            """
-        case .getScheduleContent:
-            return """
-            var tableBody = document.querySelector('#ctl00_PlaceRight_FCDesktop_Field_85_gvGrid tbody');
-            Object.values(tableBody.querySelectorAll('tr.grid-row, tr.grid-row-alternating')).map(tr => {
-                const tableRow = Object.values(tr.querySelectorAll("td")).reduce( (accum, curr, i) => {
-                    const obj = { ...accum };
-                    obj[i] = curr.innerText;
-                    return obj;
-                }, {} );
-                return tableRow;
-            });
-            """
-        }
-    }
-    
-}
-
 class ScheduleViewModel: ViewModel {
+    
+    // MARK: Properties
     
     var scheduleURL: URL {
         return URL(string: "https://estudent.wsei.edu.pl/SG/PublicDesktop.aspx?fileShareToken=95-88-6B-EB-B0-75-96-FB-A9-7C-AE-D7-5C-DB-90-49")!
@@ -62,7 +20,32 @@ class ScheduleViewModel: ViewModel {
         return Translation.Schedule.title.localized
     }
     
+    var lectures: [Lecture]
+    
+    var scheduleCellViewModels: [ScheduleCellViewModel]
+    
+    // MARK: Initialization
+    
     init() {
+        self.lectures = []
+        self.scheduleCellViewModels = []
+    }
+    
+    // MARK: Methods
+    
+    func convertDataToLectureList(data: Any?) {
+        guard let data = data as? [[String : String]] else { return }
+        
+        let filteredData = data.map { (lecture) -> [String : String] in
+            Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
+                let splitValue = value.split(separator: ":", maxSplits: 1)
+                guard splitValue.count > 0 else { return nil }
+                return (String(splitValue[0].trimmingCharacters(in: .whitespacesAndNewlines)), String(splitValue[1].trimmingCharacters(in: .whitespacesAndNewlines)))
+            }))
+        }
+        
+        lectures = filteredData.map { Lecture(fromDictionary: $0) }
+        scheduleCellViewModels = lectures.map { ScheduleCellViewModel(lecture: $0) }
     }
     
 }

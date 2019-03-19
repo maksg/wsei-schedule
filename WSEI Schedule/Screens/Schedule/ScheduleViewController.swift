@@ -13,9 +13,11 @@ class ScheduleViewController: UIViewController, View {
     
     // MARK: IBOutlets
     
-    @IBOutlet private weak var webView: WKWebView!
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: Properties
+    
+    private var webView: WKWebView!
     
     typealias ViewModelType = ScheduleViewModel
     var viewModel: ScheduleViewModel! {
@@ -28,13 +30,26 @@ class ScheduleViewController: UIViewController, View {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.configureWebView(with: viewModel.scheduleURL)
+        
+        configureTableView()
+        configureWebView(with: viewModel.scheduleURL)
     }
     
     // MARK: Methods
     
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.estimatedRowHeight = 70.0
+        tableView.rowHeight = UITableView.automaticDimension
+        
+        let nib = UINib(nibName: "ScheduleCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ScheduleCell")
+    }
+    
     private func configureWebView(with url: URL) {
+        webView = WKWebView()
         webView.navigationDelegate = self
         
         let websiteDataTypes = Set<String>(arrayLiteral: WKWebsiteDataTypeCookies)
@@ -47,55 +62,60 @@ class ScheduleViewController: UIViewController, View {
 
 }
 
-extension ScheduleViewController: WKNavigationDelegate {
+extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print(error)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print(webView.url as Any)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.lectures.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
+        cell.viewModel = viewModel.scheduleCellViewModels[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        viewModel.scheduleCellViewModels[indexPath.row].toggleDetails()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+}
+
+extension ScheduleViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url == viewModel.scheduleURL {
-            print("222")
             selectSchedule(forAlbumNumber: "10951")
         }
     }
     
-    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        print("terminate")
-    }
-    
-    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        print("redirect")
-    }
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print(error)
-    }
-    
     private func selectSchedule(forAlbumNumber albumNumber: String) {
-        run(.selectType) { [weak self] in
-            self?.run(.selectSearch, completionHandler: { [weak self] in
-                self?.run(.selectAlbumNumber(number: "10951"), completionHandler: { [weak self] in
-                    self?.run(.getScheduleContent, completionHandler: {
+        run(.selectType) { [weak self] _ in
+            self?.run(.selectSearch, completionHandler: { [weak self] _ in
+                self?.run(.selectAlbumNumber(number: "10951"), completionHandler: { [weak self] _ in
+                    self?.run(.getScheduleContent, completionHandler: { [weak self] data in
+                        self?.viewModel.convertDataToLectureList(data: data)
+                        self?.tableView.reloadData()
                     })
                 })
             })
         }
     }
     
-    private func run(_ script: WSEIScript, completionHandler: @escaping () -> Void) {
+    private func run(_ script: WSEIScript, completionHandler: @escaping (Any?) -> Void) {
         webView.evaluateJavaScript(script.content) { [weak self] (data, error) in
-            if let error = error {
-                print("\(script) error = \(error)")
+            if let _ = error {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
                     self?.run(script, completionHandler: completionHandler)
                 })
-            }
-            else {
-                print("\(script) data = \(data as Any)")
-                completionHandler()
+            } else {
+                completionHandler(data)
             }
         }
     }

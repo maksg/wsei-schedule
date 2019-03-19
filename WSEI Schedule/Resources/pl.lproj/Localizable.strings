@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  WSEI Schedule
+
+  Created by Maksymilian Galas on 18/03/2019.
+  Copyright © 2019 Maksymilian Galas. All rights reserved.
+*/
+
+// Alert
+
+"alert_title" = "Alert";
+"alert_confirm" = "Ok";
+"alert_cancel" = "Anuluj";
+
+// Error
+
+"error_title" = "Błąd";
+"error_default" = "Coś się stało";
+
+// Schedule
+
+"schedule_title" = "Harmonogram";
+
+// Settings
+
+"settings_title" = "Ustawienia";
