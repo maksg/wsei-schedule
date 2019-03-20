@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if let tabViewController = self.window?.rootViewController as? TabBarController {
+        if let tabViewController = window?.rootViewController as? TabBarController {
             let viewModel = TabBarViewModel()
             tabViewController.viewModel = viewModel
         }

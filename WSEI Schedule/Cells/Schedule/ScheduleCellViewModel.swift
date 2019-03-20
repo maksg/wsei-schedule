@@ -32,14 +32,15 @@ class ScheduleCellViewModel: CellViewModel {
         return lecture.code
     }
     
+    var hideDetails: Bool
+    
     private var lecture: Lecture
-    private(set) var hideDetails: Bool
     
     // MARK: Initialization
     
-    init(lecture: Lecture, hideDetails: Bool = true) {
+    init(lecture: Lecture) {
         self.lecture = lecture
-        self.hideDetails = hideDetails
+        self.hideDetails = true
     }
     
     // MARK: Methods
@@ -50,10 +51,6 @@ class ScheduleCellViewModel: CellViewModel {
         let fromDate = formatter.string(from: lecture.fromDate)
         let toDate = formatter.string(from: lecture.toDate)
         return "\(fromDate) - \(toDate)"
-    }
-    
-    func toggleDetails() {
-        self.hideDetails.toggle()
     }
     
 }

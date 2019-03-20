@@ -19,7 +19,7 @@ class ScheduleHeader: UITableViewHeaderFooterView, View {
     typealias ViewModelType = ScheduleHeaderViewModel
     var viewModel: ScheduleHeaderViewModel! {
         didSet {
-            self.dateLabel.text = viewModel.dateText
+            dateLabel.text = viewModel.dateText
         }
     }
 

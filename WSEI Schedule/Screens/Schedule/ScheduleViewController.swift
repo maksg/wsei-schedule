@@ -9,11 +9,7 @@
 import UIKit
 import WebKit
 
-class ScheduleViewController: UIViewController, View {
-    
-    // MARK: IBOutlets
-    
-    @IBOutlet private weak var tableView: UITableView!
+class ScheduleViewController: UITableViewController, View {
     
     // MARK: Properties
     
@@ -22,7 +18,7 @@ class ScheduleViewController: UIViewController, View {
     typealias ViewModelType = ScheduleViewModel
     var viewModel: ScheduleViewModel! {
         didSet {
-            self.title = viewModel.title
+            title = viewModel.title
         }
     }
     
@@ -38,7 +34,13 @@ class ScheduleViewController: UIViewController, View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        reloadSchedule(with: viewModel.scheduleURL)
+        self.reloadSchedule()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        refreshControl?.endRefreshing()
     }
     
     // MARK: Methods
@@ -47,11 +49,18 @@ class ScheduleViewController: UIViewController, View {
         tableView.delegate = self
         tableView.dataSource = self
         
+        refreshControl?.addTarget(self, action: #selector(reloadSchedule), for: .valueChanged)
+        refreshControl?.tintColor = UIColor.white
+        
+        // Refresh control tint color hack
+        tableView.contentOffset = CGPoint(x: 0.0, y: -refreshControl!.frame.size.height)
+        tableView.contentOffset = CGPoint(x: 0.0, y: 0.0)
+        
         tableView.estimatedRowHeight = 70.0
         tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.estimatedSectionHeaderHeight = 40.0
-        tableView.sectionHeaderHeight = 40.0
+        tableView.estimatedSectionHeaderHeight = 34.0
+        tableView.sectionHeaderHeight = 34.0
         
         let cellNib = UINib(nibName: "ScheduleCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "ScheduleCell")
@@ -60,82 +69,97 @@ class ScheduleViewController: UIViewController, View {
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "ScheduleHeader")
     }
     
-    private func configureWebView() {
-        webView = WKWebView()
+    private func configureWebView() {let config = WKWebViewConfiguration()
+        let script = WKUserScript(source: WSEIScript.addEventToTable.content,
+                                  injectionTime: .atDocumentEnd,
+                                  forMainFrameOnly: true)
+        config.userContentController.addUserScript(script)
+        config.userContentController.add(self, name: "iosListener")
+        
+        webView = WKWebView(frame: UIScreen.main.bounds, configuration: config)
         webView.navigationDelegate = self
     }
     
-    private func reloadSchedule(with url: URL) {
+    @objc private func reloadSchedule() {
+        refreshControl?.beginRefreshing()
+        let url = viewModel.scheduleURL
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         webView.load(request)
     }
 
 }
 
-extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
+extension ScheduleViewController {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.scheduleCellViewModels.keys.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.scheduleCellViewModels[section]?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let date = Array(viewModel.scheduleCellViewModels.keys.sorted())[section]
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ScheduleHeader") as? ScheduleHeader
         header?.viewModel = ScheduleHeaderViewModel(date: date)
         return header
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
         let cellViewModels = viewModel.scheduleCellViewModels[indexPath.section]
         let cellViewModel = cellViewModels?[indexPath.row]
         if indexPath.section == 0 && indexPath.row == 0 {
-            cellViewModel?.toggleDetails()
+            cellViewModel?.hideDetails = false
         }
         cell.viewModel = cellViewModel
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let viewModels = viewModel.scheduleCellViewModels[indexPath.section]
-        viewModels?[indexPath.row].toggleDetails()
+        viewModels?[indexPath.row].hideDetails.toggle()
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
 }
 
-extension ScheduleViewController: WKNavigationDelegate {
+extension ScheduleViewController: WKNavigationDelegate, WKScriptMessageHandler {
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print(error)
-        reloadSchedule(with: viewModel.scheduleURL)
+        reloadSchedule()
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         print(error)
-        reloadSchedule(with: viewModel.scheduleURL)
+        reloadSchedule()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url == viewModel.scheduleURL {
-            selectSchedule(forAlbumNumber: "10951")
+            let albumNumber = UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
+            selectSchedule(forAlbumNumber: albumNumber)
         }
     }
     
     private func selectSchedule(forAlbumNumber albumNumber: String) {
-        run(.selectType) { [weak self] _ in
-            self?.run(.selectSearch, completionHandler: { [weak self] _ in
-                self?.run(.selectAlbumNumber(number: "10951"), completionHandler: { [weak self] _ in
-                    self?.run(.getScheduleContent, completionHandler: { [weak self] data in
-                        self?.viewModel.convertDataToLectureList(data: data)
-                        self?.tableView.reloadData()
-                    })
+        var isSame = true
+        run(.selectType) { [weak self] data in
+            isSame = isSame && (data as? Bool) ?? false
+            
+            self?.run(.selectSearch, completionHandler: { [weak self] data in
+                isSame = isSame && (data as? Bool) ?? false
+                
+                self?.run(.selectAlbumNumber(number: albumNumber), completionHandler: { [weak self] data in
+                    isSame = isSame && (data as? Bool) ?? false
+                    
+                    if isSame {
+                        self?.getScheduleContent()
+                    }
                 })
             })
         }
@@ -151,6 +175,18 @@ extension ScheduleViewController: WKNavigationDelegate {
                 completionHandler(data)
             }
         }
+    }
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        getScheduleContent()
+    }
+    
+    private func getScheduleContent() {
+        run(.getScheduleContent, completionHandler: { [weak self] data in
+            self?.viewModel.convertDataToLectureList(data: data)
+            self?.tableView.reloadData()
+            self?.refreshControl?.endRefreshing()
+        })
     }
     
 }

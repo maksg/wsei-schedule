@@ -31,13 +31,13 @@ class ScheduleCell: UITableViewCell, CellView {
     // MARK: Methods
     
     private func setupCell() {
-        self.subjectLabel.text = viewModel.subject
-        self.timeLabel.text = viewModel.time
-        self.classroomLabel.text = viewModel.classroom
-        self.lecturerLabel.text = viewModel.lecturer
-        self.codeLabel.text = viewModel.code
+        subjectLabel.text = viewModel.subject
+        timeLabel.text = viewModel.time
+        classroomLabel.text = viewModel.classroom
+        lecturerLabel.text = viewModel.lecturer
+        codeLabel.text = viewModel.code
         
-        self.detailsStackView.isHidden = viewModel.hideDetails
+        detailsStackView.isHidden = viewModel.hideDetails
     }
     
 }
