@@ -12,9 +12,8 @@ enum WSEIScript {
     
     case showHistory
     case selectType
-    case selectSearch
     case selectAlbumNumber(number: String)
-    case addEventToTable
+    case observeProgress
     case getScheduleContent
     
     var content: String {
@@ -36,17 +35,6 @@ enum WSEIScript {
                 { isSame: true }
             }
             """
-        case .selectSearch:
-            return """
-            var searchSelect = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_83');
-            if(searchSelect.selectedIndex != 1) {
-                searchSelect.selectedIndex = 1;
-                searchSelect.onchange();
-            }
-            else {
-                { isSame: true }
-            }
-            """
         case .selectAlbumNumber(let number):
             return """
             var numberField = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_82');
@@ -58,7 +46,7 @@ enum WSEIScript {
                 { isSame: true }
             }
             """
-        case .addEventToTable:
+        case .observeProgress:
             return """
             var MutationObserver = window.MutationObserver || window.WebKitMutationObserver
             var progressTarget = document.querySelector('#ctl00_Progress1');

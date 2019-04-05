@@ -27,6 +27,7 @@ class Translation {
     
     enum Settings: String {
         case title = "settings_title"
+        case albumNumber = "settings_album_number"
     }
     
 }

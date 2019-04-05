@@ -73,8 +73,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell", for: indexPath) as! TextFieldCell
+        let title = Translation.Settings.albumNumber.localized
+        let placeholder = "00000"
         let albumNumber = UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
-        cell.viewModel = TextFieldCellViewModel(title: "Album number", placeholder: "00000", text: albumNumber)
+        cell.viewModel = TextFieldCellViewModel(title: title, placeholder: placeholder, text: albumNumber)
         cell.viewModel.delegate = self
         return cell
     }

@@ -70,7 +70,7 @@ class ScheduleViewController: UITableViewController, View {
     }
     
     private func configureWebView() {let config = WKWebViewConfiguration()
-        let script = WKUserScript(source: WSEIScript.addEventToTable.content,
+        let script = WKUserScript(source: WSEIScript.observeProgress.content,
                                   injectionTime: .atDocumentEnd,
                                   forMainFrameOnly: true)
         config.userContentController.addUserScript(script)
@@ -151,16 +151,12 @@ extension ScheduleViewController: WKNavigationDelegate, WKScriptMessageHandler {
         run(.selectType) { [weak self] data in
             isSame = isSame && (data as? Bool) ?? false
             
-            self?.run(.selectSearch, completionHandler: { [weak self] data in
+            self?.run(.selectAlbumNumber(number: albumNumber), completionHandler: { [weak self] data in
                 isSame = isSame && (data as? Bool) ?? false
                 
-                self?.run(.selectAlbumNumber(number: albumNumber), completionHandler: { [weak self] data in
-                    isSame = isSame && (data as? Bool) ?? false
-                    
-                    if isSame {
-                        self?.getScheduleContent()
-                    }
-                })
+                if isSame {
+                    self?.getScheduleContent()
+                }
             })
         }
     }
