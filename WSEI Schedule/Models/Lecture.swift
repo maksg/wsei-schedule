@@ -2,22 +2,20 @@
 //  Lecture.swift
 //  WSEI Schedule
 //
-//  Created by Maksymilian Galas on 18/03/2019.
+//  Created by Maksymilian Galas on 05/04/2019.
 //  Copyright © 2019 Maksymilian Galas. All rights reserved.
+//
 //
 
 import Foundation
+import CoreData
 
-struct Lecture {
+@objc(Lecture)
+class Lecture: NSManagedObject {
     
-    var fromDate: Date
-    var toDate: Date
-    var subject: String
-    var classroom: String
-    var lecturer: String
-    var code: String
-    
-    init(fromDictionary dictionary: [String : String]) {
+    convenience init(fromDictionary dictionary: [String : String], inContext context: NSManagedObjectContext) {
+        self.init(context: context)
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
@@ -32,5 +30,5 @@ struct Lecture {
         self.lecturer = dictionary["Wykładowca"] ?? ""
         self.code = dictionary["Kod zajęć"] ?? ""
     }
-    
+
 }

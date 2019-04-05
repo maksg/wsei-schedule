@@ -48,8 +48,8 @@ class ScheduleCellViewModel: CellViewModel {
     private func generateTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        let fromDate = formatter.string(from: lecture.fromDate)
-        let toDate = formatter.string(from: lecture.toDate)
+        let fromDate = formatter.string(from: lecture.fromDate as Date)
+        let toDate = formatter.string(from: lecture.toDate as Date)
         return "\(fromDate) - \(toDate)"
     }
     

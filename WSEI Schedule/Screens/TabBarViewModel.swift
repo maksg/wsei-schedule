@@ -7,17 +7,20 @@
 //
 
 import Foundation
+import CoreData
 
 class TabBarViewModel: ViewModel {
     
     // MARK: Properties
     
-    var viewModels: [ViewModel]
+    let persistentContainer: NSPersistentContainer
+    let viewModels: [ViewModel]
     
     // MARK: Initialziation
     
-    init() {
-        self.viewModels = [ScheduleViewModel(),
+    init(persistentContainer: NSPersistentContainer) {
+        self.persistentContainer = persistentContainer
+        self.viewModels = [ScheduleViewModel(persistentContainer: persistentContainer),
                            SettingsViewModel()]
     }
     

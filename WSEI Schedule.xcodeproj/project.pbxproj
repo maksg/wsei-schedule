@@ -21,6 +21,9 @@
 		570287BC224126C60041B3A7 /* ScheduleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287BB224126C60041B3A7 /* ScheduleHeaderViewModel.swift */; };
 		570287BE22412E7C0041B3A7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 570287BD22412E7C0041B3A7 /* Colors.xcassets */; };
 		5703CE46225757D20014A3CD /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703CE45225757D20014A3CD /* KeyboardView.swift */; };
+		5703CE4D225781790014A3CD /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5703CE4B225781790014A3CD /* Lectures.xcdatamodeld */; };
+		5703CE8D225785660014A3CD /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703CE8B225785660014A3CD /* Lecture.swift */; };
+		5703CE8E225785660014A3CD /* Lecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703CE8C225785660014A3CD /* Lecture+CoreDataProperties.swift */; };
 		570D789F22421F5B0074CE4C /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D789D22421F5B0074CE4C /* TextFieldCell.swift */; };
 		570D78A022421F5B0074CE4C /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570D789E22421F5B0074CE4C /* TextFieldCell.xib */; };
 		570D78A222421F690074CE4C /* TextFieldCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D78A122421F690074CE4C /* TextFieldCellViewModel.swift */; };
@@ -47,7 +50,6 @@
 		57109BA4223FADE40000AB88 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */; };
 		57109BA5223FADE40000AB88 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109BA2223FADE40000AB88 /* SettingsViewController.swift */; };
 		57109BA6223FADE40000AB88 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57109BA3223FADE40000AB88 /* SettingsViewModel.swift */; };
-		57795B1B223FEFC200CAF402 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57795B1A223FEFC200CAF402 /* Lecture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,9 @@
 		570287BB224126C60041B3A7 /* ScheduleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderViewModel.swift; sourceTree = "<group>"; };
 		570287BD22412E7C0041B3A7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		5703CE45225757D20014A3CD /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		5703CE4C225781790014A3CD /* Lecture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lecture.xcdatamodel; sourceTree = "<group>"; };
+		5703CE8B225785660014A3CD /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
+		5703CE8C225785660014A3CD /* Lecture+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lecture+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		570D789D22421F5B0074CE4C /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		570D789E22421F5B0074CE4C /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		570D78A122421F690074CE4C /* TextFieldCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCellViewModel.swift; sourceTree = "<group>"; };
@@ -115,7 +120,6 @@
 		57109BA1223FADE30000AB88 /* SettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
 		57109BA2223FADE40000AB88 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		57109BA3223FADE40000AB88 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		57795B1A223FEFC200CAF402 /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +284,7 @@
 		57109B87223F9C230000AB88 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5703CE4B225781790014A3CD /* Lectures.xcdatamodeld */,
 				57109B5B223F9A170000AB88 /* Assets.xcassets */,
 				570287BD22412E7C0041B3A7 /* Colors.xcassets */,
 				57109B5D223F9A170000AB88 /* LaunchScreen.storyboard */,
@@ -327,7 +332,8 @@
 			children = (
 				57109B90223F9FC50000AB88 /* Translation.swift */,
 				570287A12240E9A80041B3A7 /* WSEIScript.swift */,
-				57795B1A223FEFC200CAF402 /* Lecture.swift */,
+				5703CE8B225785660014A3CD /* Lecture.swift */,
+				5703CE8C225785660014A3CD /* Lecture+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,8 +493,10 @@
 				570287AE2240EBBF0041B3A7 /* CellView.swift in Sources */,
 				570287B82241263E0041B3A7 /* ScheduleHeader.swift in Sources */,
 				57109BA6223FADE40000AB88 /* SettingsViewModel.swift in Sources */,
-				57795B1B223FEFC200CAF402 /* Lecture.swift in Sources */,
+				5703CE8D225785660014A3CD /* Lecture.swift in Sources */,
+				5703CE4D225781790014A3CD /* Lectures.xcdatamodeld in Sources */,
 				570287A92240EB9F0041B3A7 /* ScheduleCell.swift in Sources */,
+				5703CE8E225785660014A3CD /* Lecture+CoreDataProperties.swift in Sources */,
 				570287B02240EBC70041B3A7 /* CellViewModel.swift in Sources */,
 				570287B222411D460041B3A7 /* Date+StripTime.swift in Sources */,
 				570287AC2240EBB20041B3A7 /* ScheduleCellViewModel.swift in Sources */,
@@ -841,6 +849,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5703CE4B225781790014A3CD /* Lectures.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5703CE4C225781790014A3CD /* Lecture.xcdatamodel */,
+			);
+			currentVersion = 5703CE4C225781790014A3CD /* Lecture.xcdatamodel */;
+			path = Lectures.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 57109B49223F9A150000AB88 /* Project object */;
 }

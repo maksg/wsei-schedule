@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class ScheduleViewModel: ViewModel {
     
@@ -21,20 +22,40 @@ class ScheduleViewModel: ViewModel {
     }
     
     var lectures: [Lecture]
-    
     var scheduleCellViewModels: [Date : [ScheduleCellViewModel]]
+    
+    let persistentContainer: NSPersistentContainer
     
     // MARK: Initialization
     
-    init() {
+    init(persistentContainer: NSPersistentContainer) {
         self.lectures = []
         self.scheduleCellViewModels = [:]
+        self.persistentContainer = persistentContainer
+        
+        fetchLectures(from: persistentContainer.viewContext)
     }
     
     // MARK: Methods
     
+    func fetchLectures(from context: NSManagedObjectContext) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            guard let lectures = results as? [Lecture] else { return }
+            self.lectures = lectures
+            generateScheduleCellViewModels()
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+    }
+    
     func convertDataToLectureList(data: Any?) {
         guard let data = data as? [[String : String]] else { return }
+        let managedContext = persistentContainer.viewContext
+        
+        deleteLectures(from: managedContext)
         
         let filteredData = data.map { (lecture) -> [String : String] in
             Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
@@ -44,7 +65,13 @@ class ScheduleViewModel: ViewModel {
             }))
         }
         
-        lectures = filteredData.map { Lecture(fromDictionary: $0) }
+        lectures = filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
+        generateScheduleCellViewModels()
+        
+        saveLectures(to: managedContext)
+    }
+    
+    func generateScheduleCellViewModels() {
         scheduleCellViewModels = lectures.reduce(into: [Date : [ScheduleCellViewModel]]()) {
             let viewModel = ScheduleCellViewModel(lecture: $1)
             let date = $1.fromDate.strippedFromTime
@@ -53,7 +80,22 @@ class ScheduleViewModel: ViewModel {
             } else {
                 $0[date]! += [viewModel]
             }
-            
+        }
+    }
+    
+    func deleteLectures(from context: NSManagedObjectContext) {
+        for lecture in lectures {
+            context.delete(lecture)
+        }
+    }
+    
+    func saveLectures(to context: NSManagedObjectContext) {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Unresolved error \(error), \(error.userInfo)")
+            }
         }
     }
     
