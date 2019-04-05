@@ -22,7 +22,7 @@ protocol KeyboardObserver: class {
 
 }
 
-extension KeyboardObserver where Self: UIViewController {
+extension KeyboardObserver {
     
 	func keyboardWillShow(_ notification: Notification) {}
 	func keyboardDidShow(_ notification: Notification) {}

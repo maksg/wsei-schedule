@@ -20,6 +20,7 @@
 		570287BA2241264D0041B3A7 /* ScheduleHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570287B92241264D0041B3A7 /* ScheduleHeader.xib */; };
 		570287BC224126C60041B3A7 /* ScheduleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570287BB224126C60041B3A7 /* ScheduleHeaderViewModel.swift */; };
 		570287BE22412E7C0041B3A7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 570287BD22412E7C0041B3A7 /* Colors.xcassets */; };
+		5703CE46225757D20014A3CD /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703CE45225757D20014A3CD /* KeyboardView.swift */; };
 		570D789F22421F5B0074CE4C /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D789D22421F5B0074CE4C /* TextFieldCell.swift */; };
 		570D78A022421F5B0074CE4C /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570D789E22421F5B0074CE4C /* TextFieldCell.xib */; };
 		570D78A222421F690074CE4C /* TextFieldCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D78A122421F690074CE4C /* TextFieldCellViewModel.swift */; };
@@ -81,6 +82,7 @@
 		570287B92241264D0041B3A7 /* ScheduleHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleHeader.xib; sourceTree = "<group>"; };
 		570287BB224126C60041B3A7 /* ScheduleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderViewModel.swift; sourceTree = "<group>"; };
 		570287BD22412E7C0041B3A7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		5703CE45225757D20014A3CD /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		570D789D22421F5B0074CE4C /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		570D789E22421F5B0074CE4C /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		570D78A122421F690074CE4C /* TextFieldCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCellViewModel.swift; sourceTree = "<group>"; };
@@ -178,6 +180,14 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		5703CE44225757C50014A3CD /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				5703CE45225757D20014A3CD /* KeyboardView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		570D789C22421EF90074CE4C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +238,7 @@
 				57109B8A223F9F270000AB88 /* Extensions */,
 				570D78A322422B310074CE4C /* Protocols */,
 				57795B19223FEF8700CAF402 /* Models */,
+				5703CE44225757C50014A3CD /* CustomViews */,
 				570287B52241258D0041B3A7 /* Headers */,
 				570287A32240EB300041B3A7 /* Cells */,
 				57109B82223F9ADF0000AB88 /* Screens */,
@@ -487,6 +498,7 @@
 				57109B91223F9FC50000AB88 /* Translation.swift in Sources */,
 				570287B42241205F0041B3A7 /* Dictionary+Index.swift in Sources */,
 				57109BA5223FADE40000AB88 /* SettingsViewController.swift in Sources */,
+				5703CE46225757D20014A3CD /* KeyboardView.swift in Sources */,
 				570D789F22421F5B0074CE4C /* TextFieldCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

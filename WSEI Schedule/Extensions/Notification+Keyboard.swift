@@ -10,17 +10,17 @@ import UIKit
 
 extension Notification {
     
-    var keyboardSize: CGSize {
-        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size ?? CGSize.zero
+    var keyboardFrame: CGRect {
+        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
     }
     
     var keyboardAnimationDuration: Double {
         return userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.0
     }
     
-    var keyboardAnimationCurve: UIView.AnimationOptions {
-        let animationOptions = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt ?? 0
-        return UIView.AnimationOptions(rawValue: animationOptions)
+    var keyboardAnimationCurve: UIView.AnimationCurve {
+        let animationCurve = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int ?? 0
+        return UIView.AnimationCurve(rawValue: animationCurve) ?? UIView.AnimationCurve.easeInOut
     }
     
 }

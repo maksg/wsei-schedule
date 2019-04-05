@@ -13,7 +13,6 @@ class SettingsViewController: UIViewController, View {
     // MARK: IBOutlets
     
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     
     // MARK: Properties
     
@@ -30,7 +29,6 @@ class SettingsViewController: UIViewController, View {
         super.viewDidLoad()
 
         configureTableView()
-        registerForKeyboardEvents()
         hideKeyboardOnTap()
     }
     
@@ -45,10 +43,6 @@ class SettingsViewController: UIViewController, View {
         
         let textFieldCellNib = UINib(nibName: "TextFieldCell", bundle: nil)
         tableView.register(textFieldCellNib, forCellReuseIdentifier: "TextFieldCell")
-    }
-    
-    deinit {
-        unregisterFromKeyboardEvents()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,35 +85,6 @@ extension SettingsViewController: TextFieldCellViewModelDelegate {
     
     func textFieldDidEndEditing(withText text: String) {
         UserDefaults.standard.set(text, forKey: "AlbumNumber")
-    }
-    
-}
-
-extension SettingsViewController: KeyboardObserver {
-    
-    func keyboardWillShow(_ notification: Notification) {
-        bottomConstraint.constant = notification.keyboardSize.height - view.safeAreaInsets.bottom
-        animateKeyboard(for: notification)
-    }
-    
-    func keyboardWillHide(_ notification: Notification) {
-        bottomConstraint.constant = 0.0
-        animateKeyboard(for: notification)
-    }
-    
-    func keyboardWillChangeFrame(_ notification: Notification) {
-        bottomConstraint.constant = notification.keyboardSize.height - view.safeAreaInsets.bottom
-        animateKeyboard(for: notification)
-    }
-    
-    private func animateKeyboard(for notification: Notification) {
-        let duration = notification.keyboardAnimationDuration
-        let delay = TimeInterval(0.0)
-        let options = notification.keyboardAnimationCurve
-        UIView.animate(withDuration: duration, delay: delay, options: options, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-            
-        })
     }
     
 }
