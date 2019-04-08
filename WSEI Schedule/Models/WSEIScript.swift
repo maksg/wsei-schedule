@@ -13,8 +13,9 @@ enum WSEIScript {
     case showHistory
     case selectType
     case selectAlbumNumber(number: String)
-    case observeProgress
+    case observeContentChange
     case getScheduleContent
+    case goToNextPage
     
     var content: String {
         switch self {
@@ -46,18 +47,18 @@ enum WSEIScript {
                 { isSame: true }
             }
             """
-        case .observeProgress:
+        case .observeContentChange:
             return """
             var MutationObserver = window.MutationObserver || window.WebKitMutationObserver
-            var progressTarget = document.querySelector('#ctl00_Progress1');
+            var target = document.querySelector('#ctl00_Center');
             
-            var config = { attributes: true };
+            var config = { childList: true, subtree: true };
             var callback = function(mutations, observer) {
                 window.webkit.messageHandlers.iosListener.postMessage('reloaded');
             };
             
             var observer = new MutationObserver(callback);
-            observer.observe(progressTarget, config);
+            observer.observe(target, config);
             """
         case .getScheduleContent:
             return """
@@ -77,6 +78,15 @@ enum WSEIScript {
                 }, {} );
                 return tableRow;
             });
+            """
+        case .goToNextPage:
+            return """
+            var nextButton = document.querySelector('#ctl00_PlaceRight_FCDesktop_Field_85_gvGrid_ctl54_Next');
+            if (nextButton == null) {
+                { isLastPage: true }
+            } else {
+                nextButton.click();
+            }
             """
         }
     }

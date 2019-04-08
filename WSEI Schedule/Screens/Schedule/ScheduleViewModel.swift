@@ -22,6 +22,7 @@ class ScheduleViewModel: ViewModel {
     }
     
     var lectures: [Lecture]
+    var tmpLectures: [Lecture]
     var scheduleCellViewModels: [Date : [ScheduleCellViewModel]]
     
     let persistentContainer: NSPersistentContainer
@@ -30,6 +31,7 @@ class ScheduleViewModel: ViewModel {
     
     init(persistentContainer: NSPersistentContainer) {
         self.lectures = []
+        self.tmpLectures = []
         self.scheduleCellViewModels = [:]
         self.persistentContainer = persistentContainer
         
@@ -38,7 +40,7 @@ class ScheduleViewModel: ViewModel {
     
     // MARK: Methods
     
-    func fetchLectures(from context: NSManagedObjectContext) {
+    private func fetchLectures(from context: NSManagedObjectContext) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
         
         do {
@@ -51,11 +53,24 @@ class ScheduleViewModel: ViewModel {
         }
     }
     
-    func convertDataToLectureList(data: Any?) {
-        guard let data = data as? [[String : String]] else { return }
+    func addLectures(fromData data: Any?) {
+        let lectures = convertDataToLectureList(data: data)
+        self.tmpLectures += lectures
+    }
+    
+    func finishLoadingLectures() {
         let managedContext = persistentContainer.viewContext
-        
         deleteLectures(from: managedContext)
+        
+        lectures = tmpLectures
+        tmpLectures = []
+        
+        generateScheduleCellViewModels()
+        saveLectures(to: managedContext)
+    }
+    
+    private func convertDataToLectureList(data: Any?) -> [Lecture] {
+        guard let data = data as? [[String : String]] else { return [] }
         
         let filteredData = data.map { (lecture) -> [String : String] in
             Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
@@ -65,13 +80,12 @@ class ScheduleViewModel: ViewModel {
             }))
         }
         
-        lectures = filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
-        generateScheduleCellViewModels()
-        
-        saveLectures(to: managedContext)
+        let managedContext = persistentContainer.viewContext
+        return filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
     }
     
-    func generateScheduleCellViewModels() {
+    private func generateScheduleCellViewModels() {
+        lectures.sort { $0.fromDate < $1.fromDate }
         scheduleCellViewModels = lectures.reduce(into: [Date : [ScheduleCellViewModel]]()) {
             let viewModel = ScheduleCellViewModel(lecture: $1)
             let date = $1.fromDate.strippedFromTime
@@ -83,13 +97,13 @@ class ScheduleViewModel: ViewModel {
         }
     }
     
-    func deleteLectures(from context: NSManagedObjectContext) {
+    private func deleteLectures(from context: NSManagedObjectContext) {
         for lecture in lectures {
             context.delete(lecture)
         }
     }
     
-    func saveLectures(to context: NSManagedObjectContext) {
+    private func saveLectures(to context: NSManagedObjectContext) {
         if context.hasChanges {
             do {
                 try context.save()

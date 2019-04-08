@@ -70,13 +70,14 @@ class ScheduleViewController: UITableViewController, View {
     }
     
     private func configureWebView() {let config = WKWebViewConfiguration()
-        let script = WKUserScript(source: WSEIScript.observeProgress.content,
+        let script = WKUserScript(source: WSEIScript.observeContentChange.content,
                                   injectionTime: .atDocumentEnd,
                                   forMainFrameOnly: true)
         config.userContentController.addUserScript(script)
         config.userContentController.add(self, name: "iosListener")
         
-        webView = WKWebView(frame: UIScreen.main.bounds, configuration: config)
+        let frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.height, height: UIScreen.main.bounds.width)
+        webView = WKWebView(frame: frame, configuration: config)
         webView.navigationDelegate = self
     }
     
@@ -161,27 +162,35 @@ extension ScheduleViewController: WKNavigationDelegate, WKScriptMessageHandler {
         }
     }
     
-    private func run(_ script: WSEIScript, completionHandler: @escaping (Any?) -> Void) {
+    private func run(_ script: WSEIScript, completionHandler: ((Any?) -> Void)? = nil) {
         webView.evaluateJavaScript(script.content) { [weak self] (data, error) in
-            if let _ = error {
+            if let error = error {
+                print(error)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
                     self?.run(script, completionHandler: completionHandler)
                 })
             } else {
-                completionHandler(data)
+                completionHandler?(data)
             }
         }
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(message.body)
         getScheduleContent()
     }
     
     private func getScheduleContent() {
         run(.getScheduleContent, completionHandler: { [weak self] data in
-            self?.viewModel.convertDataToLectureList(data: data)
-            self?.tableView.reloadData()
-            self?.refreshControl?.endRefreshing()
+            self?.viewModel.addLectures(fromData: data)
+            self?.run(.goToNextPage, completionHandler: { [weak self] data in
+                let isLastPage = (data as? Bool) ?? false
+                if isLastPage {
+                    self?.viewModel.finishLoadingLectures()
+                    self?.tableView.reloadData()
+                    self?.refreshControl?.endRefreshing()
+                }
+            })
         })
     }
     
