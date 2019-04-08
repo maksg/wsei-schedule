@@ -17,6 +17,10 @@ class ScheduleViewModel: ViewModel {
         return URL(string: "https://estudent.wsei.edu.pl/SG/PublicDesktop.aspx?fileShareToken=95-88-6B-EB-B0-75-96-FB-A9-7C-AE-D7-5C-DB-90-49")!
     }
     
+    var albumNumber: String {
+        return UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
+    }
+    
     var title: String {
         return Translation.Schedule.title.localized
     }

@@ -48,6 +48,10 @@ class SettingsViewController: UIViewController, View {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    private func saveAlbumNumber(_ albumNumber: String) {
+        UserDefaults.standard.set(albumNumber, forKey: "AlbumNumber")
+    }
 
 }
 
@@ -84,7 +88,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 extension SettingsViewController: TextFieldCellViewModelDelegate {
     
     func textFieldDidEndEditing(withText text: String) {
-        UserDefaults.standard.set(text, forKey: "AlbumNumber")
+        saveAlbumNumber(text)
     }
     
 }

@@ -34,7 +34,7 @@ class ScheduleViewController: UITableViewController, View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.reloadSchedule()
+        reloadSchedule()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,6 +82,7 @@ class ScheduleViewController: UITableViewController, View {
     }
     
     @objc private func reloadSchedule() {
+        guard !viewModel.albumNumber.isEmpty else { return }
         refreshControl?.beginRefreshing()
         let url = viewModel.scheduleURL
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
@@ -142,7 +143,7 @@ extension ScheduleViewController: WKNavigationDelegate, WKScriptMessageHandler {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url == viewModel.scheduleURL {
-            let albumNumber = UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
+            let albumNumber = viewModel.albumNumber
             selectSchedule(forAlbumNumber: albumNumber)
         }
     }
