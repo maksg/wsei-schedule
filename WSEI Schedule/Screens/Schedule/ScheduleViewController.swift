@@ -34,6 +34,8 @@ class ScheduleViewController: UITableViewController, View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        viewModel.generateScheduleCellViewModels()
+        tableView.reloadData()
         reloadSchedule()
     }
     
@@ -149,6 +151,8 @@ extension ScheduleViewController: WKNavigationDelegate, WKScriptMessageHandler {
     }
     
     private func selectSchedule(forAlbumNumber albumNumber: String) {
+        run(.showHistory)
+        
         var isSame = true
         run(.selectType) { [weak self] data in
             isSame = isSame && (data as? Bool) ?? false

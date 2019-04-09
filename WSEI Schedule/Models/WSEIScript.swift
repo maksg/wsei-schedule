@@ -23,7 +23,6 @@ enum WSEIScript {
             return """
             var historyCheckbox = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_210_0');
             historyCheckbox.checked = false;
-            historyCheckbox.onclick();
             """
         case .selectType:
             return """

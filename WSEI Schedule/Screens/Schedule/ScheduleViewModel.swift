@@ -88,9 +88,11 @@ class ScheduleViewModel: ViewModel {
         return filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
     }
     
-    private func generateScheduleCellViewModels() {
+    func generateScheduleCellViewModels() {
         lectures.sort { $0.fromDate < $1.fromDate }
-        scheduleCellViewModels = lectures.reduce(into: [Date : [ScheduleCellViewModel]]()) {
+        guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else { return }
+        let futureLectures = lectures[nearestLectureIndex..<lectures.count]
+        scheduleCellViewModels = futureLectures.reduce(into: [Date : [ScheduleCellViewModel]]()) {
             let viewModel = ScheduleCellViewModel(lecture: $1)
             let date = $1.fromDate.strippedFromTime
             if $0[date] == nil {
