@@ -89,7 +89,9 @@ class ScheduleViewModel: ViewModel {
     }
     
     func generateScheduleCellViewModels() {
+        lectures = Array(Set(lectures))
         lectures.sort { $0.fromDate < $1.fromDate }
+        
         guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else { return }
         let futureLectures = lectures[nearestLectureIndex..<lectures.count]
         scheduleCellViewModels = futureLectures.reduce(into: [Date : [ScheduleCellViewModel]]()) {
