@@ -61,8 +61,8 @@ class ScheduleViewController: UITableViewController, View {
         tableView.estimatedRowHeight = 70.0
         tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.estimatedSectionHeaderHeight = 34.0
-        tableView.sectionHeaderHeight = 34.0
+        tableView.estimatedSectionHeaderHeight = 32.0
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         
         let cellNib = UINib(nibName: "ScheduleCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "ScheduleCell")

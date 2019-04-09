@@ -32,6 +32,11 @@ class SettingsViewController: UIViewController, View {
         hideKeyboardOnTap()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK: Methods
     
     private func configureTableView() {
@@ -39,7 +44,7 @@ class SettingsViewController: UIViewController, View {
         tableView.dataSource = self
         
         tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = 44.0
+        tableView.rowHeight = UITableView.automaticDimension
         
         let textFieldCellNib = UINib(nibName: "TextFieldCell", bundle: nil)
         tableView.register(textFieldCellNib, forCellReuseIdentifier: "TextFieldCell")

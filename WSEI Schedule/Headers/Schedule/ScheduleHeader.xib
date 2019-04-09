@@ -14,16 +14,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ScheduleHeader" customModule="WSEI_Schedule" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7N-Ae-urI">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                     <color key="backgroundColor" name="SectionHeader"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday 01.01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="033-vS-Oqv">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday 01.01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="033-vS-Oqv">
+                    <rect key="frame" x="0.0" y="4" width="375" height="40"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -31,12 +31,12 @@
             <constraints>
                 <constraint firstItem="D7N-Ae-urI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DHB-9k-EGE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="D7N-Ae-urI" secondAttribute="trailing" id="HLi-Qb-Awp"/>
-                <constraint firstAttribute="bottom" secondItem="D7N-Ae-urI" secondAttribute="bottom" id="JWU-9y-OUL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="D7N-Ae-urI" secondAttribute="bottom" id="JWU-9y-OUL"/>
                 <constraint firstItem="033-vS-Oqv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QA1-Xm-KTZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="033-vS-Oqv" secondAttribute="bottom" constant="4" id="WoH-IL-wIf"/>
                 <constraint firstItem="033-vS-Oqv" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Xbw-Ox-Kvi"/>
-                <constraint firstItem="033-vS-Oqv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="bXk-PO-JsG"/>
-                <constraint firstItem="D7N-Ae-urI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="c8f-L3-xpg"/>
-                <constraint firstItem="033-vS-Oqv" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="z9g-zd-Jqo"/>
+                <constraint firstItem="033-vS-Oqv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="bXk-PO-JsG"/>
+                <constraint firstItem="D7N-Ae-urI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="c8f-L3-xpg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -48,7 +48,7 @@
     </objects>
     <resources>
         <namedColor name="SectionHeader">
-            <color red="0.70588235294117652" green="0.70588235294117652" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
