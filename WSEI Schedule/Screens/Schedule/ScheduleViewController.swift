@@ -52,7 +52,7 @@ class ScheduleViewController: UITableViewController, View {
         tableView.dataSource = self
         
         refreshControl?.addTarget(self, action: #selector(reloadSchedule), for: .valueChanged)
-        refreshControl?.tintColor = UIColor.white
+        refreshControl?.tintColor = UIColor.black
         
         // Refresh control tint color hack
         tableView.contentOffset = CGPoint(x: 0.0, y: -refreshControl!.frame.size.height)
