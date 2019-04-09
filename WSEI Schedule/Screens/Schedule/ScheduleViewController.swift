@@ -76,7 +76,7 @@ class ScheduleViewController: UITableViewController, View {
         config.userContentController.addUserScript(script)
         config.userContentController.add(self, name: "iosListener")
         
-        let frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.height, height: UIScreen.main.bounds.width)
+        let frame = CGRect(x: 0, y: 0, width: 800, height: 400)
         webView = WKWebView(frame: frame, configuration: config)
         webView.navigationDelegate = self
     }
