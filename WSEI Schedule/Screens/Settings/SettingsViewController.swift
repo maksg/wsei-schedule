@@ -30,6 +30,12 @@ class SettingsViewController: UIViewController, View {
 
         configureTableView()
         hideKeyboardOnTap()
+        
+        navigationController?.navigationBar.accessibilityIgnoresInvertColors = true
+        NotificationCenter.default.addObserver(forName: UIAccessibility.invertColorsStatusDidChangeNotification,object: nil, queue: nil) { [weak self] notification in
+            self?.updateNavigationBarColor()
+        }
+        updateNavigationBarColor()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,6 +44,16 @@ class SettingsViewController: UIViewController, View {
     }
     
     // MARK: Methods
+    
+    private func updateNavigationBarColor() {
+        if UIAccessibility.isInvertColorsEnabled {
+            navigationController?.navigationBar.isTranslucent = false
+            navigationController?.navigationBar.barTintColor = .black
+        } else {
+            navigationController?.navigationBar.isTranslucent = true
+            navigationController?.navigationBar.barTintColor = .white
+        }
+    }
     
     private func configureTableView() {
         tableView.delegate = self

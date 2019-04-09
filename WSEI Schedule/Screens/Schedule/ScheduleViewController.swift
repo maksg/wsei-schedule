@@ -27,8 +27,16 @@ class ScheduleViewController: UITableViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        extendedLayoutIncludesOpaqueBars = true
+        
         configureTableView()
         configureWebView()
+        
+        navigationController?.navigationBar.accessibilityIgnoresInvertColors = true
+        NotificationCenter.default.addObserver(forName: UIAccessibility.invertColorsStatusDidChangeNotification,object: nil, queue: nil) { [weak self] notification in
+            self?.updateNavigationBarColor()
+        }
+        updateNavigationBarColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,18 +49,29 @@ class ScheduleViewController: UITableViewController, View {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         refreshControl?.endRefreshing()
     }
     
     // MARK: Methods
+    
+    private func updateNavigationBarColor() {
+        if UIAccessibility.isInvertColorsEnabled {
+            navigationController?.navigationBar.isTranslucent = false
+            navigationController?.navigationBar.barTintColor = .black
+            refreshControl?.tintColor = .white
+        } else {
+            navigationController?.navigationBar.isTranslucent = true
+            navigationController?.navigationBar.barTintColor = .white
+            refreshControl?.tintColor = .black
+        }
+    }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
         refreshControl?.addTarget(self, action: #selector(reloadSchedule), for: .valueChanged)
-        refreshControl?.tintColor = UIColor.black
+        refreshControl?.tintColor = UIAccessibility.isInvertColorsEnabled ? .white : .black
         
         // Refresh control tint color hack
         tableView.contentOffset = CGPoint(x: 0.0, y: -refreshControl!.frame.size.height)

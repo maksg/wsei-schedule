@@ -23,6 +23,22 @@ class TabBarController: UITabBarController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tabBar.accessibilityIgnoresInvertColors = true
+        NotificationCenter.default.addObserver(forName: UIAccessibility.invertColorsStatusDidChangeNotification,object: nil, queue: nil) { [weak self] notification in
+            self?.updateTabBarColor()
+        }
+        updateTabBarColor()
+    }
+    
+    func updateTabBarColor() {
+        if UIAccessibility.isInvertColorsEnabled {
+            tabBar.isTranslucent = false
+            tabBar.barTintColor = .black
+        } else {
+            tabBar.isTranslucent = true
+            tabBar.barTintColor = .white
+        }
     }
     
     // MARK: Methods
