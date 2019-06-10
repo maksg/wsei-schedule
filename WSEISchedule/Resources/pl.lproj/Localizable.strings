@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  WSEISchedule
+
+  Created by Maksymilian Galas on 10/06/2019.
+  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
+*/
+
+// Alert
+
+"alert.title" = "Alert";
+"alert.confirm" = "Ok";
+"alert.cancel" = "Anuluj";
+
+// Error
+
+"error.title" = "Błąd";
+"error.default" = "Coś się stało";
+
+// Schedule
+
+"schedule.title" = "Harmonogram";
+
+// Settings
+
+"settings.title" = "Ustawienia";
+"settings.album_number" = "Numer Albumu";
