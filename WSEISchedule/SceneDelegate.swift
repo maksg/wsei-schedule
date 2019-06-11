@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Use a UIHostingController as window root view controller
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UIHostingController(rootView: TabView(viewModel: .init()))
+        let tabView = TabView(viewModel: .init())
+        window.rootViewController = UIHostingController(rootView: tabView)
         self.window = window
         window.makeKeyAndVisible()
     }

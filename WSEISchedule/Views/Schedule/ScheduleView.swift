@@ -11,10 +11,6 @@ import SwiftUI
 struct ScheduleView : View {
     var viewModel: ScheduleViewModel
     
-    init(_ viewModel: ScheduleViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
         NavigationView {
             Text(viewModel.title)
@@ -26,7 +22,7 @@ struct ScheduleView : View {
 #if DEBUG
 struct ScheduleView_Previews : PreviewProvider {
     static var previews: some View {
-        return ScheduleView(.init())
+        ScheduleView(viewModel: .init())
     }
 }
 #endif

@@ -15,7 +15,12 @@ struct SettingsView: View {
         NavigationView {
             List {
                 Section(header: Text("")) {
-                    TextField($viewModel.albumNumber, placeholder: Text("00000"))
+                    HStack {
+                        Text(Translation.Settings.albumNumber.localized)
+                            .font(.headline)
+                        TextField($viewModel.albumNumber, placeholder: Text("00000"))
+                            .font(.callout)
+                    }
                 }
             }
             .listStyle(.grouped)

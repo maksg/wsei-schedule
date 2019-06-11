@@ -14,15 +14,18 @@ struct TabView: View {
     
     var body: some View {
         TabbedView {
-            ScheduleView(.init())
+            ScheduleView(viewModel: .init())
                 .tabItemLabel(Image("timetable"))
+                .tabItemLabel(Image(systemName: "clock.fill"))
                 .tabItemLabel(Text(Tab.schedule.title))
                 .tag(Tab.schedule.rawValue)
             SettingsView(viewModel: .init())
                 .tabItemLabel(Image("settings"))
+                .tabItemLabel(Image(systemName: "gear"))
                 .tabItemLabel(Text(Tab.settings.title))
                 .tag(Tab.settings.rawValue)
         }
+        .accentColor(.green)
     }
 }
 
