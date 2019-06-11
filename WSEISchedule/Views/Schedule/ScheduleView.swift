@@ -9,12 +9,20 @@
 import SwiftUI
 
 struct ScheduleView : View {
-    var viewModel: ScheduleViewModel
+    @ObjectBinding var viewModel: ScheduleViewModel
     
     var body: some View {
         NavigationView {
-            Text(viewModel.title)
-                .navigationBarTitle(Text(viewModel.title))
+            List {
+                ForEach(viewModel.lectureDays) { lectureDay in
+                    Section(header: DayHeader(date: lectureDay.date)) {
+                        ForEach(lectureDay.lectures.identified(by: \.self)) { lecture in
+                            LectureRow(lecture: lecture)
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle(Text(viewModel.title))
         }
     }
 }

@@ -9,7 +9,7 @@
 import Combine
 import SwiftUI
 
-final class SettingsViewModel: ViewModel, BindableObject {
+final class SettingsViewModel: BindableObject {
     let didChange = PassthroughSubject<SettingsViewModel, Never>()
     
     var title: String {

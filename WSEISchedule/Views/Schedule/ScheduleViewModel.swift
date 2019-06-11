@@ -6,16 +6,18 @@
 //  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 //
 
+import Combine
+import SwiftUI
 import WebKit
 import CoreData
 
-final class ScheduleViewModel: ViewModel {
+final class ScheduleViewModel: BindableObject {
+    let didChange = PassthroughSubject<ScheduleViewModel, Never>()
     
     // MARK: Properties
     
     var albumNumber: String {
-        "10951"
-//        UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
+        UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
     }
     
     var title: String {
@@ -34,7 +36,11 @@ final class ScheduleViewModel: ViewModel {
     
     var lectures: [Lecture] = []
     var tmpLectures: [Lecture] = []
-    var scheduleCellViewModels: [Date : [ScheduleCellViewModel]] = [:]
+    var lectureDays: [LectureDay] = [] {
+        didSet {
+            didChange.send(self)
+        }
+    }
     
     private var webView: ScheduleWebView
     
@@ -101,15 +107,10 @@ final class ScheduleViewModel: ViewModel {
         
         guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else { return }
         let futureLectures = lectures[nearestLectureIndex..<lectures.count]
-        scheduleCellViewModels = futureLectures.reduce(into: [Date : [ScheduleCellViewModel]]()) {
-            let viewModel = ScheduleCellViewModel(lecture: $1)
-            let date = $1.fromDate.strippedFromTime
-            if $0[date] == nil {
-                $0[date] = [viewModel]
-            } else {
-                $0[date]! += [viewModel]
-            }
-        }
+        lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
+            let date = lecture.fromDate.strippedFromTime
+            lectureDays[date].lectures += [lecture]
+        })
     }
     
     private func deleteLectures(from context: NSManagedObjectContext) {

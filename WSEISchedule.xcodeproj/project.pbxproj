@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
+		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
+		5701F83322AFE361005BED89 /* Date+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Formats.swift */; };
+		5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
+		5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
+		5701F83922AFF5DA005BED89 /* MockLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* MockLecture.swift */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
 		57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD315022AE6B50009EEB1F /* AppDelegate.swift */; };
 		57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD315222AE6B50009EEB1F /* SceneDelegate.swift */; };
@@ -30,15 +36,11 @@
 		57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319122AE6BC3009EEB1F /* ScheduleViewModel.swift */; };
 		57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319222AE6BC3009EEB1F /* ScheduleView.swift */; };
 		57AD31A722AE6BC3009EEB1F /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319322AE6BC3009EEB1F /* TabView.swift */; };
-		57AD31A822AE6BC3009EEB1F /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319422AE6BC3009EEB1F /* TabViewModel.swift */; };
 		57AD31A922AE6BC3009EEB1F /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319622AE6BC3009EEB1F /* KeyboardObserver.swift */; };
-		57AD31AA22AE6BC3009EEB1F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319722AE6BC3009EEB1F /* ViewModel.swift */; };
-		57AD31AB22AE6BC3009EEB1F /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319822AE6BC3009EEB1F /* CellViewModel.swift */; };
 		57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
 		57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
 		57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* Lecture.swift */; };
 		57AD31BA22AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */; };
-		57AD31C122AE79AE009EEB1F /* ScheduleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31C022AE79AE009EEB1F /* ScheduleCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5701F82D22AFD23A005BED89 /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
+		5701F83022AFE084005BED89 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
+		5701F83222AFE361005BED89 /* Date+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formats.swift"; sourceTree = "<group>"; };
+		5701F83422AFEE47005BED89 /* LectureDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureDay.swift; sourceTree = "<group>"; };
+		5701F83622AFF57A005BED89 /* LectureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProtocol.swift; sourceTree = "<group>"; };
+		5701F83822AFF5DA005BED89 /* MockLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLecture.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
 		57AD314D22AE6B50009EEB1F /* WSEISchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSEISchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AD315022AE6B50009EEB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,17 +96,13 @@
 		57AD319122AE6BC3009EEB1F /* ScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		57AD319222AE6BC3009EEB1F /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		57AD319322AE6BC3009EEB1F /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
-		57AD319422AE6BC3009EEB1F /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		57AD319622AE6BC3009EEB1F /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
-		57AD319722AE6BC3009EEB1F /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		57AD319822AE6BC3009EEB1F /* CellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		57AD31AF22AE6BFD009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		57AD31B122AE6C01009EEB1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57AD31B322AE6C27009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57AD31B522AE6E20009EEB1F /* Lectures.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lectures.xcdatamodel; sourceTree = "<group>"; };
 		57AD31B722AE6ECF009EEB1F /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
 		57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lecture+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		57AD31C022AE79AE009EEB1F /* ScheduleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5701F82F22AFE041005BED89 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				5701F83022AFE084005BED89 /* DayHeader.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		574C6ED922AFCBB900215D88 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,8 +215,10 @@
 				57AD318222AE6BC3009EEB1F /* Tab.swift */,
 				57AD318122AE6BC3009EEB1F /* Translation.swift */,
 				57AD318322AE6BC3009EEB1F /* WSEIScript.swift */,
+				5701F83422AFEE47005BED89 /* LectureDay.swift */,
 				57AD31B722AE6ECF009EEB1F /* Lecture.swift */,
 				57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */,
+				5701F83822AFF5DA005BED89 /* MockLecture.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,6 +229,7 @@
 				57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */,
 				57AD318622AE6BC3009EEB1F /* String+Localized.swift */,
 				57AD318722AE6BC3009EEB1F /* Dictionary+Index.swift */,
+				5701F83222AFE361005BED89 /* Date+Formats.swift */,
 				57AD318822AE6BC3009EEB1F /* Date+StripTime.swift */,
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
 				57AD318A22AE6BC3009EEB1F /* UIViewController+Keyboard.swift */,
@@ -228,7 +243,6 @@
 			children = (
 				57AD319022AE6BC3009EEB1F /* Schedule */,
 				57AD318D22AE6BC3009EEB1F /* Settings */,
-				57AD319422AE6BC3009EEB1F /* TabViewModel.swift */,
 				57AD319322AE6BC3009EEB1F /* TabView.swift */,
 			);
 			path = Views;
@@ -246,7 +260,8 @@
 		57AD319022AE6BC3009EEB1F /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				57AD31BF22AE799F009EEB1F /* Cells */,
+				5701F82F22AFE041005BED89 /* Headers */,
+				57AD31BF22AE799F009EEB1F /* Rows */,
 				57AD319122AE6BC3009EEB1F /* ScheduleViewModel.swift */,
 				57AD319222AE6BC3009EEB1F /* ScheduleView.swift */,
 			);
@@ -257,8 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				57AD319622AE6BC3009EEB1F /* KeyboardObserver.swift */,
-				57AD319722AE6BC3009EEB1F /* ViewModel.swift */,
-				57AD319822AE6BC3009EEB1F /* CellViewModel.swift */,
+				5701F83622AFF57A005BED89 /* LectureProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -274,12 +288,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		57AD31BF22AE799F009EEB1F /* Cells */ = {
+		57AD31BF22AE799F009EEB1F /* Rows */ = {
 			isa = PBXGroup;
 			children = (
-				57AD31C022AE79AE009EEB1F /* ScheduleCellViewModel.swift */,
+				5701F82D22AFD23A005BED89 /* LectureRow.swift */,
 			);
-			path = Cells;
+			path = Rows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,15 +435,17 @@
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57AD31BA22AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift in Sources */,
 				57AD319E22AE6BC3009EEB1F /* Dictionary+Index.swift in Sources */,
+				5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
 				57AD31A922AE6BC3009EEB1F /* KeyboardObserver.swift in Sources */,
+				5701F83322AFE361005BED89 /* Date+Formats.swift in Sources */,
+				5701F83922AFF5DA005BED89 /* MockLecture.swift in Sources */,
 				57AD319922AE6BC3009EEB1F /* Translation.swift in Sources */,
 				57AD31A222AE6BC3009EEB1F /* UIColor+Named.swift in Sources */,
-				57AD31C122AE79AE009EEB1F /* ScheduleCellViewModel.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
-				57AD31AB22AE6BC3009EEB1F /* CellViewModel.swift in Sources */,
-				57AD31AA22AE6BC3009EEB1F /* ViewModel.swift in Sources */,
+				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
+				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
 				5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */,
 				57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */,
 				57AD319F22AE6BC3009EEB1F /* Date+StripTime.swift in Sources */,
@@ -439,7 +455,7 @@
 				57AD319C22AE6BC3009EEB1F /* Notification+Keyboard.swift in Sources */,
 				57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */,
 				57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */,
-				57AD31A822AE6BC3009EEB1F /* TabViewModel.swift in Sources */,
+				5701F83122AFE084005BED89 /* DayHeader.swift in Sources */,
 				57AD31A422AE6BC3009EEB1F /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

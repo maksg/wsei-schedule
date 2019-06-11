@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(Lecture)
-class Lecture: NSManagedObject {
+final class Lecture: NSManagedObject, LectureProtocol {
     
     convenience init(fromDictionary dictionary: [String : String], inContext context: NSManagedObjectContext) {
         self.init(context: context)

@@ -9,9 +9,6 @@
 import SwiftUI
 
 struct TabView: View {
-    var currentTab: Tab = .schedule
-    var viewModel: TabViewModel
-    
     var body: some View {
         TabbedView {
             ScheduleView(viewModel: .init())
@@ -32,7 +29,7 @@ struct TabView: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        TabView(viewModel: .init())
+        TabView()
     }
 }
 #endif
