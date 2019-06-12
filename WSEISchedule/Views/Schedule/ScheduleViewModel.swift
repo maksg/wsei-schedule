@@ -50,12 +50,16 @@ final class ScheduleViewModel: BindableObject {
         webView = ScheduleWebView()
         webView.addLectures = addLectures(fromData:)
         webView.finishLoadingLectures = finishLoadingLectures
-        webView.albumNumber = albumNumber
-        webView.reload()
-        fetchLectures(from: persistentContainer.viewContext)
+        reloadLectures()
     }
     
     // MARK: Methods
+    
+    func reloadLectures() {
+        fetchLectures(from: persistentContainer.viewContext)
+        webView.albumNumber = albumNumber
+        webView.reload()
+    }
     
     private func fetchLectures(from context: NSManagedObjectContext) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")

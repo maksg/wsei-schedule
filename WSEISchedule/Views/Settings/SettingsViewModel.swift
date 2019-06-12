@@ -16,10 +16,16 @@ final class SettingsViewModel: BindableObject {
         Tab.settings.title
     }
     
-    var albumNumber: String = "" {
-        didSet {
+    var albumNumber: String {
+        get {
+            UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "AlbumNumber")
             didChange.send(self)
         }
     }
+    
+    var albumNumberPlaceholder: String { "00000" }
     
 }

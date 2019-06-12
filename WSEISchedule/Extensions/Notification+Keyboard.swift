@@ -7,20 +7,21 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension Notification {
     
     var keyboardFrame: CGRect {
-        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
+        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? .zero
     }
     
     var keyboardAnimationDuration: Double {
         return userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.0
     }
     
-    var keyboardAnimationCurve: UIView.AnimationCurve {
+    var keyboardAnimationCurve: BasicAnimationTimingCurve {
         let animationCurve = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int ?? 0
-        return UIView.AnimationCurve(rawValue: animationCurve) ?? UIView.AnimationCurve.easeInOut
+        return BasicAnimationTimingCurve(curve: UIView.AnimationCurve(rawValue: animationCurve))
     }
     
 }

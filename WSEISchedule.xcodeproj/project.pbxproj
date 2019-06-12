@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5701CE2522B0E80D00AD4CE2 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */; };
 		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
 		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
 		5701F83322AFE361005BED89 /* Date+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Formats.swift */; };
@@ -14,6 +15,8 @@
 		5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
 		5701F83922AFF5DA005BED89 /* MockLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* MockLecture.swift */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
+		579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F722B10B6E00D263C9 /* KeyboardObserver.swift */; };
+		579626FA22B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */; };
 		57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD315022AE6B50009EEB1F /* AppDelegate.swift */; };
 		57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD315222AE6B50009EEB1F /* SceneDelegate.swift */; };
 		57AD315722AE6B51009EEB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57AD315622AE6B51009EEB1F /* Assets.xcassets */; };
@@ -26,17 +29,15 @@
 		57AD319B22AE6BC3009EEB1F /* WSEIScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318322AE6BC3009EEB1F /* WSEIScript.swift */; };
 		57AD319C22AE6BC3009EEB1F /* Notification+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */; };
 		57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318622AE6BC3009EEB1F /* String+Localized.swift */; };
-		57AD319E22AE6BC3009EEB1F /* Dictionary+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318722AE6BC3009EEB1F /* Dictionary+Index.swift */; };
 		57AD319F22AE6BC3009EEB1F /* Date+StripTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318822AE6BC3009EEB1F /* Date+StripTime.swift */; };
 		57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */; };
-		57AD31A122AE6BC3009EEB1F /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318A22AE6BC3009EEB1F /* UIViewController+Keyboard.swift */; };
 		57AD31A222AE6BC3009EEB1F /* UIColor+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */; };
 		57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318E22AE6BC3009EEB1F /* SettingsView.swift */; };
 		57AD31A422AE6BC3009EEB1F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318F22AE6BC3009EEB1F /* SettingsViewModel.swift */; };
 		57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319122AE6BC3009EEB1F /* ScheduleViewModel.swift */; };
 		57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319222AE6BC3009EEB1F /* ScheduleView.swift */; };
 		57AD31A722AE6BC3009EEB1F /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319322AE6BC3009EEB1F /* TabView.swift */; };
-		57AD31A922AE6BC3009EEB1F /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319622AE6BC3009EEB1F /* KeyboardObserver.swift */; };
+		57AD31A922AE6BC3009EEB1F /* KeyboardObserverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319622AE6BC3009EEB1F /* KeyboardObserverProtocol.swift */; };
 		57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
 		57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
 		57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* Lecture.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		5701F82D22AFD23A005BED89 /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
 		5701F83022AFE084005BED89 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
 		5701F83222AFE361005BED89 /* Date+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formats.swift"; sourceTree = "<group>"; };
@@ -68,6 +70,8 @@
 		5701F83622AFF57A005BED89 /* LectureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProtocol.swift; sourceTree = "<group>"; };
 		5701F83822AFF5DA005BED89 /* MockLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLecture.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
+		579626F722B10B6E00D263C9 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicAnimationTimingCurve+UIViewAnimationCurve.swift"; sourceTree = "<group>"; };
 		57AD314D22AE6B50009EEB1F /* WSEISchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSEISchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AD315022AE6B50009EEB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57AD315222AE6B50009EEB1F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,17 +90,15 @@
 		57AD318322AE6BC3009EEB1F /* WSEIScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSEIScript.swift; sourceTree = "<group>"; };
 		57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Keyboard.swift"; sourceTree = "<group>"; };
 		57AD318622AE6BC3009EEB1F /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
-		57AD318722AE6BC3009EEB1F /* Dictionary+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Index.swift"; sourceTree = "<group>"; };
 		57AD318822AE6BC3009EEB1F /* Date+StripTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+StripTime.swift"; sourceTree = "<group>"; };
 		57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawRepresentable+String.swift"; sourceTree = "<group>"; };
-		57AD318A22AE6BC3009EEB1F /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
 		57AD318E22AE6BC3009EEB1F /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		57AD318F22AE6BC3009EEB1F /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		57AD319122AE6BC3009EEB1F /* ScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		57AD319222AE6BC3009EEB1F /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		57AD319322AE6BC3009EEB1F /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
-		57AD319622AE6BC3009EEB1F /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		57AD319622AE6BC3009EEB1F /* KeyboardObserverProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserverProtocol.swift; sourceTree = "<group>"; };
 		57AD31AF22AE6BFD009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		57AD31B122AE6C01009EEB1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57AD31B322AE6C27009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		574C6ED922AFCBB900215D88 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */,
 				5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */,
 			);
 			path = "Custom Views";
@@ -219,6 +222,7 @@
 				57AD31B722AE6ECF009EEB1F /* Lecture.swift */,
 				57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */,
 				5701F83822AFF5DA005BED89 /* MockLecture.swift */,
+				579626F722B10B6E00D263C9 /* KeyboardObserver.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,12 +232,11 @@
 			children = (
 				57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */,
 				57AD318622AE6BC3009EEB1F /* String+Localized.swift */,
-				57AD318722AE6BC3009EEB1F /* Dictionary+Index.swift */,
 				5701F83222AFE361005BED89 /* Date+Formats.swift */,
 				57AD318822AE6BC3009EEB1F /* Date+StripTime.swift */,
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
-				57AD318A22AE6BC3009EEB1F /* UIViewController+Keyboard.swift */,
 				57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */,
+				579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,7 +274,7 @@
 		57AD319522AE6BC3009EEB1F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				57AD319622AE6BC3009EEB1F /* KeyboardObserver.swift */,
+				57AD319622AE6BC3009EEB1F /* KeyboardObserverProtocol.swift */,
 				5701F83622AFF57A005BED89 /* LectureProtocol.swift */,
 			);
 			path = Protocols;
@@ -431,18 +434,18 @@
 			files = (
 				57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */,
 				57AD319B22AE6BC3009EEB1F /* WSEIScript.swift in Sources */,
-				57AD31A122AE6BC3009EEB1F /* UIViewController+Keyboard.swift in Sources */,
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57AD31BA22AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift in Sources */,
-				57AD319E22AE6BC3009EEB1F /* Dictionary+Index.swift in Sources */,
 				5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
-				57AD31A922AE6BC3009EEB1F /* KeyboardObserver.swift in Sources */,
+				57AD31A922AE6BC3009EEB1F /* KeyboardObserverProtocol.swift in Sources */,
 				5701F83322AFE361005BED89 /* Date+Formats.swift in Sources */,
+				5701CE2522B0E80D00AD4CE2 /* KeyboardView.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* MockLecture.swift in Sources */,
 				57AD319922AE6BC3009EEB1F /* Translation.swift in Sources */,
 				57AD31A222AE6BC3009EEB1F /* UIColor+Named.swift in Sources */,
+				579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
@@ -451,6 +454,7 @@
 				57AD319F22AE6BC3009EEB1F /* Date+StripTime.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* TabView.swift in Sources */,
+				579626FA22B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift in Sources */,
 				57AD319A22AE6BC3009EEB1F /* Tab.swift in Sources */,
 				57AD319C22AE6BC3009EEB1F /* Notification+Keyboard.swift in Sources */,
 				57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */,

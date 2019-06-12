@@ -18,13 +18,19 @@ struct SettingsView: View {
                     HStack {
                         Text(Translation.Settings.albumNumber.localized)
                             .font(.headline)
-                        TextField($viewModel.albumNumber, placeholder: Text("00000"))
+                        TextField($viewModel.albumNumber,
+                                  placeholder: Text(viewModel.albumNumberPlaceholder))
                             .font(.callout)
                     }
                 }
             }
             .listStyle(.grouped)
             .navigationBarTitle(Text(viewModel.title))
+            
+            KeyboardView()
+        }
+        .tapAction {
+            UIApplication.shared.keyWindow?.endEditing(true)
         }
     }
 }
