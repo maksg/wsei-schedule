@@ -9,27 +9,37 @@
 import SwiftUI
 
 struct LectureRow: View {
-    let lecture: LectureProtocol
+    var lecture: LectureProtocol
+    @State private var hideDetails: Bool = true
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(lecture.subject)
-                .font(.headline)
-                .lineLimit(nil)
-            HStack {
-                Text("\(lecture.fromDate.shortHour) - \(lecture.toDate.shortHour)")
-                Spacer()
-                Text(lecture.classroom)
+        Button(action: {
+            withAnimation(.spring()) {
+                self.hideDetails.toggle()
             }
-            HStack {
-                Text(lecture.lecturer)
-                Spacer()
-                Text(lecture.code)
+        }) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(lecture.subject)
+                    .font(.headline)
+                    .lineLimit(nil)
+                HStack {
+                    Text("\(lecture.fromDate.shortHour) - \(lecture.toDate.shortHour)")
+                    Spacer()
+                    Text(lecture.classroom)
+                }
+                if !hideDetails {
+                    HStack {
+                        Text(lecture.lecturer)
+                        Spacer()
+                        Text(lecture.code)
+                    }
+                    .foregroundColor(.secondary)
+                }
             }
-            .foregroundColor(.secondary)
+            .foregroundColor(.primary)
+            .font(.footnote)
+            .padding(4)
         }
-        .font(.footnote)
-        .padding(6)
     }
 }
 
