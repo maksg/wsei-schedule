@@ -25,7 +25,7 @@ final class ScheduleViewModel: BindableObject {
     }
     
     private lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Lectures")
+        let container = NSSharedPersistentContainer(name: "Lectures")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")
@@ -65,10 +65,9 @@ final class ScheduleViewModel: BindableObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
         
         do {
-            let results = try context.fetch(fetchRequest)
-            guard let lectures = results as? [Lecture] else { return }
-            self.lectures = lectures
-            generateScheduleCellViewModels()
+            let results = try context.fetch(fetchRequest) as? [Lecture]
+            self.lectures = results ?? []
+            generateLectureDays()
         } catch let error as NSError {
             print(error.debugDescription)
         }
@@ -86,7 +85,7 @@ final class ScheduleViewModel: BindableObject {
         lectures = tmpLectures
         tmpLectures = []
         
-        generateScheduleCellViewModels()
+        generateLectureDays()
         saveLectures(to: managedContext)
     }
     
@@ -97,7 +96,8 @@ final class ScheduleViewModel: BindableObject {
             Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
                 let splitValue = value.split(separator: ":", maxSplits: 1)
                 guard splitValue.count > 0 else { return nil }
-                return (String(splitValue[0].trimmingCharacters(in: .whitespacesAndNewlines)), String(splitValue[1].trimmingCharacters(in: .whitespacesAndNewlines)))
+                return (String(splitValue[0].trimmingCharacters(in: .whitespacesAndNewlines)),
+                        String(splitValue[1].trimmingCharacters(in: .whitespacesAndNewlines)))
             }))
         }
         
@@ -105,7 +105,7 @@ final class ScheduleViewModel: BindableObject {
         return filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
     }
     
-    func generateScheduleCellViewModels() {
+    func generateLectureDays() {
         lectures = Array(Set(lectures))
         lectures.sort { $0.fromDate < $1.fromDate }
         
@@ -118,18 +118,17 @@ final class ScheduleViewModel: BindableObject {
     }
     
     private func deleteLectures(from context: NSManagedObjectContext) {
-        for lecture in lectures {
+        lectures.forEach { lecture in
             context.delete(lecture)
         }
     }
     
     private func saveLectures(to context: NSManagedObjectContext) {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                print("Unresolved error \(error), \(error.userInfo)")
-            }
+        guard context.hasChanges else { return }
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Unresolved error \(error), \(error.userInfo)")
         }
     }
 

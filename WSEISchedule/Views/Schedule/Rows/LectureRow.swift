@@ -18,7 +18,7 @@ struct LectureRow: View {
                 self.hideDetails.toggle()
             }
         }) {
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 7) {
                 Text(lecture.subject)
                     .font(.headline)
                     .lineLimit(nil)
@@ -47,7 +47,7 @@ struct LectureRow: View {
 struct LectureRow_Previews : PreviewProvider {
     static var previews: some View {
         LectureRow(lecture: MockLecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject"))
-            .previewLayout(.fixed(width: 320, height: 90))
+            .previewLayout(.fixed(width: 320, height: 75))
     }
 }
 #endif
