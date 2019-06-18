@@ -12,10 +12,6 @@ import SwiftUI
 final class SettingsViewModel: BindableObject {
     let didChange = PassthroughSubject<SettingsViewModel, Never>()
     
-    var title: String {
-        Tab.settings.title
-    }
-    
     var albumNumber: String {
         get {
             UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""

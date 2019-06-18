@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Use a UIHostingController as window root view controller
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let rootView = TabView().environmentObject(KeyboardObserver())
+        let rootView = TabView(viewModel: .init()).environmentObject(KeyboardObserver())
         window.rootViewController = UIHostingController(rootView: rootView)
         self.window = window
         window.makeKeyAndVisible()

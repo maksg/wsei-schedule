@@ -9,27 +9,32 @@
 import SwiftUI
 
 struct TabView: View {
+    @ObjectBinding var viewModel: TabViewModel
+    
     var body: some View {
-        TabbedView {
-            ScheduleView(viewModel: .init())
-                .tabItemLabel(Image("timetable"))
-                .tabItemLabel(Image(systemName: "clock.fill"))
-                .tabItemLabel(Text(Tab.schedule.title))
-                .tag(Tab.schedule.rawValue)
-            SettingsView(viewModel: .init())
-                .tabItemLabel(Image("settings"))
-                .tabItemLabel(Image(systemName: "gear"))
-                .tabItemLabel(Text(Tab.settings.title))
-                .tag(Tab.settings.rawValue)
+        NavigationView {
+            TabbedView(selection: $viewModel.selectedTab) {
+                ScheduleView(viewModel: viewModel.scheduleViewModel)
+                    .tabItemLabel(Image("timetable"))
+                    .tabItemLabel(Image(systemName: "clock.fill"))
+                    .tabItemLabel(Text(Tab.schedule.title))
+                    .tag(Tab.schedule)
+                SettingsView(viewModel: viewModel.settingsViewModel)
+                    .tabItemLabel(Image("settings"))
+                    .tabItemLabel(Image(systemName: "gear"))
+                    .tabItemLabel(Text(Tab.settings.title))
+                    .tag(Tab.settings)
+            }
+            .accentColor(.primary)
+            .navigationBarTitle(Text("\(viewModel.selectedTab.title)"))
         }
-        .accentColor(.green)
     }
 }
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        TabView()
+        TabView(viewModel: .init())
     }
 }
 #endif

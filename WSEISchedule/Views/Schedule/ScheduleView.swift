@@ -12,15 +12,12 @@ struct ScheduleView : View {
     @State var viewModel: ScheduleViewModel
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.lectureDays) { lectureDay in
-                    Section(header: DayHeader(date: lectureDay.date)) {
-                        ForEach(lectureDay.lectures.identified(by: \.self), content: LectureRow.init)
-                    }
+        List {
+            ForEach(viewModel.lectureDays) { lectureDay in
+                Section(header: DayHeader(date: lectureDay.date)) {
+                    ForEach(lectureDay.lectures.identified(by: \.self), content: LectureRow.init)
                 }
             }
-            .navigationBarTitle(Text(viewModel.title))
         }
         .onAppear {
             self.viewModel.reloadLectures()

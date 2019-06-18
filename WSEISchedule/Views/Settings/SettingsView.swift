@@ -12,7 +12,7 @@ struct SettingsView: View {
     @ObjectBinding var viewModel: SettingsViewModel
     
     var body: some View {
-        NavigationView {
+        VStack {
             List {
                 Section(header: Text("")) {
                     HStack {
@@ -25,12 +25,11 @@ struct SettingsView: View {
                 }
             }
             .listStyle(.grouped)
-            .navigationBarTitle(Text(viewModel.title))
+            .tapAction {
+                UIApplication.shared.keyWindow?.endEditing(true)
+            }
             
             KeyboardView()
-        }
-        .tapAction {
-            UIApplication.shared.keyWindow?.endEditing(true)
         }
     }
 }

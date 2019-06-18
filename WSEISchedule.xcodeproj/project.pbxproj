@@ -14,6 +14,7 @@
 		5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
 		5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
 		5701F83922AFF5DA005BED89 /* MockLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* MockLecture.swift */; };
+		57506BD922B910C80056A099 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* TabViewModel.swift */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
 		579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F722B10B6E00D263C9 /* KeyboardObserver.swift */; };
 		579626FA22B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */; };
@@ -101,6 +102,7 @@
 		5701F83422AFEE47005BED89 /* LectureDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureDay.swift; sourceTree = "<group>"; };
 		5701F83622AFF57A005BED89 /* LectureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProtocol.swift; sourceTree = "<group>"; };
 		5701F83822AFF5DA005BED89 /* MockLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLecture.swift; sourceTree = "<group>"; };
+		57506BD822B910C80056A099 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
 		579626F722B10B6E00D263C9 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicAnimationTimingCurve+UIViewAnimationCurve.swift"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				57AD319022AE6BC3009EEB1F /* Schedule */,
 				57AD318D22AE6BC3009EEB1F /* Settings */,
+				57506BD822B910C80056A099 /* TabViewModel.swift */,
 				57AD319322AE6BC3009EEB1F /* TabView.swift */,
 			);
 			path = Views;
@@ -553,6 +556,7 @@
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
 				5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */,
+				57506BD922B910C80056A099 /* TabViewModel.swift in Sources */,
 				57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */,
 				57AD319F22AE6BC3009EEB1F /* Date+StripTime.swift in Sources */,
 				57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */,

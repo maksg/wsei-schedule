@@ -20,10 +20,6 @@ final class ScheduleViewModel: BindableObject {
         UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
     }
     
-    var title: String {
-        Tab.schedule.title
-    }
-    
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

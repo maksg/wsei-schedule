@@ -22,8 +22,10 @@ struct LectureRow: View {
                 Text(lecture.subject)
                     .font(.headline)
                     .lineLimit(nil)
-                HStack {
-                    Text("\(lecture.fromDate.shortHour) - \(lecture.toDate.shortHour)")
+                HStack(spacing: 1) {
+                    Text("\(lecture.fromDate.shortHour)")
+                    Text("-")
+                    Text("\(lecture.toDate.shortHour)")
                     Spacer()
                     Text(lecture.classroom)
                 }
