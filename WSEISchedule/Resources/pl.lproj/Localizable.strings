@@ -20,8 +20,16 @@
 // Schedule
 
 "schedule.title" = "Harmonogram";
+"schedule.today" = "Dzisiaj";
 
 // Settings
 
 "settings.title" = "Ustawienia";
 "settings.album_number" = "Numer Albumu";
+
+// Widget
+
+"widget.next" = "Następne";
+"widget.today" = "Dzisiaj";
+"widget.no_lectures_today" = "Brak wykładów dzisiaj";
+"widget.no_next_lectures" = "Brak kolejnych wykładów";

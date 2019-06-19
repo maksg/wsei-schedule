@@ -22,4 +22,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var strippedFromTime: Date {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        return Calendar.current.date(from: components)!
+    }
+    
+    var isToday: Bool {
+        return Calendar.current.isDateInToday(self)
+    }
+    
 }

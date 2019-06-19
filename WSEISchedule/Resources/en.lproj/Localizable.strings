@@ -20,8 +20,16 @@
 // Schedule
 
 "schedule.title" = "Schedule";
+"schedule.today" = "Today";
 
 // Settings
 
 "settings.title" = "Settings";
 "settings.album_number" = "Album Number";
+
+// Widget
+
+"widget.next" = "Next";
+"widget.today" = "Today";
+"widget.no_lectures_today" = "No lectures today";
+"widget.no_next_lectures" = "No next lectures";

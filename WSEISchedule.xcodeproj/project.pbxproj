@@ -10,12 +10,16 @@
 		5701CE2522B0E80D00AD4CE2 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */; };
 		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
 		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
-		5701F83322AFE361005BED89 /* Date+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Formats.swift */; };
+		5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
 		5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
 		5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
 		5701F83922AFF5DA005BED89 /* MockLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* MockLecture.swift */; };
 		57506BD922B910C80056A099 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* TabViewModel.swift */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
+		578A729B22BA408F0009130A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
+		578A729C22BA40950009130A /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318122AE6BC3009EEB1F /* Translation.swift */; };
+		578A729D22BA41CC0009130A /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318622AE6BC3009EEB1F /* String+Localized.swift */; };
+		578A729E22BA42170009130A /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */; };
 		579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F722B10B6E00D263C9 /* KeyboardObserver.swift */; };
 		579626FA22B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */; };
 		57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD315022AE6B50009EEB1F /* AppDelegate.swift */; };
@@ -30,7 +34,6 @@
 		57AD319B22AE6BC3009EEB1F /* WSEIScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318322AE6BC3009EEB1F /* WSEIScript.swift */; };
 		57AD319C22AE6BC3009EEB1F /* Notification+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */; };
 		57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318622AE6BC3009EEB1F /* String+Localized.swift */; };
-		57AD319F22AE6BC3009EEB1F /* Date+StripTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318822AE6BC3009EEB1F /* Date+StripTime.swift */; };
 		57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */; };
 		57AD31A222AE6BC3009EEB1F /* UIColor+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */; };
 		57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318E22AE6BC3009EEB1F /* SettingsView.swift */; };
@@ -53,7 +56,7 @@
 		57DDE76E22B7B2E300924367 /* Lecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */; };
 		57DDE76F22B7B32200924367 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
 		57DDE77022B7B39600924367 /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
-		57DDE77122B7B6EB00924367 /* Date+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Formats.swift */; };
+		57DDE77122B7B6EB00924367 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +101,7 @@
 		5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		5701F82D22AFD23A005BED89 /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
 		5701F83022AFE084005BED89 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
-		5701F83222AFE361005BED89 /* Date+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formats.swift"; sourceTree = "<group>"; };
+		5701F83222AFE361005BED89 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		5701F83422AFEE47005BED89 /* LectureDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureDay.swift; sourceTree = "<group>"; };
 		5701F83622AFF57A005BED89 /* LectureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProtocol.swift; sourceTree = "<group>"; };
 		5701F83822AFF5DA005BED89 /* MockLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLecture.swift; sourceTree = "<group>"; };
@@ -124,7 +127,6 @@
 		57AD318322AE6BC3009EEB1F /* WSEIScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSEIScript.swift; sourceTree = "<group>"; };
 		57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Keyboard.swift"; sourceTree = "<group>"; };
 		57AD318622AE6BC3009EEB1F /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
-		57AD318822AE6BC3009EEB1F /* Date+StripTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+StripTime.swift"; sourceTree = "<group>"; };
 		57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawRepresentable+String.swift"; sourceTree = "<group>"; };
 		57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
 		57AD318E22AE6BC3009EEB1F /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -287,8 +289,7 @@
 			children = (
 				57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */,
 				57AD318622AE6BC3009EEB1F /* String+Localized.swift */,
-				5701F83222AFE361005BED89 /* Date+Formats.swift */,
-				57AD318822AE6BC3009EEB1F /* Date+StripTime.swift */,
+				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
 				57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */,
 				579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */,
@@ -528,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57DDE75F22B79B3500924367 /* MainInterface.storyboard in Resources */,
+				578A729B22BA408F0009130A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +548,7 @@
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
 				57AD31A922AE6BC3009EEB1F /* KeyboardObserverProtocol.swift in Sources */,
-				5701F83322AFE361005BED89 /* Date+Formats.swift in Sources */,
+				5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */,
 				5701CE2522B0E80D00AD4CE2 /* KeyboardView.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* MockLecture.swift in Sources */,
 				57AD319922AE6BC3009EEB1F /* Translation.swift in Sources */,
@@ -558,7 +560,6 @@
 				5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */,
 				57506BD922B910C80056A099 /* TabViewModel.swift in Sources */,
 				57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */,
-				57AD319F22AE6BC3009EEB1F /* Date+StripTime.swift in Sources */,
 				57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* TabView.swift in Sources */,
@@ -592,9 +593,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578A729E22BA42170009130A /* RawRepresentable+String.swift in Sources */,
+				578A729D22BA41CC0009130A /* String+Localized.swift in Sources */,
 				57DDE76E22B7B2E300924367 /* Lecture+CoreDataProperties.swift in Sources */,
 				57DDE76D22B7B2E000924367 /* Lecture.swift in Sources */,
-				57DDE77122B7B6EB00924367 /* Date+Formats.swift in Sources */,
+				57DDE77122B7B6EB00924367 /* Date+Extensions.swift in Sources */,
+				578A729C22BA40950009130A /* Translation.swift in Sources */,
 				57DDE77022B7B39600924367 /* NSSharedPersistentContainer.swift in Sources */,
 				57DDE76F22B7B32200924367 /* LectureProtocol.swift in Sources */,
 				57DDE76C22B7B2D500924367 /* Lectures.xcdatamodeld in Sources */,

@@ -10,9 +10,12 @@ import SwiftUI
 
 struct DayHeader : View {
     let date: Date
+    var formattedDate: String {
+        date.isToday ? Translation.Schedule.today.localized : date.formattedDay
+    }
     
     var body: some View {
-        Text(date.formattedDay)
+        Text(formattedDate)
             .font(.headline)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }

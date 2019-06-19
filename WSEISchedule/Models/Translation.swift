@@ -23,11 +23,19 @@ class Translation {
     
     enum Schedule: String {
         case title = "schedule.title"
+        case today = "schedule.today"
     }
     
     enum Settings: String {
         case title = "settings.title"
         case albumNumber = "settings.album_number"
+    }
+    
+    enum Widget: String {
+        case next = "widget.next"
+        case today = "widget.today"
+        case noLecturesToday = "widget.no_lectures_today"
+        case noNextLectures = "widget.no_next_lectures"
     }
     
 }

@@ -12,11 +12,21 @@ import CoreData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
+    @IBOutlet private weak var noLecturesTodayLabel: UILabel!
+    @IBOutlet private weak var todayLectureStackView: UIStackView!
     @IBOutlet private weak var subjectLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var classroomLabel: UILabel!
     @IBOutlet private weak var lecturerLabel: UILabel!
     @IBOutlet private weak var codeLabel: UILabel!
+    
+    @IBOutlet private weak var nextLabel: UILabel!
+    
+    @IBOutlet private weak var noNextLecturesLabel: UILabel!
+    @IBOutlet private weak var nextLectureStackView: UIStackView!
+    @IBOutlet private weak var nextSubjectLabel: UILabel!
+    @IBOutlet private weak var nextTimeLabel: UILabel!
+    @IBOutlet private weak var nextClassroomLabel: UILabel!
     
     private var lectures: [Lecture] = []
     
@@ -32,23 +42,83 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        noLecturesTodayLabel.text = Translation.Widget.noLecturesToday.localized
+        noNextLecturesLabel.text = Translation.Widget.noNextLectures.localized
+        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         fetchLectures(from: persistentContainer.viewContext)
         
-        guard let nearestLecture = lectures.first(where: { $0.toDate > Date() }) else {
+        guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else {
+            setupNearestLecture(nil)
+            setupNextLecture(nil)
             completionHandler(.noData)
             return
         }
         
-        subjectLabel.text = nearestLecture.subject
-        timeLabel.text = "\(nearestLecture.fromDate.shortHour) - \(nearestLecture.toDate.shortHour)"
-        classroomLabel.text = nearestLecture.classroom
-        lecturerLabel.text = nearestLecture.lecturer
-        codeLabel.text = nearestLecture.code
+        let nearestLecture = lectures[nearestLectureIndex]
+        if nearestLecture.fromDate.isToday {
+            setupNearestLecture(nearestLecture)
+            
+            if nearestLectureIndex < lectures.endIndex {
+                let nextLecture = lectures[nearestLectureIndex+1]
+                setupNextLecture(nextLecture)
+            } else {
+                setupNextLecture(nil)
+            }
+        } else {
+            setupNearestLecture(nil)
+            setupNextLecture(nearestLecture)
+        }
         
         completionHandler(.newData)
+    }
+    
+    private func setupNearestLecture(_ lecture: Lecture?) {
+        guard let lecture = lecture else {
+            todayLectureStackView.isHidden = true
+            noLecturesTodayLabel.isHidden = false
+            return
+        }
+        
+        todayLectureStackView.isHidden = false
+        noLecturesTodayLabel.isHidden = true
+        
+        subjectLabel.text = lecture.subject
+        timeLabel.text = "\(lecture.fromDate.shortHour) - \(lecture.toDate.shortHour)"
+        classroomLabel.text = lecture.classroom
+        lecturerLabel.text = lecture.lecturer
+        codeLabel.text = lecture.code
+    }
+    
+    private func setupNextLecture(_ lecture: Lecture?) {
+        guard let lecture = lecture else {
+            nextLectureStackView.isHidden = true
+            noNextLecturesLabel.isHidden = false
+            return
+        }
+        
+        nextLectureStackView.isHidden = false
+        noNextLecturesLabel.isHidden = true
+        
+        let nextText = Translation.Widget.next.localized
+        if lecture.fromDate.isToday {
+            let todayText = Translation.Widget.today.localized
+            nextLabel.text = "\(nextText) - \(todayText)".uppercased()
+        } else {
+            nextLabel.text = "\(nextText) - \(lecture.fromDate.formattedDay)".uppercased()
+        }
+        
+        nextSubjectLabel.text = lecture.subject
+        nextTimeLabel.text = "\(lecture.fromDate.shortHour) - \(lecture.toDate.shortHour)"
+        nextClassroomLabel.text = lecture.classroom
+    }
+    
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        let expanded = activeDisplayMode == .expanded
+        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: 208) : maxSize
     }
     
     private func fetchLectures(from context: NSManagedObjectContext) {
