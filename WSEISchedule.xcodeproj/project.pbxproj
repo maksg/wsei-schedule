@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -49,7 +49,7 @@
 		57DDE75922B79B3500924367 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DDE75822B79B3500924367 /* NotificationCenter.framework */; };
 		57DDE75C22B79B3500924367 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE75B22B79B3500924367 /* TodayViewController.swift */; };
 		57DDE75F22B79B3500924367 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57DDE75D22B79B3500924367 /* MainInterface.storyboard */; };
-		57DDE76322B79B3500924367 /* Lecture Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 57DDE75622B79B3500924367 /* Lecture Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		57DDE76322B79B3500924367 /* Lecture Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 57DDE75622B79B3500924367 /* Lecture Widget.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
 		57DDE76C22B7B2D500924367 /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
 		57DDE76D22B7B2E000924367 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* Lecture.swift */; };
@@ -621,6 +621,7 @@
 		};
 		57DDE76222B79B3500924367 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 57DDE75522B79B3500924367 /* Lecture Widget */;
 			targetProxy = 57DDE76122B79B3500924367 /* PBXContainerItemProxy */;
 		};
@@ -779,6 +780,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -787,8 +789,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -801,6 +805,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -809,8 +814,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -913,6 +920,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.Lecture-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -933,6 +941,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.Lecture-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
