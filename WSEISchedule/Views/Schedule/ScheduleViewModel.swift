@@ -10,8 +10,9 @@ import Combine
 import SwiftUI
 import WebKit
 import CoreData
+import WatchConnectivity
 
-final class ScheduleViewModel: BindableObject {
+final class ScheduleViewModel: NSObject, BindableObject {
     let didChange = PassthroughSubject<ScheduleViewModel, Never>()
     
     // MARK: Properties
@@ -30,8 +31,13 @@ final class ScheduleViewModel: BindableObject {
         return container
     }()
     
-    private var lectures: [Lecture] = []
     private var tmpLectures: [Lecture] = []
+    private var lectures: [Lecture] = [] {
+        didSet {
+            sendLecturesToWatch()
+        }
+    }
+    
     var lectureDays: [LectureDay] = [] {
         didSet {
             didChange.send(self)
@@ -39,22 +45,33 @@ final class ScheduleViewModel: BindableObject {
     }
     
     private var webView: ScheduleWebView
+    private var session: WCSession?
     
     // MARK: Initialization
     
-    init() {
+    override init() {
         webView = ScheduleWebView()
+        super.init()
+        
         webView.addLectures = addLectures(fromData:)
         webView.finishLoadingLectures = finishLoadingLectures
-        reloadLectures()
+        fetchLectures(from: persistentContainer.viewContext)
+        
+        activateWatchSession()
     }
     
     // MARK: Methods
     
     func reloadLectures() {
-        fetchLectures(from: persistentContainer.viewContext)
         webView.albumNumber = albumNumber
         webView.reload()
+    }
+    
+    func activateWatchSession() {
+        guard WCSession.isSupported() else { return }
+        session = WCSession.default
+        session?.delegate = self
+        session?.activate()
     }
     
     private func fetchLectures(from context: NSManagedObjectContext) {
@@ -66,6 +83,17 @@ final class ScheduleViewModel: BindableObject {
             generateLectureDays()
         } catch let error as NSError {
             print(error.debugDescription)
+        }
+    }
+    
+    private func sendLecturesToWatch() {
+        do {
+            let codableLectures = lectures.map { CodableLecture(lecture: $0) }
+            let data = try NSKeyedArchiver.archivedData(withRootObject: codableLectures, requiringSecureCoding: false)
+            let context = ["lectures" : data]
+            try session?.updateApplicationContext(context)
+        } catch {
+            print(error)
         }
     }
     
@@ -128,4 +156,18 @@ final class ScheduleViewModel: BindableObject {
         }
     }
 
+}
+
+extension ScheduleViewModel: WCSessionDelegate {
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        sendLecturesToWatch()
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) { }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        session.activate()
+    }
+    
 }

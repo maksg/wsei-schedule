@@ -94,16 +94,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     private func setupNextLecture(_ lecture: Lecture?) {
+        let nextText = Translation.Widget.next.localized
         guard let lecture = lecture else {
             nextLectureStackView.isHidden = true
             noNextLecturesLabel.isHidden = false
+            nextLabel.text = nextText.uppercased()
             return
         }
         
         nextLectureStackView.isHidden = false
         noNextLecturesLabel.isHidden = true
         
-        let nextText = Translation.Widget.next.localized
         if lecture.fromDate.isToday {
             let todayText = Translation.Widget.today.localized
             nextLabel.text = "\(nextText) - \(todayText)".uppercased()

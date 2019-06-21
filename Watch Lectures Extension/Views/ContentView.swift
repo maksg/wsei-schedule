@@ -1,21 +1,21 @@
 //
-//  ScheduleView.swift
-//  WSEISchedule
+//  ContentView.swift
+//  Watch Lectures Extension
 //
-//  Created by Maksymilian Galas on 09/06/2019.
+//  Created by Maksymilian Galas on 19/06/2019.
 //  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 //
 
 import SwiftUI
 
-struct ScheduleView : View {
-    @State var viewModel: ScheduleViewModel
+struct ContentView : View {
+    @State var viewModel: ContentViewModel
     
     var body: some View {
         List {
             ForEach(viewModel.lectureDays) { lectureDay in
                 Section(header: DayHeader(date: lectureDay.date)) {
-                    ForEach((lectureDay.lectures as? [Lecture] ?? []).identified(by: \.self), content: LectureRow.init)
+                    ForEach((lectureDay.lectures as? [CodableLecture] ?? []).identified(by: \.self),content: LectureRow.init)
                 }
             }
         }
@@ -26,9 +26,9 @@ struct ScheduleView : View {
 }
 
 #if DEBUG
-struct ScheduleView_Previews : PreviewProvider {
+struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ScheduleView(viewModel: .init())
+        ContentView(viewModel: .init())
     }
 }
 #endif

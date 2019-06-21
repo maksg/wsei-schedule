@@ -11,7 +11,7 @@ import SwiftUI
 struct LectureDay: Identifiable {
     var id: Date { date }
     let date: Date
-    var lectures: [Lecture] = []
+    var lectures: [LectureProtocol] = []
 }
 
 extension Array where Element == LectureDay {
