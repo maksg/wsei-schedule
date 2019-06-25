@@ -15,6 +15,8 @@
 		5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
 		5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* CodableLecture.swift */; };
 		57506BD922B910C80056A099 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* TabViewModel.swift */; };
+		5773656F22C2349D00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
+		5773657022C234BA00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
 		578A729B22BA408F0009130A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
 		578A729C22BA40950009130A /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318122AE6BC3009EEB1F /* Translation.swift */; };
@@ -163,6 +165,7 @@
 		5701F83622AFF57A005BED89 /* LectureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProtocol.swift; sourceTree = "<group>"; };
 		5701F83822AFF5DA005BED89 /* CodableLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLecture.swift; sourceTree = "<group>"; };
 		57506BD822B910C80056A099 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		5773656E22C2349D00C3C9AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
 		578A72DD22BA4C870009130A /* Watch Lectures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Lectures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578A72E022BA4C870009130A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -471,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				57AD315622AE6B51009EEB1F /* Assets.xcassets */,
+				5773656E22C2349D00C3C9AC /* Colors.xcassets */,
 				57AD315B22AE6B51009EEB1F /* LaunchScreen.storyboard */,
 				57AD31B222AE6C01009EEB1F /* Localizable.strings */,
 				57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */,
@@ -687,6 +691,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				578A72FA22BA4C890009130A /* Preview Assets.xcassets in Resources */,
+				5773657022C234BA00C3C9AC /* Colors.xcassets in Resources */,
 				57A4EF2C22BA568C00C08CE7 /* Localizable.strings in Resources */,
 				578A72F722BA4C890009130A /* Assets.xcassets in Resources */,
 			);
@@ -696,6 +701,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5773656F22C2349D00C3C9AC /* Colors.xcassets in Resources */,
 				57AD315D22AE6B51009EEB1F /* LaunchScreen.storyboard in Resources */,
 				57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */,
 				57AD315A22AE6B51009EEB1F /* Preview Assets.xcassets in Resources */,
