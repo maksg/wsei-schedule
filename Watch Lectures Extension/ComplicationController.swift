@@ -48,6 +48,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             complicationTemplate = graphicCircularTemplate
         case .modularLarge:
             complicationTemplate = modularLargeTemplate
+        case .graphicRectangular:
+            complicationTemplate = graphicRectangularTemplate
         default:
             complicationTemplate = nil
         }
@@ -85,6 +87,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             handler(graphicCircularTemplate)
         case .modularLarge:
             handler(modularLargeTemplate)
+        case .graphicRectangular:
+            handler(graphicRectangularTemplate)
         default:
             handler(nil)
         }
@@ -124,6 +128,21 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     private var modularLargeTemplate: some CLKComplicationTemplate {
         let delegate = WKExtension.shared().delegate as? ExtensionDelegate
         let template = CLKComplicationTemplateModularLargeStandardBody()
+        if let lectureDay = delegate?.lectureDays.first(where: { $0.date.isToday }), let lecture = lectureDay.lectures.first(where: { $0.toDate > Date() }) {
+            template.headerTextProvider = CLKSimpleTextProvider(text: lecture.subject)
+            template.body1TextProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")
+            template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
+        } else {
+            template.headerTextProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+            template.body1TextProvider = CLKSimpleTextProvider(text: Translation.Watch.today.localized)
+            template.body2TextProvider = nil
+        }
+        return template
+    }
+    
+    private var graphicRectangularTemplate: some CLKComplicationTemplate {
+        let delegate = WKExtension.shared().delegate as? ExtensionDelegate
+        let template = CLKComplicationTemplateGraphicRectangularStandardBody()
         if let lectureDay = delegate?.lectureDays.first(where: { $0.date.isToday }), let lecture = lectureDay.lectures.first(where: { $0.toDate > Date() }) {
             template.headerTextProvider = CLKSimpleTextProvider(text: lecture.subject)
             template.body1TextProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")

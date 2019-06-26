@@ -24,10 +24,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         
         session.delegate = self
         session.activate()
-        
-        NotificationCenter.default.addObserver(forName: .NSExtensionHostDidBecomeActive, object: nil, queue: .main) { [weak self] _ in
-            self?.reloadLectures()
-        }
     }
     
     // MARK: Methods
@@ -57,6 +53,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             let date = lecture.fromDate.strippedFromTime
             lectureDays[date].lectures += [lecture]
         })
+        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "ReloadedLectures")))
     }
     
     // MARK: Delegate
@@ -67,7 +64,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        NotificationCenter.default.post(name: .NSExtensionHostDidBecomeActive, object: nil)
+        reloadLectures()
     }
 
     func applicationWillResignActive() {
@@ -110,7 +107,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 extension ExtensionDelegate: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print(error as Any)
+        reloadLectures()
     }
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {

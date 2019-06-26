@@ -31,7 +31,8 @@ final class ContentViewModel: NSObject, BindableObject {
     override init() {
         super.init()
         
-        NotificationCenter.default.addObserver(forName: .NSExtensionHostDidBecomeActive, object: nil, queue: .main) { [weak self] _ in
+        let name = Notification.Name(rawValue: "ReloadedLectures")
+        NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { [weak self] _ in
             self?.reloadLectures()
         }
     }
