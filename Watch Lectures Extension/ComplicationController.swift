@@ -54,6 +54,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             complicationTemplate = graphicBezelTemplate
         case .graphicCorner:
             complicationTemplate = graphicCornerTemplate
+        case .utilitarianSmall:
+            complicationTemplate = utilitySmallTemplate
+        case .utilitarianSmallFlat:
+            complicationTemplate = utilitySmallFlatTemplate
+        case .utilitarianLarge:
+            complicationTemplate = utilityLargeTemplate
         default:
             complicationTemplate = nil
         }
@@ -97,6 +103,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             handler(graphicBezelTemplate)
         case .graphicCorner:
             handler(graphicCornerTemplate)
+        case .utilitarianSmall:
+            handler(utilitySmallTemplate)
+        case .utilitarianSmallFlat:
+            handler(utilitySmallFlatTemplate)
+        case .utilitarianLarge:
+            handler(utilityLargeTemplate)
         default:
             handler(nil)
         }
@@ -190,6 +202,33 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         template.imageProvider = fullColorImageProvider(named: "Complication/Graphic Corner")
         if let lecture = todayLecture {
             template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)  \(lecture.classroom)")
+        } else {
+            template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+        }
+        return template
+    }
+    
+    private var utilitySmallTemplate: CLKComplicationTemplateUtilitarianSmallSquare {
+        let template = CLKComplicationTemplateUtilitarianSmallSquare()
+        template.imageProvider = imageProvider(named: "Complication/Utilitarian")
+        return template
+    }
+    
+    private var utilitySmallFlatTemplate: CLKComplicationTemplateUtilitarianSmallFlat {
+        let template = CLKComplicationTemplateUtilitarianSmallFlat()
+        if let lecture = todayLecture {
+            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour) \(lecture.classroom)")
+        } else {
+            template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+        }
+        return template
+    }
+    
+    private var utilityLargeTemplate: CLKComplicationTemplateUtilitarianLargeFlat {
+        let template = CLKComplicationTemplateUtilitarianLargeFlat()
+        template.imageProvider = imageProvider(named: "Utility Large")
+        if let lecture = todayLecture {
+            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour) \(lecture.classroom)")
         } else {
             template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
         }
