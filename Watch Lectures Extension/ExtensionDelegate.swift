@@ -7,8 +7,59 @@
 //
 
 import WatchKit
+import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    
+    // MARK: Properties
+    
+    private var lectures: [CodableLecture] = []
+    var lectureDays: [LectureDay] = []
+    private let session: WCSession = .default
+    
+    // MARK: Initialization
+    
+    override init() {
+        super.init()
+        
+        session.delegate = self
+        session.activate()
+        
+        NotificationCenter.default.addObserver(forName: .NSExtensionHostDidBecomeActive, object: nil, queue: .main) { [weak self] _ in
+            self?.reloadLectures()
+        }
+    }
+    
+    // MARK: Methods
+    
+    func reloadLectures() {
+        let context = session.receivedApplicationContext
+        fetchLectures(from: context)
+    }
+    
+    private func fetchLectures(from context: [String : Any]) {
+        guard let data = context["lectures"] as? Data else { return }
+        do {
+            lectures = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [CodableLecture] ?? []
+        } catch {
+            print(error)
+        }
+        generateLectureDays()
+    }
+    
+    private func generateLectureDays() {
+        lectures = Array(Set(lectures))
+        lectures.sort { $0.fromDate < $1.fromDate }
+        
+        guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else { return }
+        let futureLectures = lectures[nearestLectureIndex..<lectures.count]
+        lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
+            let date = lecture.fromDate.strippedFromTime
+            lectureDays[date].lectures += [lecture]
+        })
+    }
+    
+    // MARK: Delegate
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
@@ -54,4 +105,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
+}
+
+extension ExtensionDelegate: WCSessionDelegate {
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print(error as Any)
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.fetchLectures(from: applicationContext)
+        }
+    }
+    
 }
