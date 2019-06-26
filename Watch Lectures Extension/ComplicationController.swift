@@ -52,6 +52,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             complicationTemplate = graphicRectangularTemplate
         case .graphicBezel:
             complicationTemplate = graphicBezelTemplate
+        case .graphicCorner:
+            complicationTemplate = graphicCornerTemplate
         default:
             complicationTemplate = nil
         }
@@ -93,14 +95,30 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             handler(graphicRectangularTemplate)
         case .graphicBezel:
             handler(graphicBezelTemplate)
+        case .graphicCorner:
+            handler(graphicCornerTemplate)
         default:
             handler(nil)
         }
     }
     
+    private var todayLecture: LectureProtocol? {
+        let delegate = WKExtension.shared().delegate as? ExtensionDelegate
+        let lectureDay = delegate?.lectureDays.first(where: { $0.date.isToday })
+        let lecture = lectureDay?.lectures.first(where: { $0.toDate > Date() })
+        return lecture
+    }
+    
     private func imageProvider(named: String) -> CLKImageProvider {
-        let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: named)!)
+        let image = UIImage(named: named)!
+        let imageProvider = CLKImageProvider(onePieceImage: image)
         imageProvider.tintColor = .main
+        return imageProvider
+    }
+    
+    private func fullColorImageProvider(named: String) -> CLKFullColorImageProvider {
+        let image = UIImage(named: named)!
+        let imageProvider = CLKFullColorImageProvider(fullColorImage: image)
         return imageProvider
     }
     
@@ -124,15 +142,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     private var graphicCircularTemplate: CLKComplicationTemplateGraphicCircularImage {
         let template = CLKComplicationTemplateGraphicCircularImage()
-        let image = UIImage(named: "Complication/Graphic Circular")!
-        template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
+        template.imageProvider = fullColorImageProvider(named: "Complication/Graphic Circular")
         return template
     }
     
     private var modularLargeTemplate: CLKComplicationTemplateModularLargeStandardBody {
-        let delegate = WKExtension.shared().delegate as? ExtensionDelegate
         let template = CLKComplicationTemplateModularLargeStandardBody()
-        if let lectureDay = delegate?.lectureDays.first(where: { $0.date.isToday }), let lecture = lectureDay.lectures.first(where: { $0.toDate > Date() }) {
+        if let lecture = todayLecture {
             template.headerTextProvider = CLKSimpleTextProvider(text: lecture.subject)
             template.body1TextProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")
             template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
@@ -145,9 +161,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     private var graphicRectangularTemplate: CLKComplicationTemplateGraphicRectangularStandardBody {
-        let delegate = WKExtension.shared().delegate as? ExtensionDelegate
         let template = CLKComplicationTemplateGraphicRectangularStandardBody()
-        if let lectureDay = delegate?.lectureDays.first(where: { $0.date.isToday }), let lecture = lectureDay.lectures.first(where: { $0.toDate > Date() }) {
+        if let lecture = todayLecture {
             template.headerTextProvider = CLKSimpleTextProvider(text: lecture.subject)
             template.body1TextProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")
             template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
@@ -159,14 +174,24 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return template
     }
     
-    private var graphicBezelTemplate: some CLKComplicationTemplate {
-        let delegate = WKExtension.shared().delegate as? ExtensionDelegate
+    private var graphicBezelTemplate: CLKComplicationTemplateGraphicBezelCircularText {
         let template = CLKComplicationTemplateGraphicBezelCircularText()
         template.circularTemplate = graphicCircularTemplate
-        if let lectureDay = delegate?.lectureDays.first(where: { $0.date.isToday }), let lecture = lectureDay.lectures.first(where: { $0.toDate > Date() }) {
-            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)  \(lecture.classroom)")
+        if let lecture = todayLecture {
+            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour) \(lecture.classroom)")
         } else {
             template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLecturesToday.localized)
+        }
+        return template
+    }
+    
+    private var graphicCornerTemplate: CLKComplicationTemplateGraphicCornerTextImage {
+        let template = CLKComplicationTemplateGraphicCornerTextImage()
+        template.imageProvider = fullColorImageProvider(named: "Complication/Graphic Corner")
+        if let lecture = todayLecture {
+            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)  \(lecture.classroom)")
+        } else {
+            template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
         }
         return template
     }
