@@ -43,6 +43,7 @@ class Translation {
     enum Watch: String {
         case today = "watch.today"
         case noLectures = "watch.no_lectures"
+        case noLecturesToday = "watch.no_lectures_today"
     }
     
 }
