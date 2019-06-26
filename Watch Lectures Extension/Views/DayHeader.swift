@@ -11,7 +11,13 @@ import SwiftUI
 struct DayHeader : View {
     let date: Date
     var formattedDate: String {
-        date.isToday ? Translation.Schedule.today.localized : date.formattedDay
+        if date.isToday {
+            return Translation.Schedule.today.localized
+        } else if date.isTomorrow {
+            return Translation.Schedule.tomorrow.localized
+        } else {
+            return date.formattedDay
+        }
     }
     
     var body: some View {

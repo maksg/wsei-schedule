@@ -105,12 +105,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         nextLectureStackView.isHidden = false
         noNextLecturesLabel.isHidden = true
         
-        if lecture.fromDate.isToday {
-            let todayText = Translation.Widget.today.localized
-            nextLabel.text = "\(nextText) - \(todayText)".uppercased()
+        let date = lecture.fromDate
+        let dayText: String
+        
+        if date.isToday {
+            dayText = Translation.Schedule.today.localized
+        } else if date.isTomorrow {
+            dayText = Translation.Schedule.tomorrow.localized
         } else {
-            nextLabel.text = "\(nextText) - \(lecture.fromDate.formattedDay)".uppercased()
+            dayText = date.formattedDay
         }
+        
+        nextLabel.text = "\(nextText) - \(dayText)".uppercased()
         
         nextSubjectLabel.text = lecture.subject
         nextTimeLabel.text = "\(lecture.fromDate.shortHour) - \(lecture.toDate.shortHour)"

@@ -31,4 +31,8 @@ extension Date {
         return Calendar.current.isDateInToday(self)
     }
     
+    var isTomorrow: Bool {
+        return Calendar.current.isDateInTomorrow(self)
+    }
+    
 }

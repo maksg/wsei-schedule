@@ -21,6 +21,7 @@
 
 "schedule.title" = "Schedule";
 "schedule.today" = "Today";
+"schedule.tomorrow" = "Tomorrow";
 
 // Settings
 
@@ -31,5 +32,11 @@
 
 "widget.next" = "Next";
 "widget.today" = "Today";
+"widget.tomorrow" = "Tomorrow";
 "widget.no_lectures_today" = "No lectures today";
 "widget.no_next_lectures" = "No next lectures";
+
+// Watch
+
+"watch.today" = "Today";
+"watch.no_lectures" = "No lectures";

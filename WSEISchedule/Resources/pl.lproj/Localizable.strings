@@ -20,7 +20,8 @@
 // Schedule
 
 "schedule.title" = "Harmonogram";
-"schedule.today" = "Dzisiaj";
+"schedule.today" = "dzisiaj";
+"schedule.tomorrow" = "jutro";
 
 // Settings
 
@@ -30,6 +31,12 @@
 // Widget
 
 "widget.next" = "Następne";
-"widget.today" = "Dzisiaj";
+"widget.today" = "dzisiaj";
+"widget.tomorrow" = "jutro";
 "widget.no_lectures_today" = "Brak wykładów dzisiaj";
 "widget.no_next_lectures" = "Brak kolejnych wykładów";
+
+// Watch
+
+"watch.today" = "dzisiaj";
+"watch.no_lectures" = "Brak wykładów";

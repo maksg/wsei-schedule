@@ -129,8 +129,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.body1TextProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")
             template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
         } else {
-            template.headerTextProvider = CLKSimpleTextProvider(text: "Brak wykładów")
-            template.body1TextProvider = CLKSimpleTextProvider(text: "dzisiaj")
+            template.headerTextProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+            template.body1TextProvider = CLKSimpleTextProvider(text: Translation.Watch.today.localized)
             template.body2TextProvider = nil
         }
         return template
