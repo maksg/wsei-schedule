@@ -9,27 +9,26 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var keyboardObserver: KeyboardObserver
     @ObjectBinding var viewModel: SettingsViewModel
     
     var body: some View {
-        VStack {
-            List {
-                Section(header: Text("")) {
-                    HStack {
-                        Text(Translation.Settings.albumNumber.localized)
-                            .font(.headline)
-                        TextField($viewModel.albumNumber,
-                                  placeholder: Text(viewModel.albumNumberPlaceholder))
-                            .font(.callout)
+        GeometryReader { geometry in
+            NavigationView {
+                VStack(spacing: 0) {
+                    Form {
+                        TextFieldRow(Translation.Settings.albumNumber.localized,
+                                     placeholder: self.viewModel.albumNumberPlaceholder,
+                                     text: self.$viewModel.albumNumber)
                     }
+                    
+                    KeyboardView(viewFrame: geometry.frame(in: .global))
                 }
+                .navigationBarTitle(Tab.settings.title)
             }
-            .listStyle(.grouped)
-            .tapAction {
-                UIApplication.shared.keyWindow?.endEditing(true)
-            }
-            
-            KeyboardView()
+        }
+        .tapAction {
+            self.keyboardObserver.endEditing()
         }
     }
 }

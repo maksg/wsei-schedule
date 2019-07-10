@@ -12,22 +12,25 @@ struct TabView: View {
     @ObjectBinding var viewModel: TabViewModel
     
     var body: some View {
-        NavigationView {
-            TabbedView(selection: $viewModel.selectedTab) {
-                ScheduleView(viewModel: viewModel.scheduleViewModel)
-                    .tabItemLabel(Image("timetable"))
-                    .tabItemLabel(Image(systemName: "clock.fill"))
-                    .tabItemLabel(Text(Tab.schedule.title))
-                    .tag(Tab.schedule)
-                SettingsView(viewModel: viewModel.settingsViewModel)
-                    .tabItemLabel(Image("settings"))
-                    .tabItemLabel(Image(systemName: "gear"))
-                    .tabItemLabel(Text(Tab.settings.title))
-                    .tag(Tab.settings)
-            }
-            .accentColor(.primary)
-            .navigationBarTitle(Text("\(viewModel.selectedTab.title)"))
+//        TabbedView(selection: $viewModel.selectedTab) {
+        TabbedView {
+            ScheduleView(viewModel: viewModel.scheduleViewModel)
+                .tabItem {
+                    Image(systemName: "clock.fill")
+                    Text(Tab.schedule.title)
+                }
+                .tag(0)
+//                .tag(Tab.schedule)
+            SettingsView(viewModel: viewModel.settingsViewModel)
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text(Tab.settings.title)
+                }
+                .tag(1)
+//                .tag(Tab.settings)
         }
+        .accentColor(.primary)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

@@ -15,10 +15,10 @@ private enum KeyboardState {
     case docked
     case undocked
     
-    init(keyboardFrame: CGRect) {
+    init(keyboardFrame: CGRect, windowHeight: CGFloat) {
         if keyboardFrame.height == 0 {
             self = .hidden
-        } else if keyboardFrame.height + keyboardFrame.origin.y == UIApplication.shared.keyWindow?.frame.size.height {
+        } else if keyboardFrame.height + keyboardFrame.origin.y == windowHeight {
             self = .docked
         } else  {
             self = .undocked
@@ -29,16 +29,33 @@ private enum KeyboardState {
 final class KeyboardObserver: BindableObject, KeyboardObserverProtocol {
     let didChange = PassthroughSubject<KeyboardObserver, Never>()
     
+    private let window: UIWindow
     private var lastState: KeyboardState = .hidden
-    var keyboardHeight: CGFloat = 0.0 {
+    
+    var viewFrame: CGRect = .zero {
+        didSet {
+            if viewFrame != oldValue {
+                didChange.send(self)
+            }
+        }
+    }
+    
+    private var keyboardHeight: CGFloat = 0.0 {
         didSet {
             didChange.send(self)
         }
     }
+    
+    var height: CGFloat {
+        let height = keyboardHeight - (window.frame.size.height - viewFrame.size.height - viewFrame.origin.y)
+        return max(0, height)
+    }
+    
     var animationDuration: Double = 0.0
     var animationCurve: BasicAnimationTimingCurve = .easeInOut
     
-    init() {
+    init(window: UIWindow) {
+        self.window = window
         registerForKeyboardEvents()
     }
     
@@ -55,18 +72,21 @@ final class KeyboardObserver: BindableObject, KeyboardObserverProtocol {
     }
     
     private func layoutKeyboard(for notification: Notification) {
-        let keyboardState = KeyboardState(keyboardFrame: notification.keyboardFrame)
+        let keyboardState = KeyboardState(keyboardFrame: notification.keyboardFrame, windowHeight: window.frame.size.height)
         
         animationDuration = notification.keyboardAnimationDuration
         animationCurve = notification.keyboardAnimationCurve
         
-        let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets ?? .zero
-        var height = notification.keyboardFrame.size.height - safeAreaInsets.bottom
+        var height = notification.keyboardFrame.size.height
         height = keyboardState == .docked ? height : 0
         keyboardHeight = max(0, height)
         
         guard keyboardState != lastState else { return }
         lastState = keyboardState
+    }
+    
+    func endEditing() {
+        window.endEditing(true)
     }
     
 }

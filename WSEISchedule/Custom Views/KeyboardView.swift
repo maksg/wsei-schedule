@@ -10,19 +10,21 @@ import SwiftUI
 
 struct KeyboardView: View {
     @EnvironmentObject var keyboardObserver: KeyboardObserver
+    var viewFrame: CGRect
 
     var body: some View {
-        Rectangle()
+        keyboardObserver.viewFrame = viewFrame
+        return Rectangle()
+            .fill(Color.clear)
+            .frame(height: keyboardObserver.height)
             .animation(.basic(duration: keyboardObserver.animationDuration, curve: keyboardObserver.animationCurve))
-            .frame(height: keyboardObserver.keyboardHeight)
-            .foregroundColor(.clear)
     }
 }
 
 #if DEBUG
 struct KeyboardView_Previews : PreviewProvider {
     static var previews: some View {
-        KeyboardView()
+        KeyboardView(viewFrame: .zero)
     }
 }
 #endif

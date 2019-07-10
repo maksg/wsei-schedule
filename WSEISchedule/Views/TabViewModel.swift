@@ -17,7 +17,7 @@ final class TabViewModel: BindableObject {
     
     var selectedTab: Tab = .schedule {
         didSet {
-            didChange.send(self)
+//            didChange.send(self)
         }
     }
     
