@@ -26,7 +26,7 @@ private enum KeyboardState {
     }
 }
 
-final class KeyboardObserver: BindableObject, KeyboardObserverProtocol {
+final class KeyboardObserver: BindableObject, KeyboardObservable {
     let didChange = PassthroughSubject<KeyboardObserver, Never>()
     
     private let window: UIWindow
@@ -59,7 +59,7 @@ final class KeyboardObserver: BindableObject, KeyboardObserverProtocol {
         registerForKeyboardEvents()
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    func keyboardDidShow(_ notification: Notification) {
         layoutKeyboard(for: notification)
     }
     
@@ -67,7 +67,7 @@ final class KeyboardObserver: BindableObject, KeyboardObserverProtocol {
         layoutKeyboard(for: notification)
     }
     
-    func keyboardWillChangeFrame(_ notification: Notification) {
+    func keyboardDidChangeFrame(_ notification: Notification) {
         layoutKeyboard(for: notification)
     }
     

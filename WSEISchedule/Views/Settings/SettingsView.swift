@@ -13,22 +13,15 @@ struct SettingsView: View {
     @ObjectBinding var viewModel: SettingsViewModel
     
     var body: some View {
-        GeometryReader { geometry in
+        KeyboardView {
             NavigationView {
-                VStack(spacing: 0) {
-                    Form {
-                        TextFieldRow(Translation.Settings.albumNumber.localized,
-                                     placeholder: self.viewModel.albumNumberPlaceholder,
-                                     text: self.$viewModel.albumNumber)
-                    }
-                    
-                    KeyboardView(viewFrame: geometry.frame(in: .global))
+                Form {
+                    TextFieldRow(Translation.Settings.albumNumber.localized,
+                                 placeholder: self.viewModel.albumNumberPlaceholder,
+                                 text: self.$viewModel.albumNumber)
                 }
                 .navigationBarTitle(Tab.settings.title)
             }
-        }
-        .tapAction {
-            self.keyboardObserver.endEditing()
         }
     }
 }

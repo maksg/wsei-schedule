@@ -1,5 +1,5 @@
 //
-//  KeyboardObserverProtocol.swift
+//  KeyboardObservable.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 20/03/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol KeyboardObserverProtocol {
+protocol KeyboardObservable {
 
 	func keyboardWillShow(_ notification: Notification)
 	func keyboardDidShow(_ notification: Notification)
@@ -22,7 +22,7 @@ protocol KeyboardObserverProtocol {
 
 }
 
-extension KeyboardObserverProtocol {
+extension KeyboardObservable {
     
 	func keyboardWillShow(_ notification: Notification) {}
 	func keyboardDidShow(_ notification: Notification) {}
