@@ -9,19 +9,16 @@
 import Combine
 import SwiftUI
 
-final class SettingsViewModel: BindableObject {
-    let didChange = PassthroughSubject<SettingsViewModel, Never>()
-    
+final class SettingsViewModel: ObservableObject {
     var albumNumber: String {
         get {
             UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
         }
         set {
+            objectWillChange.send()
             UserDefaults.standard.set(newValue, forKey: "AlbumNumber")
-            didChange.send(self)
         }
     }
     
     var albumNumberPlaceholder: String { "00000" }
-    
 }

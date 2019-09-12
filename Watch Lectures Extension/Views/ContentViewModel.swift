@@ -11,8 +11,7 @@ import SwiftUI
 import CoreData
 import WatchConnectivity
 
-final class ContentViewModel: NSObject, BindableObject {
-    let didChange = PassthroughSubject<ContentViewModel, Never>()
+final class ContentViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
@@ -20,11 +19,7 @@ final class ContentViewModel: NSObject, BindableObject {
         UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
     }
     
-    var lectureDays: [LectureDay] = [] {
-        didSet {
-            didChange.send(self)
-        }
-    }
+    @Published var lectureDays: [LectureDay] = []
     
     // MARK: Initialization
     

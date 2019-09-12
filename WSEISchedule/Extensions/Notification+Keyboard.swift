@@ -19,9 +19,4 @@ extension Notification {
         return userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.0
     }
     
-    var keyboardAnimationCurve: BasicAnimationTimingCurve {
-        let animationCurve = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int ?? 0
-        return BasicAnimationTimingCurve(curve: UIView.AnimationCurve(rawValue: animationCurve))
-    }
-    
 }

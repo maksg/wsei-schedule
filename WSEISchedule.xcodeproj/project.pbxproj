@@ -14,7 +14,7 @@
 		5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
 		5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
 		5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* CodableLecture.swift */; };
-		57506BD922B910C80056A099 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* TabViewModel.swift */; };
+		57506BD922B910C80056A099 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* MainTabViewModel.swift */; };
 		5773656F22C2349D00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
 		5773657022C234BA00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
 		578677EF22D7226D00BF1680 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578677EE22D7226D00BF1680 /* Keyboard.swift */; };
@@ -40,7 +40,6 @@
 		578B99EE22D5D85E0031126D /* TextFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B99ED22D5D85E0031126D /* TextFieldRow.swift */; };
 		578F91E122BA5A3E00C1FC53 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F91E022BA5A3E00C1FC53 /* ContentViewModel.swift */; };
 		579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F722B10B6E00D263C9 /* KeyboardObserver.swift */; };
-		579626FA22B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */; };
 		57A4EF2822BA565C00C08CE7 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A4EF2722BA565C00C08CE7 /* DayHeader.swift */; };
 		57A4EF2A22BA568200C08CE7 /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
 		57A4EF2B22BA568700C08CE7 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318122AE6BC3009EEB1F /* Translation.swift */; };
@@ -65,7 +64,7 @@
 		57AD31A422AE6BC3009EEB1F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318F22AE6BC3009EEB1F /* SettingsViewModel.swift */; };
 		57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319122AE6BC3009EEB1F /* ScheduleViewModel.swift */; };
 		57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319222AE6BC3009EEB1F /* ScheduleView.swift */; };
-		57AD31A722AE6BC3009EEB1F /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319322AE6BC3009EEB1F /* TabView.swift */; };
+		57AD31A722AE6BC3009EEB1F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319322AE6BC3009EEB1F /* MainTabView.swift */; };
 		57AD31A922AE6BC3009EEB1F /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319622AE6BC3009EEB1F /* KeyboardObservable.swift */; };
 		57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
 		57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
@@ -166,7 +165,7 @@
 		5701F83422AFEE47005BED89 /* LectureDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureDay.swift; sourceTree = "<group>"; };
 		5701F83622AFF57A005BED89 /* LectureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProtocol.swift; sourceTree = "<group>"; };
 		5701F83822AFF5DA005BED89 /* CodableLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLecture.swift; sourceTree = "<group>"; };
-		57506BD822B910C80056A099 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		57506BD822B910C80056A099 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		5773656E22C2349D00C3C9AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		578677EE22D7226D00BF1680 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
@@ -188,7 +187,6 @@
 		578F91E422BA660600C1FC53 /* Watch Lectures Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Lectures Extension.entitlements"; sourceTree = "<group>"; };
 		578F91E522BA674600C1FC53 /* Watch Lectures.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Lectures.entitlements"; sourceTree = "<group>"; };
 		579626F722B10B6E00D263C9 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
-		579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicAnimationTimingCurve+UIViewAnimationCurve.swift"; sourceTree = "<group>"; };
 		57A4EF2722BA565C00C08CE7 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
 		57AD314D22AE6B50009EEB1F /* WSEISchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSEISchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AD315022AE6B50009EEB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -214,7 +212,7 @@
 		57AD318F22AE6BC3009EEB1F /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		57AD319122AE6BC3009EEB1F /* ScheduleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		57AD319222AE6BC3009EEB1F /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		57AD319322AE6BC3009EEB1F /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		57AD319322AE6BC3009EEB1F /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		57AD319622AE6BC3009EEB1F /* KeyboardObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
 		57AD31AF22AE6BFD009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		57AD31B122AE6C01009EEB1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
 				57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */,
-				579626F922B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,8 +445,8 @@
 			children = (
 				57AD319022AE6BC3009EEB1F /* Schedule */,
 				57AD318D22AE6BC3009EEB1F /* Settings */,
-				57506BD822B910C80056A099 /* TabViewModel.swift */,
-				57AD319322AE6BC3009EEB1F /* TabView.swift */,
+				57506BD822B910C80056A099 /* MainTabViewModel.swift */,
+				57AD319322AE6BC3009EEB1F /* MainTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -792,12 +789,11 @@
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
 				5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */,
-				57506BD922B910C80056A099 /* TabViewModel.swift in Sources */,
+				57506BD922B910C80056A099 /* MainTabViewModel.swift in Sources */,
 				57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */,
 				57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
-				57AD31A722AE6BC3009EEB1F /* TabView.swift in Sources */,
-				579626FA22B10EA900D263C9 /* BasicAnimationTimingCurve+UIViewAnimationCurve.swift in Sources */,
+				57AD31A722AE6BC3009EEB1F /* MainTabView.swift in Sources */,
 				57AD319A22AE6BC3009EEB1F /* Tab.swift in Sources */,
 				57AD319C22AE6BC3009EEB1F /* Notification+Keyboard.swift in Sources */,
 				578677EF22D7226D00BF1680 /* Keyboard.swift in Sources */,

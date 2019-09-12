@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var keyboardObserver: KeyboardObserver
-    @ObjectBinding var viewModel: SettingsViewModel
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         KeyboardView {
@@ -19,9 +19,11 @@ struct SettingsView: View {
                     TextFieldRow(Translation.Settings.albumNumber.localized,
                                  placeholder: self.viewModel.albumNumberPlaceholder,
                                  text: self.$viewModel.albumNumber)
+                        .keyboardType(.numberPad)
                 }
                 .navigationBarTitle(Tab.settings.title)
             }
+            .animation(.default)
         }
     }
 }

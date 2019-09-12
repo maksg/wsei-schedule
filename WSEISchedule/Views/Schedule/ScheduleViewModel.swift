@@ -12,8 +12,7 @@ import WebKit
 import CoreData
 import WatchConnectivity
 
-final class ScheduleViewModel: NSObject, BindableObject {
-    let didChange = PassthroughSubject<ScheduleViewModel, Never>()
+final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
@@ -38,11 +37,7 @@ final class ScheduleViewModel: NSObject, BindableObject {
         }
     }
     
-    var lectureDays: [LectureDay] = [] {
-        didSet {
-            didChange.send(self)
-        }
-    }
+    @Published var lectureDays: [LectureDay] = []
     
     private var webView: ScheduleWebView
     private var session: WCSession?

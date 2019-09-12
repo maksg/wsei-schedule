@@ -1,6 +1,5 @@
 //
 //  KeyboardObservable.swift
-//  WSEISchedule
 //
 //  Created by Maksymilian Galas on 20/03/2019.
 //  Copyright © 2019 Maksymilian Galas. All rights reserved.

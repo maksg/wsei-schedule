@@ -15,7 +15,7 @@ struct ContentView : View {
         List {
             ForEach(viewModel.lectureDays) { lectureDay in
                 Section(header: DayHeader(date: lectureDay.date)) {
-                    ForEach((lectureDay.lectures as? [CodableLecture] ?? []).identified(by: \.self),content: LectureRow.init)
+                    ForEach(lectureDay.lectures as? [CodableLecture] ?? [], id: \.self, content: LectureRow.init)
                 }
             }
         }

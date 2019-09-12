@@ -1,5 +1,5 @@
 //
-//  TabView.swift
+//  MainTabView.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 09/06/2019.
@@ -8,36 +8,31 @@
 
 import SwiftUI
 
-struct TabView: View {
-    @ObjectBinding var viewModel: TabViewModel
+struct MainTabView: View {
+    @ObservedObject var viewModel: MainTabViewModel
     
     var body: some View {
-//        TabbedView(selection: $viewModel.selectedTab) {
-        TabbedView {
+        TabView(selection: $viewModel.selectedTab) {
             ScheduleView(viewModel: viewModel.scheduleViewModel)
                 .tabItem {
                     Image(systemName: "clock.fill")
                     Text(Tab.schedule.title)
                 }
-                .tag(0)
-//                .tag(Tab.schedule)
+                .tag(Tab.schedule)
             SettingsView(viewModel: viewModel.settingsViewModel)
                 .tabItem {
                     Image(systemName: "gear")
                     Text(Tab.settings.title)
                 }
-                .tag(1)
-//                .tag(Tab.settings)
+                .tag(Tab.settings)
         }
         .accentColor(.primary)
         .edgesIgnoringSafeArea(.top)
     }
 }
 
-#if DEBUG
-struct ContentView_Previews : PreviewProvider {
+struct MainTabView_Previews : PreviewProvider {
     static var previews: some View {
-        TabView(viewModel: .init())
+        MainTabView(viewModel: .init())
     }
 }
-#endif

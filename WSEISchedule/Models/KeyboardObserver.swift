@@ -1,12 +1,10 @@
 //
 //  KeyboardObserver.swift
-//  WSEISchedule
 //
 //  Created by Maksymilian Galas on 12/06/2019.
 //  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 //
 
-import Foundation
 import Combine
 import SwiftUI
 
@@ -26,40 +24,37 @@ private enum KeyboardState {
     }
 }
 
-final class KeyboardObserver: BindableObject, KeyboardObservable {
-    let didChange = PassthroughSubject<KeyboardObserver, Never>()
-    
-    private let window: UIWindow
+final class KeyboardObserver: ObservableObject, KeyboardObservable {
+    private static var window: UIWindow!
     private var lastState: KeyboardState = .hidden
     
     var viewFrame: CGRect = .zero {
-        didSet {
-            if viewFrame != oldValue {
-                didChange.send(self)
+        willSet {
+            if viewFrame != newValue {
+                objectWillChange.send()
             }
         }
     }
     
-    private var keyboardHeight: CGFloat = 0.0 {
-        didSet {
-            didChange.send(self)
-        }
-    }
+    @Published private var keyboardHeight: CGFloat = 0.0
     
     var height: CGFloat {
-        let height = keyboardHeight - (window.frame.size.height - viewFrame.size.height - viewFrame.origin.y)
+        let height = keyboardHeight - (KeyboardObserver.window.frame.size.height - viewFrame.size.height - viewFrame.origin.y)
         return max(0, height)
     }
     
     var animationDuration: Double = 0.0
-    var animationCurve: BasicAnimationTimingCurve = .easeInOut
     
-    init(window: UIWindow) {
-        self.window = window
+    convenience init(window: UIWindow) {
+        KeyboardObserver.window = window
+        self.init()
+    }
+    
+    init() {
         registerForKeyboardEvents()
     }
     
-    func keyboardDidShow(_ notification: Notification) {
+    func keyboardWillShow(_ notification: Notification) {
         layoutKeyboard(for: notification)
     }
     
@@ -67,15 +62,14 @@ final class KeyboardObserver: BindableObject, KeyboardObservable {
         layoutKeyboard(for: notification)
     }
     
-    func keyboardDidChangeFrame(_ notification: Notification) {
+    func keyboardWillChangeFrame(_ notification: Notification) {
         layoutKeyboard(for: notification)
     }
     
     private func layoutKeyboard(for notification: Notification) {
-        let keyboardState = KeyboardState(keyboardFrame: notification.keyboardFrame, windowHeight: window.frame.size.height)
+        let keyboardState = KeyboardState(keyboardFrame: notification.keyboardFrame, windowHeight: KeyboardObserver.window.frame.size.height)
         
         animationDuration = notification.keyboardAnimationDuration
-        animationCurve = notification.keyboardAnimationCurve
         
         var height = notification.keyboardFrame.size.height
         height = keyboardState == .docked ? height : 0
@@ -86,7 +80,7 @@ final class KeyboardObserver: BindableObject, KeyboardObservable {
     }
     
     func endEditing() {
-        window.endEditing(true)
+        KeyboardObserver.window.endEditing(true)
     }
     
 }
