@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  WSEISchedule
+
+  Created by Maksymilian Galas on 10/06/2019.
+  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
+*/
+
+// Alert
+
+"alert.title" = "Alert";
+"alert.confirm" = "Ok";
+"alert.cancel" = "Cancel";
+
+// Error
+
+"error.title" = "Error";
+"error.default" = "Something happened";
+
+// Schedule
+
+"schedule.title" = "Schedule";
+"schedule.today" = "Today";
+"schedule.tomorrow" = "Tomorrow";
+
+// Settings
+
+"settings.title" = "Settings";
+"settings.album_number" = "Album Number";
+
+// Widget
+
+"widget.next" = "Next";
+"widget.today" = "Today";
+"widget.tomorrow" = "Tomorrow";
+"widget.no_lectures_today" = "No lectures today";
+"widget.no_next_lectures" = "No next lectures";
+
+// Watch
+
+"watch.today" = "Today";
+"watch.no_lectures" = "No lectures";
+"watch.no_lectures_today" = "No lectures today";
