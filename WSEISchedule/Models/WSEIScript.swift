@@ -10,20 +10,17 @@ import Foundation
 
 enum WSEIScript {
     
-    case showHistory
     case selectType
-    case selectAlbumNumber(number: String)
+    case setLogin(_ login: String)
+    case setPassword(_ password: String)
+    case setCaptcha(_ captcha: String)
+    case login
     case observeContentChange
     case getScheduleContent
     case goToNextPage
     
     var content: String {
         switch self {
-        case .showHistory:
-            return """
-            var historyCheckbox = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_210_0');
-            historyCheckbox.checked = false;
-            """
         case .selectType:
             return """
             var typeSelect = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_66');
@@ -35,16 +32,25 @@ enum WSEIScript {
                 { isSame: true }
             }
             """
-        case .selectAlbumNumber(let number):
+        case .setLogin(let login):
             return """
-            var numberField = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_82');
-            if(numberField.value != '\(number)') {
-                numberField.value = '\(number)';
-                numberField.onchange();
-            }
-            else {
-                { isSame: true }
-            }
+            var loginField = document.getElementById('login');
+            loginField.value = '\(login)';
+            """
+        case .setPassword(let password):
+            return """
+            var passwordField = document.getElementById('haslo');
+            passwordField.value = '\(password)';
+            """
+        case .setCaptcha(let captcha):
+            return """
+            var captchaField = document.getElementById('captcha');
+            captcha.value = '\(captcha)';
+            """
+        case .login:
+            return """
+            var loginButton = document.getElementById('subButton');
+            loginButton.click();
             """
         case .observeContentChange:
             return """

@@ -13,13 +13,17 @@ struct ScheduleView : View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.lectureDays) { lectureDay in
-                    Section(header: DayHeader(date: lectureDay.date)) {
-                        ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
-                    }
-                }
+            VStack {
+                viewModel.webView
+                    .frame(height: 300)
             }
+//            List {
+//                ForEach(viewModel.lectureDays) { lectureDay in
+//                    Section(header: DayHeader(date: lectureDay.date)) {
+//                        ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+//                    }
+//                }
+//            }
             .onAppear {
                 self.viewModel.reloadLectures()
             }
@@ -28,10 +32,8 @@ struct ScheduleView : View {
     }
 }
 
-#if DEBUG
 struct ScheduleView_Previews : PreviewProvider {
     static var previews: some View {
         ScheduleView(viewModel: .init())
     }
 }
-#endif

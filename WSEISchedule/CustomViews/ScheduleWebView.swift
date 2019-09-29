@@ -8,11 +8,12 @@
 
 import WebKit
 import SwiftUI
+import Vision
 
 final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private var scheduleURL: URL {
-        URL(string: "https://estudent.wsei.edu.pl/SG/PublicDesktop.aspx?fileShareToken=95-88-6B-EB-B0-75-96-FB-A9-7C-AE-D7-5C-DB-90-49")!
+        URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
     }
     
     private var webView: WKWebView!
@@ -21,7 +22,14 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     var addLectures: ((Any?) -> Void)?
     var finishLoadingLectures: (() -> Void)?
     
+    var textRecognitionRequest: VNRecognizeTextRequest
+    let textRecognitionWorkQueue: DispatchQueue
+    
     override init() {
+        textRecognitionRequest = VNRecognizeTextRequest()
+        
+        textRecognitionWorkQueue = DispatchQueue(label: "TextRecognitionQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
+        
         super.init()
         
         let config = WKWebViewConfiguration()
@@ -31,9 +39,44 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         config.userContentController.addUserScript(script)
         config.userContentController.add(self, name: "iosListener")
         
-        let frame = CGRect(x: 0, y: 0, width: 800, height: 400)
+        let frame = CGRect(x: 0, y: 0, width: 400, height: 400)
         webView = WKWebView(frame: frame, configuration: config)
         webView.navigationDelegate = self
+        
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map { String($0) }
+        textRecognitionRequest = VNRecognizeTextRequest { [weak self] (request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+            guard !observations.isEmpty else {
+                self?.captureSnapshot()
+                return
+            }
+            
+            var candidates: [String] = []
+            for observation in observations {
+                guard let topCandidate = observation.topCandidates(1).first else { return }
+                candidates.append(topCandidate.string)
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                if let captcha = candidates.last?.replacingOccurrences(of: " ", with: ""), candidates.count > 1 {
+                    if captcha.count == 5 {
+                        self?.run(.setLogin("maksymiliangalas"))
+                        self?.run(.setPassword("Ford1997"))
+                        self?.run(.setCaptcha(captcha))
+                        self?.run(.login)
+                    } else {
+                        self?.reload()
+                    }
+                } else {
+                    self?.run(.setLogin("maksymiliangalas"))
+                    self?.run(.setPassword("Ford1997"))
+                    self?.run(.login)
+                }
+            }
+        }
+        textRecognitionRequest.minimumTextHeight = 0.03
+        textRecognitionRequest.recognitionLevel = .accurate
+        textRecognitionRequest.customWords = characters
     }
     
     func makeUIView(context: Context) -> WKWebView  {
@@ -46,7 +89,6 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     }
     
     func reload() {
-        guard !albumNumber.isEmpty else { return }
 //        refreshControl?.beginRefreshing()
         let request = URLRequest(url: scheduleURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         webView.load(request)
@@ -79,20 +121,24 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         })
     }
     
-    private func selectSchedule(forAlbumNumber albumNumber: String) {
-//        run(.showHistory)
-        
-        var isSame = true
-        run(.selectType) { [weak self] data in
-            isSame = isSame && (data as? Bool) ?? false
-            
-            self?.run(.selectAlbumNumber(number: albumNumber), completionHandler: { [weak self] data in
-                isSame = isSame && (data as? Bool) ?? false
-                
-                if isSame {
-                    self?.getScheduleContent()
-                }
-            })
+    private func recognizeTextInImage(_ image: UIImage?) {
+        guard let cgImage = image?.cgImage else { return }
+
+        textRecognitionWorkQueue.async {
+            let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+            do {
+                try requestHandler.perform([self.textRecognitionRequest])
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func captureSnapshot() {
+        DispatchQueue.main.async { [weak self] in
+            self?.webView.takeSnapshot(with: nil) { [weak self] (image, error) in
+                self?.recognizeTextInImage(image)
+            }
         }
     }
     
@@ -112,7 +158,7 @@ extension ScheduleWebView: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url == scheduleURL {
-            selectSchedule(forAlbumNumber: albumNumber)
+            captureSnapshot()
         }
     }
 }
@@ -127,11 +173,9 @@ extension ScheduleWebView: WKScriptMessageHandler {
 }
 
 
-#if DEBUG
 struct WSEIWebView_Previews : PreviewProvider {
     static var previews: some View {
         ScheduleWebView()
             .previewDevice(.init(stringLiteral: "iPad Pro (9.7-inch)"))
     }
 }
-#endif

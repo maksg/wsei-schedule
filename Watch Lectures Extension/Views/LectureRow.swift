@@ -30,10 +30,8 @@ struct LectureRow : View {
     }
 }
 
-#if DEBUG
 struct LectureRow_Previews : PreviewProvider {
     static var previews: some View {
         LectureRow(lecture: CodableLecture(lecturer: "", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "", subject: "Subject"))
     }
 }
-#endif

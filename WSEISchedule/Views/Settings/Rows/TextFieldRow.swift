@@ -31,11 +31,9 @@ struct TextFieldRow : View {
     }
 }
 
-#if DEBUG
 struct TextFieldRow_Previews : PreviewProvider {
     static var previews: some View {
         TextFieldRow("Title", placeholder: "Placeholder", text: .constant("Text"))
             .previewLayout(.fixed(width: 300, height: 50))
     }
 }
-#endif

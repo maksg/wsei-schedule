@@ -39,7 +39,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     @Published var lectureDays: [LectureDay] = []
     
-    private var webView: ScheduleWebView
+    var webView: ScheduleWebView
     private var session: WCSession?
     
     // MARK: Initialization
