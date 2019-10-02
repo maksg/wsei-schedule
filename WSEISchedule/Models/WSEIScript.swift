@@ -10,28 +10,16 @@ import Foundation
 
 enum WSEIScript {
     
-    case selectType
     case setLogin(_ login: String)
     case setPassword(_ password: String)
     case setCaptcha(_ captcha: String)
     case login
+    case refreshSchedule
     case observeContentChange
     case getScheduleContent
-    case goToNextPage
     
     var content: String {
         switch self {
-        case .selectType:
-            return """
-            var typeSelect = document.getElementById('ctl00_PlaceRight_FCDesktop_Field_66');
-            if(typeSelect.selectedIndex != 1) {
-                typeSelect.selectedIndex = 1;
-                typeSelect.onchange();
-            }
-            else {
-                { isSame: true }
-            }
-            """
         case .setLogin(let login):
             return """
             var loginField = document.getElementById('login');
@@ -52,10 +40,16 @@ enum WSEIScript {
             var loginButton = document.getElementById('subButton');
             loginButton.click();
             """
+        case .refreshSchedule:
+            return """
+            var wholeScheduleButton = document.getElementById('RadioList_Termin3');
+            wholeScheduleButton.click();
+            FiltrujDane(gridViewPlanyStudentow);
+            """
         case .observeContentChange:
             return """
             var MutationObserver = window.MutationObserver || window.WebKitMutationObserver
-            var target = document.querySelector('#ctl00_Center');
+            var target = document.getElementById('gridViewPlanyStudentow');
             
             var config = { childList: true, subtree: true };
             var callback = function(mutations, observer) {
@@ -67,31 +61,30 @@ enum WSEIScript {
             """
         case .getScheduleContent:
             return """
-            var tableBody = document.querySelector('#ctl00_PlaceRight_FCDesktop_Field_85_gvGrid tbody');
-            var columnHeader = Array.prototype.map.call(tableBody.querySelectorAll("th"), th => {
-                return th.innerText;
+            var tableBody = document.querySelector('#gridViewPlanyStudentow_DXMainTable tbody');
+            var columnHeader = Array.prototype.map.call(tableBody.querySelectorAll(".dxgvHeader_Aqua"), header => {
+                return header.innerText;
             });
-            Object.values(tableBody.querySelectorAll('tr.grid-row, tr.grid-row-alternating')).map(tr => {
-                const tableRow = Object.values(tr.querySelectorAll("td")).reduce( (accum, curr, i) => {
-                    const obj = { ...accum };
-                    if(columnHeader[i] != "" && columnHeader[i] != undefined) {
-                        obj[i] = columnHeader[i] + ': ' + curr.innerText;
-                    } else {
-                        obj[i] = curr.innerText;
-                    }
-                    return obj;
-                }, {} );
-                return tableRow;
-            });
-            """
-        case .goToNextPage:
-            return """
-            var nextButton = document.querySelector('#ctl00_PlaceRight_FCDesktop_Field_85_gvGrid_ctl54_Next');
-            if (nextButton == null) {
-                { isLastPage: true }
-            } else {
-                nextButton.click();
-            }
+            var date = ""
+            Object.values(tableBody.querySelectorAll('tr.dxgvGroupRow_Aqua, tr.dxgvDataRow_Aqua')).map(tr => {
+                const tds = Object.values(tr.querySelectorAll("td"));
+                if(tds.length == 2) {
+                    date = tds[1].innerText;
+                    return null;
+                } else {
+                    return tds.reduce( (accum, curr, i) => {
+                        const obj = { ...accum };
+                        if(i == 0) {
+                            obj[i] = date;
+                        } else if(columnHeader[i] != "" && columnHeader[i] != undefined) {
+                            obj[i] = columnHeader[i] + ': ' + curr.innerText;
+                        } else {
+                            obj[i] = 'Unknown: ' + curr.innerText;
+                        }
+                        return obj;
+                    }, {} );
+                }
+            }).filter(x => x);
             """
         }
     }

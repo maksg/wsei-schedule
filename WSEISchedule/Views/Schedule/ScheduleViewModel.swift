@@ -113,12 +113,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         
         let filteredData = data.map { (lecture) -> [String : String] in
             Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
-                let splitValue = value.split(separator: ":", maxSplits: 1)
+                let splitValue = value.replacingOccurrences(of: "\n", with: "").split(separator: ":", maxSplits: 1)
                 guard splitValue.count > 0 else { return nil }
                 return (String(splitValue[0].trimmingCharacters(in: .whitespacesAndNewlines)),
                         String(splitValue[1].trimmingCharacters(in: .whitespacesAndNewlines)))
             }))
         }
+        
+        print(filteredData)
         
         let managedContext = persistentContainer.viewContext
         return filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }

@@ -12,8 +12,16 @@ import Vision
 
 final class ScheduleWebView: NSObject, UIViewRepresentable {
     
-    private var scheduleURL: URL {
+    private var mainURL: URL {
+        URL(string: "https://dziekanat.wsei.edu.pl/")!
+    }
+    
+    private var signInURL: URL {
         URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
+    }
+    
+    private var scheduleURL: URL {
+        URL(string: "https://dziekanat.wsei.edu.pl/Plany/PlanyStudentow")!
     }
     
     private var webView: WKWebView!
@@ -35,7 +43,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         let config = WKWebViewConfiguration()
         let script = WKUserScript(source: WSEIScript.observeContentChange.content,
                                   injectionTime: .atDocumentEnd,
-                                  forMainFrameOnly: true)
+                                  forMainFrameOnly: false)
         config.userContentController.addUserScript(script)
         config.userContentController.add(self, name: "iosListener")
         
@@ -90,6 +98,11 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     func reload() {
 //        refreshControl?.beginRefreshing()
+        let request = URLRequest(url: signInURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
+        webView.load(request)
+    }
+    
+    func showSchedule() {
         let request = URLRequest(url: scheduleURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         webView.load(request)
     }
@@ -110,14 +123,9 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     private func getScheduleContent() {
         run(.getScheduleContent, completionHandler: { [weak self] data in
             self?.addLectures?(data)
-            self?.run(.goToNextPage, completionHandler: { [weak self] data in
-                let isLastPage = (data as? Bool) ?? false
-                if isLastPage {
-                    self?.finishLoadingLectures?()
-//                    self?.tableView.reloadData()
-//                    self?.refreshControl?.endRefreshing()
-                }
-            })
+            self?.finishLoadingLectures?()
+//            self?.tableView.reloadData()
+//            self?.refreshControl?.endRefreshing()
         })
     }
     
@@ -157,8 +165,14 @@ extension ScheduleWebView: WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if webView.url == scheduleURL {
+        if webView.url == signInURL {
             captureSnapshot()
+        }
+        if webView.url == mainURL {
+            showSchedule()
+        }
+        if webView.url == scheduleURL {
+            run(.refreshSchedule)
         }
     }
 }

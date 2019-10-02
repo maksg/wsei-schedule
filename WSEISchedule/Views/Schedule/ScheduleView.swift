@@ -13,17 +13,13 @@ struct ScheduleView : View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                viewModel.webView
-                    .frame(height: 300)
+            List {
+                ForEach(viewModel.lectureDays) { lectureDay in
+                    Section(header: DayHeader(date: lectureDay.date)) {
+                        ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+                    }
+                }
             }
-//            List {
-//                ForEach(viewModel.lectureDays) { lectureDay in
-//                    Section(header: DayHeader(date: lectureDay.date)) {
-//                        ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
-//                    }
-//                }
-//            }
             .onAppear {
                 self.viewModel.reloadLectures()
             }
