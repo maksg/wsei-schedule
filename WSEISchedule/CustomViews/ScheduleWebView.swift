@@ -27,8 +27,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     private var webView: WKWebView!
     
     var albumNumber: String = ""
-    var addLectures: ((Any?) -> Void)?
-    var finishLoadingLectures: (() -> Void)?
+    var loadLectures: ((Any?) -> Void)?
     
     var textRecognitionRequest: VNRecognizeTextRequest
     let textRecognitionWorkQueue: DispatchQueue
@@ -59,11 +58,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
                 return
             }
             
-            var candidates: [String] = []
-            for observation in observations {
-                guard let topCandidate = observation.topCandidates(1).first else { return }
-                candidates.append(topCandidate.string)
-            }
+            let candidates = observations.compactMap { $0.topCandidates(1).first?.string }
             
             DispatchQueue.main.async { [weak self] in
                 if let captcha = candidates.last?.replacingOccurrences(of: " ", with: ""), candidates.count > 1 {
@@ -122,8 +117,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private func getScheduleContent() {
         run(.getScheduleContent, completionHandler: { [weak self] data in
-            self?.addLectures?(data)
-            self?.finishLoadingLectures?()
+            self?.loadLectures?(data)
 //            self?.tableView.reloadData()
 //            self?.refreshControl?.endRefreshing()
         })

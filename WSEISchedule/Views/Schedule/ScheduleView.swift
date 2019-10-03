@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ScheduleView : View {
-    @State var viewModel: ScheduleViewModel
+    @ObservedObject var viewModel: ScheduleViewModel
     
     var body: some View {
         NavigationView {

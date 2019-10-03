@@ -26,7 +26,6 @@ final class Lecture: NSManagedObject, LectureProtocol {
         self.fromDate = formatter.date(from: "\(date) \(fromTime)") ?? Date()
         self.toDate = formatter.date(from: "\(date) \(toTime)") ?? Date()
         self.subject = dictionary["Przedmiot"] ?? ""
-        print("\(self.subject) \(date) \(fromTime)")
         self.classroom = dictionary["Sala"]?.replacingOccurrences(of: "F ", with: "") ?? ""
         self.lecturer = dictionary["Prowadzący"] ?? ""
         self.code = dictionary["Grupy"] ?? ""
