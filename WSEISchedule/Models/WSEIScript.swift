@@ -10,6 +10,7 @@ import Foundation
 
 enum WSEIScript {
     
+    case zoomCaptcha
     case setLogin(_ login: String)
     case setPassword(_ password: String)
     case setCaptcha(_ captcha: String)
@@ -20,6 +21,13 @@ enum WSEIScript {
     
     var content: String {
         switch self {
+        case .zoomCaptcha:
+            return """
+            var captcha = document.getElementById('captchaImg');
+            if(captcha != null) {
+                captcha.style.zoom = 2.0;
+            }
+            """
         case .setLogin(let login):
             return """
             var loginField = document.getElementById('login');
@@ -33,10 +41,11 @@ enum WSEIScript {
         case .setCaptcha(let captcha):
             return """
             var captchaField = document.getElementById('captcha');
-            captcha.value = '\(captcha)';
+            captchaField.value = '\(captcha)';
             """
         case .login:
             return """
+            observer.disconnect();
             var loginButton = document.getElementById('subButton');
             loginButton.click();
             """
@@ -45,19 +54,21 @@ enum WSEIScript {
             var wholeScheduleButton = document.getElementById('RadioList_Termin3');
             wholeScheduleButton.click();
             FiltrujDane(gridViewPlanyStudentow);
+            observer.observe(target, config);
             """
         case .observeContentChange:
             return """
-            var MutationObserver = window.MutationObserver || window.WebKitMutationObserver
+            var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
             var target = document.getElementById('gridViewPlanyStudentow');
             
             var config = { childList: true, subtree: true };
             var callback = function(mutations, observer) {
-                window.webkit.messageHandlers.iosListener.postMessage('reloaded');
+                if(document.getElementById('RadioList_Termin3').checked) {
+                    window.webkit.messageHandlers.iosListener.postMessage('reloaded');
+                }
             };
             
             var observer = new MutationObserver(callback);
-            observer.observe(target, config);
             """
         case .getScheduleContent:
             return """

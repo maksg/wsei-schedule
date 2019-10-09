@@ -16,9 +16,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
-    var albumNumber: String {
-        UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
-    }
+    var login: String { UserDefaults.standard.login }
+    var password: String { UserDefaults.standard.password }
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -38,7 +37,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     @Published var lectureDays: [LectureDay] = []
     
-    var webView: ScheduleWebView
+    private var webView: ScheduleWebView
     private var session: WCSession?
     
     // MARK: Initialization
@@ -47,8 +46,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         webView = ScheduleWebView()
         super.init()
         
-        webView.loadLectures = loadLectures(fromData:)
-        fetchLectures(from: persistentContainer.viewContext)
+        webView.loadLectures = loadLectures
         
         activateWatchSession()
     }
@@ -56,7 +54,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     // MARK: Methods
     
     func reloadLectures() {
-        webView.albumNumber = albumNumber
+        fetchLectures(from: persistentContainer.viewContext)
+        
+        webView.login = login
+        webView.password = password
         webView.reload()
     }
     
@@ -71,8 +72,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
         
         do {
-            let results = try context.fetch(fetchRequest) as? [Lecture]
-            let lectures = results ?? []
+            let lectures = try context.fetch(fetchRequest) as? [Lecture]
             generateLectureDays(from: lectures)
         } catch let error as NSError {
             print(error.debugDescription)
@@ -116,10 +116,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         return filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
     }
     
-    func generateLectureDays(from lectures: [Lecture]) {
-        self.lectures = lectures.sorted { $0.fromDate < $1.fromDate }
+    func generateLectureDays(from lectures: [Lecture]?) {
+        self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
         
-        guard let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) else { return }
+        guard let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) else {
+            self.lectureDays = []
+            return
+        }
+        
         let futureLectures = self.lectures[nearestLectureIndex..<self.lectures.count]
         self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime

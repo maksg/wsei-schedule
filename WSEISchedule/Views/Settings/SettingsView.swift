@@ -9,23 +9,41 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var keyboardObserver: KeyboardObserver
     @ObservedObject var viewModel: SettingsViewModel
+    @State private var isSignInViewPresented: Bool = false
     
     var body: some View {
-        KeyboardView {
-            NavigationView {
-                Form {
-                    TextFieldRow(Translation.Settings.albumNumber.localized,
-                                 placeholder: self.viewModel.albumNumberPlaceholder,
-                                 text: self.$viewModel.albumNumber)
-                        .keyboardType(.numberPad)
+        NavigationView {
+            Form {
+                if viewModel.isSignedIn {
+                    Button(action: signOut) {
+                        Text(Translation.SignIn.signOut.localized)
+                            .foregroundColor(.main)
+                    }
+                } else {
+                    Button(action: signIn) {
+                        Text(Translation.SignIn.signIn.localized)
+                            .foregroundColor(.main)
+                    }
                 }
-                .navigationBarTitle(Tab.settings.title)
             }
-            .animation(.default)
+            .navigationBarTitle(Tab.settings.title)
+        }
+        .sheet(isPresented: $isSignInViewPresented) {
+            SignInView(viewModel: .init())
+                .environmentObject(KeyboardObserver())
         }
     }
+    
+    private func signIn() {
+        isSignInViewPresented = true
+    }
+    
+    private func signOut() {
+        viewModel.signOut()
+        isSignInViewPresented = true
+    }
+    
 }
 
 struct SettingsView_Previews : PreviewProvider {

@@ -17,6 +17,13 @@
 "error.title" = "Error";
 "error.default" = "Something happened";
 
+// Sign In
+"sign_in.login" = "Login";
+"sign_in.password" = "Password";
+"sign_in.sign_in" = "Sign In";
+"sign_in.sign_out" = "Sign Out";
+"sign_in.title" = "Sign in to dziekanat.wsei.edu.pl";
+
 // Schedule
 
 "schedule.title" = "Schedule";

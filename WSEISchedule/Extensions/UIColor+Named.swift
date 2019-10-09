@@ -10,12 +10,6 @@ import UIKit
 
 extension UIColor {
     
-    static var main: UIColor {
-        return UIColor(named: "Main")!
-    }
-    
-    static var sectionHeader: UIColor {
-        return UIColor(named: "SectionHeader")!
-    }
+    static var main: UIColor { UIColor(named: "Main")! }
     
 }

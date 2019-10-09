@@ -26,11 +26,13 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private var webView: WKWebView!
     
-    var albumNumber: String = ""
+    var login: String = ""
+    var password: String = ""
+    
     var loadLectures: ((Any?) -> Void)?
     
-    var textRecognitionRequest: VNRecognizeTextRequest
-    let textRecognitionWorkQueue: DispatchQueue
+    private var textRecognitionRequest: VNRecognizeTextRequest
+    private let textRecognitionWorkQueue: DispatchQueue
     
     override init() {
         textRecognitionRequest = VNRecognizeTextRequest()
@@ -53,31 +55,22 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map { String($0) }
         textRecognitionRequest = VNRecognizeTextRequest { [weak self] (request, error) in
             guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
-            guard !observations.isEmpty else {
-                self?.captureSnapshot()
-                return
-            }
             
             let candidates = observations.compactMap { $0.topCandidates(1).first?.string }
             
             DispatchQueue.main.async { [weak self] in
-                if let captcha = candidates.last?.replacingOccurrences(of: " ", with: ""), candidates.count > 1 {
+                if let captcha = candidates.last?.replacingOccurrences(of: " ", with: ""), !candidates.isEmpty {
                     if captcha.count == 5 {
-                        self?.run(.setLogin("maksymiliangalas"))
-                        self?.run(.setPassword("Ford1997"))
-                        self?.run(.setCaptcha(captcha))
-                        self?.run(.login)
+                        self?.login(withCaptcha: captcha)
                     } else {
                         self?.reload()
                     }
                 } else {
-                    self?.run(.setLogin("maksymiliangalas"))
-                    self?.run(.setPassword("Ford1997"))
-                    self?.run(.login)
+                    self?.login()
                 }
             }
         }
-        textRecognitionRequest.minimumTextHeight = 0.03
+        textRecognitionRequest.minimumTextHeight = 0.04
         textRecognitionRequest.recognitionLevel = .accurate
         textRecognitionRequest.customWords = characters
     }
@@ -87,7 +80,6 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        albumNumber = "10951"
         reload()
     }
     
@@ -97,18 +89,25 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         webView.load(request)
     }
     
+    private func login(withCaptcha captcha: String? = nil) {
+        guard !login.isEmpty else { return }
+        run(.setLogin(login))
+        run(.setPassword(password))
+        if let captcha = captcha {
+            run(.setCaptcha(captcha))
+        }
+        run(.login)
+    }
+    
     func showSchedule() {
         let request = URLRequest(url: scheduleURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         webView.load(request)
     }
     
     func run(_ script: WSEIScript, completionHandler: ((Any?) -> Void)? = nil) {
-        webView.evaluateJavaScript(script.content) { [weak self] (data, error) in
+        webView.evaluateJavaScript(script.content) { (data, error) in
             if let error = error {
                 print(error)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
-                    self?.run(script, completionHandler: completionHandler)
-                })
             } else {
                 completionHandler?(data)
             }
@@ -138,6 +137,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private func captureSnapshot() {
         DispatchQueue.main.async { [weak self] in
+            self?.run(.zoomCaptcha)
             self?.webView.takeSnapshot(with: nil) { [weak self] (image, error) in
                 self?.recognizeTextInImage(image)
             }
