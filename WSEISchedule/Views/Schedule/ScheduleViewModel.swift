@@ -128,7 +128,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime
             lectureDays[date].lectures += [lecture]
-        }).sorted(by: { $0.date < $1.date })
+        })
     }
     
     private func deleteLectures(from context: NSManagedObjectContext) {
