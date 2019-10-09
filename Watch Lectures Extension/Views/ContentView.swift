@@ -9,13 +9,17 @@
 import SwiftUI
 
 struct ContentView : View {
-    @State var viewModel: ContentViewModel
+    @ObservedObject var viewModel: ContentViewModel
     
     var body: some View {
         List {
-            ForEach(viewModel.lectureDays) { lectureDay in
-                Section(header: DayHeader(date: lectureDay.date)) {
-                    ForEach(lectureDay.lectures as? [CodableLecture] ?? [], id: \.self, content: LectureRow.init)
+            if viewModel.lectureDays.isEmpty {
+                Text(Translation.Watch.noLectures.localized)
+            } else {
+                ForEach(viewModel.lectureDays) { lectureDay in
+                    Section(header: DayHeader(date: lectureDay.date)) {
+                        ForEach(lectureDay.lectures as? [CodableLecture] ?? [], id: \.self, content: LectureRow.init)
+                    }
                 }
             }
         }

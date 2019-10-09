@@ -15,10 +15,6 @@ final class ContentViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
-    var albumNumber: String {
-        UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
-    }
-    
     @Published var lectureDays: [LectureDay] = []
     
     // MARK: Initialization

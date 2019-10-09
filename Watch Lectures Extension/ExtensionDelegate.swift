@@ -14,7 +14,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     // MARK: Properties
     
     private var lectures: [CodableLecture] = []
-    var lectureDays: [LectureDay] = []
+    var lectureDays: [LectureDay] = [] {
+        didSet {
+            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "ReloadedLectures")))
+        }
+    }
     private let session: WCSession = .default
     
     // MARK: Initialization
@@ -36,24 +40,28 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     private func fetchLectures(from context: [String : Any]) {
         guard let data = context["lectures"] as? Data else { return }
         do {
-            lectures = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [CodableLecture] ?? []
+            let lectures = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [CodableLecture]
+            generateLectureDays(from: lectures)
         } catch {
             print(error)
+            self.lectures = []
+            self.lectureDays = []
         }
-        generateLectureDays()
     }
     
-    private func generateLectureDays() {
-        lectures = Array(Set(lectures))
-        lectures.sort { $0.fromDate < $1.fromDate }
+    func generateLectureDays(from lectures: [CodableLecture]?) {
+        self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
         
-        guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else { return }
-        let futureLectures = lectures[nearestLectureIndex..<lectures.count]
-        lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
+        guard let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) else {
+            self.lectureDays = []
+            return
+        }
+        
+        let futureLectures = self.lectures[nearestLectureIndex..<self.lectures.count]
+        self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime
             lectureDays[date].lectures += [lecture]
         })
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "ReloadedLectures")))
     }
     
     // MARK: Delegate
@@ -64,6 +72,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    }
+    
+    func applicationWillEnterForeground() {
         reloadLectures()
     }
 
