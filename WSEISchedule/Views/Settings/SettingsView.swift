@@ -14,19 +14,14 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                if viewModel.isSignedIn {
-                    Button(action: signOut) {
-                        Text(Translation.SignIn.signOut.localized)
-                            .foregroundColor(.main)
-                    }
-                } else {
-                    Button(action: signIn) {
-                        Text(Translation.SignIn.signIn.localized)
-                            .foregroundColor(.main)
-                    }
+            List {
+                Button(action: signInOrOut) {
+                    Text(viewModel.signButtonText)
+                        .foregroundColor(.main)
                 }
             }
+            .listStyle(GroupedListStyle())
+            .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle(Tab.settings.title)
         }
         .sheet(isPresented: $isSignInViewPresented) {
@@ -35,12 +30,10 @@ struct SettingsView: View {
         }
     }
     
-    private func signIn() {
-        isSignInViewPresented = true
-    }
-    
-    private func signOut() {
-        viewModel.signOut()
+    private func signInOrOut() {
+        if viewModel.isSignedIn {
+            viewModel.signOut()
+        }
         isSignInViewPresented = true
     }
     

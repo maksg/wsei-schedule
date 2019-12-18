@@ -23,6 +23,7 @@
 "sign_in.sign_in" = "Sign In";
 "sign_in.sign_out" = "Sign Out";
 "sign_in.title" = "Sign in to dziekanat.wsei.edu.pl";
+"sign_in.privacy_message" = "Your login and password aren't sent or shared. They are used only to download your schedule.";
 
 // Schedule
 

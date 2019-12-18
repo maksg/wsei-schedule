@@ -18,6 +18,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     var login: String { UserDefaults.standard.login }
     var password: String { UserDefaults.standard.password }
+    @Published var errorMessage: String = ""
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -37,7 +38,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     @Published var lectureDays: [LectureDay] = []
     
-    private var webView: ScheduleWebView
+    var webView: ScheduleWebView
     private var session: WCSession?
     
     // MARK: Initialization
@@ -47,6 +48,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         super.init()
         
         webView.loadLectures = loadLectures
+        webView.showErrorMessage = showErrorMessage
         
         activateWatchSession()
     }
@@ -97,6 +99,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         let lectures = convertDataToLectureList(data: data)
         generateLectureDays(from: lectures)
         saveLectures(to: managedContext)
+    }
+    
+    func showErrorMessage(_ errorMessage: String) {
+        self.errorMessage = errorMessage
     }
     
     private func convertDataToLectureList(data: Any?) -> [Lecture] {

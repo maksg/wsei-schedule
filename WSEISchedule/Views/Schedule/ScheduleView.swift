@@ -13,10 +13,21 @@ struct ScheduleView : View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.lectureDays) { lectureDay in
-                    Section(header: DayHeader(date: lectureDay.date)) {
-                        ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+            VStack(spacing: 0) {
+                if !viewModel.errorMessage.isEmpty {
+                    Text(viewModel.errorMessage)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Color(.systemBackground))
+                        .background(Color(.systemRed))
+                        .animation(.default)
+                        .transition(.move(edge: .top))
+                }
+                List {
+                    ForEach(viewModel.lectureDays) { lectureDay in
+                        Section(header: DayHeader(date: lectureDay.date)) {
+                            ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+                        }
                     }
                 }
             }

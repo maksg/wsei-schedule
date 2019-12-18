@@ -26,10 +26,19 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private var webView: WKWebView!
     
-    var login: String = ""
-    var password: String = ""
+    var login: String = "" {
+        didSet {
+            showErrorMessage?("")
+        }
+    }
+    var password: String = "" {
+        didSet {
+            showErrorMessage?("")
+        }
+    }
     
     var loadLectures: ((Any?) -> Void)?
+    var showErrorMessage: ((String) -> Void)?
     
     private var textRecognitionRequest: VNRecognizeTextRequest
     private let textRecognitionWorkQueue: DispatchQueue
@@ -104,10 +113,11 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         webView.load(request)
     }
     
-    func run(_ script: WSEIScript, completionHandler: ((Any?) -> Void)? = nil) {
+    private func run(_ script: WSEIScript, completionHandler: ((Any?) -> Void)? = nil, errorHandler: (() -> Void)? = nil) {
         webView.evaluateJavaScript(script.content) { (data, error) in
             if let error = error {
                 print(error)
+                errorHandler?()
             } else {
                 completionHandler?(data)
             }
@@ -119,6 +129,20 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
             self?.loadLectures?(data)
 //            self?.tableView.reloadData()
 //            self?.refreshControl?.endRefreshing()
+        })
+    }
+    
+    private func getErrorMessage(completionHandler: @escaping (Bool) -> Void) {
+        run(.getErrorMessage, completionHandler: { [weak self] data in
+            let errorMessage = data as? String ?? ""
+            if !errorMessage.contains("kod z obrazka") && !errorMessage.contains("captha") {
+                self?.showErrorMessage?(errorMessage)
+                completionHandler(false)
+            } else {
+                completionHandler(true)
+            }
+        }, errorHandler: {
+            completionHandler(true)
         })
     }
     
@@ -160,12 +184,18 @@ extension ScheduleWebView: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url == signInURL {
-            captureSnapshot()
+            getErrorMessage(completionHandler: { [weak self] success in
+                if success {
+                    self?.captureSnapshot()
+                }
+            })
         }
         if webView.url == mainURL {
+            showErrorMessage?("")
             showSchedule()
         }
         if webView.url == scheduleURL {
+            showErrorMessage?("")
             run(.refreshSchedule)
         }
     }

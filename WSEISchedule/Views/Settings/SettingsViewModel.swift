@@ -13,6 +13,7 @@ import CoreData
 final class SettingsViewModel: ObservableObject {
     
     var isSignedIn: Bool { !UserDefaults.standard.login.isEmpty }
+    var signButtonText: String { isSignedIn ? Translation.SignIn.signOut.localized : Translation.SignIn.signIn.localized }
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")

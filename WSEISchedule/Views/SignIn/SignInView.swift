@@ -15,14 +15,21 @@ struct SignInView: View {
     
     var body: some View {
         KeyboardView(.white) {
-            VStack(spacing: 30) {
+            VStack(spacing: 20) {
                 Image("logo").resizable().aspectRatio(contentMode: .fit)
                 
-                Text(Translation.SignIn.title.localized)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .lineLimit(nil)
-                    .multilineTextAlignment(.center)
+                VStack(spacing: 4) {
+                    Text(Translation.SignIn.title.localized)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.center)
+                    
+                    Text(Translation.SignIn.privacyMessage.localized)
+                        .font(.footnote)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.center)
+                }
                 
                 VStack(spacing: 8) {
                     TextField(viewModel.loginPlaceholder, text: $viewModel.login)
@@ -33,7 +40,7 @@ struct SignInView: View {
                         .cornerRadius(15)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.primary, lineWidth: 1)
+                                .stroke(Color.primary.opacity(0.7), lineWidth: 1)
                         )
                     
                     SecureField(viewModel.passwordPlaceholder, text: $viewModel.password)
@@ -43,7 +50,7 @@ struct SignInView: View {
                         .cornerRadius(15)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.black, lineWidth: 1)
+                                .stroke(Color.primary.opacity(0.7), lineWidth: 1)
                         )
                 }
                 

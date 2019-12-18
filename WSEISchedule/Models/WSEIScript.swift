@@ -18,6 +18,7 @@ enum WSEIScript {
     case refreshSchedule
     case observeContentChange
     case getScheduleContent
+    case getErrorMessage
     
     var content: String {
         switch self {
@@ -96,6 +97,10 @@ enum WSEIScript {
                     }, {} );
                 }
             }).filter(x => x);
+            """
+        case .getErrorMessage:
+            return """
+            document.querySelectorAll('.validation-summary-errors ul li')[0].innerText;
             """
         }
     }

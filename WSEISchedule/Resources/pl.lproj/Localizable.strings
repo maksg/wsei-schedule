@@ -23,6 +23,7 @@
 "sign_in.sign_in" = "Zaloguj się";
 "sign_in.sign_out" = "Wyloguj się";
 "sign_in.title" = "Zaloguj się do dziekanat.wsei.edu.pl";
+"sign_in.privacy_message" = "Twój login i hasło nie są nigdzie wysyłane ani udostępniane. Służą one jedynie do pobrania Twojego planu lekcji ze strony dziekanatu.";
 
 // Schedule
 
