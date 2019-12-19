@@ -25,7 +25,7 @@ private enum KeyboardState {
 }
 
 final class KeyboardObserver: ObservableObject, KeyboardObservable {
-    private static var window: UIWindow!
+    static var window: UIWindow!
     private var lastState: KeyboardState = .hidden
     
     var viewFrame: CGRect = .zero {

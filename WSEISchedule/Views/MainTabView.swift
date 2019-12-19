@@ -15,13 +15,13 @@ struct MainTabView: View {
         TabView(selection: $viewModel.selectedTab) {
             ScheduleView(viewModel: viewModel.scheduleViewModel)
                 .tabItem {
-                    Image(systemName: "clock.fill")
+                    Image.schedule
                     Text(Tab.schedule.title)
                 }
                 .tag(Tab.schedule)
             SettingsView(viewModel: viewModel.settingsViewModel)
                 .tabItem {
-                    Image(systemName: "gear")
+                    Image.settings
                     Text(Tab.settings.title)
                 }
                 .tag(Tab.settings)

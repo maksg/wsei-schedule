@@ -26,7 +26,6 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $isSignInViewPresented) {
             SignInView(viewModel: .init())
-                .environmentObject(KeyboardObserver())
         }
     }
     

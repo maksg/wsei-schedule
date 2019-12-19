@@ -10,6 +10,6 @@ import SwiftUI
 
 extension Color {
     
-    static var main: Color { Color("Main") }
+    static var main: Color { Color(.main) }
     
 }

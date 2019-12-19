@@ -10,57 +10,49 @@ import SwiftUI
 
 struct SignInView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var keyboardObserver: KeyboardObserver
     @ObservedObject var viewModel: SignInViewModel
     
     var body: some View {
-        KeyboardView(.white) {
-            VStack(spacing: 20) {
-                Image("logo").resizable().aspectRatio(contentMode: .fit)
+        VStack(spacing: 20) {
+            Image("logo").resizable().aspectRatio(contentMode: .fit)
+            
+            VStack(spacing: 4) {
+                Text(Translation.SignIn.title.localized)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.center)
                 
-                VStack(spacing: 4) {
-                    Text(Translation.SignIn.title.localized)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .lineLimit(nil)
-                        .multilineTextAlignment(.center)
-                    
-                    Text(Translation.SignIn.privacyMessage.localized)
-                        .font(.footnote)
-                        .lineLimit(nil)
-                        .multilineTextAlignment(.center)
-                }
-                
-                VStack(spacing: 8) {
+                Text(Translation.SignIn.privacyMessage.localized)
+                    .font(.footnote)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.center)
+            }
+            
+            VStack(spacing: 8) {
+                Group {
                     TextField(viewModel.loginPlaceholder, text: $viewModel.login)
                         .textContentType(.username)
                         .autocapitalization(.none)
-                        .padding(.horizontal, 10)
-                        .frame(height: 30)
-                        .cornerRadius(15)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.primary.opacity(0.7), lineWidth: 1)
-                        )
                     
                     SecureField(viewModel.passwordPlaceholder, text: $viewModel.password)
                         .textContentType(.password)
-                        .padding(.horizontal, 10)
-                        .frame(height: 30)
-                        .cornerRadius(15)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.primary.opacity(0.7), lineWidth: 1)
-                        )
                 }
-                
-                Button(action: signIn, label: {
-                    Text(Translation.SignIn.signIn.localized)
-                        .foregroundColor(.main)
-                })
-            }.padding(26)
-            .animation(.default)
+                .padding(.horizontal, 10)
+                .frame(height: 30)
+                .cornerRadius(.infinity)
+                .overlay(RoundedRectangle(cornerRadius: .infinity)
+                            .stroke(Color.primary.opacity(0.7), lineWidth: 1))
+            }
+            
+            Button(action: signIn, label: {
+                Text(Translation.SignIn.signIn.localized)
+                    .foregroundColor(.main)
+            })
         }
+        .padding(26)
+        .animation(.default)
+        .enableKeyboard()
     }
     
     private func signIn() {

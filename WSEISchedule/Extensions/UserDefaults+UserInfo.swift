@@ -10,27 +10,32 @@ import Foundation
 
 extension UserDefaults {
     
+    private enum Key: String {
+        case login
+        case password
+    }
+    
     var login: String {
         get {
-            string(forKey: "login") ?? ""
+            string(forKey: Key.login.rawValue) ?? ""
         }
         set {
-            set(newValue, forKey: "login")
+            set(newValue, forKey: Key.login.rawValue)
         }
     }
     
     var password: String {
         get {
-            string(forKey: "password") ?? ""
+            string(forKey: Key.password.rawValue) ?? ""
         }
         set {
-            set(newValue, forKey: "password")
+            set(newValue, forKey: Key.password.rawValue)
         }
     }
     
     func signOut() {
-        removeObject(forKey: "login")
-        removeObject(forKey: "password")
+        removeObject(forKey: Key.login.rawValue)
+        removeObject(forKey: Key.password.rawValue)
     }
     
 }

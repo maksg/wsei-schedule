@@ -22,6 +22,8 @@
 		572E7F03234CAD160061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		57506BD922B910C80056A099 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* MainTabViewModel.swift */; };
 		57674F53234DBCF000684C2A /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57674F52234DBCF000684C2A /* Color+Named.swift */; };
+		576B96F823ABB85D00CA17CF /* View+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96F723ABB85D00CA17CF /* View+Keyboard.swift */; };
+		576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
 		5773656F22C2349D00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
 		5773657022C234BA00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
 		578677EF22D7226D00BF1680 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578677EE22D7226D00BF1680 /* Keyboard.swift */; };
@@ -175,6 +177,8 @@
 		572E7F00234CACF10061A835 /* Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		57506BD822B910C80056A099 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		57674F52234DBCF000684C2A /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
+		576B96F723ABB85D00CA17CF /* View+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Keyboard.swift"; sourceTree = "<group>"; };
+		576B96FD23ABBFFF00CA17CF /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		5773656E22C2349D00C3C9AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		578677EE22D7226D00BF1680 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
@@ -303,6 +307,24 @@
 				5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		576B96F923ABBC9200CA17CF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				576B96F723ABB85D00CA17CF /* View+Keyboard.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		576B96FA23ABBCA300CA17CF /* Named */ = {
+			isa = PBXGroup;
+			children = (
+				57674F52234DBCF000684C2A /* Color+Named.swift */,
+				57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */,
+				576B96FD23ABBFFF00CA17CF /* Image+Named.swift */,
+			);
+			path = Named;
 			sourceTree = "<group>";
 		};
 		578A72DE22BA4C870009130A /* Watch Lectures */ = {
@@ -448,12 +470,12 @@
 		57AD318422AE6BC3009EEB1F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				576B96FA23ABBCA300CA17CF /* Named */,
+				576B96F923ABBC9200CA17CF /* View */,
 				57AD318522AE6BC3009EEB1F /* Notification+Keyboard.swift */,
 				57AD318622AE6BC3009EEB1F /* String+Localized.swift */,
 				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
-				57674F52234DBCF000684C2A /* Color+Named.swift */,
-				57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */,
 				572E7EF1234CA64A0061A835 /* UserDefaults+UserInfo.swift */,
 			);
 			path = Extensions;
@@ -792,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */,
+				576B96F823ABB85D00CA17CF /* View+Keyboard.swift in Sources */,
 				57AD319B22AE6BC3009EEB1F /* WSEIScript.swift in Sources */,
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57AD31BA22AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift in Sources */,
@@ -806,6 +829,7 @@
 				572E7F01234CACF10061A835 /* Translation.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */,
 				57AD31A222AE6BC3009EEB1F /* UIColor+Named.swift in Sources */,
+				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
 				579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */,
 				570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,

@@ -24,6 +24,7 @@ struct KeyboardView<Content>: View where Content: View {
                 Keyboard(viewFrame: geometry.frame(in: .global), color: self.color)
                     .frame(height: self.keyboardObserver.height)
                     .animation(.easeInOut(duration: self.keyboardObserver.animationDuration))
+                    .environmentObject(self.keyboardObserver)
             }
         }
         .onTapGesture {
@@ -37,5 +38,6 @@ struct KeyboardView_Previews : PreviewProvider {
         KeyboardView {
             Rectangle()
         }
+        .environmentObject(KeyboardObserver(window: UIApplication.shared.windows.first!))
     }
 }
