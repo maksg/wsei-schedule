@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct SignInView: View {
+    @EnvironmentObject private var keyboardObserver: KeyboardObserver
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: SignInViewModel
+    var onDismiss: (() -> Void)?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -52,10 +54,11 @@ struct SignInView: View {
         }
         .padding(26)
         .animation(.default)
-        .enableKeyboard()
+        .enableKeyboard(keyboardObserver: keyboardObserver)
     }
     
     private func signIn() {
+        onDismiss?()
         presentationMode.wrappedValue.dismiss()
     }
 }

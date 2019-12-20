@@ -19,6 +19,7 @@ enum WSEIScript {
     case observeContentChange
     case getScheduleContent
     case getErrorMessage
+    case getStudentInfo
     
     var content: String {
         switch self {
@@ -100,7 +101,18 @@ enum WSEIScript {
             """
         case .getErrorMessage:
             return """
-            document.querySelectorAll('.validation-summary-errors ul li')[0].innerText;
+            document.querySelector('.validation-summary-errors ul li').innerText;
+            """
+        case .getStudentInfo:
+            return """
+            var info = document.querySelector('#td_naglowek p').innerText.split('\\n');
+            var imageUrl = document.querySelector('#zdjecie_glowne').src;
+            var dict = {};
+            dict['name'] = info[1];
+            dict['number'] = info[2];
+            dict['course_name'] = info[3];
+            dict['photo_url'] = imageUrl;
+            dict;
             """
         }
     }

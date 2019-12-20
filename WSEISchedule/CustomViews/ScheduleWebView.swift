@@ -38,6 +38,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     }
     
     var loadLectures: ((Any?) -> Void)?
+    var loadStudentInfo: ((Any?) -> Void)?
     var showErrorMessage: ((String) -> Void)?
     
     private var textRecognitionRequest: VNRecognizeTextRequest
@@ -132,6 +133,22 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         })
     }
     
+    private func getStudentInfo() {
+        run(.getStudentInfo, completionHandler: { [weak self] data in
+            print(data as Any)
+            self?.loadStudentInfo?(data)
+        })
+    }
+    
+    private func saveCookies() {
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.httpCookieStore.getAllCookies({ (cookies) in
+            if let cookie = cookies.first(where: { $0.name == "ASP.NET_SessionId" }) {
+                HTTPCookieStorage.shared.setCookie(cookie)
+            }
+        })
+    }
+    
     private func getErrorMessage(completionHandler: @escaping (Bool) -> Void) {
         run(.getErrorMessage, completionHandler: { [weak self] data in
             let errorMessage = data as? String ?? ""
@@ -192,6 +209,8 @@ extension ScheduleWebView: WKNavigationDelegate {
         }
         if webView.url == mainURL {
             showErrorMessage?("")
+            saveCookies()
+            getStudentInfo()
             showSchedule()
         }
         if webView.url == scheduleURL {
@@ -209,7 +228,6 @@ extension ScheduleWebView: WKScriptMessageHandler {
     }
     
 }
-
 
 struct WSEIWebView_Previews : PreviewProvider {
     static var previews: some View {

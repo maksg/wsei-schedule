@@ -31,9 +31,7 @@ struct ScheduleView : View {
                     }
                 }
             }
-            .onAppear {
-                self.viewModel.reloadLectures()
-            }
+            .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)
         }
     }
@@ -41,6 +39,6 @@ struct ScheduleView : View {
 
 struct ScheduleView_Previews : PreviewProvider {
     static var previews: some View {
-        ScheduleView(viewModel: .init())
+        ScheduleView(viewModel: .init(webView: ScheduleWebView()))
     }
 }

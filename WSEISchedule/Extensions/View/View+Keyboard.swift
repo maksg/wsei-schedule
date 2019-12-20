@@ -10,11 +10,11 @@ import SwiftUI
 
 extension View {
     
-    func enableKeyboard(color: Color = .clear) -> some View {
+    func enableKeyboard(color: Color = .clear, keyboardObserver: KeyboardObserver) -> some View {
         KeyboardView(color) {
             self
         }
-        .environmentObject(KeyboardObserver())
+        .environmentObject(keyboardObserver)
     }
     
 }

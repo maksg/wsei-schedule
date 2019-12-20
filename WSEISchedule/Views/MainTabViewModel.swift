@@ -9,8 +9,15 @@
 import SwiftUI
 
 final class MainTabViewModel: ObservableObject {
-    let scheduleViewModel: ScheduleViewModel = .init()
-    let settingsViewModel: SettingsViewModel = .init()
+    let webView: ScheduleWebView
+    let scheduleViewModel: ScheduleViewModel
+    let settingsViewModel: SettingsViewModel
     
     @Published var selectedTab: Tab = .schedule
+    
+    init() {
+        webView = ScheduleWebView()
+        scheduleViewModel = ScheduleViewModel(webView: webView)
+        settingsViewModel = SettingsViewModel(webView: webView)
+    }
 }

@@ -12,8 +12,15 @@ import CoreData
 
 final class SettingsViewModel: ObservableObject {
     
-    var isSignedIn: Bool { !UserDefaults.standard.login.isEmpty }
+    // MARK: Properties
+    
+    var login: String { UserDefaults.standard.login }
+    var password: String { UserDefaults.standard.password }
+    var isSignedIn: Bool { !login.isEmpty }
     var signButtonText: String { isSignedIn ? Translation.SignIn.signOut.localized : Translation.SignIn.signIn.localized }
+    
+    @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
+    var webView: ScheduleWebView
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -24,6 +31,29 @@ final class SettingsViewModel: ObservableObject {
         })
         return container
     }()
+    
+    
+    init(webView: ScheduleWebView) {
+        self.webView = webView
+        webView.loadStudentInfo = loadStudentInfo
+    }
+    
+    // MARK: Methods
+    
+    func reloadLectures() {
+        webView.login = login
+        webView.password = password
+        webView.reload()
+    }
+    
+    private func loadStudentInfo(_ data: Any?) {
+        guard let data = data as? [String : String] else { return }
+        let name = data["name"] ?? ""
+        let number = data["number"] ?? ""
+        let courseName = data["course_name"] ?? ""
+        let photoUrl = URL(string: data["photo_url"] ?? "")
+        studentInfoRowViewModel = StudentInfoRowViewModel(name: name, number: number, courseName: courseName, photoUrl: photoUrl)
+    }
     
     private func removeAllLectures() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
@@ -41,7 +71,9 @@ final class SettingsViewModel: ObservableObject {
     }
     
     func signOut() {
+        studentInfoRowViewModel = nil
         removeAllLectures()
+        URLCache.shared.removeAllCachedResponses()
         UserDefaults.standard.signOut()
     }
     

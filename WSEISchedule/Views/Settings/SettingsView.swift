@@ -15,9 +15,15 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Button(action: signInOrOut) {
-                    Text(viewModel.signButtonText)
-                        .foregroundColor(.main)
+                if viewModel.studentInfoRowViewModel != nil {
+                    StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel!)
+                        .frame(height: 80)
+                }
+                Section {
+                    Button(action: signInOrOut) {
+                        Text(viewModel.signButtonText)
+                            .foregroundColor(.main)
+                    }
                 }
             }
             .listStyle(GroupedListStyle())
@@ -25,7 +31,8 @@ struct SettingsView: View {
             .navigationBarTitle(Tab.settings.title)
         }
         .sheet(isPresented: $isSignInViewPresented) {
-            SignInView(viewModel: .init())
+            SignInView(viewModel: .init(), onDismiss: self.viewModel.reloadLectures)
+                .environmentObject(KeyboardObserver())
         }
     }
     
@@ -40,6 +47,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: .init())
+        SettingsView(viewModel: .init(webView: ScheduleWebView()))
     }
 }

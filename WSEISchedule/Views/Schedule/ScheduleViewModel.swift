@@ -43,8 +43,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: Initialization
     
-    override init() {
-        webView = ScheduleWebView()
+    init(webView: ScheduleWebView) {
+        self.webView = webView
         super.init()
         
         webView.loadLectures = loadLectures
