@@ -12,20 +12,6 @@ struct SettingsView: View {
     @ObservedObject var viewModel: SettingsViewModel
     @State private var isSignInViewPresented: Bool = false
     
-    private func gameRow(for game: Games) -> some View {
-        Button(action: {
-            UIApplication.shared.open(game.url, options: [:])
-        }, label: {
-            HStack {
-                Image(game.name)
-                    .renderingMode(.original)
-                    .cornerRadius(10)
-                Text(game.name)
-                    .foregroundColor(.main)
-            }
-        })
-    }
-    
     var body: some View {
         NavigationView {
             List {
@@ -33,8 +19,18 @@ struct SettingsView: View {
                     StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel!)
                         .frame(height: 80)
                 }
+                Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
+                    ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in
+                        Button(action: {
+                            self.viewModel.buy(product.product)
+                        }, label: {
+                            Text(product.title)
+                                .foregroundColor(.main)
+                        })
+                    }
+                }
                 Section(header: Text(Translation.Settings.Games.header.localized.uppercased())) {
-                    ForEach(Games.allCases, content: gameRow)
+                    ForEach(Games.allCases, content: GameRow.init)
                 }
                 Section {
                     Button(action: signInOrOut) {
@@ -47,9 +43,15 @@ struct SettingsView: View {
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle(Tab.settings.title)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $isSignInViewPresented) {
             SignInView(viewModel: .init(), onDismiss: self.viewModel.reloadLectures)
                 .environmentObject(KeyboardObserver())
+        }
+        .alert(isPresented: $viewModel.showThankYouAlert) {
+            Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
+                  message: Text(Translation.Settings.ThankYouAlert.message.localized),
+                  dismissButton: .default(Text(Translation.Settings.ThankYouAlert.dismiss.localized)))
         }
     }
     

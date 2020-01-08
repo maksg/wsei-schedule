@@ -27,13 +27,17 @@ struct ScheduleView : View {
                     ForEach(viewModel.lectureDays) { lectureDay in
                         Section(header: DayHeader(date: lectureDay.date)) {
                             ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+                                .animation(.easeInOut)
                         }
                     }
                 }
+                .listStyle(GroupedListStyle())
+                .environment(\.horizontalSizeClass, .regular)
             }
             .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

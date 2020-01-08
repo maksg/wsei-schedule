@@ -9,8 +9,9 @@
 import Combine
 import SwiftUI
 import CoreData
+import StoreKit
 
-final class SettingsViewModel: ObservableObject {
+final class SettingsViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
@@ -22,6 +23,9 @@ final class SettingsViewModel: ObservableObject {
     @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
     var webView: ScheduleWebView
     
+    @Published var supportDeveloperProducts: [SupportDeveloperProduct] = []
+    @Published var showThankYouAlert: Bool = false
+    
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -32,10 +36,12 @@ final class SettingsViewModel: ObservableObject {
         return container
     }()
     
-    
     init(webView: ScheduleWebView) {
         self.webView = webView
+        super.init()
+        
         webView.loadStudentInfo = loadStudentInfo
+        getInAppPurchases()
     }
     
     // MARK: Methods
@@ -70,6 +76,19 @@ final class SettingsViewModel: ObservableObject {
         }
     }
     
+    private func getInAppPurchases() {
+        let productIdentifiers = (1...4).map({ "supportDeveloper\($0)" })
+        let productsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
+        productsRequest.delegate = self
+        productsRequest.start()
+        SKPaymentQueue.default().add(self)
+    }
+    
+    func buy(_ product: SKProduct) {
+        let payment = SKPayment(product: product)
+        SKPaymentQueue.default().add(payment)
+    }
+    
     func signOut() {
         studentInfoRowViewModel = nil
         removeAllLectures()
@@ -78,3 +97,38 @@ final class SettingsViewModel: ObservableObject {
     }
     
 }
+
+// MARK: SKProductsRequestDelegate
+
+extension SettingsViewModel: SKProductsRequestDelegate {
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        let products = response.products
+        let cashSymbols: [String] = ["💵", "💴", "💶", "💷"]
+        let prices = products.map({ $0.localizedPrice })
+        let titles = zip(cashSymbols, prices).map { (symbol, price) in
+            "\(symbol)  \(Translation.Settings.Support.donate.localized) \(price)"
+        }
+        supportDeveloperProducts = zip(titles, products).map { SupportDeveloperProduct(title: $0, product: $1) }
+    }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("Failed to load list of products.")
+        print("Error: \(error.localizedDescription)")
+    }
+    
+}
+
+// MARK: SKPaymentTransactionObserver
+
+extension SettingsViewModel: SKPaymentTransactionObserver {
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions where transaction.transactionState == .purchased {
+            SKPaymentQueue.default().finishTransaction(transaction)
+            showThankYouAlert = true
+        }
+    }
+    
+}
+

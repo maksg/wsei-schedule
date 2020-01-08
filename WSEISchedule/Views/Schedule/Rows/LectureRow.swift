@@ -14,7 +14,7 @@ struct LectureRow: View {
     
     var body: some View {
         Button(action: {
-            withAnimation(.spring()) {
+            withAnimation(.easeInOut) {
                 self.hideDetails.toggle()
             }
         }) {

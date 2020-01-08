@@ -23,6 +23,7 @@ struct DayHeader : View {
     var body: some View {
         Text(formattedDate)
             .font(.headline)
+            .foregroundColor(.primary)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 }

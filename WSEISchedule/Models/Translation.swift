@@ -26,6 +26,17 @@ final class Translation {
             case header = "settings.games.header"
         }
         
+        enum Support: String {
+            case donate = "settings.support.donate"
+            case
+            header = "settings.support.header"
+        }
+        enum ThankYouAlert: String {
+            case title = "settings.thank_you_alert.title"
+            case message = "settings.thank_you_alert.message"
+            case dismiss = "settings.thank_you_alert.dismiss"
+        }
+        
         case title = "settings.title"
     }
     

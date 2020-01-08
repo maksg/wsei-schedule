@@ -135,7 +135,6 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private func getStudentInfo() {
         run(.getStudentInfo, completionHandler: { [weak self] data in
-            print(data as Any)
             self?.loadStudentInfo?(data)
         })
     }

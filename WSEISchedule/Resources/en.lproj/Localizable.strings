@@ -34,6 +34,11 @@
 // Settings
 
 "settings.title" = "Settings";
+"settings.support.header" = "Support developer";
+"settings.support.donate" = "Donate";
+"settings.thank_you_alert.title" = "Thank you!";
+"settings.thank_you_alert.message" = "Thank you so much for your purchase. I appreciate this 🙏🏻";
+"settings.thank_you_alert.dismiss" = "No problem";
 "settings.games.header" = "Games to play during lecture";
 
 // Widget
