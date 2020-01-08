@@ -34,7 +34,7 @@
 // Settings
 
 "settings.title" = "Ustawienia";
-"settings.album_number" = "Numer Albumu";
+"settings.games.header" = "Gry do przejścia w trakcie wykładów";
 
 // Widget
 

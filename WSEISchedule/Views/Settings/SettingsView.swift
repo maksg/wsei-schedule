@@ -12,12 +12,29 @@ struct SettingsView: View {
     @ObservedObject var viewModel: SettingsViewModel
     @State private var isSignInViewPresented: Bool = false
     
+    private func gameRow(for game: Games) -> some View {
+        Button(action: {
+            UIApplication.shared.open(game.url, options: [:])
+        }, label: {
+            HStack {
+                Image(game.name)
+                    .renderingMode(.original)
+                    .cornerRadius(10)
+                Text(game.name)
+                    .foregroundColor(.main)
+            }
+        })
+    }
+    
     var body: some View {
         NavigationView {
             List {
                 if viewModel.studentInfoRowViewModel != nil {
                     StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel!)
                         .frame(height: 80)
+                }
+                Section(header: Text(Translation.Settings.Games.header.localized.uppercased())) {
+                    ForEach(Games.allCases, content: gameRow)
                 }
                 Section {
                     Button(action: signInOrOut) {

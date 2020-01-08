@@ -34,7 +34,7 @@
 // Settings
 
 "settings.title" = "Settings";
-"settings.album_number" = "Album Number";
+"settings.games.header" = "Games to play during lecture";
 
 // Widget
 

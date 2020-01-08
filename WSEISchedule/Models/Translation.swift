@@ -3,50 +3,54 @@
 //
 
 final class Translation {
-
-   enum Alert: String {
-      case cancel = "alert.cancel"
-      case confirm = "alert.confirm"
-      case title = "alert.title"
-   }
-
-   enum Error: String {
-      case `default` = "error.default"
-      case title = "error.title"
-   }
-
-   enum Schedule: String {
-      case title = "schedule.title"
-      case today = "schedule.today"
-      case tomorrow = "schedule.tomorrow"
-   }
-
-   enum Settings: String {
-      case albumNumber = "settings.album_number"
-      case title = "settings.title"
-   }
-
-   enum SignIn: String {
-      case login = "sign_in.login"
-      case password = "sign_in.password"
-      case signIn = "sign_in.sign_in"
-      case signOut = "sign_in.sign_out"
-      case title = "sign_in.title"
-      case privacyMessage = "sign_in.privacy_message"
-   }
-
-   enum Watch: String {
-      case noLectures = "watch.no_lectures"
-      case noLecturesToday = "watch.no_lectures_today"
-      case today = "watch.today"
-   }
-
-   enum Widget: String {
-      case next = "widget.next"
-      case noLecturesToday = "widget.no_lectures_today"
-      case noNextLectures = "widget.no_next_lectures"
-      case today = "widget.today"
-      case tomorrow = "widget.tomorrow"
-   }
-
+    
+    enum Alert: String {
+        case cancel = "alert.cancel"
+        case confirm = "alert.confirm"
+        case title = "alert.title"
+    }
+    
+    enum Error: String {
+        case `default` = "error.default"
+        case title = "error.title"
+    }
+    
+    enum Schedule: String {
+        case title = "schedule.title"
+        case today = "schedule.today"
+        case tomorrow = "schedule.tomorrow"
+    }
+    
+    enum Settings: String {
+        enum Games: String {
+            case header = "settings.games.header"
+        }
+        
+        case title = "settings.title"
+    }
+    
+    enum SignIn: String {
+        case login = "sign_in.login"
+        case password = "sign_in.password"
+        case signIn = "sign_in.sign_in"
+        case signOut = "sign_in.sign_out"
+        case title = "sign_in.title"
+        case privacyMessage = "sign_in.privacy_message"
+    }
+    
+    enum Watch: String {
+        case noLectures = "watch.no_lectures"
+        case noLecturesToday = "watch.no_lectures_today"
+        case today = "watch.today"
+    }
+    
+    enum Widget: String {
+        case next = "widget.next"
+        case noLecturesToday = "widget.no_lectures_today"
+        case noNextLectures = "widget.no_next_lectures"
+        case today = "widget.today"
+        case tomorrow = "widget.tomorrow"
+    }
+    
 }
+

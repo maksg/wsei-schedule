@@ -30,6 +30,7 @@
 		5773657022C234BA00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
 		5773BE1423ACE45400264FC7 /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5773BE1323ACE45400264FC7 /* URLImage.swift */; };
 		5773BE1623ACEC8F00264FC7 /* URLImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */; };
+		57791D6323C5EA4700F91D7F /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57791D6223C5EA4700F91D7F /* Games.swift */; };
 		578677EF22D7226D00BF1680 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578677EE22D7226D00BF1680 /* Keyboard.swift */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
 		578A729B22BA408F0009130A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
@@ -187,6 +188,7 @@
 		5773656E22C2349D00C3C9AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		5773BE1323ACE45400264FC7 /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
 		5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageDownloader.swift; sourceTree = "<group>"; };
+		57791D6223C5EA4700F91D7F /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 		578677EE22D7226D00BF1680 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
 		578A72DD22BA4C870009130A /* Watch Lectures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Lectures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,6 +474,7 @@
 				5701F83822AFF5DA005BED89 /* CodableLecture.swift */,
 				579626F722B10B6E00D263C9 /* KeyboardObserver.swift */,
 				57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */,
+				57791D6223C5EA4700F91D7F /* Games.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				57AD31A222AE6BC3009EEB1F /* UIColor+Named.swift in Sources */,
 				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
 				579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */,
+				57791D6323C5EA4700F91D7F /* Games.swift in Sources */,
 				570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
 				572E7EF2234CA64A0061A835 /* UserDefaults+UserInfo.swift in Sources */,
