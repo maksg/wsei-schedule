@@ -16,8 +16,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
-    var login: String { UserDefaults.standard.login }
-    var password: String { UserDefaults.standard.password }
+    var student: Student { UserDefaults.standard.student }
     @Published var errorMessage: String = ""
     
     private lazy var persistentContainer: NSPersistentContainer = {
@@ -58,8 +57,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     func reloadLectures() {
         fetchLectures(from: persistentContainer.viewContext)
         
-        webView.login = login
-        webView.password = password
+        webView.login = student.login
+        webView.password = student.password
         webView.reload()
     }
     

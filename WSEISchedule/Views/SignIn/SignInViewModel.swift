@@ -12,21 +12,21 @@ final class SignInViewModel: ObservableObject {
     
     var login: String {
         get {
-            UserDefaults.standard.login
+            UserDefaults.standard.student.login
         }
         set {
             objectWillChange.send()
-            UserDefaults.standard.login = newValue
+            UserDefaults.standard.student.login = newValue
         }
     }
     
     var password: String {
         get {
-            UserDefaults.standard.password
+            UserDefaults.standard.student.password
         }
         set {
             objectWillChange.send()
-            UserDefaults.standard.password = newValue
+            UserDefaults.standard.student.password = newValue
         }
     }
     

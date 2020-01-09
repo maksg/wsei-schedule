@@ -15,9 +15,15 @@ final class SettingsViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
-    var login: String { UserDefaults.standard.login }
-    var password: String { UserDefaults.standard.password }
-    var isSignedIn: Bool { !login.isEmpty }
+    var student: Student {
+        get {
+            UserDefaults.standard.student
+        }
+        set {
+            UserDefaults.standard.student = newValue
+        }
+    }
+    var isSignedIn: Bool { !student.login.isEmpty }
     var signButtonText: String { isSignedIn ? Translation.SignIn.signOut.localized : Translation.SignIn.signIn.localized }
     
     @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
@@ -42,23 +48,30 @@ final class SettingsViewModel: NSObject, ObservableObject {
         
         webView.loadStudentInfo = loadStudentInfo
         getInAppPurchases()
+        studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
     }
     
     // MARK: Methods
     
     func reloadLectures() {
-        webView.login = login
-        webView.password = password
+        webView.login = student.login
+        webView.password = student.password
         webView.reload()
     }
     
     private func loadStudentInfo(_ data: Any?) {
         guard let data = data as? [String : String] else { return }
         let name = data["name"] ?? ""
-        let number = data["number"] ?? ""
+        let albumNumber = data["number"] ?? ""
         let courseName = data["course_name"] ?? ""
         let photoUrl = URL(string: data["photo_url"] ?? "")
-        studentInfoRowViewModel = StudentInfoRowViewModel(name: name, number: number, courseName: courseName, photoUrl: photoUrl)
+        
+        student.name = name
+        student.albumNumber = albumNumber
+        student.courseName = courseName
+        student.photoUrl = photoUrl
+        
+        studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
     }
     
     private func removeAllLectures() {

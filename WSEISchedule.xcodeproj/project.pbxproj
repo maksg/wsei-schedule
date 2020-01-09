@@ -17,7 +17,7 @@
 		5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* CodableLecture.swift */; };
 		570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C5AC82345EAC7005EBC4D /* SignInView.swift */; };
 		570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C5ACA2345EAD8005EBC4D /* SignInViewModel.swift */; };
-		572E7EF2234CA64A0061A835 /* UserDefaults+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EF1234CA64A0061A835 /* UserDefaults+UserInfo.swift */; };
+		572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */; };
 		572E7F01234CACF10061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		572E7F02234CAD150061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		572E7F03234CAD160061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
@@ -35,6 +35,7 @@
 		57791D6523C6150400F91D7F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57791D6423C6150400F91D7F /* StoreKit.framework */; };
 		57791D6723C6191900F91D7F /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */; };
 		57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */; };
+		577DDF1823C72BA500D841BB /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF1723C72BA500D841BB /* Student.swift */; };
 		578677EF22D7226D00BF1680 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578677EE22D7226D00BF1680 /* Keyboard.swift */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
 		578A729B22BA408F0009130A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
@@ -182,7 +183,7 @@
 		5701F83822AFF5DA005BED89 /* CodableLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLecture.swift; sourceTree = "<group>"; };
 		570C5AC82345EAC7005EBC4D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		570C5ACA2345EAD8005EBC4D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
-		572E7EF1234CA64A0061A835 /* UserDefaults+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+UserInfo.swift"; sourceTree = "<group>"; };
+		572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Student.swift"; sourceTree = "<group>"; };
 		572E7F00234CACF10061A835 /* Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		57506BD822B910C80056A099 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		57674F52234DBCF000684C2A /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 		57791D6423C6150400F91D7F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
 		57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportDeveloperProduct.swift; sourceTree = "<group>"; };
+		577DDF1723C72BA500D841BB /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		578677EE22D7226D00BF1680 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
 		578A72DD22BA4C870009130A /* Watch Lectures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Lectures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,7 +325,6 @@
 				5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */,
 				5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */,
 				5773BE1323ACE45400264FC7 /* URLImage.swift */,
-				5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -344,6 +345,17 @@
 				576B96FD23ABBFFF00CA17CF /* Image+Named.swift */,
 			);
 			path = Named;
+			sourceTree = "<group>";
+		};
+		577DDF1923C73DE100D841BB /* Lecture */ = {
+			isa = PBXGroup;
+			children = (
+				5701F83422AFEE47005BED89 /* LectureDay.swift */,
+				57AD31B722AE6ECF009EEB1F /* Lecture.swift */,
+				57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */,
+				5701F83822AFF5DA005BED89 /* CodableLecture.swift */,
+			);
+			path = Lecture;
 			sourceTree = "<group>";
 		};
 		578A72DE22BA4C870009130A /* Watch Lectures */ = {
@@ -474,17 +486,16 @@
 		57AD318022AE6BC3009EEB1F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				577DDF1923C73DE100D841BB /* Lecture */,
 				57AD318222AE6BC3009EEB1F /* Tab.swift */,
 				572E7F00234CACF10061A835 /* Translation.swift */,
 				57AD318322AE6BC3009EEB1F /* WSEIScript.swift */,
-				5701F83422AFEE47005BED89 /* LectureDay.swift */,
-				57AD31B722AE6ECF009EEB1F /* Lecture.swift */,
-				57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */,
-				5701F83822AFF5DA005BED89 /* CodableLecture.swift */,
 				579626F722B10B6E00D263C9 /* KeyboardObserver.swift */,
 				57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */,
 				57791D6223C5EA4700F91D7F /* Games.swift */,
 				57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */,
+				577DDF1723C72BA500D841BB /* Student.swift */,
+				5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -498,7 +509,7 @@
 				57AD318622AE6BC3009EEB1F /* String+Localized.swift */,
 				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
-				572E7EF1234CA64A0061A835 /* UserDefaults+UserInfo.swift */,
+				572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
 			);
 			path = Extensions;
@@ -851,6 +862,7 @@
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
 				57AD31A922AE6BC3009EEB1F /* KeyboardObservable.swift in Sources */,
 				570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */,
+				577DDF1823C72BA500D841BB /* Student.swift in Sources */,
 				57674F53234DBCF000684C2A /* Color+Named.swift in Sources */,
 				5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */,
 				5701CE2522B0E80D00AD4CE2 /* KeyboardView.swift in Sources */,
@@ -863,7 +875,7 @@
 				50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */,
 				570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
-				572E7EF2234CA64A0061A835 /* UserDefaults+UserInfo.swift in Sources */,
+				572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */,
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
 				576B970423ABC69300CA17CF /* StudentInfoRow.swift in Sources */,

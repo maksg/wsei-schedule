@@ -15,6 +15,10 @@ final class StudentInfoRowViewModel {
     let courseName: String
     let photoUrl: URL?
     
+    convenience init(student: Student) {
+        self.init(name: student.name, number: student.albumNumber, courseName: student.courseName, photoUrl: student.photoUrl)
+    }
+    
     init(name: String, number: String, courseName: String, photoUrl: URL?) {
         self.name = name
         self.number = number
