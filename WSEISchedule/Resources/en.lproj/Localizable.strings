@@ -17,6 +17,14 @@
 "error.title" = "Error";
 "error.default" = "Something happened";
 
+// Sign In
+"sign_in.login" = "Login";
+"sign_in.password" = "Password";
+"sign_in.sign_in" = "Sign In";
+"sign_in.sign_out" = "Sign Out";
+"sign_in.title" = "Sign in to dziekanat.wsei.edu.pl";
+"sign_in.privacy_message" = "Your login and password aren't sent or shared. They are used only to download your schedule.";
+
 // Schedule
 
 "schedule.title" = "Schedule";
@@ -26,7 +34,12 @@
 // Settings
 
 "settings.title" = "Settings";
-"settings.album_number" = "Album Number";
+"settings.support.header" = "Support developer";
+"settings.support.donate" = "Donate";
+"settings.thank_you_alert.title" = "Thank you!";
+"settings.thank_you_alert.message" = "Thank you so much for your purchase. I appreciate this 🙏🏻";
+"settings.thank_you_alert.dismiss" = "No problem";
+"settings.games.header" = "Games to play during lecture";
 
 // Widget
 

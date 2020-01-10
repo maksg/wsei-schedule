@@ -8,30 +8,67 @@
 
 import SwiftUI
 
-struct SettingsView: View {
-    @EnvironmentObject var keyboardObserver: KeyboardObserver
+struct SettingsView: View, TabBarItemable {
+    
+    var tabBarItem: UITabBarItem { UITabBarItem(title: Tab.settings.title, image: .settings, tag: 1) }
+    
     @ObservedObject var viewModel: SettingsViewModel
+    @State private var isSignInViewPresented: Bool = false
     
     var body: some View {
-        KeyboardView {
-            NavigationView {
-                Form {
-                    TextFieldRow(Translation.Settings.albumNumber.localized,
-                                 placeholder: self.viewModel.albumNumberPlaceholder,
-                                 text: self.$viewModel.albumNumber)
-                        .keyboardType(.numberPad)
+        NavigationView {
+            List {
+                if viewModel.studentInfoRowViewModel != nil {
+                    StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel!)
+                        .frame(height: 80)
                 }
-                .navigationBarTitle(Tab.settings.title)
+                Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
+                    ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in
+                        Button(action: {
+                            self.viewModel.buy(product.product)
+                        }, label: {
+                            Text(product.title)
+                                .foregroundColor(.main)
+                        })
+                    }
+                }
+                Section(header: Text(Translation.Settings.Games.header.localized.uppercased())) {
+                    ForEach(Games.allCases, content: GameRow.init)
+                }
+                Section {
+                    Button(action: signInOrOut) {
+                        Text(viewModel.signButtonText)
+                            .foregroundColor(.main)
+                    }
+                }
             }
-            .animation(.default)
+            .listStyle(GroupedListStyle())
+            .environment(\.horizontalSizeClass, .regular)
+            .navigationBarTitle(Tab.settings.title)
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .sheet(isPresented: $isSignInViewPresented) {
+            SignInView(viewModel: .init(), onDismiss: self.viewModel.reloadLectures)
+                .environmentObject(KeyboardObserver())
+        }
+        .alert(isPresented: $viewModel.showThankYouAlert) {
+            Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
+                  message: Text(Translation.Settings.ThankYouAlert.message.localized),
+                  dismissButton: .default(Text(Translation.Settings.ThankYouAlert.dismiss.localized)))
         }
     }
+    
+    private func signInOrOut() {
+        if viewModel.isSignedIn {
+            viewModel.signOut()
+        }
+        isSignInViewPresented = true
+    }
+    
 }
 
-#if DEBUG
 struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: .init())
+        SettingsView(viewModel: .init(webView: ScheduleWebView()))
     }
 }
-#endif

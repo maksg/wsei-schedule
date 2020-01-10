@@ -14,7 +14,7 @@ struct LectureRow: View {
     
     var body: some View {
         Button(action: {
-            withAnimation(.spring()) {
+            withAnimation(.easeInOut) {
                 self.hideDetails.toggle()
             }
         }) {
@@ -45,11 +45,9 @@ struct LectureRow: View {
     }
 }
 
-#if DEBUG
 struct LectureRow_Previews : PreviewProvider {
     static var previews: some View {
         LectureRow(lecture: CodableLecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject"))
             .previewLayout(.fixed(width: 320, height: 75))
     }
 }
-#endif

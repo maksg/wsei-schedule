@@ -125,7 +125,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         let expanded = activeDisplayMode == .expanded
-        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: 208) : maxSize
+        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: 200) : maxSize
     }
     
     private func fetchLectures(from context: NSManagedObjectContext) {

@@ -8,30 +8,44 @@
 
 import SwiftUI
 
-struct ScheduleView : View {
-    @State var viewModel: ScheduleViewModel
+struct ScheduleView : View, TabBarItemable {
+    
+    var tabBarItem: UITabBarItem { UITabBarItem(title: Tab.schedule.title, image: .schedule, tag: 0) }
+    
+    @ObservedObject var viewModel: ScheduleViewModel
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.lectureDays) { lectureDay in
-                    Section(header: DayHeader(date: lectureDay.date)) {
-                        ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+            VStack(spacing: 0) {
+                if !viewModel.errorMessage.isEmpty {
+                    Text(viewModel.errorMessage)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Color(.systemBackground))
+                        .background(Color(.systemRed))
+                        .animation(.default)
+                        .transition(.move(edge: .top))
+                }
+                List {
+                    ForEach(viewModel.lectureDays) { lectureDay in
+                        Section(header: DayHeader(date: lectureDay.date)) {
+                            ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+                                .animation(.easeInOut)
+                        }
                     }
                 }
+                .listStyle(GroupedListStyle())
+                .environment(\.horizontalSizeClass, .regular)
             }
-            .onAppear {
-                self.viewModel.reloadLectures()
-            }
+            .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
-#if DEBUG
 struct ScheduleView_Previews : PreviewProvider {
     static var previews: some View {
-        ScheduleView(viewModel: .init())
+        ScheduleView(viewModel: .init(webView: ScheduleWebView()))
     }
 }
-#endif

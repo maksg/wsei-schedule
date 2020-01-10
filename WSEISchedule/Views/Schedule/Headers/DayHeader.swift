@@ -23,15 +23,14 @@ struct DayHeader : View {
     var body: some View {
         Text(formattedDate)
             .font(.headline)
+            .foregroundColor(.primary)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 }
 
-#if DEBUG
 struct DayHeader_Previews : PreviewProvider {
     static var previews: some View {
         DayHeader(date: Date())
             .previewLayout(.fixed(width: 320, height: 32))
     }
 }
-#endif

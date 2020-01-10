@@ -19,16 +19,16 @@ final class Lecture: NSManagedObject, LectureProtocol {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
-        let date = dictionary["Data"] ?? ""
-        let fromTime = dictionary["Od"] ?? ""
-        let toTime = dictionary["Do"] ?? ""
+        let date = String(dictionary["Data Zajęć"]?.split(separator: " ").first ?? "")
+        let fromTime = dictionary["Czas od"] ?? ""
+        let toTime = dictionary["Czas do"] ?? ""
         
         self.fromDate = formatter.date(from: "\(date) \(fromTime)") ?? Date()
         self.toDate = formatter.date(from: "\(date) \(toTime)") ?? Date()
         self.subject = dictionary["Przedmiot"] ?? ""
-        self.classroom = dictionary["Sala"] ?? ""
-        self.lecturer = dictionary["Wykładowca"] ?? ""
-        self.code = dictionary["Kod zajęć"] ?? ""
+        self.classroom = dictionary["Sala"]?.replacingOccurrences(of: "F ", with: "") ?? ""
+        self.lecturer = dictionary["Prowadzący"] ?? ""
+        self.code = dictionary["Grupy"] ?? ""
     }
 
 }

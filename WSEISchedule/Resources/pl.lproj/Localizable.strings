@@ -17,6 +17,14 @@
 "error.title" = "Błąd";
 "error.default" = "Coś się stało";
 
+// Sign In
+"sign_in.login" = "Login";
+"sign_in.password" = "Hasło";
+"sign_in.sign_in" = "Zaloguj się";
+"sign_in.sign_out" = "Wyloguj się";
+"sign_in.title" = "Zaloguj się do dziekanat.wsei.edu.pl";
+"sign_in.privacy_message" = "Twój login i hasło nie są nigdzie wysyłane ani udostępniane. Służą one jedynie do pobrania Twojego planu lekcji ze strony dziekanatu.";
+
 // Schedule
 
 "schedule.title" = "Harmonogram";
@@ -26,7 +34,12 @@
 // Settings
 
 "settings.title" = "Ustawienia";
-"settings.album_number" = "Numer Albumu";
+"settings.support.header" = "Wesprzyj programistę";
+"settings.support.donate" = "Podaruj";
+"settings.thank_you_alert.title" = "Dziękuję!";
+"settings.thank_you_alert.message" = "Dziękuję Ci bardzo za zakup. Naprawdę to doceniam 🙏🏻";
+"settings.thank_you_alert.dismiss" = "Nie ma problemu";
+"settings.games.header" = "Gry do przejścia w trakcie wykładów";
 
 // Widget
 

@@ -16,9 +16,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
     
-    var albumNumber: String {
-        UserDefaults.standard.string(forKey: "AlbumNumber") ?? ""
-    }
+    var student: Student { UserDefaults.standard.student }
+    @Published var errorMessage: String = ""
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -30,7 +29,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         return container
     }()
     
-    private var tmpLectures: [Lecture] = []
     private var lectures: [Lecture] = [] {
         didSet {
             sendLecturesToWatch()
@@ -39,18 +37,17 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     @Published var lectureDays: [LectureDay] = []
     
-    private var webView: ScheduleWebView
+    var webView: ScheduleWebView
     private var session: WCSession?
     
     // MARK: Initialization
     
-    override init() {
-        webView = ScheduleWebView()
+    init(webView: ScheduleWebView) {
+        self.webView = webView
         super.init()
         
-        webView.addLectures = addLectures(fromData:)
-        webView.finishLoadingLectures = finishLoadingLectures
-        fetchLectures(from: persistentContainer.viewContext)
+        webView.loadLectures = loadLectures
+        webView.showErrorMessage = showErrorMessage
         
         activateWatchSession()
     }
@@ -58,7 +55,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     // MARK: Methods
     
     func reloadLectures() {
-        webView.albumNumber = albumNumber
+        fetchLectures(from: persistentContainer.viewContext)
+        
+        webView.login = student.login
+        webView.password = student.password
         webView.reload()
     }
     
@@ -73,9 +73,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
         
         do {
-            let results = try context.fetch(fetchRequest) as? [Lecture]
-            self.lectures = results ?? []
-            generateLectureDays()
+            let lectures = try context.fetch(fetchRequest) as? [Lecture]
+            generateLectureDays(from: lectures)
         } catch let error as NSError {
             print(error.debugDescription)
         }
@@ -92,20 +91,17 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
     
-    func addLectures(fromData data: Any?) {
-        let lectures = convertDataToLectureList(data: data)
-        self.tmpLectures += lectures
-    }
-    
-    func finishLoadingLectures() {
+    func loadLectures(fromData data: Any?) {
         let managedContext = persistentContainer.viewContext
         deleteLectures(from: managedContext)
         
-        lectures = tmpLectures
-        tmpLectures = []
-        
-        generateLectureDays()
+        let lectures = convertDataToLectureList(data: data)
+        generateLectureDays(from: lectures)
         saveLectures(to: managedContext)
+    }
+    
+    func showErrorMessage(_ errorMessage: String) {
+        self.errorMessage = errorMessage
     }
     
     private func convertDataToLectureList(data: Any?) -> [Lecture] {
@@ -113,10 +109,11 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         
         let filteredData = data.map { (lecture) -> [String : String] in
             Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
-                let splitValue = value.split(separator: ":", maxSplits: 1)
-                guard splitValue.count > 0 else { return nil }
-                return (String(splitValue[0].trimmingCharacters(in: .whitespacesAndNewlines)),
-                        String(splitValue[1].trimmingCharacters(in: .whitespacesAndNewlines)))
+                let splitValue = value.replacingOccurrences(of: "\n", with: "")
+                    .split(separator: ":", maxSplits: 1)
+                    .map({ String($0.trimmingCharacters(in: .whitespacesAndNewlines)) })
+                guard splitValue.count > 1 else { return nil }
+                return (splitValue[0], splitValue[1])
             }))
         }
         
@@ -124,13 +121,16 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         return filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
     }
     
-    func generateLectureDays() {
-        lectures = Array(Set(lectures))
-        lectures.sort { $0.fromDate < $1.fromDate }
+    func generateLectureDays(from lectures: [Lecture]?) {
+        self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
         
-        guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else { return }
-        let futureLectures = lectures[nearestLectureIndex..<lectures.count]
-        lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
+        guard let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) else {
+            self.lectureDays = []
+            return
+        }
+        
+        let futureLectures = self.lectures[nearestLectureIndex..<self.lectures.count]
+        self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime
             lectureDays[date].lectures += [lecture]
         })

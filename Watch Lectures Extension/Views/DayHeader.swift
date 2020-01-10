@@ -27,10 +27,8 @@ struct DayHeader : View {
     }
 }
 
-#if DEBUG
 struct DayHeader_Previews : PreviewProvider {
     static var previews: some View {
         DayHeader(date: Date())
     }
 }
-#endif

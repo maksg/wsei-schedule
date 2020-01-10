@@ -13,16 +13,17 @@ struct Keyboard : View {
     var color: Color = .clear
     
     var body: some View {
-        self.keyboardObserver.viewFrame = viewFrame
+        keyboardObserver.viewFrame = viewFrame
         return Rectangle()
             .fill(color)
-            .frame(height: self.keyboardObserver.height)
-            .animation(.easeInOut(duration: self.keyboardObserver.animationDuration))
+            .frame(height: keyboardObserver.height)
+            .animation(.easeInOut(duration: keyboardObserver.animationDuration))
     }
 }
 
 struct Keyboard_Previews : PreviewProvider {
     static var previews: some View {
         Keyboard(viewFrame: .zero)
+            .environmentObject(KeyboardObserver(window: UIApplication.shared.windows.first!))
     }
 }
