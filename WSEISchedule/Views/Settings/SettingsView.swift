@@ -8,7 +8,10 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct SettingsView: View, TabBarItemable {
+    
+    var tabBarItem: UITabBarItem { UITabBarItem(title: Tab.settings.title, image: .settings, tag: 1) }
+    
     @ObservedObject var viewModel: SettingsViewModel
     @State private var isSignInViewPresented: Bool = false
     

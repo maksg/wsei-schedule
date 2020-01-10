@@ -14,6 +14,7 @@ final class StudentInfoRowViewModel {
     let number: String
     let courseName: String
     let photoUrl: URL?
+    let cacheRequest: URLRequest
     
     convenience init(student: Student) {
         self.init(name: student.name, number: student.albumNumber, courseName: student.courseName, photoUrl: student.photoUrl)
@@ -24,6 +25,7 @@ final class StudentInfoRowViewModel {
         self.number = number
         self.courseName = courseName
         self.photoUrl = photoUrl
+        self.cacheRequest = URLRequest(url: URL(string: "http://dziekanat.wsei.edu.pl/photo")!)
     }
     
 }

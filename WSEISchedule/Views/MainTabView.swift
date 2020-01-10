@@ -12,22 +12,14 @@ struct MainTabView: View {
     @ObservedObject var viewModel: MainTabViewModel
     
     var body: some View {
-        TabView(selection: $viewModel.selectedTab) {
-            ScheduleView(viewModel: viewModel.scheduleViewModel)
-                .tabItem {
-                    Image.schedule
-                    Text(Tab.schedule.title)
-                }
-                .tag(Tab.schedule)
-            SettingsView(viewModel: viewModel.settingsViewModel)
-                .tabItem {
-                    Image.settings
-                    Text(Tab.settings.title)
-                }
-                .tag(Tab.settings)
+        TabBarView<Tab, Any>(selection: $viewModel.selectedTab) {
+            TupleView((
+                ScheduleView(viewModel: viewModel.scheduleViewModel),
+                SettingsView(viewModel: viewModel.settingsViewModel)
+            ))
         }
         .accentColor(.primary)
-        .edgesIgnoringSafeArea(.top)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

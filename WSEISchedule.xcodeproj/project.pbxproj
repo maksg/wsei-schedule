@@ -36,6 +36,10 @@
 		57791D6723C6191900F91D7F /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */; };
 		57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */; };
 		577DDF1823C72BA500D841BB /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF1723C72BA500D841BB /* Student.swift */; };
+		577DDF1B23C73ED000D841BB /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF1A23C73ED000D841BB /* TabBarView.swift */; };
+		577DDF1D23C75D9200D841BB /* TabBarItemable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF1C23C75D9200D841BB /* TabBarItemable.swift */; };
+		577DDF1F23C7614D00D841BB /* UIImage+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF1E23C7614D00D841BB /* UIImage+Named.swift */; };
+		577DDF2123C762D900D841BB /* UIHostingController+TabBarItemable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF2023C762D900D841BB /* UIHostingController+TabBarItemable.swift */; };
 		578677EF22D7226D00BF1680 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578677EE22D7226D00BF1680 /* Keyboard.swift */; };
 		5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */; };
 		578A729B22BA408F0009130A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
@@ -199,6 +203,10 @@
 		57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
 		57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportDeveloperProduct.swift; sourceTree = "<group>"; };
 		577DDF1723C72BA500D841BB /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		577DDF1A23C73ED000D841BB /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		577DDF1C23C75D9200D841BB /* TabBarItemable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemable.swift; sourceTree = "<group>"; };
+		577DDF1E23C7614D00D841BB /* UIImage+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Named.swift"; sourceTree = "<group>"; };
+		577DDF2023C762D900D841BB /* UIHostingController+TabBarItemable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHostingController+TabBarItemable.swift"; sourceTree = "<group>"; };
 		578677EE22D7226D00BF1680 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWebView.swift; sourceTree = "<group>"; };
 		578A72DD22BA4C870009130A /* Watch Lectures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Lectures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +333,7 @@
 				5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */,
 				5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */,
 				5773BE1323ACE45400264FC7 /* URLImage.swift */,
+				577DDF1A23C73ED000D841BB /* TabBarView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -343,6 +352,7 @@
 				57674F52234DBCF000684C2A /* Color+Named.swift */,
 				57AD318B22AE6BC3009EEB1F /* UIColor+Named.swift */,
 				576B96FD23ABBFFF00CA17CF /* Image+Named.swift */,
+				577DDF1E23C7614D00D841BB /* UIImage+Named.swift */,
 			);
 			path = Named;
 			sourceTree = "<group>";
@@ -511,6 +521,7 @@
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
 				572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
+				577DDF2023C762D900D841BB /* UIHostingController+TabBarItemable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -553,6 +564,7 @@
 			children = (
 				57AD319622AE6BC3009EEB1F /* KeyboardObservable.swift */,
 				5701F83622AFF57A005BED89 /* LectureProtocol.swift */,
+				577DDF1C23C75D9200D841BB /* TabBarItemable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -851,8 +863,10 @@
 			files = (
 				5773BE1623ACEC8F00264FC7 /* URLImageDownloader.swift in Sources */,
 				57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */,
+				577DDF1D23C75D9200D841BB /* TabBarItemable.swift in Sources */,
 				576B96F823ABB85D00CA17CF /* View+Keyboard.swift in Sources */,
 				57791D6723C6191900F91D7F /* SKProduct+LocalizedPrice.swift in Sources */,
+				577DDF2123C762D900D841BB /* UIHostingController+TabBarItemable.swift in Sources */,
 				57AD319B22AE6BC3009EEB1F /* WSEIScript.swift in Sources */,
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */,
@@ -863,6 +877,7 @@
 				57AD31A922AE6BC3009EEB1F /* KeyboardObservable.swift in Sources */,
 				570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */,
 				577DDF1823C72BA500D841BB /* Student.swift in Sources */,
+				577DDF1F23C7614D00D841BB /* UIImage+Named.swift in Sources */,
 				57674F53234DBCF000684C2A /* Color+Named.swift in Sources */,
 				5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */,
 				5701CE2522B0E80D00AD4CE2 /* KeyboardView.swift in Sources */,
@@ -891,6 +906,7 @@
 				578677EF22D7226D00BF1680 /* Keyboard.swift in Sources */,
 				576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */,
 				57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */,
+				577DDF1B23C73ED000D841BB /* TabBarView.swift in Sources */,
 				57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */,
 				5701F83122AFE084005BED89 /* DayHeader.swift in Sources */,
 				57AD31A422AE6BC3009EEB1F /* SettingsViewModel.swift in Sources */,
@@ -1006,7 +1022,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1033,7 +1049,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1061,7 +1077,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				IBSC_MODULE = Watch_Lectures_Extension;
 				INFOPLIST_FILE = "Watch Lectures/Info.plist";
@@ -1083,7 +1099,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				IBSC_MODULE = Watch_Lectures_Extension;
 				INFOPLIST_FILE = "Watch Lectures/Info.plist";
@@ -1221,7 +1237,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
@@ -1247,7 +1263,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
@@ -1353,7 +1369,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Lecture Widget/Lecture Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				INFOPLIST_FILE = "Lecture Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1376,7 +1392,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Lecture Widget/Lecture Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20003;
+				CURRENT_PROJECT_VERSION = 20004;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				INFOPLIST_FILE = "Lecture Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

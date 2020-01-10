@@ -13,7 +13,7 @@ struct StudentInfoRow: View {
     
     var body: some View {
         HStack {
-            URLImage(url: viewModel.photoUrl, placeholder: nil)
+            URLImage(url: viewModel.photoUrl, placeholder: .placeholder, customCacheRequest: viewModel.cacheRequest)
                 .cornerRadius(6)
             VStack {
                 Text(viewModel.name)

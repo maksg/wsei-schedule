@@ -22,8 +22,8 @@ struct URLImage: View {
     
     @ObservedObject private var imageDownloader: URLImageDownloader
     
-    init(url: URL?, placeholder: UIImage?) {
-        self.imageDownloader = URLImageDownloader(url: url)
+    init(url: URL?, placeholder: UIImage?, customCacheRequest: URLRequest? = nil) {
+        self.imageDownloader = URLImageDownloader(url: url, customCacheRequest: customCacheRequest)
         self.placeholder = placeholder
     }
     
