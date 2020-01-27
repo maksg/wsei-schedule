@@ -22,7 +22,6 @@ struct SettingsView: View, TabBarItemable {
                     StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel!)
                         .frame(height: 80)
                 }
-                #if !targetEnvironment(macCatalyst)
                 Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
                     ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in
                         Button(action: {
@@ -33,7 +32,6 @@ struct SettingsView: View, TabBarItemable {
                         })
                     }
                 }
-                #endif
                 Section(header: Text(Translation.Settings.Games.header.localized.uppercased())) {
                     ForEach(Games.allCases, content: GameRow.init)
                 }

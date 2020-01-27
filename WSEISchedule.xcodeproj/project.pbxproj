@@ -252,7 +252,6 @@
 		57AD319222AE6BC3009EEB1F /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		57AD319322AE6BC3009EEB1F /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		57AD319622AE6BC3009EEB1F /* KeyboardObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
-		57AD31AF22AE6BFD009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		57AD31B122AE6C01009EEB1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57AD31B322AE6C27009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57AD31B522AE6E20009EEB1F /* Lectures.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lectures.xcdatamodel; sourceTree = "<group>"; };
@@ -991,7 +990,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				57AD315C22AE6B51009EEB1F /* Base */,
-				57AD31AF22AE6BFD009EEB1F /* pl */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1022,7 +1020,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1049,7 +1047,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1077,7 +1075,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				IBSC_MODULE = Watch_Lectures_Extension;
 				INFOPLIST_FILE = "Watch Lectures/Info.plist";
@@ -1099,7 +1097,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				IBSC_MODULE = Watch_Lectures_Extension;
 				INFOPLIST_FILE = "Watch Lectures/Info.plist";
@@ -1237,7 +1235,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
@@ -1263,7 +1261,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
@@ -1369,7 +1367,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Lecture Widget/Lecture Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				INFOPLIST_FILE = "Lecture Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1392,7 +1390,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Lecture Widget/Lecture Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20004;
+				CURRENT_PROJECT_VERSION = 20005;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				INFOPLIST_FILE = "Lecture Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

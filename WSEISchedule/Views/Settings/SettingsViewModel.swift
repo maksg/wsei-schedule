@@ -61,15 +61,11 @@ final class SettingsViewModel: NSObject, ObservableObject {
     
     private func loadStudentInfo(_ data: Any?) {
         guard let data = data as? [String : String] else { return }
-        let name = data["name"] ?? ""
-        let albumNumber = data["number"] ?? ""
-        let courseName = data["course_name"] ?? ""
-        let photoUrl = URL(string: data["photo_url"] ?? "")
         
-        student.name = name
-        student.albumNumber = albumNumber
-        student.courseName = courseName
-        student.photoUrl = photoUrl
+        student.name = data["name"] ?? ""
+        student.albumNumber = data["number"] ?? ""
+        student.courseName = data["course_name"] ?? ""
+        student.photoUrl = URL(string: data["photo_url"] ?? "")
         
         studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
     }
@@ -90,7 +86,11 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     private func getInAppPurchases() {
+        #if targetEnvironment(macCatalyst)
+        let productIdentifiers = (1...4).map({ "wseiMacSupportDeveloper\($0)" })
+        #else
         let productIdentifiers = (1...4).map({ "supportDeveloper\($0)" })
+        #endif
         let productsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
         productsRequest.delegate = self
         productsRequest.start()
