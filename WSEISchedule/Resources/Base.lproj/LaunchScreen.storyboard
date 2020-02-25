@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fzJ-Py-pSD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16092.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fzJ-Py-pSD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16082.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Schedule-->
+        <!--Navigation Controller-->
         <scene sceneID="4Ft-25-FUH">
             <objects>
                 <navigationController id="mWS-Ax-5Tc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Schedule" image="clock.fill" catalog="system" selectedImage="clock.fill" id="k30-L2-wHv"/>
+                    <tabBarItem key="tabBarItem" title="" image="clock.fill" catalog="system" selectedImage="clock.fill" id="k30-L2-wHv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="um4-LM-Wmq">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="629" y="-145"/>
         </scene>
-        <!--Schedule-->
+        <!--View Controller-->
         <scene sceneID="TYe-FK-b44">
             <objects>
                 <viewController id="7II-CY-Vc3" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hTu-7d-O5y"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Schedule" id="ezI-lF-qR3"/>
+                    <navigationItem key="navigationItem" id="ezI-lF-qR3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUA-h0-zIb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -72,7 +72,7 @@
             </objects>
             <point key="canvasLocation" x="-290" y="208"/>
         </scene>
-        <!--Settings-->
+        <!--View Controller-->
         <scene sceneID="VdN-Kn-O2O">
             <objects>
                 <viewController id="1mX-jX-JYi" sceneMemberID="viewController">
@@ -82,7 +82,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="CCQ-cz-qk7"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Settings" image="gear" catalog="system" selectedImage="gear" id="1mI-lA-8Gz"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="gear" catalog="system" selectedImage="gear" id="1mI-lA-8Gz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCc-Hg-8t6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,7 +90,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clock.fill" catalog="system" width="64" height="60"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="clock.fill" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
     </resources>
 </document>
