@@ -12,6 +12,8 @@ import CoreData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
+    @IBOutlet private weak var mainStackView: UIStackView!
+    
     @IBOutlet private weak var noLecturesTodayLabel: UILabel!
     @IBOutlet private weak var todayLectureStackView: UIStackView!
     @IBOutlet private weak var subjectLabel: UILabel!
@@ -20,8 +22,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet private weak var lecturerLabel: UILabel!
     @IBOutlet private weak var codeLabel: UILabel!
     
+    @IBOutlet private weak var nextView: UIView!
     @IBOutlet private weak var nextLabel: UILabel!
     
+    @IBOutlet private weak var nextLectureView: UIView!
     @IBOutlet private weak var noNextLecturesLabel: UILabel!
     @IBOutlet private weak var nextLectureStackView: UIStackView!
     @IBOutlet private weak var nextSubjectLabel: UILabel!
@@ -125,7 +129,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         let expanded = activeDisplayMode == .expanded
-        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: 200) : maxSize
+        nextView.isHidden = !expanded
+        nextLectureView.isHidden = !expanded
+        let height = mainStackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        preferredContentSize = CGSize(width: maxSize.width, height: height)
     }
     
     private func fetchLectures(from context: NSManagedObjectContext) {
