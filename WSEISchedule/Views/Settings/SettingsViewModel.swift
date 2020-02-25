@@ -48,7 +48,10 @@ final class SettingsViewModel: NSObject, ObservableObject {
         
         webView.loadStudentInfo = loadStudentInfo
         getInAppPurchases()
-        studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
+        
+        if isSignedIn {
+            studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
+        }
     }
     
     // MARK: Methods
@@ -71,12 +74,12 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     private func removeAllLectures() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
+        let fetchRequest: NSFetchRequest<CoreDataLecture> = CoreDataLecture.fetchRequest()
         let context = persistentContainer.viewContext
         
         do {
-            let lectures = try context.fetch(fetchRequest) as? [Lecture]
-            lectures?.forEach { lecture in
+            let lectures = try context.fetch(fetchRequest)
+            lectures.forEach { lecture in
                 context.delete(lecture)
             }
             try context.save()

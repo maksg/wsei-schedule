@@ -28,7 +28,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet private weak var nextTimeLabel: UILabel!
     @IBOutlet private weak var nextClassroomLabel: UILabel!
     
-    private var lectures: [Lecture] = []
+    private var lectures: [CoreDataLecture] = []
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -76,7 +76,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(.newData)
     }
     
-    private func setupNearestLecture(_ lecture: Lecture?) {
+    private func setupNearestLecture(_ lecture: CoreDataLecture?) {
         guard let lecture = lecture else {
             todayLectureStackView.isHidden = true
             noLecturesTodayLabel.isHidden = false
@@ -93,7 +93,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         codeLabel.text = lecture.code
     }
     
-    private func setupNextLecture(_ lecture: Lecture?) {
+    private func setupNextLecture(_ lecture: CoreDataLecture?) {
         let nextText = Translation.Widget.next.localized
         guard let lecture = lecture else {
             nextLectureStackView.isHidden = true
@@ -129,11 +129,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     private func fetchLectures(from context: NSManagedObjectContext) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
+        let fetchRequest: NSFetchRequest<CoreDataLecture> = CoreDataLecture.fetchRequest()
         
         do {
-            let results = try context.fetch(fetchRequest) as? [Lecture]
-            self.lectures = results?.sorted(by: { $0.fromDate < $1.fromDate }) ?? []
+            let lectures = try context.fetch(fetchRequest)
+            self.lectures = lectures.sorted(by: { $0.fromDate < $1.fromDate })
         } catch let error as NSError {
             print(error.debugDescription)
         }

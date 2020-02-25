@@ -29,7 +29,7 @@ struct ScheduleView : View, TabBarItemable {
                 List {
                     ForEach(viewModel.lectureDays) { lectureDay in
                         Section(header: DayHeader(date: lectureDay.date)) {
-                            ForEach(lectureDay.lectures as? [Lecture] ?? [], id: \.self, content: LectureRow.init)
+                            ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
                                 .animation(.easeInOut)
                         }
                     }

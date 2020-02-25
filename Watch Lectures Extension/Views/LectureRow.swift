@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LectureRow : View {
-    var lecture: LectureProtocol
+    var lecture: Lecture
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {

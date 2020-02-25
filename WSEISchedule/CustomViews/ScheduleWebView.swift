@@ -12,17 +12,9 @@ import Vision
 
 final class ScheduleWebView: NSObject, UIViewRepresentable {
     
-    private var mainURL: URL {
-        URL(string: "https://dziekanat.wsei.edu.pl/")!
-    }
-    
-    private var signInURL: URL {
-        URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
-    }
-    
-    private var scheduleURL: URL {
-        URL(string: "https://dziekanat.wsei.edu.pl/Plany/PlanyStudentow")!
-    }
+    private let mainURL = URL(string: "https://dziekanat.wsei.edu.pl/")!
+    private let signInURL = URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
+    private let scheduleURL = URL(string: "https://dziekanat.wsei.edu.pl/Plany/PlanyStudentow")!
     
     private var webView: WKWebView!
     
@@ -41,14 +33,10 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     var loadStudentInfo: ((Any?) -> Void)?
     var showErrorMessage: ((String) -> Void)?
     
-    private var textRecognitionRequest: VNRecognizeTextRequest
-    private let textRecognitionWorkQueue: DispatchQueue
+    private var textRecognitionRequest: VNRecognizeTextRequest!
+    private let textRecognitionWorkQueue = DispatchQueue(label: "TextRecognitionQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
     
     override init() {
-        textRecognitionRequest = VNRecognizeTextRequest()
-        
-        textRecognitionWorkQueue = DispatchQueue(label: "TextRecognitionQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
-        
         super.init()
         
         let config = WKWebViewConfiguration()
@@ -62,27 +50,27 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         webView = WKWebView(frame: frame, configuration: config)
         webView.navigationDelegate = self
         
-        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map { String($0) }
-        textRecognitionRequest = VNRecognizeTextRequest { [weak self] (request, error) in
-            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
-            
-            let candidates = observations.compactMap { $0.topCandidates(1).first?.string }
-            
-            DispatchQueue.main.async { [weak self] in
-                if let captcha = candidates.last?.replacingOccurrences(of: " ", with: ""), !candidates.isEmpty {
-                    if captcha.count == 5 {
-                        self?.login(withCaptcha: captcha)
-                    } else {
-                        self?.reload()
-                    }
-                } else {
-                    self?.login()
-                }
-            }
-        }
+        textRecognitionRequest = VNRecognizeTextRequest(completionHandler: vnRequestCompletionHandler)
         textRecognitionRequest.minimumTextHeight = 0.04
         textRecognitionRequest.recognitionLevel = .accurate
-        textRecognitionRequest.customWords = characters
+        textRecognitionRequest.customWords = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map(String.init)
+    }
+    
+    private func vnRequestCompletionHandler(request: VNRequest, error: Error?) {
+        guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+        let candidates = observations.compactMap { $0.topCandidates(1).first?.string }
+        
+        DispatchQueue.main.async { [weak self] in
+            if let captcha = candidates.last?.replacingOccurrences(of: " ", with: ""), !candidates.isEmpty {
+                if captcha.count == 5 {
+                    self?.login(withCaptcha: captcha)
+                } else {
+                    self?.reload()
+                }
+            } else {
+                self?.login()
+            }
+        }
     }
     
     func makeUIView(context: Context) -> WKWebView  {
@@ -94,7 +82,6 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     }
     
     func reload() {
-//        refreshControl?.beginRefreshing()
         let request = URLRequest(url: signInURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         webView.load(request)
     }
@@ -128,8 +115,6 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     private func getScheduleContent() {
         run(.getScheduleContent, completionHandler: { [weak self] data in
             self?.loadLectures?(data)
-//            self?.tableView.reloadData()
-//            self?.refreshControl?.endRefreshing()
         })
     }
     
@@ -151,7 +136,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     private func getErrorMessage(completionHandler: @escaping (Bool) -> Void) {
         run(.getErrorMessage, completionHandler: { [weak self] data in
             let errorMessage = data as? String ?? ""
-            if !errorMessage.contains("kod z obrazka") && !errorMessage.contains("captha") {
+            if !errorMessage.isEmpty && !errorMessage.contains("kod z obrazka") && !errorMessage.contains("captha") {
                 self?.showErrorMessage?(errorMessage)
                 completionHandler(false)
             } else {
@@ -165,7 +150,8 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     private func recognizeTextInImage(_ image: UIImage?) {
         guard let cgImage = image?.cgImage else { return }
 
-        textRecognitionWorkQueue.async {
+        textRecognitionWorkQueue.async { [weak self] in
+            guard let self = self else { return }
             let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
             do {
                 try requestHandler.perform([self.textRecognitionRequest])
@@ -176,12 +162,11 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     }
     
     private func captureSnapshot() {
-        DispatchQueue.main.async { [weak self] in
-            self?.run(.zoomCaptcha)
+        run(.zoomCaptcha, completionHandler: { [weak self] _ in
             self?.webView.takeSnapshot(with: nil) { [weak self] (image, error) in
                 self?.recognizeTextInImage(image)
             }
-        }
+        })
     }
     
 }

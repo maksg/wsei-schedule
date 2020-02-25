@@ -9,7 +9,7 @@
 import Foundation
 
 @objc(CodableLecture)
-final class CodableLecture: NSObject, NSCoding, LectureProtocol {
+final class CodableLecture: NSObject, NSCoding, Lecture {
     
     var lecturer: String
     var classroom: String
@@ -45,7 +45,7 @@ final class CodableLecture: NSObject, NSCoding, LectureProtocol {
         self.subject = subject
     }
     
-    init(lecture: LectureProtocol) {
+    init(lecture: Lecture) {
         self.lecturer = lecture.lecturer
         self.classroom = lecture.classroom
         self.fromDate = lecture.fromDate

@@ -13,7 +13,7 @@
 		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
 		5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
 		5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
-		5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
+		5701F83722AFF57A005BED89 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* Lecture.swift */; };
 		5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* CodableLecture.swift */; };
 		570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C5AC82345EAC7005EBC4D /* SignInView.swift */; };
 		570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C5ACA2345EAD8005EBC4D /* SignInViewModel.swift */; };
@@ -56,7 +56,7 @@
 		578A72FA22BA4C890009130A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578A72F922BA4C890009130A /* Preview Assets.xcassets */; };
 		578A72FE22BA4C890009130A /* Watch Lectures.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 578A72DD22BA4C870009130A /* Watch Lectures.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		578A730A22BA4FB90009130A /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A730922BA4FB90009130A /* LectureRow.swift */; };
-		578A730B22BA50080009130A /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
+		578A730B22BA50080009130A /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* Lecture.swift */; };
 		578A730E22BA50170009130A /* CodableLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* CodableLecture.swift */; };
 		578A730F22BA50460009130A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
 		578F91E122BA5A3E00C1FC53 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F91E022BA5A3E00C1FC53 /* ContentViewModel.swift */; };
@@ -87,17 +87,17 @@
 		57AD31A922AE6BC3009EEB1F /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD319622AE6BC3009EEB1F /* KeyboardObservable.swift */; };
 		57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
 		57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
-		57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* Lecture.swift */; };
-		57AD31BA22AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */; };
+		57AD31B922AE6ECF009EEB1F /* CoreDataLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */; };
+		57AD31BA22AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B822AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift */; };
 		57DDE75922B79B3500924367 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DDE75822B79B3500924367 /* NotificationCenter.framework */; };
 		57DDE75C22B79B3500924367 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE75B22B79B3500924367 /* TodayViewController.swift */; };
 		57DDE75F22B79B3500924367 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57DDE75D22B79B3500924367 /* MainInterface.storyboard */; };
 		57DDE76322B79B3500924367 /* Lecture Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 57DDE75622B79B3500924367 /* Lecture Widget.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
 		57DDE76C22B7B2D500924367 /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
-		57DDE76D22B7B2E000924367 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* Lecture.swift */; };
-		57DDE76E22B7B2E300924367 /* Lecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */; };
-		57DDE76F22B7B32200924367 /* LectureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* LectureProtocol.swift */; };
+		57DDE76D22B7B2E000924367 /* CoreDataLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */; };
+		57DDE76E22B7B2E300924367 /* CoreDataLecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B822AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift */; };
+		57DDE76F22B7B32200924367 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* Lecture.swift */; };
 		57DDE77022B7B39600924367 /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
 		57DDE77122B7B6EB00924367 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -183,7 +183,7 @@
 		5701F83022AFE084005BED89 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
 		5701F83222AFE361005BED89 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		5701F83422AFEE47005BED89 /* LectureDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureDay.swift; sourceTree = "<group>"; };
-		5701F83622AFF57A005BED89 /* LectureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProtocol.swift; sourceTree = "<group>"; };
+		5701F83622AFF57A005BED89 /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
 		5701F83822AFF5DA005BED89 /* CodableLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLecture.swift; sourceTree = "<group>"; };
 		570C5AC82345EAC7005EBC4D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		570C5ACA2345EAD8005EBC4D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -255,8 +255,8 @@
 		57AD31B122AE6C01009EEB1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57AD31B322AE6C27009EEB1F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57AD31B522AE6E20009EEB1F /* Lectures.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lectures.xcdatamodel; sourceTree = "<group>"; };
-		57AD31B722AE6ECF009EEB1F /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
-		57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lecture+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLecture.swift; sourceTree = "<group>"; };
+		57AD31B822AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataLecture+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		57DDE75622B79B3500924367 /* Lecture Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lecture Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DDE75822B79B3500924367 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		57DDE75B22B79B3500924367 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -360,8 +360,8 @@
 			isa = PBXGroup;
 			children = (
 				5701F83422AFEE47005BED89 /* LectureDay.swift */,
-				57AD31B722AE6ECF009EEB1F /* Lecture.swift */,
-				57AD31B822AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift */,
+				57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */,
+				57AD31B822AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift */,
 				5701F83822AFF5DA005BED89 /* CodableLecture.swift */,
 			);
 			path = Lecture;
@@ -562,7 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				57AD319622AE6BC3009EEB1F /* KeyboardObservable.swift */,
-				5701F83622AFF57A005BED89 /* LectureProtocol.swift */,
+				5701F83622AFF57A005BED89 /* Lecture.swift */,
 				577DDF1C23C75D9200D841BB /* TabBarItemable.swift */,
 			);
 			path = Protocols;
@@ -840,7 +840,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57A4EF2E22BA56A500C08CE7 /* RawRepresentable+String.swift in Sources */,
-				578A730B22BA50080009130A /* LectureProtocol.swift in Sources */,
+				578A730B22BA50080009130A /* Lecture.swift in Sources */,
 				578A72F122BA4C890009130A /* HostingController.swift in Sources */,
 				578A72F522BA4C890009130A /* ComplicationController.swift in Sources */,
 				578A730F22BA50460009130A /* Date+Extensions.swift in Sources */,
@@ -869,8 +869,8 @@
 				57AD319B22AE6BC3009EEB1F /* WSEIScript.swift in Sources */,
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */,
-				57AD31BA22AE6ECF009EEB1F /* Lecture+CoreDataProperties.swift in Sources */,
-				5701F83722AFF57A005BED89 /* LectureProtocol.swift in Sources */,
+				57AD31BA22AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift in Sources */,
+				5701F83722AFF57A005BED89 /* Lecture.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
 				57AD31A922AE6BC3009EEB1F /* KeyboardObservable.swift in Sources */,
@@ -895,7 +895,7 @@
 				576B970423ABC69300CA17CF /* StudentInfoRow.swift in Sources */,
 				5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */,
 				57506BD922B910C80056A099 /* MainTabViewModel.swift in Sources */,
-				57AD31B922AE6ECF009EEB1F /* Lecture.swift in Sources */,
+				57AD31B922AE6ECF009EEB1F /* CoreDataLecture.swift in Sources */,
 				57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* MainTabView.swift in Sources */,
@@ -935,11 +935,11 @@
 				578A729E22BA42170009130A /* RawRepresentable+String.swift in Sources */,
 				572E7F02234CAD150061A835 /* Translation.swift in Sources */,
 				578A729D22BA41CC0009130A /* String+Localized.swift in Sources */,
-				57DDE76E22B7B2E300924367 /* Lecture+CoreDataProperties.swift in Sources */,
-				57DDE76D22B7B2E000924367 /* Lecture.swift in Sources */,
+				57DDE76E22B7B2E300924367 /* CoreDataLecture+CoreDataProperties.swift in Sources */,
+				57DDE76D22B7B2E000924367 /* CoreDataLecture.swift in Sources */,
 				57DDE77122B7B6EB00924367 /* Date+Extensions.swift in Sources */,
 				57DDE77022B7B39600924367 /* NSSharedPersistentContainer.swift in Sources */,
-				57DDE76F22B7B32200924367 /* LectureProtocol.swift in Sources */,
+				57DDE76F22B7B32200924367 /* Lecture.swift in Sources */,
 				57DDE76C22B7B2D500924367 /* Lectures.xcdatamodeld in Sources */,
 				57DDE75C22B79B3500924367 /* TodayViewController.swift in Sources */,
 			);
@@ -1020,7 +1020,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1030,7 +1030,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1047,7 +1047,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1057,7 +1057,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1075,11 +1075,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				IBSC_MODULE = Watch_Lectures_Extension;
 				INFOPLIST_FILE = "Watch Lectures/Info.plist";
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1097,11 +1097,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				IBSC_MODULE = Watch_Lectures_Extension;
 				INFOPLIST_FILE = "Watch Lectures/Info.plist";
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1235,8 +1235,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
-				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1245,9 +1244,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1261,8 +1261,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
-				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
@@ -1271,9 +1270,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1367,7 +1367,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Lecture Widget/Lecture Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				INFOPLIST_FILE = "Lecture Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1375,10 +1375,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.Lecture-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_UIKITFORMAC = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1390,7 +1391,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Lecture Widget/Lecture Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20006;
+				CURRENT_PROJECT_VERSION = 20100;
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				INFOPLIST_FILE = "Lecture Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1398,10 +1399,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.Lecture-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_UIKITFORMAC = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

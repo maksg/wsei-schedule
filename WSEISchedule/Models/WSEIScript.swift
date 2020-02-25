@@ -53,7 +53,12 @@ enum WSEIScript {
             """
         case .refreshSchedule:
             return """
+            var currentDate = new Date();
+            var dataOd = (currentDate.getFullYear()-1) + ',' + currentDate.getMonth() + ',' + currentDate.getDate();
+            var dataDo = (currentDate.getFullYear()+1) + ',' + currentDate.getMonth() + ',' + currentDate.getDate();
+            var dataValue = dataOd + '\\\\' + dataDo + '\\\\3';
             var wholeScheduleButton = document.getElementById('RadioList_Termin3');
+            wholeScheduleButton.value = dataValue;
             wholeScheduleButton.click();
             FiltrujDane(gridViewPlanyStudentow);
             observer.observe(target, config);
@@ -101,7 +106,12 @@ enum WSEIScript {
             """
         case .getErrorMessage:
             return """
-            document.querySelector('.validation-summary-errors ul li').innerText;
+            var error = document.querySelector('.validation-summary-errors ul li');
+            if (error != null) {
+                error.innerText;
+            } else {
+                "";
+            }
             """
         case .getStudentInfo:
             return """

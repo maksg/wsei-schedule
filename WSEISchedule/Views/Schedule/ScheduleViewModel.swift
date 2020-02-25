@@ -70,10 +70,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     private func fetchLectures(from context: NSManagedObjectContext) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Lecture")
+        let fetchRequest: NSFetchRequest<CoreDataLecture> = CoreDataLecture.fetchRequest()
         
         do {
-            let lectures = try context.fetch(fetchRequest) as? [Lecture]
+            let lectures = try context.fetch(fetchRequest)
             generateLectureDays(from: lectures)
         } catch let error as NSError {
             print(error.debugDescription)
@@ -118,7 +118,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
         
         let managedContext = persistentContainer.viewContext
-        return filteredData.map { Lecture(fromDictionary: $0, inContext: managedContext) }
+        return filteredData.map { CoreDataLecture(fromDictionary: $0, inContext: managedContext) }
     }
     
     func generateLectureDays(from lectures: [Lecture]?) {
@@ -137,7 +137,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     private func deleteLectures(from context: NSManagedObjectContext) {
-        lectures.forEach { lecture in
+        lectures.compactMap({ $0 as? CoreDataLecture }).forEach { lecture in
             context.delete(lecture)
         }
     }

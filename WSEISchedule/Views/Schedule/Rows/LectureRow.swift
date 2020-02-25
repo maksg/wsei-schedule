@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LectureRow: View {
-    var lecture: LectureProtocol
+    var lecture: Lecture
     @State private var hideDetails: Bool = true
     
     var body: some View {

@@ -114,7 +114,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         }
     }
     
-    private var todayLecture: LectureProtocol? {
+    private var todayLecture: Lecture? {
         let delegate = WKExtension.shared().delegate as? ExtensionDelegate
         let lectureDay = delegate?.lectureDays.first(where: { $0.date.isToday })
         let lecture = lectureDay?.lectures.first(where: { $0.toDate > Date() })

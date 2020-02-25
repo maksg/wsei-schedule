@@ -1,5 +1,5 @@
 //
-//  Lecture+CoreDataProperties.swift
+//  CoreDataLecture+CoreDataProperties.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 10/06/2019.
@@ -10,10 +10,10 @@
 import Foundation
 import CoreData
 
-extension Lecture {
+extension CoreDataLecture {
 
-    @nonobjc class func fetchRequest() -> NSFetchRequest<Lecture> {
-        return NSFetchRequest<Lecture>(entityName: "Lecture")
+    @nonobjc class func fetchRequest() -> NSFetchRequest<CoreDataLecture> {
+        return NSFetchRequest<CoreDataLecture>(entityName: "Lecture")
     }
 
     @NSManaged var lecturer: String

@@ -18,3 +18,11 @@ protocol Lecture {
     var subject: String { get }
     
 }
+
+extension Lecture {
+    
+    var id: String {
+        fromDate.description + code
+    }
+    
+}

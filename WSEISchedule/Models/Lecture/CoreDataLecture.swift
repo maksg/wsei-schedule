@@ -1,5 +1,5 @@
 //
-//  Lecture.swift
+//  CoreDataLecture.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 10/06/2019.
@@ -11,10 +11,11 @@ import Foundation
 import CoreData
 
 @objc(Lecture)
-final class Lecture: NSManagedObject, LectureProtocol {
+final class CoreDataLecture: NSManagedObject, Lecture {
     
     convenience init(fromDictionary dictionary: [String : String], inContext context: NSManagedObjectContext) {
-        self.init(context: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Lecture", in: context)!
+        self.init(entity: entity, insertInto: context)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -26,7 +27,7 @@ final class Lecture: NSManagedObject, LectureProtocol {
         self.fromDate = formatter.date(from: "\(date) \(fromTime)") ?? Date()
         self.toDate = formatter.date(from: "\(date) \(toTime)") ?? Date()
         self.subject = dictionary["Przedmiot"] ?? ""
-        self.classroom = dictionary["Sala"]?.replacingOccurrences(of: "F ", with: "") ?? ""
+        self.classroom = dictionary["Sala"] ?? ""
         self.lecturer = dictionary["Prowadzący"] ?? ""
         self.code = dictionary["Grupy"] ?? ""
     }
