@@ -5,7 +5,6 @@
 //  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 //
 
-import Combine
 import SwiftUI
 
 private enum KeyboardState {
@@ -25,7 +24,7 @@ private enum KeyboardState {
 }
 
 final class KeyboardObserver: ObservableObject, KeyboardObservable {
-    static var window: UIWindow!
+    private static var window: UIWindow!
     private var lastState: KeyboardState = .hidden
     
     var viewFrame: CGRect = .zero {
@@ -73,7 +72,9 @@ final class KeyboardObserver: ObservableObject, KeyboardObservable {
         
         var height = notification.keyboardFrame.size.height
         height = keyboardState == .docked ? height : 0
-        keyboardHeight = max(0, height)
+        withAnimation {
+            keyboardHeight = max(0, height)
+        }
         
         guard keyboardState != lastState else { return }
         lastState = keyboardState

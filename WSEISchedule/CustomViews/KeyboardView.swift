@@ -12,24 +12,20 @@ struct KeyboardView<Content>: View where Content: View {
     var content: Content
     var color: Color
     
-    @inlinable public init(_ color: Color = .clear, content: () -> Content) {
+    @inlinable public init(color: Color = .clear, content: () -> Content) {
         self.color = color
         self.content = content()
     }
-
+    
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 self.content
                 Keyboard(viewFrame: geometry.frame(in: .global), color: self.color)
-                    .frame(height: self.keyboardObserver.height)
-                    .animation(.easeInOut(duration: self.keyboardObserver.animationDuration))
                     .environmentObject(self.keyboardObserver)
             }
         }
-        .onTapGesture {
-            self.keyboardObserver.endEditing()
-        }
+        .onTapGesture(perform: keyboardObserver.endEditing)
     }
 }
 
@@ -41,3 +37,4 @@ struct KeyboardView_Previews : PreviewProvider {
         .environmentObject(KeyboardObserver(window: UIApplication.shared.windows.first!))
     }
 }
+

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct SignInView: View {
-    @EnvironmentObject private var keyboardObserver: KeyboardObserver
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: SignInViewModel
     var onDismiss: (() -> Void)?
@@ -54,7 +53,7 @@ struct SignInView: View {
         }
         .padding(26)
         .animation(.default)
-        .enableKeyboard(keyboardObserver: keyboardObserver)
+        .keyboard()
     }
     
     private func signIn() {
