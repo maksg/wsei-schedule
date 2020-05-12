@@ -32,7 +32,7 @@ struct StudentInfoRow: View {
 
 struct StudentInfoRow_Previews: PreviewProvider {
     static var previews: some View {
-        StudentInfoRow(viewModel: .init(name: "John Appleseed", number: "12345", courseName: "WSEI Programming", photoUrl: nil))
+        StudentInfoRow(viewModel: StudentInfoRowViewModel(name: "John Appleseed", number: "12345", courseName: "WSEI Programming", photoUrl: nil))
             .previewLayout(.fixed(width: 300, height: 80))
     }
 }

@@ -46,6 +46,6 @@ struct ScheduleView : View, TabBarItemable {
 
 struct ScheduleView_Previews : PreviewProvider {
     static var previews: some View {
-        ScheduleView(viewModel: .init(webView: ScheduleWebView()))
+        ScheduleView(viewModel: ScheduleViewModel(webView: ScheduleWebView()))
     }
 }

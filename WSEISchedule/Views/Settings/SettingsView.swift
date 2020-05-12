@@ -48,7 +48,7 @@ struct SettingsView: View, TabBarItemable {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $isSignInViewPresented) {
-            SignInView(viewModel: .init(), onDismiss: self.viewModel.reloadLectures)
+            SignInView(viewModel: SignInViewModel(), onDismiss: self.viewModel.reloadLectures)
                 .environmentObject(KeyboardObserver())
         }
         .alert(isPresented: $viewModel.showThankYouAlert) {
@@ -69,6 +69,6 @@ struct SettingsView: View, TabBarItemable {
 
 struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: .init(webView: ScheduleWebView()))
+        SettingsView(viewModel: SettingsViewModel(webView: ScheduleWebView()))
     }
 }

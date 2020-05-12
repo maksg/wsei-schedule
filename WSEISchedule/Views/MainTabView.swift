@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @ObservedObject var viewModel: MainTabViewModel
+    @State private var isSignInViewPresented: Bool = false
     
     var body: some View {
         TabBarView<Tab, Any>(selection: $viewModel.selectedTab) {
@@ -20,11 +21,21 @@ struct MainTabView: View {
         }
         .accentColor(.primary)
         .edgesIgnoringSafeArea(.all)
+        .onAppear(perform: onAppear)
+        .sheet(isPresented: $isSignInViewPresented) {
+            SignInView(viewModel: SignInViewModel(), onDismiss: self.viewModel.reloadLectures)
+                .environmentObject(KeyboardObserver())
+        }
+    }
+    
+    private func onAppear() {
+        guard !viewModel.isSignedIn else { return }
+        isSignInViewPresented = true
     }
 }
 
 struct MainTabView_Previews : PreviewProvider {
     static var previews: some View {
-        MainTabView(viewModel: .init())
+        MainTabView(viewModel: MainTabViewModel())
     }
 }

@@ -10,21 +10,13 @@ import SwiftUI
 import Combine
 
 struct URLImage: View {
-    var url: URL? {
-        set {
-            imageDownloader.url = newValue
-        }
-        get {
-            return imageDownloader.url
-        }
-    }
     var placeholder: UIImage?
     
     @ObservedObject private var imageDownloader: URLImageDownloader
     
     init(url: URL?, placeholder: UIImage?, customCacheRequest: URLRequest? = nil) {
         self.imageDownloader = URLImageDownloader(url: url, customCacheRequest: customCacheRequest)
-        self.placeholder = placeholder
+        self.placeholder = placeholder ?? UIImage()
     }
     
     var body: some View {

@@ -64,7 +64,7 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(viewModel: .init())
+        SignInView(viewModel: SignInViewModel())
             .environmentObject(KeyboardObserver(window: UIApplication.shared.windows.first!))
     }
 }

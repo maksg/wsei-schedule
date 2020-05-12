@@ -15,9 +15,23 @@ final class MainTabViewModel: ObservableObject {
     
     @Published var selectedTab: Tab = .schedule
     
+    var student: Student {
+        UserDefaults.standard.student
+    }
+    
+    var isSignedIn: Bool {
+        !student.login.isEmpty
+    }
+    
     init() {
         webView = ScheduleWebView()
         scheduleViewModel = ScheduleViewModel(webView: webView)
         settingsViewModel = SettingsViewModel(webView: webView)
+    }
+    
+    func reloadLectures() {
+        webView.login = student.login
+        webView.password = student.password
+        webView.reload()
     }
 }

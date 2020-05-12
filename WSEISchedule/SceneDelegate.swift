@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let rootView = MainTabView(viewModel: .init())
+            let rootView = MainTabView(viewModel: MainTabViewModel())
                 .environmentObject(KeyboardObserver(window: window))
             window.rootViewController = UIHostingController(rootView: rootView)
             self.window = window
