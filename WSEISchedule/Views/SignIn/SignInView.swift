@@ -30,21 +30,22 @@ struct SignInView: View {
                     .multilineTextAlignment(.center)
             }
             
-            VStack(spacing: 8) {
-                Group {
-                    TextField(viewModel.loginPlaceholder, text: $viewModel.login)
-                        .textContentType(.username)
-                        .autocapitalization(.none)
-                    
-                    SecureField(viewModel.passwordPlaceholder, text: $viewModel.password)
-                        .textContentType(.password)
-                }
-                .padding(.horizontal, 10)
-                .frame(height: 30)
-                .cornerRadius(.infinity)
-                .overlay(RoundedRectangle(cornerRadius: .infinity)
-                            .stroke(Color.primary.opacity(0.7), lineWidth: 1))
+            VStack(spacing: 0) {
+                TextField(viewModel.loginPlaceholder, text: $viewModel.login)
+                    .textContentType(.username)
+                    .autocapitalization(.none)
+                    .padding(.horizontal, 10)
+                    .frame(height: 45)
+                
+                Color.quaternary.frame(height: 1).padding(.leading, 10)
+                
+                SecureField(viewModel.passwordPlaceholder, text: $viewModel.password)
+                    .textContentType(.password)
+                    .padding(.horizontal, 10)
+                    .frame(height: 45)
             }
+            .background(Color.groupedBackground)
+            .cornerRadius(10)
             
             Button(action: signIn, label: {
                 Text(Translation.SignIn.signIn.localized)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5041CA19246B3F9100396120 /* Color+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041CA18246B3F9000396120 /* Color+UIColor.swift */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		5701CE2522B0E80D00AD4CE2 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */; };
 		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
@@ -177,6 +178,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5041CA18246B3F9000396120 /* Color+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+UIColor.swift"; sourceTree = "<group>"; };
 		50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		5701CE2422B0E80D00AD4CE2 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		5701F82D22AFD23A005BED89 /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
 				577DDF2023C762D900D841BB /* UIHostingController+TabBarItemable.swift */,
+				5041CA18246B3F9000396120 /* Color+UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 				572E7F01234CACF10061A835 /* Translation.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */,
 				57AD31A222AE6BC3009EEB1F /* UIColor+Named.swift in Sources */,
+				5041CA19246B3F9100396120 /* Color+UIColor.swift in Sources */,
 				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
 				579626F822B10B6E00D263C9 /* KeyboardObserver.swift in Sources */,
 				57791D6323C5EA4700F91D7F /* Games.swift in Sources */,

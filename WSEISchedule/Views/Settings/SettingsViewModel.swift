@@ -89,11 +89,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     private func getInAppPurchases() {
-        #if targetEnvironment(macCatalyst)
-        let productIdentifiers = (1...4).map({ "wseiMacSupportDeveloper\($0)" })
-        #else
         let productIdentifiers = (1...4).map({ "supportDeveloper\($0)" })
-        #endif
         let productsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
         productsRequest.delegate = self
         productsRequest.start()
