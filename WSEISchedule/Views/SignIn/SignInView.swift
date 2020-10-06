@@ -47,10 +47,10 @@ struct SignInView: View {
             .background(Color.groupedBackground)
             .cornerRadius(10)
             
-            Button(action: signIn, label: {
+            Button(action: signIn) {
                 Text(Translation.SignIn.signIn.localized)
                     .foregroundColor(.main)
-            })
+            }
         }
         .padding(26)
         .animation(.default)
@@ -58,6 +58,10 @@ struct SignInView: View {
     }
     
     private func signIn() {
+        viewModel.signIn(onSuccess: dismiss)
+    }
+
+    private func dismiss() {
         onDismiss?()
         presentationMode.wrappedValue.dismiss()
     }

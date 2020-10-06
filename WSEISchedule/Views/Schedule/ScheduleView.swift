@@ -34,8 +34,7 @@ struct ScheduleView : View, TabBarItemable {
                         }
                     }
                 }
-                .listStyle(GroupedListStyle())
-                .environment(\.horizontalSizeClass, .regular)
+                .insetGroupedListStyle()
             }
             .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)

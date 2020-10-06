@@ -42,8 +42,7 @@ struct SettingsView: View, TabBarItemable {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
+            .insetGroupedListStyle()
             .navigationBarTitle(Tab.settings.title)
         }
         .navigationViewStyle(StackNavigationViewStyle())

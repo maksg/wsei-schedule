@@ -9,29 +9,22 @@
 import Foundation
 
 final class SignInViewModel: ObservableObject {
+
+    // MARK: Properties
     
-    var login: String {
-        get {
-            UserDefaults.standard.student.login
-        }
-        set {
-            objectWillChange.send()
-            UserDefaults.standard.student.login = newValue
-        }
-    }
-    
-    var password: String {
-        get {
-            UserDefaults.standard.student.password
-        }
-        set {
-            objectWillChange.send()
-            UserDefaults.standard.student.password = newValue
-        }
-    }
+    var login: String = ""
+    var password: String = ""
     
     var loginPlaceholder: String { Translation.SignIn.login.localized }
     var passwordPlaceholder: String { Translation.SignIn.password.localized }
+
+    // MARK: Methods
+
+    func signIn(onSuccess: @escaping () -> Void) {
+        UserDefaults.standard.student.login = login
+        UserDefaults.standard.student.password = password
+        onSuccess()
+    }
     
 }
 

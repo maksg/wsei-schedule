@@ -27,7 +27,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     var signButtonText: String { isSignedIn ? Translation.SignIn.signOut.localized : Translation.SignIn.signIn.localized }
     
     @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
-    var webView: ScheduleWebView
+    let webView: ScheduleWebView
     
     @Published var supportDeveloperProducts: [SupportDeveloperProduct] = []
     @Published var showThankYouAlert: Bool = false
@@ -79,9 +79,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
         
         do {
             let lectures = try context.fetch(fetchRequest)
-            lectures.forEach { lecture in
-                context.delete(lecture)
-            }
+            lectures.forEach(context.delete)
             try context.save()
         } catch let error as NSError {
             print(error.debugDescription)
@@ -89,7 +87,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     private func getInAppPurchases() {
-        let productIdentifiers = (1...4).map({ "supportDeveloper\($0)" })
+        let productIdentifiers = (1...4).map { "supportDeveloper\($0)" }
         let productsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
         productsRequest.delegate = self
         productsRequest.start()
@@ -117,11 +115,11 @@ extension SettingsViewModel: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let products = response.products
         let cashSymbols: [String] = ["💵", "💴", "💶", "💷"]
-        let prices = products.map({ $0.localizedPrice })
+        let prices = products.map(\.localizedPrice)
         let titles = zip(cashSymbols, prices).map { (symbol, price) in
             "\(symbol)  \(Translation.Settings.Support.donate.localized) \(price)"
         }
-        supportDeveloperProducts = zip(titles, products).map { SupportDeveloperProduct(title: $0, product: $1) }
+        supportDeveloperProducts = zip(titles, products).map(SupportDeveloperProduct.init)
     }
     
     func request(_ request: SKRequest, didFailWithError error: Error) {

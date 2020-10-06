@@ -6,11 +6,20 @@
 //  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 enum Tab: Int, CaseIterable {
     case schedule
     case settings
+
+    var image: Image {
+        switch self {
+        case .schedule:
+            return Image.schedule
+        case .settings:
+            return Image.settings
+        }
+    }
     
     var title: String {
         switch self {
@@ -19,5 +28,11 @@ enum Tab: Int, CaseIterable {
         case .settings:
             return Translation.Settings.title.localized
         }
+    }
+
+    @ViewBuilder
+    func tabItem() -> some View {
+        image.imageScale(.large)
+        Text(title)
     }
 }

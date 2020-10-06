@@ -88,6 +88,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private func login(withCaptcha captcha: String? = nil) {
         guard !login.isEmpty else { return }
+        
         run(.setLogin(login))
         run(.setPassword(password))
         if let captcha = captcha {
@@ -126,11 +127,10 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     private func saveCookies() {
         let dataStore = WKWebsiteDataStore.default()
-        dataStore.httpCookieStore.getAllCookies({ (cookies) in
-            if let cookie = cookies.first(where: { $0.name == "ASP.NET_SessionId" }) {
-                HTTPCookieStorage.shared.setCookie(cookie)
-            }
-        })
+        dataStore.httpCookieStore.getAllCookies { cookies in
+            guard let cookie = cookies.first(where: { $0.name == "ASP.NET_SessionId" }) else { return }
+            HTTPCookieStorage.shared.setCookie(cookie)
+        }
     }
     
     private func getErrorMessage(completionHandler: @escaping (Bool) -> Void) {

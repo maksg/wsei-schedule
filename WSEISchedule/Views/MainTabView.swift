@@ -13,14 +13,16 @@ struct MainTabView: View {
     @State private var isSignInViewPresented: Bool = false
     
     var body: some View {
-        TabBarView<Tab, Any>(selection: $viewModel.selectedTab) {
-            TupleView((
-                ScheduleView(viewModel: viewModel.scheduleViewModel),
-                SettingsView(viewModel: viewModel.settingsViewModel)
-            ))
+        TabView(selection: $viewModel.selectedTab) {
+            ScheduleView(viewModel: viewModel.scheduleViewModel)
+                .tabItem(Tab.schedule.tabItem)
+                .tag(Tab.schedule)
+
+            SettingsView(viewModel: viewModel.settingsViewModel)
+                .tabItem(Tab.settings.tabItem)
+                .tag(Tab.settings)
         }
         .accentColor(.primary)
-        .edgesIgnoringSafeArea(.all)
         .onAppear(perform: onAppear)
         .sheet(isPresented: $isSignInViewPresented) {
             SignInView(viewModel: SignInViewModel(), onDismiss: self.viewModel.reloadLectures)
