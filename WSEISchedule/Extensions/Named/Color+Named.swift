@@ -10,6 +10,24 @@ import SwiftUI
 
 extension Color {
     
-    static var main: Color { Color(.main) }
+    static var main: Color {
+        Color("Main")
+    }
+
+    static var tertiary: Color {
+        Color(.tertiaryLabel)
+    }
+
+    static var quaternary: Color {
+        Color(.quaternaryLabel)
+    }
+
+    static var groupedBackground: Color {
+        Color(.systemGroupedBackground)
+    }
+
+    static var background: Color {
+        Color(.systemBackground)
+    }
     
 }

@@ -8,9 +8,7 @@
 
 import SwiftUI
 
-struct ScheduleView : View, TabBarItemable {
-    
-    var tabBarItem: UITabBarItem { UITabBarItem(title: Tab.schedule.title, image: .schedule, tag: 0) }
+struct ScheduleView: View {
     
     @ObservedObject var viewModel: ScheduleViewModel
     

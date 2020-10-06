@@ -25,8 +25,7 @@ struct MainTabView: View {
         .accentColor(.primary)
         .onAppear(perform: onAppear)
         .sheet(isPresented: $isSignInViewPresented) {
-            SignInView(viewModel: SignInViewModel(), onDismiss: self.viewModel.reloadLectures)
-                .environmentObject(KeyboardObserver())
+            SignInView(viewModel: SignInViewModel(), onDismiss: viewModel.reloadLectures)
         }
     }
     

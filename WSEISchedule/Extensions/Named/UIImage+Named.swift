@@ -10,10 +10,7 @@ import UIKit
 
 extension UIImage {
     
-    static var logo: UIImage { UIImage(named: "logo")! }
     static var placeholder: UIImage { UIImage(named: "placeholder")! }
-    static var schedule: UIImage { UIImage(systemName: "clock.fill")! }
-    static var settings: UIImage { UIImage(systemName: "gear")! }
     
 }
 

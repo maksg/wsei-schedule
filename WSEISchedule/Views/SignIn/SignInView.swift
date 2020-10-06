@@ -54,7 +54,7 @@ struct SignInView: View {
         }
         .padding(26)
         .animation(.default)
-        .keyboard()
+        .keyboardAdaptive()
     }
     
     private func signIn() {
@@ -70,6 +70,5 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView(viewModel: SignInViewModel())
-            .environmentObject(KeyboardObserver(window: UIApplication.shared.windows.first!))
     }
 }

@@ -40,9 +40,11 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         super.init()
         
         let config = WKWebViewConfiguration()
-        let script = WKUserScript(source: WSEIScript.observeContentChange.content,
-                                  injectionTime: .atDocumentEnd,
-                                  forMainFrameOnly: false)
+        let script = WKUserScript(
+            source: WSEIScript.observeContentChange.content,
+            injectionTime: .atDocumentEnd,
+            forMainFrameOnly: false
+        )
         config.userContentController.addUserScript(script)
         config.userContentController.add(self, name: "iosListener")
         
@@ -102,27 +104,23 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         webView.load(request)
     }
     
-    private func run(_ script: WSEIScript, completionHandler: ((Any?) -> Void)? = nil, errorHandler: (() -> Void)? = nil) {
+    private func run(_ script: WSEIScript, onSuccess: ((Any?) -> Void)? = nil, onError: (() -> Void)? = nil) {
         webView.evaluateJavaScript(script.content) { (data, error) in
             if let error = error {
                 print(error)
-                errorHandler?()
+                onError?()
             } else {
-                completionHandler?(data)
+                onSuccess?(data)
             }
         }
     }
     
     private func getScheduleContent() {
-        run(.getScheduleContent, completionHandler: { [weak self] data in
-            self?.loadLectures?(data)
-        })
+        run(.getScheduleContent, onSuccess: loadLectures)
     }
     
     private func getStudentInfo() {
-        run(.getStudentInfo, completionHandler: { [weak self] data in
-            self?.loadStudentInfo?(data)
-        })
+        run(.getStudentInfo, onSuccess: loadStudentInfo)
     }
     
     private func saveCookies() {
@@ -134,7 +132,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     }
     
     private func getErrorMessage(completionHandler: @escaping (Bool) -> Void) {
-        run(.getErrorMessage, completionHandler: { [weak self] data in
+        run(.getErrorMessage, onSuccess: { [weak self] data in
             let errorMessage = data as? String ?? ""
             if !errorMessage.isEmpty && !errorMessage.contains("kod z obrazka") && !errorMessage.contains("captha") {
                 self?.showErrorMessage?(errorMessage)
@@ -142,7 +140,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
             } else {
                 completionHandler(true)
             }
-        }, errorHandler: {
+        }, onError: {
             completionHandler(true)
         })
     }
@@ -162,7 +160,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     }
     
     private func captureSnapshot() {
-        run(.zoomCaptcha, completionHandler: { [weak self] _ in
+        run(.zoomCaptcha, onSuccess: { [weak self] _ in
             self?.webView.takeSnapshot(with: nil) { [weak self] (image, error) in
                 self?.recognizeTextInImage(image)
             }
@@ -186,9 +184,8 @@ extension ScheduleWebView: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url == signInURL {
             getErrorMessage(completionHandler: { [weak self] success in
-                if success {
-                    self?.captureSnapshot()
-                }
+                guard success else { return }
+                self?.captureSnapshot()
             })
         }
         if webView.url == mainURL {

@@ -8,9 +8,7 @@
 
 import SwiftUI
 
-struct SettingsView: View, TabBarItemable {
-    
-    var tabBarItem: UITabBarItem { UITabBarItem(title: Tab.settings.title, image: .settings, tag: 1) }
+struct SettingsView: View {
     
     @ObservedObject var viewModel: SettingsViewModel
     @State private var isSignInViewPresented: Bool = false
@@ -25,7 +23,7 @@ struct SettingsView: View, TabBarItemable {
                 Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
                     ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in
                         Button(action: {
-                            self.viewModel.buy(product.product)
+                            viewModel.buy(product.product)
                         }, label: {
                             Text(product.title)
                                 .foregroundColor(.main)
@@ -47,8 +45,7 @@ struct SettingsView: View, TabBarItemable {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $isSignInViewPresented) {
-            SignInView(viewModel: SignInViewModel(), onDismiss: self.viewModel.reloadLectures)
-                .environmentObject(KeyboardObserver())
+            SignInView(viewModel: SignInViewModel(), onDismiss: viewModel.reloadLectures)
         }
         .alert(isPresented: $viewModel.showThankYouAlert) {
             Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
