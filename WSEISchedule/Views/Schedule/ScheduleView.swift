@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ScheduleView: View {
-    
+
     @ObservedObject var viewModel: ScheduleViewModel
     
     var body: some View {
@@ -33,6 +33,7 @@ struct ScheduleView: View {
                     }
                 }
                 .insetGroupedListStyle()
+                .pullToRefresh(onRefresh: viewModel.reloadLectures, isRefreshing: $viewModel.isRefreshing)
             }
             .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)

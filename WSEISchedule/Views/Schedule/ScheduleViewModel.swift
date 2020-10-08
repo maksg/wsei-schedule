@@ -18,6 +18,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     var student: Student { UserDefaults.standard.student }
     @Published var errorMessage: String = ""
+    @Published var isRefreshing: Bool = true
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -31,6 +32,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     private var lectures: [Lecture] = [] {
         didSet {
+            isRefreshing = false
             sendLecturesToWatch()
         }
     }
@@ -56,6 +58,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     func reloadLectures() {
         fetchLectures(from: persistentContainer.viewContext)
+        isRefreshing = true
         
         webView.login = student.login
         webView.password = student.password

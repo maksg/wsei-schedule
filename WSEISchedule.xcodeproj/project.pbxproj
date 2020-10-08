@@ -28,6 +28,8 @@
 		572FF8BD252CB5C500FFE530 /* UIViewAnimationCurve+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572FF8B7252CB5C500FFE530 /* UIViewAnimationCurve+Animation.swift */; };
 		572FF8BE252CB5C500FFE530 /* KeyboardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572FF8B8252CB5C500FFE530 /* KeyboardInfo.swift */; };
 		57506BD922B910C80056A099 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* MainTabViewModel.swift */; };
+		575218E8252DFEBB007FA0A5 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */; };
+		575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */; };
 		57674F53234DBCF000684C2A /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57674F52234DBCF000684C2A /* Color+Named.swift */; };
 		576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
 		576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */; };
@@ -194,6 +196,8 @@
 		572FF8B7252CB5C500FFE530 /* UIViewAnimationCurve+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationCurve+Animation.swift"; sourceTree = "<group>"; };
 		572FF8B8252CB5C500FFE530 /* KeyboardInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInfo.swift; sourceTree = "<group>"; };
 		57506BD822B910C80056A099 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
+		575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
+		575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+PullToRefresh.swift"; sourceTree = "<group>"; };
 		57674F52234DBCF000684C2A /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
 		576B96FD23ABBFFF00CA17CF /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoRowViewModel.swift; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 			children = (
 				5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */,
 				5773BE1323ACE45400264FC7 /* URLImage.swift */,
+				575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
 				572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
+				575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -874,6 +880,7 @@
 				5701F83722AFF57A005BED89 /* Lecture.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
+				575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */,
 				570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */,
 				577DDF1823C72BA500D841BB /* Student.swift in Sources */,
 				577DDF1F23C7614D00D841BB /* UIImage+Named.swift in Sources */,
@@ -906,6 +913,7 @@
 				572FF8BD252CB5C500FFE530 /* UIViewAnimationCurve+Animation.swift in Sources */,
 				576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */,
 				57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */,
+				575218E8252DFEBB007FA0A5 /* PullToRefreshView.swift in Sources */,
 				57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */,
 				5701F83122AFE084005BED89 /* DayHeader.swift in Sources */,
 				57AD31A422AE6BC3009EEB1F /* SettingsViewModel.swift in Sources */,
