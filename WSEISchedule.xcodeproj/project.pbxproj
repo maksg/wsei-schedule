@@ -30,6 +30,7 @@
 		57506BD922B910C80056A099 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* MainTabViewModel.swift */; };
 		575218E8252DFEBB007FA0A5 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */; };
 		575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */; };
+		5755866B25308B2D00E0F752 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5755866A25308B2D00E0F752 /* Line.swift */; };
 		57674F53234DBCF000684C2A /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57674F52234DBCF000684C2A /* Color+Named.swift */; };
 		576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
 		576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */; };
@@ -198,6 +199,7 @@
 		57506BD822B910C80056A099 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+PullToRefresh.swift"; sourceTree = "<group>"; };
+		5755866A25308B2D00E0F752 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		57674F52234DBCF000684C2A /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
 		576B96FD23ABBFFF00CA17CF /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoRowViewModel.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				5787B40D22AEA0F400CC08F2 /* ScheduleWebView.swift */,
 				5773BE1323ACE45400264FC7 /* URLImage.swift */,
 				575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */,
+				5755866A25308B2D00E0F752 /* Line.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -897,6 +900,7 @@
 				572FF89F252C8DC500FFE530 /* View+Uncapitalized.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
 				572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */,
+				5755866B25308B2D00E0F752 /* Line.swift in Sources */,
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
 				576B970423ABC69300CA17CF /* StudentInfoRow.swift in Sources */,

@@ -30,6 +30,7 @@ final class CoreDataLecture: NSManagedObject, Lecture {
         self.classroom = dictionary["Sala"] ?? ""
         self.lecturer = dictionary["Prowadzący"] ?? ""
         self.code = dictionary["Grupy"] ?? ""
+        self.comments = dictionary["Uwagi"] ?? ""
     }
 
 }

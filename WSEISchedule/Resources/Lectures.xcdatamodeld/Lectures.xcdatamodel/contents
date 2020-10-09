@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14838.16" systemVersion="19A471t" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="NO" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5384c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Lecture" representedClassName="Lecture" syncable="YES">
         <attribute name="classroom" optional="YES" attributeType="String"/>
         <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="comments" optional="YES" attributeType="String"/>
         <attribute name="fromDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lecturer" optional="YES" attributeType="String"/>
         <attribute name="subject" optional="YES" attributeType="String"/>
         <attribute name="toDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Lecture" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Lecture" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

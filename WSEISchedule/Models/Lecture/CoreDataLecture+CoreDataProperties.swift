@@ -22,5 +22,6 @@ extension CoreDataLecture {
     @NSManaged var toDate: Date
     @NSManaged var code: String
     @NSManaged var subject: String
+    @NSManaged var comments: String
 
 }

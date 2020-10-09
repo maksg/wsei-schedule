@@ -9,45 +9,77 @@
 import SwiftUI
 
 struct LectureRow: View {
+
+    // MARK: Properties
+
     var lecture: Lecture
     @State private var hideDetails: Bool = true
-    
+
+    // MARK: Views
+
     var body: some View {
-        Button(action: {
-            withAnimation(.easeInOut) {
-                self.hideDetails.toggle()
-            }
-        }) {
-            VStack(alignment: .leading, spacing: 7) {
-                Text(lecture.subject)
-                    .font(.headline)
-                    .lineLimit(nil)
-                HStack(spacing: 1) {
-                    Text("\(lecture.fromDate.shortHour)")
-                    Text("-")
-                    Text("\(lecture.toDate.shortHour)")
-                    Spacer()
-                    Text(lecture.classroom)
-                }
-                if !hideDetails {
+        Button(action: onTap) {
+            VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(lecture.subject)
+                        .font(.headline)
+                        .lineLimit(nil)
                     HStack {
-                        Text(lecture.lecturer)
+                        Image.time
+                        HStack(spacing: 1) {
+                            Text("\(lecture.fromDate.shortHour)")
+                            Text("-")
+                            Text("\(lecture.toDate.shortHour)")
+                        }
                         Spacer()
-                        Text(lecture.code)
+                        Image.classroom
+                        Text(lecture.classroom)
                     }
-                    .foregroundColor(.secondary)
+                }
+
+                if !hideDetails {
+                    Line()
+                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                        .foregroundColor(.tertiary)
+                        .frame(height: 1)
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack(alignment: .top) {
+                            Image.code
+                            Text(lecture.code)
+                        }
+
+                        HStack(alignment: .top) {
+                            Image.lecturer
+                            Text(lecture.lecturer)
+                        }
+
+                        HStack(alignment: .top) {
+                            Image.comments
+                            Text(lecture.comments)
+                        }
+                    }
                 }
             }
             .foregroundColor(.primary)
             .font(.footnote)
-            .padding(4)
+            .padding(.vertical, 8)
         }
     }
+
+    // MARK: Methods
+
+    private func onTap() {
+        withAnimation(.easeInOut) {
+            hideDetails.toggle()
+        }
+    }
+
 }
 
 struct LectureRow_Previews : PreviewProvider {
     static var previews: some View {
-        LectureRow(lecture: CodableLecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject"))
+        LectureRow(lecture: CodableLecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject", comments: "Comments"))
             .previewLayout(.fixed(width: 320, height: 75))
     }
 }

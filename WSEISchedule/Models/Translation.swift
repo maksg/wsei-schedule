@@ -28,8 +28,7 @@ final class Translation {
         
         enum Support: String {
             case donate = "settings.support.donate"
-            case
-            header = "settings.support.header"
+            case header = "settings.support.header"
         }
         enum ThankYouAlert: String {
             case title = "settings.thank_you_alert.title"

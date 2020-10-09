@@ -11,8 +11,16 @@ import SwiftUI
 extension Image {
     
     static var logo: Image { Image("logo") }
-    static var placeholder: Image { Image("placeholder") }
-    static var schedule: Image { Image(systemName: "clock.fill") }
+
+    static var schedule: Image { Image(systemName: "calendar") }
     static var settings: Image { Image(systemName: "gear") }
+
+    static var time: Image { Image(systemName: "clock") }
+    static var classroom: Image { Image(systemName: "location") }
+    static var code: Image { Image(systemName: "number.circle.fill") }
+    static var lecturer: Image { Image(systemName: "person.crop.circle.fill") }
+    static var comments: Image { Image(systemName: "info.circle.fill") }
+
+    static var singOut: Image { Image(systemName: "power") }
     
 }

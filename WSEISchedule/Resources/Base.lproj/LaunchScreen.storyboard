@@ -60,8 +60,8 @@
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="" id="NQr-6r-u9Z">
-                        <imageReference key="image" image="clock.fill" catalog="system" symbolScale="large"/>
-                        <imageReference key="selectedImage" image="clock.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="calendar" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="calendar" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gt7-kZ-uC6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -70,7 +70,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clock.fill" catalog="system" width="128" height="121"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

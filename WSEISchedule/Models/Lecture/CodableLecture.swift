@@ -17,6 +17,7 @@ final class CodableLecture: NSObject, NSCoding, Lecture {
     var toDate: Date
     var code: String
     var subject: String
+    var comments: String
     
     func encode(with coder: NSCoder) {
         coder.encode(fromDate, forKey: "fromDate")
@@ -25,6 +26,7 @@ final class CodableLecture: NSObject, NSCoding, Lecture {
         coder.encode(classroom, forKey: "classroom")
         coder.encode(lecturer, forKey: "lecturer")
         coder.encode(code, forKey: "code")
+        coder.encode(comments, forKey: "comments")
     }
     
     init?(coder: NSCoder) {
@@ -34,15 +36,17 @@ final class CodableLecture: NSObject, NSCoding, Lecture {
         classroom = coder.decodeObject(forKey: "classroom") as? String ?? ""
         lecturer = coder.decodeObject(forKey: "lecturer") as? String ?? ""
         code = coder.decodeObject(forKey: "code") as? String ?? ""
+        comments = coder.decodeObject(forKey: "comments") as? String ?? ""
     }
     
-    init(lecturer: String, classroom: String, fromDate: Date, toDate: Date, code: String, subject: String) {
+    init(lecturer: String, classroom: String, fromDate: Date, toDate: Date, code: String, subject: String, comments: String) {
         self.lecturer = lecturer
         self.classroom = classroom
         self.fromDate = fromDate
         self.toDate = toDate
         self.code = code
         self.subject = subject
+        self.comments = comments
     }
     
     init(lecture: Lecture) {
@@ -52,6 +56,7 @@ final class CodableLecture: NSObject, NSCoding, Lecture {
         self.toDate = lecture.toDate
         self.code = lecture.code
         self.subject = lecture.subject
+        self.comments = lecture.comments
     }
     
 }

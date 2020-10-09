@@ -35,8 +35,11 @@ struct SettingsView: View {
                 }
                 Section {
                     Button(action: signInOrOut) {
-                        Text(viewModel.signButtonText)
-                            .foregroundColor(.main)
+                        HStack {
+                            Image.singOut
+                            Text(viewModel.signButtonText)
+                        }
+                        .foregroundColor(.main)
                     }
                 }
             }

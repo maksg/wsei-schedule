@@ -16,6 +16,7 @@ protocol Lecture {
     var toDate: Date { get }
     var code: String { get }
     var subject: String { get }
+    var comments: String { get }
     
 }
 
