@@ -49,6 +49,8 @@
 "widget.no_lectures_today" = "Brak wykładów dzisiaj";
 "widget.no_next_lectures" = "Brak kolejnych wykładów";
 
+"widget.about" = "Rzuć okiem na nadchodzące wykłady.";
+
 // Watch
 
 "watch.today" = "dzisiaj";

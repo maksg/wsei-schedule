@@ -60,6 +60,7 @@ final class Translation {
         case noNextLectures = "widget.no_next_lectures"
         case today = "widget.today"
         case tomorrow = "widget.tomorrow"
+        case about = "widget.about"
     }
     
 }

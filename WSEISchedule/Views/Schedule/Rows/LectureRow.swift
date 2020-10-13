@@ -23,13 +23,12 @@ struct LectureRow: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(lecture.subject)
                         .font(.headline)
-                        .lineLimit(nil)
                     HStack {
                         Image.time
                         HStack(spacing: 1) {
-                            Text("\(lecture.fromDate.shortHour)")
+                            Text(lecture.fromDate.shortHour)
                             Text("-")
-                            Text("\(lecture.toDate.shortHour)")
+                            Text(lecture.toDate.shortHour)
                         }
                         Spacer()
                         Image.classroom
@@ -79,7 +78,7 @@ struct LectureRow: View {
 
 struct LectureRow_Previews : PreviewProvider {
     static var previews: some View {
-        LectureRow(lecture: CodableLecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject", comments: "Comments"))
+        LectureRow(lecture: MockData.lecture)
             .previewLayout(.fixed(width: 320, height: 75))
     }
 }

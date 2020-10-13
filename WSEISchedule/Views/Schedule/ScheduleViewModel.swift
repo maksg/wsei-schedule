@@ -85,7 +85,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     private func sendLecturesToWatch() {
         do {
-            let codableLectures = lectures.map { CodableLecture(lecture: $0) }
+            let codableLectures = lectures.map(CodableLecture.init)
             let data = try NSKeyedArchiver.archivedData(withRootObject: codableLectures, requiringSecureCoding: false)
             let context = ["lectures" : data]
             try session?.updateApplicationContext(context)
