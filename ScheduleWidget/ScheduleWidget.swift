@@ -19,6 +19,6 @@ struct ScheduleWidget: Widget {
         }
         .configurationDisplayName("WSEI Schedule")
         .description(Translation.Widget.about.localized)
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

@@ -25,6 +25,8 @@ struct ScheduleWidgetEntryView: View {
             switch family {
             case .systemMedium:
                 MediumNextLecturesView(lecture: lecture)
+            case .systemLarge:
+                LargeNextLecturesView(lecture: lecture)
             default:
                 SmallNextLecturesView(lecture: lecture)
             }
