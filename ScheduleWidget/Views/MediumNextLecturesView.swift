@@ -1,5 +1,5 @@
 //
-//  SmallNextLecturesView.swift
+//  MediumNextLecturesView.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 13/10/2020.
@@ -9,7 +9,7 @@
 import SwiftUI
 import WidgetKit
 
-struct SmallNextLecturesView: View {
+struct MediumNextLecturesView: View {
 
     // MARK: Properties
 
@@ -38,36 +38,40 @@ struct SmallNextLecturesView: View {
 
             Text(lecture.subject)
                 .font(.headline)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.9)
                 .foregroundColor(.main)
                 .lineLimit(nil)
 
             Spacer()
-
-            HStack(spacing: 4) {
+            
+            HStack {
                 Image.time.foregroundColor(.main)
                 HStack(spacing: 1) {
                     Text(lecture.fromDate.shortHour)
                     Text("-")
                     Text(lecture.toDate.shortHour)
                 }
-            }
-
-            HStack(spacing: 4) {
+                Spacer()
                 Image.classroom.foregroundColor(.main)
                 Text(lecture.classroom)
+            }
+
+            HStack(alignment: .top) {
+                Image.code.foregroundColor(.main)
+                Text(lecture.code)
+                    .lineLimit(nil)
             }
         }
         .lineLimit(1)
         .font(.footnote)
         .padding()
     }
-    
+
 }
 
-struct SmallNextLecturesView_Previews: PreviewProvider {
+struct MediumNextLecturesView_Previews: PreviewProvider {
     static var previews: some View {
-        SmallNextLecturesView(lecture: MockData.lecture)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        MediumNextLecturesView(lecture: MockData.lecture)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

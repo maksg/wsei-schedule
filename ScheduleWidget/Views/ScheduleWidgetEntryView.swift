@@ -13,6 +13,8 @@ struct ScheduleWidgetEntryView: View {
 
     // MARK: Properties
 
+    @Environment(\.widgetFamily) var family: WidgetFamily
+
     var entry: Provider.Entry
     var lecture: Lecture? { entry.lecture }
 
@@ -20,7 +22,12 @@ struct ScheduleWidgetEntryView: View {
 
     var body: some View {
         if let lecture = lecture {
-            SmallNextLecturesView(lecture: lecture)
+            switch family {
+            case .systemMedium:
+                MediumNextLecturesView(lecture: lecture)
+            default:
+                SmallNextLecturesView(lecture: lecture)
+            }
         } else {
             NoNextLecturesView()
         }
