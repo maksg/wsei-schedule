@@ -10,7 +10,11 @@ import SwiftUI
 
 struct ScheduleView: View {
 
+    // MARK: Properties
+
     @ObservedObject var viewModel: ScheduleViewModel
+
+    // MARK: Views
     
     var body: some View {
         NavigationView {
@@ -40,6 +44,7 @@ struct ScheduleView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+    
 }
 
 struct ScheduleView_Previews : PreviewProvider {

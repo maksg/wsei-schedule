@@ -29,23 +29,23 @@ struct LargeNextLecturesView: View {
     // MARK: Views
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Spacer()
                 Text(formattedDate)
                     .fontWeight(.semibold)
+                    .foregroundColor(.main)
             }
             .lineLimit(1)
 
             Text(lecture.subject)
                 .font(.headline)
                 .minimumScaleFactor(0.9)
-                .foregroundColor(.main)
 
             Spacer()
 
             HStack {
-                Image.time.foregroundColor(.main)
+                Image.time.foregroundColor(.red)
                 HStack(spacing: 1) {
                     Text(lecture.fromDate.shortHour)
                     Text("-")
@@ -54,7 +54,7 @@ struct LargeNextLecturesView: View {
             }
 
             HStack {
-                Image.classroom.foregroundColor(.main)
+                Image.classroom.foregroundColor(.blue)
                 Text(lecture.classroom)
             }
 
@@ -64,12 +64,12 @@ struct LargeNextLecturesView: View {
             }
 
             HStack(alignment: .top) {
-                Image.lecturer.foregroundColor(.main)
+                Image.lecturer.foregroundColor(.orange)
                 Text(lecture.lecturer)
             }
 
             HStack(alignment: .top) {
-                Image.comments.foregroundColor(.main)
+                Image.comments.foregroundColor(.indigo)
                 Text(lecture.comments)
             }
         }

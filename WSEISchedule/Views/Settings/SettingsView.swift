@@ -9,9 +9,13 @@
 import SwiftUI
 
 struct SettingsView: View {
+
+    // MARK: Properties
     
     @ObservedObject var viewModel: SettingsViewModel
     @State private var isSignInViewPresented: Bool = false
+
+    // MARK: Views
     
     var body: some View {
         NavigationView {
@@ -37,9 +41,10 @@ struct SettingsView: View {
                     Button(action: signInOrOut) {
                         HStack {
                             Image.singOut
+                                .foregroundColor(.red)
                             Text(viewModel.signButtonText)
+                                .foregroundColor(.main)
                         }
-                        .foregroundColor(.main)
                     }
                 }
             }
@@ -56,6 +61,8 @@ struct SettingsView: View {
                   dismissButton: .default(Text(Translation.Settings.ThankYouAlert.dismiss.localized)))
         }
     }
+
+    // MARK: Methods
     
     private func signInOrOut() {
         if viewModel.isSignedIn {

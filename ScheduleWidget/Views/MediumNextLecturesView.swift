@@ -34,25 +34,25 @@ struct MediumNextLecturesView: View {
                 Spacer()
                 Text(formattedDate)
                     .fontWeight(.semibold)
+                    .foregroundColor(.main)
             }
 
             Text(lecture.subject)
                 .font(.headline)
                 .minimumScaleFactor(0.9)
-                .foregroundColor(.main)
                 .lineLimit(nil)
 
             Spacer()
             
             HStack {
-                Image.time.foregroundColor(.main)
+                Image.time.foregroundColor(.red)
                 HStack(spacing: 1) {
                     Text(lecture.fromDate.shortHour)
                     Text("-")
                     Text(lecture.toDate.shortHour)
                 }
                 Spacer()
-                Image.classroom.foregroundColor(.main)
+                Image.classroom.foregroundColor(.blue)
                 Text(lecture.classroom)
             }
 

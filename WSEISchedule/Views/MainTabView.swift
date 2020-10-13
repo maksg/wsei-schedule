@@ -22,7 +22,7 @@ struct MainTabView: View {
                 .tabItem(Tab.settings.tabItem)
                 .tag(Tab.settings)
         }
-        .accentColor(.primary)
+        .accentColor(.main)
         .onAppear(perform: onAppear)
         .sheet(isPresented: $isSignInViewPresented) {
             SignInView(viewModel: SignInViewModel(), onDismiss: viewModel.reloadLectures)

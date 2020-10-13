@@ -13,12 +13,18 @@ extension Image {
     static var logo: Image { Image("logo") }
 
     static var schedule: Image { Image(systemName: "calendar") }
-    static var settings: Image { Image(systemName: "gear") }
+    static var settings: Image {
+        if #available(iOS 14, macOS 11, *) {
+            return Image(systemName: "gearshape.2.fill")
+        } else {
+            return Image(systemName: "gear")
+        }
+    }
 
-    static var time: Image { Image(systemName: "clock") }
-    static var classroom: Image { Image(systemName: "location") }
-    static var code: Image { Image(systemName: "number.circle.fill") }
-    static var lecturer: Image { Image(systemName: "person.crop.circle.fill") }
+    static var time: Image { Image(systemName: "alarm.fill") }
+    static var classroom: Image { Image(systemName: "location.fill") }
+    static var code: Image { Image(systemName: "number") }
+    static var lecturer: Image { Image(systemName: "person.fill") }
     static var comments: Image { Image(systemName: "info.circle.fill") }
 
     static var singOut: Image { Image(systemName: "power") }

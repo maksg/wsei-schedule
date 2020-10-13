@@ -9,21 +9,33 @@
 import SwiftUI
 
 struct GameRow: View {
-    var game: Games
-    
+
+    // MARK: Properties
+
+    let game: Games
+
+    // MARK: Views
+
     var body: some View {
-        Button(action: {
-            UIApplication.shared.open(self.game.url, options: [:])
-        }, label: {
+        Button(action: openGameUrl) {
             HStack {
                 Image(game.name)
-                    .renderingMode(.original)
-                    .cornerRadius(10)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(8)
                 Text(game.name)
                     .foregroundColor(.main)
             }
-        })
+        }
+        .frame(height: 30)
     }
+
+    // MARK: Methods
+
+    private func openGameUrl() {
+        UIApplication.shared.open(game.url, options: [:])
+    }
+
 }
 
 struct GameRow_Previews: PreviewProvider {

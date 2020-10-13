@@ -24,14 +24,14 @@ struct LectureRow: View {
                     Text(lecture.subject)
                         .font(.headline)
                     HStack {
-                        Image.time
+                        Image.time.foregroundColor(.red)
                         HStack(spacing: 1) {
                             Text(lecture.fromDate.shortHour)
                             Text("-")
                             Text(lecture.toDate.shortHour)
                         }
                         Spacer()
-                        Image.classroom
+                        Image.classroom.foregroundColor(.blue)
                         Text(lecture.classroom)
                     }
                 }
@@ -44,17 +44,17 @@ struct LectureRow: View {
 
                     VStack(alignment: .leading, spacing: 8) {
                         HStack(alignment: .top) {
-                            Image.code
+                            Image.code.foregroundColor(.main)
                             Text(lecture.code)
                         }
 
                         HStack(alignment: .top) {
-                            Image.lecturer
+                            Image.lecturer.foregroundColor(.orange)
                             Text(lecture.lecturer)
                         }
 
                         HStack(alignment: .top) {
-                            Image.comments
+                            Image.comments.foregroundColor(.indigo)
                             Text(lecture.comments)
                         }
                     }
