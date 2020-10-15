@@ -1,5 +1,5 @@
 //
-//  ScheduleWidget.swift
+//  NextLectureWidget.swift
 //  ScheduleWidget
 //
 //  Created by Maksymilian Galas on 09/10/2020.
@@ -9,16 +9,15 @@
 import WidgetKit
 import SwiftUI
 
-@main
-struct ScheduleWidget: Widget {
-    let kind: String = "ScheduleWidget"
+struct NextLectureWidget: Widget {
+    let kind: String = "NextLectureWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            ScheduleWidgetEntryView(entry: entry)
+            NextLectureWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("WSEI Schedule")
-        .description(Translation.Widget.about.localized)
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .description(Translation.Widget.About.nextLecture.localized)
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }

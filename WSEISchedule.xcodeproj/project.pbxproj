@@ -16,6 +16,11 @@
 		5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* CodableLecture.swift */; };
 		570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C5AC82345EAC7005EBC4D /* SignInView.swift */; };
 		570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C5ACA2345EAD8005EBC4D /* SignInViewModel.swift */; };
+		571045CD253859A00031B0A5 /* LargeNextTwoLecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045CC253859A00031B0A5 /* LargeNextTwoLecturesView.swift */; };
+		571045E425385BCA0031B0A5 /* ScheduleWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045E325385BCA0031B0A5 /* ScheduleWidgets.swift */; };
+		571045ED25385BF80031B0A5 /* NextTwoLecturesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045EC25385BF80031B0A5 /* NextTwoLecturesWidget.swift */; };
+		571045F625385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045F525385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift */; };
+		571045FF2538769B0031B0A5 /* LectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045FE2538769B0031B0A5 /* LectureView.swift */; };
 		572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */; };
 		572E7F01234CACF10061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		572E7F02234CAD150061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
@@ -32,15 +37,14 @@
 		575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */; };
 		5755866B25308B2D00E0F752 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5755866A25308B2D00E0F752 /* Line.swift */; };
 		57561BC92535AF4600DBC3D3 /* NoNextLecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BB12535AE2600DBC3D3 /* NoNextLecturesView.swift */; };
-		57561BDA2535B15100DBC3D3 /* SmallNextLecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BD12535B14D00DBC3D3 /* SmallNextLecturesView.swift */; };
+		57561BDA2535B15100DBC3D3 /* SmallNextLectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BD12535B14D00DBC3D3 /* SmallNextLectureView.swift */; };
 		57561BE32535B1EE00DBC3D3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
 		57561BEB2535B21800DBC3D3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
 		57561BF32535B27C00DBC3D3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
-		57561C042535B54500DBC3D3 /* ScheduleWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BFB2535B50700DBC3D3 /* ScheduleWidgetEntryView.swift */; };
+		57561C042535B54500DBC3D3 /* NextLectureWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BFB2535B50700DBC3D3 /* NextLectureWidgetEntryView.swift */; };
 		57561C232535B58700DBC3D3 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C132535B56E00DBC3D3 /* Provider.swift */; };
 		57561C3B2535B5B300DBC3D3 /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C2B2535B5A000DBC3D3 /* SimpleEntry.swift */; };
-		57561C4C2535C58100DBC3D3 /* MediumNextLecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C432535C46200DBC3D3 /* MediumNextLecturesView.swift */; };
-		57561C722535D3EE00DBC3D3 /* LargeNextLecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C5B2535D3B200DBC3D3 /* LargeNextLecturesView.swift */; };
+		57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C432535C46200DBC3D3 /* MediumNextLectureView.swift */; };
 		57674F53234DBCF000684C2A /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57674F52234DBCF000684C2A /* Color+Named.swift */; };
 		5769E2132534A4F000D4391A /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
 		5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
@@ -85,7 +89,7 @@
 		57A6BEAA2530904700E9B26C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A6BEA92530904700E9B26C /* SwiftUI.framework */; };
 		57A6BEAF2530904800E9B26C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57A6BEAE2530904800E9B26C /* Assets.xcassets */; };
 		57A6BEB32530904800E9B26C /* ScheduleWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 57A6BEA62530904700E9B26C /* ScheduleWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		57A6BEC02530908200E9B26C /* ScheduleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6BEBF2530908200E9B26C /* ScheduleWidget.swift */; };
+		57A6BEC02530908200E9B26C /* NextLectureWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6BEBF2530908200E9B26C /* NextLectureWidget.swift */; };
 		57A6BEED25309F0300E9B26C /* CoreDataLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */; };
 		57A6BEF525309F0700E9B26C /* CoreDataLecture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B822AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift */; };
 		57A6BEFD25309F2300E9B26C /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* Lecture.swift */; };
@@ -130,6 +134,7 @@
 		57DDE76F22B7B32200924367 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83622AFF57A005BED89 /* Lecture.swift */; };
 		57DDE77022B7B39600924367 /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
 		57DDE77122B7B6EB00924367 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
+		57FCB7D12538A48700509C3C /* NoLecturesTodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FCB7D02538A48700509C3C /* NoLecturesTodayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +229,11 @@
 		5701F83822AFF5DA005BED89 /* CodableLecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLecture.swift; sourceTree = "<group>"; };
 		570C5AC82345EAC7005EBC4D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		570C5ACA2345EAD8005EBC4D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		571045CC253859A00031B0A5 /* LargeNextTwoLecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeNextTwoLecturesView.swift; sourceTree = "<group>"; };
+		571045E325385BCA0031B0A5 /* ScheduleWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgets.swift; sourceTree = "<group>"; };
+		571045EC25385BF80031B0A5 /* NextTwoLecturesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTwoLecturesWidget.swift; sourceTree = "<group>"; };
+		571045F525385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTwoLecturesWidgetEntryView.swift; sourceTree = "<group>"; };
+		571045FE2538769B0031B0A5 /* LectureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureView.swift; sourceTree = "<group>"; };
 		572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Student.swift"; sourceTree = "<group>"; };
 		572E7F00234CACF10061A835 /* Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		572FF89E252C8DC500FFE530 /* View+Uncapitalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Uncapitalized.swift"; sourceTree = "<group>"; };
@@ -238,13 +248,12 @@
 		575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+PullToRefresh.swift"; sourceTree = "<group>"; };
 		5755866A25308B2D00E0F752 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		57561BB12535AE2600DBC3D3 /* NoNextLecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNextLecturesView.swift; sourceTree = "<group>"; };
-		57561BD12535B14D00DBC3D3 /* SmallNextLecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallNextLecturesView.swift; sourceTree = "<group>"; };
+		57561BD12535B14D00DBC3D3 /* SmallNextLectureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallNextLectureView.swift; sourceTree = "<group>"; };
 		57561BE22535B1EE00DBC3D3 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
-		57561BFB2535B50700DBC3D3 /* ScheduleWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetEntryView.swift; sourceTree = "<group>"; };
+		57561BFB2535B50700DBC3D3 /* NextLectureWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLectureWidgetEntryView.swift; sourceTree = "<group>"; };
 		57561C132535B56E00DBC3D3 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		57561C2B2535B5A000DBC3D3 /* SimpleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEntry.swift; sourceTree = "<group>"; };
-		57561C432535C46200DBC3D3 /* MediumNextLecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumNextLecturesView.swift; sourceTree = "<group>"; };
-		57561C5B2535D3B200DBC3D3 /* LargeNextLecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeNextLecturesView.swift; sourceTree = "<group>"; };
+		57561C432535C46200DBC3D3 /* MediumNextLectureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumNextLectureView.swift; sourceTree = "<group>"; };
 		57674F52234DBCF000684C2A /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
 		576B96FD23ABBFFF00CA17CF /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoRowViewModel.swift; sourceTree = "<group>"; };
@@ -282,7 +291,7 @@
 		57A6BEAE2530904800E9B26C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57A6BEB02530904800E9B26C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57A6BEB42530904900E9B26C /* ScheduleWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScheduleWidgetExtension.entitlements; sourceTree = "<group>"; };
-		57A6BEBF2530908200E9B26C /* ScheduleWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleWidget.swift; sourceTree = "<group>"; };
+		57A6BEBF2530908200E9B26C /* NextLectureWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextLectureWidget.swift; sourceTree = "<group>"; };
 		57AD314D22AE6B50009EEB1F /* WSEISchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSEISchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AD315022AE6B50009EEB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57AD315222AE6B50009EEB1F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -319,6 +328,7 @@
 		57DDE76822B7A76900924367 /* Lecture Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lecture Widget.entitlements"; sourceTree = "<group>"; };
 		57DDE76922B7B23F00924367 /* WSEISchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WSEISchedule.entitlements; sourceTree = "<group>"; };
 		57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSharedPersistentContainer.swift; sourceTree = "<group>"; };
+		57FCB7D02538A48700509C3C /* NoLecturesTodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLecturesTodayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,11 +425,14 @@
 		57561BBA2535AEED00DBC3D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				57FCB7D02538A48700509C3C /* NoLecturesTodayView.swift */,
 				57561BB12535AE2600DBC3D3 /* NoNextLecturesView.swift */,
-				57561BD12535B14D00DBC3D3 /* SmallNextLecturesView.swift */,
-				57561C432535C46200DBC3D3 /* MediumNextLecturesView.swift */,
-				57561C5B2535D3B200DBC3D3 /* LargeNextLecturesView.swift */,
-				57561BFB2535B50700DBC3D3 /* ScheduleWidgetEntryView.swift */,
+				57561BD12535B14D00DBC3D3 /* SmallNextLectureView.swift */,
+				57561C432535C46200DBC3D3 /* MediumNextLectureView.swift */,
+				571045CC253859A00031B0A5 /* LargeNextTwoLecturesView.swift */,
+				57561BFB2535B50700DBC3D3 /* NextLectureWidgetEntryView.swift */,
+				571045F525385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift */,
+				571045FE2538769B0031B0A5 /* LectureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -504,7 +517,9 @@
 			children = (
 				57561C132535B56E00DBC3D3 /* Provider.swift */,
 				57561C2B2535B5A000DBC3D3 /* SimpleEntry.swift */,
-				57A6BEBF2530908200E9B26C /* ScheduleWidget.swift */,
+				57A6BEBF2530908200E9B26C /* NextLectureWidget.swift */,
+				571045EC25385BF80031B0A5 /* NextTwoLecturesWidget.swift */,
+				571045E325385BCA0031B0A5 /* ScheduleWidgets.swift */,
 				57561BBA2535AEED00DBC3D3 /* Views */,
 				57A6BEAE2530904800E9B26C /* Assets.xcassets */,
 				57A6BEB02530904800E9B26C /* Info.plist */,
@@ -998,22 +1013,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				57A6BF3D2530A35200E9B26C /* RawRepresentable+String.swift in Sources */,
-				57561C042535B54500DBC3D3 /* ScheduleWidgetEntryView.swift in Sources */,
+				57561C042535B54500DBC3D3 /* NextLectureWidgetEntryView.swift in Sources */,
+				571045ED25385BF80031B0A5 /* NextTwoLecturesWidget.swift in Sources */,
 				57561BC92535AF4600DBC3D3 /* NoNextLecturesView.swift in Sources */,
-				57561C722535D3EE00DBC3D3 /* LargeNextLecturesView.swift in Sources */,
+				571045F625385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift in Sources */,
 				57A6BEFD25309F2300E9B26C /* Lecture.swift in Sources */,
+				571045CD253859A00031B0A5 /* LargeNextTwoLecturesView.swift in Sources */,
 				57561C232535B58700DBC3D3 /* Provider.swift in Sources */,
-				57561C4C2535C58100DBC3D3 /* MediumNextLecturesView.swift in Sources */,
+				57FCB7D12538A48700509C3C /* NoLecturesTodayView.swift in Sources */,
+				571045E425385BCA0031B0A5 /* ScheduleWidgets.swift in Sources */,
+				57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */,
 				57A6BEF525309F0700E9B26C /* CoreDataLecture+CoreDataProperties.swift in Sources */,
 				5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */,
 				57A6BF2D2530A32800E9B26C /* Translation.swift in Sources */,
 				57A6BF1525309F9200E9B26C /* CodableLecture.swift in Sources */,
 				57A6BF1D2530A13A00E9B26C /* Color+Named.swift in Sources */,
-				57A6BEC02530908200E9B26C /* ScheduleWidget.swift in Sources */,
-				57561BDA2535B15100DBC3D3 /* SmallNextLecturesView.swift in Sources */,
+				57A6BEC02530908200E9B26C /* NextLectureWidget.swift in Sources */,
+				57561BDA2535B15100DBC3D3 /* SmallNextLectureView.swift in Sources */,
 				57A6BEED25309F0300E9B26C /* CoreDataLecture.swift in Sources */,
 				5769E2132534A4F000D4391A /* NSSharedPersistentContainer.swift in Sources */,
 				57A6BF0525309F6100E9B26C /* Image+Named.swift in Sources */,
+				571045FF2538769B0031B0A5 /* LectureView.swift in Sources */,
 				57561BEB2535B21800DBC3D3 /* MockData.swift in Sources */,
 				57A6BF452530A35600E9B26C /* String+Localized.swift in Sources */,
 				57A6BF0D25309F6E00E9B26C /* Date+Extensions.swift in Sources */,

@@ -60,7 +60,11 @@ final class Translation {
         case noNextLectures = "widget.no_next_lectures"
         case today = "widget.today"
         case tomorrow = "widget.tomorrow"
-        case about = "widget.about"
+
+        enum About: String {
+            case nextLecture = "widget.about.next_lecture"
+            case nextTwoLectures = "widget.about.next_two_lectures"
+        }
     }
     
 }

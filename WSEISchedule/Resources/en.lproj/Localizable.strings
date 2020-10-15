@@ -49,7 +49,8 @@
 "widget.no_lectures_today" = "No lectures today";
 "widget.no_next_lectures" = "No next lectures";
 
-"widget.about" = "Get a peek at upcoming lectures.";
+"widget.about.next_lecture" = "Get a peek at upcoming lecture.";
+"widget.about.next_two_lectures" = "Get a peek at today's and upcoming lecture.";
 
 // Watch
 

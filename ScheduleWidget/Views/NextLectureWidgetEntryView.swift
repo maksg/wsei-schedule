@@ -1,5 +1,5 @@
 //
-//  ScheduleWidgetEntryView.swift
+//  NextLectureWidgetEntryView.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 13/10/2020.
@@ -9,14 +9,14 @@
 import SwiftUI
 import WidgetKit
 
-struct ScheduleWidgetEntryView: View {
+struct NextLectureWidgetEntryView: View {
 
     // MARK: Properties
 
     @Environment(\.widgetFamily) var family: WidgetFamily
 
     var entry: Provider.Entry
-    var lecture: Lecture? { entry.lecture }
+    var lecture: Lecture? { entry.todaysLecture ?? entry.nextLecture }
 
     // MARK: Views
 
@@ -24,11 +24,9 @@ struct ScheduleWidgetEntryView: View {
         if let lecture = lecture {
             switch family {
             case .systemMedium:
-                MediumNextLecturesView(lecture: lecture)
-            case .systemLarge:
-                LargeNextLecturesView(lecture: lecture)
+                MediumNextLectureView(lecture: lecture)
             default:
-                SmallNextLecturesView(lecture: lecture)
+                SmallNextLectureView(lecture: lecture)
             }
         } else {
             NoNextLecturesView()
@@ -37,9 +35,9 @@ struct ScheduleWidgetEntryView: View {
     
 }
 
-struct ScheduleWidget_Previews: PreviewProvider {
+struct NextLectureWidget_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleWidgetEntryView(entry: SimpleEntry(date: Date(), lecture: MockData.lecture))
+        NextLectureWidgetEntryView(entry: SimpleEntry(date: Date(), todaysLecture: MockData.lecture, nextLecture: MockData.lecture))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

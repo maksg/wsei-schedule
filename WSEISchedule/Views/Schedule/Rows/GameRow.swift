@@ -20,6 +20,7 @@ struct GameRow: View {
         Button(action: openGameUrl) {
             HStack {
                 Image(game.name)
+                    .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(8)

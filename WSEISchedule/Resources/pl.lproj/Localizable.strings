@@ -49,7 +49,8 @@
 "widget.no_lectures_today" = "Brak wykładów dzisiaj";
 "widget.no_next_lectures" = "Brak kolejnych wykładów";
 
-"widget.about" = "Rzuć okiem na nadchodzące wykłady.";
+"widget.about.next_lecture" = "Rzuć okiem na nadchodzący wykład.";
+"widget.about.next_two_lectures" = "Rzuć okiem na dzisiejszy oraz nadchodzący wykład.";
 
 // Watch
 

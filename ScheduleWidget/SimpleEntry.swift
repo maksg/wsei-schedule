@@ -10,5 +10,6 @@ import WidgetKit
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let lecture: Lecture?
+    let todaysLecture: Lecture?
+    let nextLecture: Lecture?
 }
