@@ -24,7 +24,7 @@ struct ScheduleView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.background)
-                        .background(Color.systemRed)
+                        .background(Color.red)
                         .animation(.default)
                         .transition(.move(edge: .top))
                 }

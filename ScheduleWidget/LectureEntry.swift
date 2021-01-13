@@ -1,5 +1,5 @@
 //
-//  SimpleEntry.swift
+//  LectureEntry.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 13/10/2020.
@@ -8,7 +8,7 @@
 
 import WidgetKit
 
-struct SimpleEntry: TimelineEntry {
+struct LectureEntry: TimelineEntry {
     let date: Date
     let todaysLecture: Lecture?
     let nextLecture: Lecture?

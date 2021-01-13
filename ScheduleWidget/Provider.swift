@@ -52,18 +52,31 @@ struct Provider: TimelineProvider {
         }
     }
 
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), todaysLecture: MockData.lecture, nextLecture: MockData.lecture)
+    func placeholder(in context: Context) -> LectureEntry {
+        LectureEntry(date: Date(), todaysLecture: MockData.lecture, nextLecture: MockData.lecture)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), todaysLecture: nearestLectures.todays, nextLecture: nearestLectures.next)
+    func getSnapshot(in context: Context, completion: @escaping (LectureEntry) -> ()) {
+        let entry = LectureEntry(date: Date(), todaysLecture: nearestLectures.todays, nextLecture: nearestLectures.next)
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        let entryDate = Calendar.current.date(byAdding: .minute, value: 1, to: Date())!
-        let entry = SimpleEntry(date: entryDate, todaysLecture: nearestLectures.todays, nextLecture: nearestLectures.next)
+    func getTimeline(in context: Context, completion: @escaping (Timeline<LectureEntry>) -> ()) {
+        let lectures = nearestLectures
+        let entryDate: Date
+        if let todaysLecture = lectures.todays {
+            if todaysLecture.fromDate > Date() {
+                entryDate = todaysLecture.fromDate
+            } else {
+                entryDate = todaysLecture.toDate
+            }
+        } else if let nextLecture = lectures.next {
+            entryDate = nextLecture.fromDate
+        } else {
+            entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
+        }
+
+        let entry = LectureEntry(date: entryDate, todaysLecture: lectures.todays, nextLecture: lectures.next)
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }

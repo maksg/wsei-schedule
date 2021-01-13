@@ -37,14 +37,16 @@ struct SignInView: View {
                     .padding(.horizontal, 10)
                     .frame(height: 45)
                 
-                Color.quaternary.frame(height: 1).padding(.leading, 10)
+                Color.quaternary
+                    .frame(height: 1)
+                    .padding(.leading, 10)
                 
                 SecureField(viewModel.passwordPlaceholder, text: $viewModel.password)
                     .textContentType(.password)
                     .padding(.horizontal, 10)
                     .frame(height: 45)
             }
-            .background(Color.groupedBackground)
+            .background(Color.quaternaryBackground)
             .cornerRadius(10)
             
             Button(action: signIn) {

@@ -11,6 +11,7 @@ import SwiftUI
 import WebKit
 import CoreData
 import WatchConnectivity
+import WidgetKit
 
 final class ScheduleViewModel: NSObject, ObservableObject {
     
@@ -101,6 +102,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         let lectures = convertDataToLectureList(data: data)
         generateLectureDays(from: lectures)
         saveLectures(to: managedContext)
+
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
     
     func showErrorMessage(_ errorMessage: String) {

@@ -33,7 +33,7 @@ struct NextTwoLecturesWidgetEntryView: View {
 
 struct NextTwoLecturesWidget_Previews: PreviewProvider {
     static var previews: some View {
-        NextTwoLecturesWidgetEntryView(entry: SimpleEntry(date: Date(), todaysLecture: MockData.lecture, nextLecture: MockData.lecture))
+        NextTwoLecturesWidgetEntryView(entry: LectureEntry(date: Date(), todaysLecture: MockData.lecture, nextLecture: MockData.lecture))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

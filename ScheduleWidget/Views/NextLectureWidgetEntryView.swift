@@ -37,7 +37,7 @@ struct NextLectureWidgetEntryView: View {
 
 struct NextLectureWidget_Previews: PreviewProvider {
     static var previews: some View {
-        NextLectureWidgetEntryView(entry: SimpleEntry(date: Date(), todaysLecture: MockData.lecture, nextLecture: MockData.lecture))
+        NextLectureWidgetEntryView(entry: LectureEntry(date: Date(), todaysLecture: MockData.lecture, nextLecture: MockData.lecture))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

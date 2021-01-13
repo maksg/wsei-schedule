@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 import CoreData
 import StoreKit
+import WidgetKit
 
 final class SettingsViewModel: NSObject, ObservableObject {
     
@@ -103,6 +104,11 @@ final class SettingsViewModel: NSObject, ObservableObject {
         studentInfoRowViewModel = nil
         removeAllLectures()
         URLCache.shared.removeAllCachedResponses()
+
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+
         UserDefaults.standard.signOut()
     }
     

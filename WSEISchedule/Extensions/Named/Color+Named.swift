@@ -22,8 +22,8 @@ extension Color {
         Color(.quaternaryLabel)
     }
 
-    static var groupedBackground: Color {
-        Color(.systemGroupedBackground)
+    static var quaternaryBackground: Color {
+        Color(.quaternarySystemFill)
     }
 
     static var background: Color {
@@ -36,10 +36,6 @@ extension Color {
 
     static var indigo: Color {
         Color(.systemIndigo)
-    }
-
-    static var systemRed: Color {
-        Color(.systemRed)
     }
     
 }

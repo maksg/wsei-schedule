@@ -15,6 +15,8 @@ struct NextTwoLecturesWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             NextTwoLecturesWidgetEntryView(entry: entry)
+                .frame(maxWidth: .infinity, maxHeight:  .infinity)
+                .background(Color("WidgetBackground"))
         }
         .configurationDisplayName("WSEI Schedule")
         .description(Translation.Widget.About.nextTwoLectures.localized)
