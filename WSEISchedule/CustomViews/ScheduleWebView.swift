@@ -133,7 +133,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     private func getErrorMessage(completionHandler: @escaping (Bool) -> Void) {
         run(.getErrorMessage, onSuccess: { [weak self] data in
             let errorMessage = data as? String ?? ""
-            if !errorMessage.isEmpty && !errorMessage.contains("kod z obrazka") && !errorMessage.contains("captha") {
+            if !errorMessage.isEmpty && !errorMessage.contains("kod z obrazka") && !errorMessage.contains("captcha") {
                 self?.showErrorMessage?(errorMessage)
                 completionHandler(false)
             } else {

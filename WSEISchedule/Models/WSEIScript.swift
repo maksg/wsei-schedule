@@ -68,7 +68,9 @@ enum WSEIScript {
             
             var config = { childList: true, subtree: true };
             var callback = function(mutations, observer) {
-                if(document.getElementById('RadioList_Termin3').checked) {
+                const isButtonChecked = document.getElementById('RadioList_Termin3').checked;
+                const isNotLoading = !document.getElementById('gridViewPlanyStudentow_LPV');
+                if(isButtonChecked && isNotLoading) {
                     window.webkit.messageHandlers.iosListener.postMessage('reloaded');
                 }
             };

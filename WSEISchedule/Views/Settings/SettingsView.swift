@@ -13,7 +13,7 @@ struct SettingsView: View {
     // MARK: Properties
     
     @ObservedObject var viewModel: SettingsViewModel
-    @State private var isSignInViewPresented: Bool = false
+    @Binding var isSignInViewPresented: Bool
 
     // MARK: Views
     
@@ -52,9 +52,6 @@ struct SettingsView: View {
             .navigationBarTitle(Tab.settings.title)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .sheet(isPresented: $isSignInViewPresented) {
-            SignInView(viewModel: SignInViewModel(), onDismiss: viewModel.reloadLectures)
-        }
         .alert(isPresented: $viewModel.showThankYouAlert) {
             Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
                   message: Text(Translation.Settings.ThankYouAlert.message.localized),
@@ -75,6 +72,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel(webView: ScheduleWebView()))
+        SettingsView(viewModel: SettingsViewModel(webView: ScheduleWebView()), isSignInViewPresented: .constant(false))
     }
 }

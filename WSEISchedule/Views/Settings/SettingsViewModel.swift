@@ -125,7 +125,10 @@ extension SettingsViewModel: SKProductsRequestDelegate {
         let titles = zip(cashSymbols, prices).map { (symbol, price) in
             "\(symbol)  \(Translation.Settings.Support.donate.localized) \(price)"
         }
-        supportDeveloperProducts = zip(titles, products).map(SupportDeveloperProduct.init)
+
+        DispatchQueue.main.async { [weak self] in
+            self?.supportDeveloperProducts = zip(titles, products).map(SupportDeveloperProduct.init)
+        }
     }
     
     func request(_ request: SKRequest, didFailWithError error: Error) {

@@ -31,7 +31,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         return container
     }()
     
-    private var lectures: [Lecture] = [] {
+    private var lectures: [CoreDataLecture] = [] {
         didSet {
             isRefreshing = false
             sendLecturesToWatch()
@@ -112,7 +112,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         self.errorMessage = errorMessage
     }
     
-    private func convertDataToLectureList(data: Any?) -> [Lecture] {
+    private func convertDataToLectureList(data: Any?) -> [CoreDataLecture] {
         guard let data = data as? [[String : String]] else { return [] }
         
         let filteredData = data.map { (lecture) -> [String : String] in
@@ -126,10 +126,12 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
         
         let managedContext = persistentContainer.viewContext
-        return filteredData.map { CoreDataLecture(fromDictionary: $0, inContext: managedContext) }
+        return filteredData.map {
+            CoreDataLecture(fromDictionary: $0, inContext: managedContext)
+        }
     }
     
-    func generateLectureDays(from lectures: [Lecture]?) {
+    func generateLectureDays(from lectures: [CoreDataLecture]?) {
         self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
         
         guard let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) else {
@@ -145,9 +147,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     private func deleteLectures(from context: NSManagedObjectContext) {
-        lectures.compactMap({ $0 as? CoreDataLecture }).forEach { lecture in
-            context.delete(lecture)
-        }
+        lectures.forEach(context.delete)
     }
     
     private func saveLectures(to context: NSManagedObjectContext) {
