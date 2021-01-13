@@ -15,7 +15,14 @@ struct SignInView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Image("logo").resizable().aspectRatio(contentMode: .fit)
+            Spacer()
+
+            Image.logo
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxHeight: 200)
+
+            Spacer()
             
             VStack(spacing: 4) {
                 Text(Translation.SignIn.title.localized)
@@ -23,11 +30,13 @@ struct SignInView: View {
                     .fontWeight(.bold)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Text(Translation.SignIn.privacyMessage.localized)
                     .font(.footnote)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             VStack(spacing: 0) {
@@ -53,6 +62,8 @@ struct SignInView: View {
                 Text(Translation.SignIn.signIn.localized)
                     .foregroundColor(.main)
             }
+
+            Spacer()
         }
         .padding(26)
         .animation(.default)
