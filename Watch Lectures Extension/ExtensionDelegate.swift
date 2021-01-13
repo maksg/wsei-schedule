@@ -16,7 +16,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     private var lectures: [CodableLecture] = []
     var lectureDays: [LectureDay] = [] {
         didSet {
-            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "ReloadedLectures")))
+            NotificationCenter.default.post(name: .didReloadLectures, object: nil)
         }
     }
     private let session: WCSession = .default

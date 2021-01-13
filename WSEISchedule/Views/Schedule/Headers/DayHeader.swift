@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct DayHeader : View {
+struct DayHeader: View {
     let date: Date
     var formattedDate: String {
         if date.isToday {
@@ -29,7 +29,7 @@ struct DayHeader : View {
     }
 }
 
-struct DayHeader_Previews : PreviewProvider {
+struct DayHeader_Previews: PreviewProvider {
     static var previews: some View {
         DayHeader(date: Date())
             .previewLayout(.fixed(width: 320, height: 32))

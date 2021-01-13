@@ -8,8 +8,13 @@
 
 import SwiftUI
 
-struct LectureRow : View {
+struct LectureRow: View {
+
+    // MARK: Properties
+
     var lecture: Lecture
+
+    // MARK: Views
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
@@ -28,9 +33,10 @@ struct LectureRow : View {
         .padding(.horizontal, 0)
         .padding(.vertical, 4)
     }
+    
 }
 
-struct LectureRow_Previews : PreviewProvider {
+struct LectureRow_Previews: PreviewProvider {
     static var previews: some View {
         LectureRow(lecture: MockData.lecture)
     }

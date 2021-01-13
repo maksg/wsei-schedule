@@ -8,7 +8,10 @@
 
 import SwiftUI
 
-struct DayHeader : View {
+struct DayHeader: View {
+
+    // MARK: Properties
+
     let date: Date
     var formattedDate: String {
         if date.isToday {
@@ -19,15 +22,18 @@ struct DayHeader : View {
             return date.formattedDay
         }
     }
+
+    // MARK: Views
     
     var body: some View {
         Text(formattedDate)
             .font(.headline)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
+
 }
 
-struct DayHeader_Previews : PreviewProvider {
+struct DayHeader_Previews: PreviewProvider {
     static var previews: some View {
         DayHeader(date: Date())
     }

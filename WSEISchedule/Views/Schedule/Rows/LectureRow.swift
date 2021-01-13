@@ -76,7 +76,7 @@ struct LectureRow: View {
 
 }
 
-struct LectureRow_Previews : PreviewProvider {
+struct LectureRow_Previews: PreviewProvider {
     static var previews: some View {
         LectureRow(lecture: MockData.lecture)
             .previewLayout(.fixed(width: 320, height: 75))

@@ -8,8 +8,13 @@
 
 import SwiftUI
 
-struct ContentView : View {
+struct ContentView: View {
+
+    // MARK: Properties
+
     @ObservedObject var viewModel: ContentViewModel
+
+    // MARK: Views
     
     var body: some View {
         List {
@@ -23,13 +28,18 @@ struct ContentView : View {
                 }
             }
         }
-        .onAppear {
-            self.viewModel.reloadLectures()
-        }
+        .onAppear(perform: onAppear)
     }
+
+    // MARK: Methods
+
+    private func onAppear() {
+        viewModel.reloadLectures()
+    }
+    
 }
 
-struct ContentView_Previews : PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(viewModel: ContentViewModel())
     }

@@ -21,16 +21,12 @@ final class ContentViewModel: NSObject, ObservableObject {
     
     override init() {
         super.init()
-        
-        let name = Notification.Name(rawValue: "ReloadedLectures")
-        NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { [weak self] _ in
-            self?.reloadLectures()
-        }
+        NotificationCenter.default.addObserver(forName: .didReloadLectures, object: nil, queue: .main, using: reloadLectures)
     }
     
     // MARK: Methods
     
-    func reloadLectures() {
+    func reloadLectures(_ notification: Notification? = nil) {
         let delegate = WKExtension.shared().delegate as? ExtensionDelegate
         lectureDays = delegate?.lectureDays ?? []
     }

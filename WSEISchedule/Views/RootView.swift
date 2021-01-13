@@ -59,7 +59,7 @@ struct RootView: View {
 
 }
 
-struct RootView_Previews : PreviewProvider {
+struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         RootView(viewModel: RootViewModel())
     }
