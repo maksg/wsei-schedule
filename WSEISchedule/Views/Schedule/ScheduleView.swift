@@ -23,8 +23,8 @@ struct ScheduleView: View {
                     Text(viewModel.errorMessage)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(Color(.systemBackground))
-                        .background(Color(.systemRed))
+                        .foregroundColor(.background)
+                        .background(Color.systemRed)
                         .animation(.default)
                         .transition(.move(edge: .top))
                 }

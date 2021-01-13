@@ -37,5 +37,9 @@ extension Color {
     static var indigo: Color {
         Color(.systemIndigo)
     }
+
+    static var systemRed: Color {
+        Color(.systemRed)
+    }
     
 }

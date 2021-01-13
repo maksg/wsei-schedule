@@ -11,8 +11,7 @@ import Foundation
 enum WSEIScript {
     
     case zoomCaptcha
-    case setLogin(_ login: String)
-    case setPassword(_ password: String)
+    case setLoginData(login: String, password: String)
     case setCaptcha(_ captcha: String)
     case login
     case refreshSchedule
@@ -25,39 +24,38 @@ enum WSEIScript {
         switch self {
         case .zoomCaptcha:
             return """
-            var captcha = document.getElementById('captchaImg');
+            const captcha = document.getElementById('captchaImg');
             if(captcha != null) {
                 captcha.style.zoom = 2.0;
             }
             """
-        case .setLogin(let login):
+        case .setLoginData(let login, let password):
             return """
-            var loginField = document.getElementById('login');
+            const loginForm = document.getElementById('form_logowanie');
+            const trs = [].filter.call(loginForm.getElementsByTagName('tr'), el => el.getAttribute('style') == '');
+            const loginField = trs[0].getElementsByTagName('input')[0];
             loginField.value = '\(login)';
-            """
-        case .setPassword(let password):
-            return """
-            var passwordField = document.getElementById('haslo');
+            const passwordField = trs[1].getElementsByTagName('input')[0];
             passwordField.value = '\(password)';
             """
         case .setCaptcha(let captcha):
             return """
-            var captchaField = document.getElementById('captcha');
+            const captchaField = document.getElementById('captcha');
             captchaField.value = '\(captcha)';
             """
         case .login:
             return """
             observer.disconnect();
-            var loginButton = document.getElementById('subButton');
+            const loginButton = document.getElementById('subButton');
             loginButton.click();
             """
         case .refreshSchedule:
             return """
-            var currentDate = new Date();
-            var dataOd = (currentDate.getFullYear()-1) + ',' + currentDate.getMonth() + ',' + currentDate.getDate();
-            var dataDo = (currentDate.getFullYear()+1) + ',' + currentDate.getMonth() + ',' + currentDate.getDate();
-            var dataValue = dataOd + '\\\\' + dataDo + '\\\\3';
-            var wholeScheduleButton = document.getElementById('RadioList_Termin3');
+            const currentDate = new Date();
+            const dataOd = (currentDate.getFullYear()-1) + ',' + currentDate.getMonth() + ',' + currentDate.getDate();
+            const dataDo = (currentDate.getFullYear()+1) + ',' + currentDate.getMonth() + ',' + currentDate.getDate();
+            const dataValue = dataOd + '\\\\' + dataDo + '\\\\3';
+            const wholeScheduleButton = document.getElementById('RadioList_Termin3');
             wholeScheduleButton.value = dataValue;
             wholeScheduleButton.click();
             FiltrujDane(gridViewPlanyStudentow);
@@ -65,22 +63,22 @@ enum WSEIScript {
             """
         case .observeContentChange:
             return """
-            var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-            var target = document.getElementById('gridViewPlanyStudentow');
+            const MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+            const target = document.getElementById('gridViewPlanyStudentow');
             
-            var config = { childList: true, subtree: true };
-            var callback = function(mutations, observer) {
+            const config = { childList: true, subtree: true };
+            const callback = function(mutations, observer) {
                 if(document.getElementById('RadioList_Termin3').checked) {
                     window.webkit.messageHandlers.iosListener.postMessage('reloaded');
                 }
             };
             
-            var observer = new MutationObserver(callback);
+            const observer = new MutationObserver(callback);
             """
         case .getScheduleContent:
             return """
-            var tableBody = document.querySelector('#gridViewPlanyStudentow_DXMainTable tbody');
-            var columnHeader = Array.prototype.map.call(tableBody.querySelectorAll(".dxgvHeader_Aqua"), header => {
+            const tableBody = document.querySelector('#gridViewPlanyStudentow_DXMainTable tbody');
+            const columnHeader = Array.prototype.map.call(tableBody.querySelectorAll(".dxgvHeader_Aqua"), header => {
                 return header.innerText;
             });
             var date = ""
@@ -106,7 +104,7 @@ enum WSEIScript {
             """
         case .getErrorMessage:
             return """
-            var error = document.querySelector('.validation-summary-errors ul li');
+            const error = document.querySelector('.validation-summary-errors ul li');
             if (error != null) {
                 error.innerText;
             } else {
@@ -115,8 +113,8 @@ enum WSEIScript {
             """
         case .getStudentInfo:
             return """
-            var info = document.querySelector('#td_naglowek p').innerText.split('\\n');
-            var imageUrl = document.querySelector('#zdjecie_glowne').src;
+            const info = document.querySelector('#td_naglowek p').innerText.split('\\n');
+            const imageUrl = document.querySelector('#zdjecie_glowne').src;
             var dict = {};
             dict['name'] = info[1];
             dict['number'] = info[2];

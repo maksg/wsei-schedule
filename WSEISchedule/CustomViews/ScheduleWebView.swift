@@ -91,8 +91,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     private func login(withCaptcha captcha: String? = nil) {
         guard !login.isEmpty else { return }
         
-        run(.setLogin(login))
-        run(.setPassword(password))
+        run(.setLoginData(login: login, password: password))
         if let captcha = captcha {
             run(.setCaptcha(captcha))
         }
