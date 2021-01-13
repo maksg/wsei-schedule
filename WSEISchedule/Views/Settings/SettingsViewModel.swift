@@ -82,6 +82,8 @@ final class SettingsViewModel: NSObject, ObservableObject {
             let lectures = try context.fetch(fetchRequest)
             lectures.forEach(context.delete)
             try context.save()
+
+            NotificationCenter.default.post(name: .removeAllLectures, object: nil)
         } catch let error as NSError {
             print(error.debugDescription)
         }

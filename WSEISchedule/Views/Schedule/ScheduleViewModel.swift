@@ -53,9 +53,19 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         webView.showErrorMessage = showErrorMessage
         
         activateWatchSession()
+        observeRemoveAllLecturesNotification()
     }
     
     // MARK: Methods
+
+    private func observeRemoveAllLecturesNotification() {
+        NotificationCenter.default.addObserver(forName: .removeAllLectures, object: nil, queue: nil, using: removeAllLectures)
+    }
+
+    private func removeAllLectures(_ notification: Notification) {
+        lectures = []
+        lectureDays = []
+    }
     
     func reloadLectures() {
         fetchLectures(from: persistentContainer.viewContext)
@@ -113,7 +123,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     private func convertDataToLectureList(data: Any?) -> [CoreDataLecture] {
-        guard let data = data as? [[String : String]] else { return [] }
+        guard let data = data as? [[String: String]] else { return [] }
         
         let filteredData = data.map { (lecture) -> [String : String] in
             Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
