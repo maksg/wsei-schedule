@@ -25,7 +25,6 @@ final class SettingsViewModel: NSObject, ObservableObject {
         }
     }
     var isSignedIn: Bool { !student.login.isEmpty }
-    var signButtonText: String { isSignedIn ? Translation.SignIn.signOut.localized : Translation.SignIn.signIn.localized }
     
     @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
     let webView: ScheduleWebView
@@ -36,9 +35,8 @@ final class SettingsViewModel: NSObject, ObservableObject {
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                print("Unresolved error \(error), \(error.userInfo)")
-            }
+            guard let error = error as NSError? else { return }
+            print("Unresolved error \(error), \(error.userInfo)")
         })
         return container
     }()

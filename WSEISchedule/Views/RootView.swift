@@ -14,7 +14,6 @@ struct RootView: View {
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @ObservedObject var viewModel: RootViewModel
-    @State private var isSignInViewPresented: Bool = false
 
     // MARK: Views
 
@@ -26,35 +25,28 @@ struct RootView: View {
                     .tabItem(Tab.schedule.tabItem)
                     .tag(Tab.schedule)
 
-                SettingsView(viewModel: viewModel.settingsViewModel, isSignInViewPresented: $isSignInViewPresented)
+                SettingsView(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                     .tabItem(Tab.settings.tabItem)
                     .tag(Tab.settings)
-            }
+            }.accentColor(.main)
         } else {
             HStack(spacing: 0) {
                 ScheduleView(viewModel: viewModel.scheduleViewModel)
                     .frame(minWidth: 500)
                 Color.quaternary.frame(width: 1)
-                SettingsView(viewModel: viewModel.settingsViewModel, isSignInViewPresented: $isSignInViewPresented)
+                SettingsView(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                     .frame(minWidth: 140, maxWidth: 400)
             }
         }
     }
     
     var body: some View {
-        content
-            .accentColor(.main)
-            .onAppear(perform: onAppear)
-            .sheet(isPresented: $isSignInViewPresented) {
-                SignInView(viewModel: SignInViewModel(), onDismiss: viewModel.reloadLectures)
-            }
-    }
-
-    // MARK: Methods
-    
-    private func onAppear() {
-        guard !viewModel.isSignedIn else { return }
-        isSignInViewPresented = true
+        if viewModel.isSignedIn {
+            content
+        } else {
+            SignInView(viewModel: SignInViewModel(), onDismiss: viewModel.reloadLectures)
+                .transition(.move(edge: .bottom))
+        }
     }
 
 }

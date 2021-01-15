@@ -9,9 +9,14 @@
 import SwiftUI
 
 struct SignInView: View {
+
+    // MARK: Methods
+
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: SignInViewModel
     var onDismiss: (() -> Void)?
+
+    // MARK: Views
     
     var body: some View {
         VStack(spacing: 20) {
@@ -65,19 +70,18 @@ struct SignInView: View {
 
             Spacer()
         }
+        .frame(maxWidth: 500)
         .padding(26)
         .animation(.default)
         .keyboardAdaptive()
     }
+
+    // MARK: Methods
     
     private func signIn() {
-        viewModel.signIn(onSuccess: dismiss)
+        viewModel.signIn(onSuccess: onDismiss)
     }
 
-    private func dismiss() {
-        onDismiss?()
-        presentationMode.wrappedValue.dismiss()
-    }
 }
 
 struct SignInView_Previews: PreviewProvider {

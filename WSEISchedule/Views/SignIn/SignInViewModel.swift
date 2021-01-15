@@ -20,10 +20,10 @@ final class SignInViewModel: ObservableObject {
 
     // MARK: Methods
 
-    func signIn(onSuccess: @escaping () -> Void) {
+    func signIn(onSuccess: (() -> Void)?) {
         UserDefaults.standard.student.login = login
         UserDefaults.standard.student.password = password
-        onSuccess()
+        onSuccess?()
     }
     
 }

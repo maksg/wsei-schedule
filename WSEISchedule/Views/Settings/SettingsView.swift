@@ -13,7 +13,7 @@ struct SettingsView: View {
     // MARK: Properties
     
     @ObservedObject var viewModel: SettingsViewModel
-    @Binding var isSignInViewPresented: Bool
+    @Binding var isSignedIn: Bool
 
     // MARK: Views
     
@@ -38,11 +38,11 @@ struct SettingsView: View {
                     ForEach(Games.allCases, content: GameRow.init)
                 }
                 Section {
-                    Button(action: signInOrOut) {
+                    Button(action: signOut) {
                         HStack {
                             Image.singOut
                                 .foregroundColor(.red)
-                            Text(viewModel.signButtonText)
+                            Text(Translation.SignIn.signOut.localized)
                                 .foregroundColor(.main)
                         }
                     }
@@ -61,17 +61,15 @@ struct SettingsView: View {
 
     // MARK: Methods
     
-    private func signInOrOut() {
-        if viewModel.isSignedIn {
-            viewModel.signOut()
-        }
-        isSignInViewPresented = true
+    private func signOut() {
+        viewModel.signOut()
+        isSignedIn = false
     }
     
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel(webView: ScheduleWebView()), isSignInViewPresented: .constant(false))
+        SettingsView(viewModel: SettingsViewModel(webView: ScheduleWebView()), isSignedIn: .constant(true))
     }
 }

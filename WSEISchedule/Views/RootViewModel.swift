@@ -22,9 +22,7 @@ final class RootViewModel: ObservableObject {
         UserDefaults.standard.student
     }
     
-    var isSignedIn: Bool {
-        !student.login.isEmpty
-    }
+    @Published var isSignedIn: Bool = false
 
     // MARK: Initialization
     
@@ -32,11 +30,17 @@ final class RootViewModel: ObservableObject {
         webView = ScheduleWebView()
         scheduleViewModel = ScheduleViewModel(webView: webView)
         settingsViewModel = SettingsViewModel(webView: webView)
+        isSignedIn = !student.login.isEmpty
     }
 
     // MARK: Methods
     
     func reloadLectures() {
+        withAnimation {
+            isSignedIn = !student.login.isEmpty
+        }
+        guard isSignedIn else { return }
+
         webView.login = student.login
         webView.password = student.password
         webView.reload()

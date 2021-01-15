@@ -19,7 +19,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     var student: Student { UserDefaults.standard.student }
     @Published var errorMessage: String = ""
-    @Published var isRefreshing: Bool = true
+    @Published var isRefreshing: Bool = false
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
