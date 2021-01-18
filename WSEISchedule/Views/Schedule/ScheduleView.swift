@@ -18,27 +18,23 @@ struct ScheduleView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            List {
                 if !viewModel.errorMessage.isEmpty {
                     Text(viewModel.errorMessage)
-                        .padding()
+                        .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(.background)
-                        .background(Color.red)
-                        .animation(.default)
-                        .transition(.move(edge: .top))
+                        .foregroundColor(.white)
+                        .listRowBackground(Color.red)
                 }
-                List {
-                    ForEach(viewModel.lectureDays) { lectureDay in
-                        Section(header: DayHeader(date: lectureDay.date)) {
-                            ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
-                                .animation(.easeInOut)
-                        }
+                ForEach(viewModel.lectureDays) { lectureDay in
+                    Section(header: DayHeader(date: lectureDay.date)) {
+                        ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
+                            .animation(.easeInOut)
                     }
                 }
-                .insetGroupedListStyle()
-                .pullToRefresh(onRefresh: viewModel.reloadLectures, isRefreshing: $viewModel.isRefreshing)
             }
+            .insetGroupedListStyle()
+            .pullToRefresh(onRefresh: viewModel.reloadLectures, isRefreshing: $viewModel.isRefreshing)
             .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)
         }
