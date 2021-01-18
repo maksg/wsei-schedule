@@ -37,6 +37,7 @@ struct ScheduleView: View {
             .pullToRefresh(onRefresh: viewModel.reloadLectures, isRefreshing: $viewModel.isRefreshing)
             .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)
+            .accessibility(identifier: "ScheduleList")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

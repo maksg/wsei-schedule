@@ -50,6 +50,7 @@ struct SignInView: View {
                     .autocapitalization(.none)
                     .padding(.horizontal, 10)
                     .frame(height: 45)
+                    .accessibility(identifier: "LoginTextField")
                 
                 Color.quaternary
                     .frame(height: 1)
@@ -59,6 +60,7 @@ struct SignInView: View {
                     .textContentType(.password)
                     .padding(.horizontal, 10)
                     .frame(height: 45)
+                    .accessibility(identifier: "PasswordSecureField")
             }
             .background(Color.quaternaryBackground)
             .cornerRadius(10)
@@ -67,6 +69,7 @@ struct SignInView: View {
                 Text(Translation.SignIn.signIn.localized)
                     .foregroundColor(.main)
             }
+            .accessibility(identifier: "SignInButton")
 
             Spacer()
         }

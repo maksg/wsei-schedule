@@ -46,10 +46,12 @@ struct SettingsView: View {
                                 .foregroundColor(.main)
                         }
                     }
+                    .accessibility(identifier: "SignOutButton")
                 }
             }
             .insetGroupedListStyle()
             .navigationBarTitle(Tab.settings.title)
+            .accessibility(identifier: "SettingsList")
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $viewModel.showThankYouAlert) {

@@ -10,25 +10,71 @@ import XCTest
 
 class WSEIScheduleUITests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var app: XCUIApplication!
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+    override func setUpWithError() throws {
         continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDownWithError() throws {
+        Springboard.deleteMyApp()
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testMakeScreenshots() {
+        app.launch()
+
+        takeScreenshot(named: "SignIn")
+
+        let loginTextField = app.textFields["LoginTextField"]
+        loginTextField.tap()
+        loginTextField.typeText("maksymiliangalas")
+
+        let passwordSecureField = app.secureTextFields["PasswordSecureField"]
+        passwordSecureField.tap()
+        passwordSecureField.typeText("xeztad-zuhwob-9Zedki")
+
+        app.buttons["SignInButton"].tap()
+
+        let firstCell = app.tables["ScheduleList"].children(matching: .cell).element(boundBy: 0)
+        XCTAssert(firstCell.waitForExistence(timeout: 20))
+        firstCell.tap()
+
+        app.navigationBars.firstMatch.tap()
+
+        takeScreenshot(named: "Schedule")
+
+        let tabBar = app.tabBars.firstMatch
+        if tabBar.exists {
+            tabBar.buttons.element(boundBy: 1).tap()
+            takeScreenshot(named: "Settings")
+        }
+
+        app.buttons["SignOutButton"].tap()
+    }
+
+    func takeScreenshot(named name: String) {
+        // Take the screenshot
+        let fullScreenshot = XCUIScreen.main.screenshot()
+
+        // Create a new attachment to save our screenshot
+        // and give it a name consisting of the "named"
+        // parameter and the device name, so we can find
+        // it later.
+        let screenshotAttachment = XCTAttachment(
+            uniformTypeIdentifier: "public.png",
+            name: "Screenshot-\(UIDevice.current.name)-\(name).png",
+            payload: fullScreenshot.pngRepresentation,
+            userInfo: nil
+        )
+
+        // Usually Xcode will delete attachments after
+        // the test has run; we don't want that!
+        screenshotAttachment.lifetime = .keepAlways
+
+        // Add the attachment to the test log,
+        // so we can retrieve it later
+        add(screenshotAttachment)
     }
 
 }

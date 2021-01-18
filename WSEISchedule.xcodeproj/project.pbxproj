@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5031A38725B5CF1F005B9322 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A38625B5CF1F005B9322 /* Springboard.swift */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
 		50B22B3A25AFA43600A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22B3925AFA43600A71D14 /* Notification+Name.swift */; };
@@ -222,6 +223,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5031A38625B5CF1F005B9322 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		50B22B3925AFA43600A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 		57AD317122AE6B51009EEB1F /* WSEIScheduleUITests */ = {
 			isa = PBXGroup;
 			children = (
+				5031A38625B5CF1F005B9322 /* Springboard.swift */,
 				57AD317222AE6B51009EEB1F /* WSEIScheduleUITests.swift */,
 				57AD317422AE6B51009EEB1F /* Info.plist */,
 			);
@@ -1128,6 +1131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57AD317322AE6B51009EEB1F /* WSEIScheduleUITests.swift in Sources */,
+				5031A38725B5CF1F005B9322 /* Springboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

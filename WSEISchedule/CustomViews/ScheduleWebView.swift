@@ -20,18 +20,18 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
     
     var login: String = "" {
         didSet {
-            showErrorMessage?("")
+            setErrorMessage?("")
         }
     }
     var password: String = "" {
         didSet {
-            showErrorMessage?("")
+            setErrorMessage?("")
         }
     }
     
     var loadLectures: ((Any?) -> Void)?
     var loadStudentInfo: ((Any?) -> Void)?
-    var showErrorMessage: ((String) -> Void)?
+    var setErrorMessage: ((String) -> Void)?
     
     private var textRecognitionRequest: VNRecognizeTextRequest!
     private let textRecognitionWorkQueue = DispatchQueue(label: "TextRecognitionQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
@@ -134,7 +134,7 @@ final class ScheduleWebView: NSObject, UIViewRepresentable {
         run(.getErrorMessage, onSuccess: { [weak self] data in
             let errorMessage = data as? String ?? ""
             if !errorMessage.isEmpty && !errorMessage.contains("kod z obrazka") && !errorMessage.contains("captcha") {
-                self?.showErrorMessage?(errorMessage)
+                self?.setErrorMessage?(errorMessage)
                 completionHandler(false)
             } else {
                 completionHandler(true)
@@ -188,13 +188,13 @@ extension ScheduleWebView: WKNavigationDelegate {
             })
         }
         if webView.url == mainURL {
-            showErrorMessage?("")
+            setErrorMessage?("")
             saveCookies()
             getStudentInfo()
             showSchedule()
         }
         if webView.url == scheduleURL {
-            showErrorMessage?("")
+            setErrorMessage?("")
             run(.refreshSchedule)
         }
     }

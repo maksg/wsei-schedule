@@ -50,7 +50,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         super.init()
         
         webView.loadLectures = loadLectures
-        webView.showErrorMessage = showErrorMessage
+        webView.setErrorMessage = setErrorMessage
         
         activateWatchSession()
         observeRemoveAllLecturesNotification()
@@ -118,8 +118,11 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
     
-    func showErrorMessage(_ errorMessage: String) {
+    func setErrorMessage(_ errorMessage: String) {
         self.errorMessage = errorMessage
+
+        guard !errorMessage.isEmpty else { return }
+        isRefreshing = false
     }
     
     private func convertDataToLectureList(data: Any?) -> [CoreDataLecture] {
