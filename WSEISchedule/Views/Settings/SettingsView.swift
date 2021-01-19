@@ -40,7 +40,7 @@ struct SettingsView: View {
                 Section {
                     Button(action: signOut) {
                         HStack {
-                            Image.singOut
+                            Image.signOut
                                 .foregroundColor(.red)
                             Text(Translation.SignIn.signOut.localized)
                                 .foregroundColor(.main)

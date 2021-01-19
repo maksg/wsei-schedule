@@ -1,9 +1,9 @@
 //
 //  View+Uncapitalized.swift
-//  WSEISchedule
+//  Watch Lectures Extension
 //
-//  Created by Maksymilian Galas on 06/10/2020.
-//  Copyright © 2020 Infinity Pi Ltd. All rights reserved.
+//  Created by Maksymilian Galas on 19/01/2021.
+//  Copyright © 2021 Infinity Pi Ltd. All rights reserved.
 //
 
 import SwiftUI
@@ -12,7 +12,7 @@ extension View {
 
     @ViewBuilder
     func uncapitalized() -> some View {
-        if #available(iOS 14, *) {
+        if #available(watchOSApplicationExtension 7.0, *) {
             textCase(.none)
         } else {
             self
@@ -20,3 +20,4 @@ extension View {
     }
 
 }
+

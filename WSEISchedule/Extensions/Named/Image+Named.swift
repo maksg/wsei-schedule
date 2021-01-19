@@ -27,6 +27,6 @@ extension Image {
     static var lecturer: Image { Image(systemName: "person.fill") }
     static var comments: Image { Image(systemName: "info.circle.fill") }
 
-    static var singOut: Image { Image(systemName: "power") }
+    static var signOut: Image { Image(systemName: "power") }
     
 }

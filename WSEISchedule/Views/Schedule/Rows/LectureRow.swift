@@ -69,7 +69,7 @@ struct LectureRow: View {
     // MARK: Methods
 
     private func onTap() {
-        withAnimation(.easeInOut) {
+        withAnimation {
             hideDetails.toggle()
         }
     }
