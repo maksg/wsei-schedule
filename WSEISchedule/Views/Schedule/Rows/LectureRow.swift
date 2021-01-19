@@ -13,7 +13,20 @@ struct LectureRow: View {
     // MARK: Properties
 
     var lecture: Lecture
-    @State private var hideDetails: Bool = true
+    @State private var showDetails: Bool = false
+
+    @State private var expandedHeight: CGFloat = .zero
+    @State private var defaultHeight: CGFloat = .zero
+
+    private let verticalPadding: CGFloat = 8.0
+
+    private var rowHeight: CGFloat {
+        if showDetails {
+            return expandedHeight
+        } else {
+            return defaultHeight + verticalPadding * 2
+        }
+    }
 
     // MARK: Views
 
@@ -35,42 +48,45 @@ struct LectureRow: View {
                         Text(lecture.classroom)
                     }
                 }
+                .fixedSize(horizontal: false, vertical: true)
+                .heightReader(height: $defaultHeight)
 
-                if !hideDetails {
-                    Line()
-                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
-                        .foregroundColor(.tertiary)
-                        .frame(height: 1)
+                Line()
+                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                    .foregroundColor(.tertiary)
+                    .frame(height: 1)
 
-                    VStack(alignment: .leading, spacing: 8) {
-                        HStack(alignment: .top) {
-                            Image.code.foregroundColor(.main)
-                            Text(lecture.code)
-                        }
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(alignment: .top) {
+                        Image.code.foregroundColor(.main)
+                        Text(lecture.code)
+                    }
 
-                        HStack(alignment: .top) {
-                            Image.lecturer.foregroundColor(.orange)
-                            Text(lecture.lecturer)
-                        }
+                    HStack(alignment: .top) {
+                        Image.lecturer.foregroundColor(.orange)
+                        Text(lecture.lecturer)
+                    }
 
-                        HStack(alignment: .top) {
-                            Image.comments.foregroundColor(.indigo)
-                            Text(lecture.comments)
-                        }
+                    HStack(alignment: .top) {
+                        Image.comments.foregroundColor(.indigo)
+                        Text(lecture.comments)
                     }
                 }
+                .fixedSize(horizontal: false, vertical: true)
             }
             .foregroundColor(.primary)
             .font(.footnote)
-            .padding(.vertical, 8)
+            .padding(.vertical, verticalPadding)
         }
+        .heightReader(height: $expandedHeight)
+        .animatableRowHeight(rowHeight)
     }
 
     // MARK: Methods
 
     private func onTap() {
-        withAnimation {
-            hideDetails.toggle()
+        withAnimation(.easeInOut(duration: 0.1)) {
+            showDetails.toggle()
         }
     }
 

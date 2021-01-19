@@ -30,10 +30,6 @@ extension Color {
         Color(.systemBackground)
     }
 
-    static var brown: Color {
-        Color(.brown)
-    }
-
     static var indigo: Color {
         Color(.systemIndigo)
     }

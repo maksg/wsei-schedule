@@ -4,17 +4,6 @@
 
 final class Translation {
     
-    enum Alert: String {
-        case cancel = "alert.cancel"
-        case confirm = "alert.confirm"
-        case title = "alert.title"
-    }
-    
-    enum Error: String {
-        case `default` = "error.default"
-        case title = "error.title"
-    }
-    
     enum Schedule: String {
         case title = "schedule.title"
         case today = "schedule.today"

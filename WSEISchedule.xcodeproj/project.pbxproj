@@ -10,6 +10,11 @@
 		5031A38725B5CF1F005B9322 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A38625B5CF1F005B9322 /* Springboard.swift */; };
 		5031A39725B718F2005B9322 /* View+Uncapitalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A39625B718F2005B9322 /* View+Uncapitalized.swift */; };
 		5031A3A025B71C5E005B9322 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A39F25B71C5E005B9322 /* Image+Named.swift */; };
+		5031A3AD25B77A4A005B9322 /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
+		5031A3BD25B77B88005B9322 /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
+		5031A3C525B77CEC005B9322 /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
+		5031A3CD25B77CF1005B9322 /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
+		5031A3D625B78378005B9322 /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3D525B78378005B9322 /* Color+Named.swift */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
 		50B22B3A25AFA43600A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22B3925AFA43600A71D14 /* Notification+Name.swift */; };
@@ -228,6 +233,9 @@
 		5031A38625B5CF1F005B9322 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		5031A39625B718F2005B9322 /* View+Uncapitalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Uncapitalized.swift"; sourceTree = "<group>"; };
 		5031A39F25B71C5E005B9322 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
+		5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HeightReader.swift"; sourceTree = "<group>"; };
+		5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableRowHeight.swift; sourceTree = "<group>"; };
+		5031A3D525B78378005B9322 /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
 		50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		50B22B3925AFA43600A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
@@ -391,12 +399,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5031A3AB25B77A21005B9322 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				572FF89E252C8DC500FFE530 /* View+Uncapitalized.swift */,
+				575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */,
+				5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		50B22B3825AFA41900A71D14 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				50B22B3925AFA43600A71D14 /* Notification+Name.swift */,
-				5031A39625B718F2005B9322 /* View+Uncapitalized.swift */,
 				5031A39F25B71C5E005B9322 /* Image+Named.swift */,
+				5031A3D525B78378005B9322 /* Color+Named.swift */,
+				5031A39625B718F2005B9322 /* View+Uncapitalized.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,6 +482,7 @@
 				57674F52234DBCF000684C2A /* Color+Named.swift */,
 				576B96FD23ABBFFF00CA17CF /* Image+Named.swift */,
 				577DDF1E23C7614D00D841BB /* UIImage+Named.swift */,
+				50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */,
 			);
 			path = Named;
 			sourceTree = "<group>";
@@ -645,15 +665,13 @@
 		57AD318422AE6BC3009EEB1F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5031A3AB25B77A21005B9322 /* View */,
 				576B96FA23ABBCA300CA17CF /* Named */,
-				572FF89E252C8DC500FFE530 /* View+Uncapitalized.swift */,
 				57AD318622AE6BC3009EEB1F /* String+Localized.swift */,
 				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
 				572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
-				575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */,
-				50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -724,6 +742,7 @@
 			isa = PBXGroup;
 			children = (
 				57AF2A1724A2338D00950F80 /* InsetGroupedListStyle.swift */,
+				5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -1020,7 +1039,9 @@
 				578A72F522BA4C890009130A /* ComplicationController.swift in Sources */,
 				57561BF32535B27C00DBC3D3 /* MockData.swift in Sources */,
 				50B22B3A25AFA43600A71D14 /* Notification+Name.swift in Sources */,
+				5031A3C525B77CEC005B9322 /* View+HeightReader.swift in Sources */,
 				578A730F22BA50460009130A /* Date+Extensions.swift in Sources */,
+				5031A3D625B78378005B9322 /* Color+Named.swift in Sources */,
 				57A4EF2D22BA56A200C08CE7 /* String+Localized.swift in Sources */,
 				578A730A22BA4FB90009130A /* LectureRow.swift in Sources */,
 				578F91E122BA5A3E00C1FC53 /* ContentViewModel.swift in Sources */,
@@ -1031,6 +1052,7 @@
 				572E7F03234CAD160061A835 /* Translation.swift in Sources */,
 				578A72EF22BA4C890009130A /* ContentView.swift in Sources */,
 				578A72F322BA4C890009130A /* ExtensionDelegate.swift in Sources */,
+				5031A3CD25B77CF1005B9322 /* AnimatableRowHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1110,7 @@
 				577DDF1823C72BA500D841BB /* Student.swift in Sources */,
 				577DDF1F23C7614D00D841BB /* UIImage+Named.swift in Sources */,
 				57674F53234DBCF000684C2A /* Color+Named.swift in Sources */,
+				5031A3AD25B77A4A005B9322 /* View+HeightReader.swift in Sources */,
 				572FF8BE252CB5C500FFE530 /* KeyboardInfo.swift in Sources */,
 				5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */,
 				572E7F01234CACF10061A835 /* Translation.swift in Sources */,
@@ -1097,6 +1120,7 @@
 				57791D6323C5EA4700F91D7F /* Games.swift in Sources */,
 				50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */,
 				570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */,
+				5031A3BD25B77B88005B9322 /* AnimatableRowHeight.swift in Sources */,
 				572FF89F252C8DC500FFE530 /* View+Uncapitalized.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
 				572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */,

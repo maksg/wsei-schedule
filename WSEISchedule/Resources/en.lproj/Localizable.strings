@@ -6,17 +6,6 @@
   Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 */
 
-// Alert
-
-"alert.title" = "Alert";
-"alert.confirm" = "Ok";
-"alert.cancel" = "Cancel";
-
-// Error
-
-"error.title" = "Error";
-"error.default" = "Something happened";
-
 // Sign In
 "sign_in.login" = "Login";
 "sign_in.password" = "Password";
