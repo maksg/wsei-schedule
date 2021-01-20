@@ -16,6 +16,7 @@ struct PullToRefreshView: UIViewRepresentable {
     class Coordinator {
         let onRefresh: () -> Void
         let isRefreshing: Binding<Bool>
+        var pulledToRefresh: Bool = false
 
         init(onRefresh: @escaping () -> Void, isRefreshing: Binding<Bool>) {
             self.onRefresh = onRefresh
@@ -23,7 +24,7 @@ struct PullToRefreshView: UIViewRepresentable {
         }
 
         @objc func onValueChanged() {
-            isRefreshing.wrappedValue = true
+            pulledToRefresh = true
             onRefresh()
         }
     }
@@ -55,33 +56,22 @@ struct PullToRefreshView: UIViewRepresentable {
 
         let refreshControl = tableView.refreshControl!
         if isRefreshing {
-            refreshControl.beginRefreshingManually()
+            guard !refreshControl.isRefreshing else { return }
+            let y = tableView.contentOffset.y - refreshControl.frame.height
+            tableView.setContentOffset(CGPoint(x: 0, y: y), animated: false)
+            refreshControl.beginRefreshing()
         } else {
-            refreshControl.endRefreshingManually()
+            guard refreshControl.isRefreshing else { return }
+            let y = refreshControl.frame.maxY + tableView.adjustedContentInset.top
+            refreshControl.endRefreshing()
+            if !context.coordinator.pulledToRefresh && tableView.contentOffset.y <= -tableView.adjustedContentInset.top {
+                tableView.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
+            }
+            context.coordinator.pulledToRefresh = false
         }
     }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(onRefresh: onRefresh, isRefreshing: $isRefreshing)
+        Coordinator(onRefresh: onRefresh, isRefreshing: $isRefreshing)
     }
-}
-
-
-extension UIRefreshControl {
-
-    func beginRefreshingManually() {
-        if let scrollView = superview as? UIScrollView {
-            scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y - frame.height), animated: false)
-        }
-        beginRefreshing()
-    }
-
-    func endRefreshingManually() {
-        endRefreshing()
-        if let scrollView = superview as? UIScrollView {
-            let y = frame.maxY + scrollView.adjustedContentInset.top
-            scrollView.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
-        }
-    }
-
 }
