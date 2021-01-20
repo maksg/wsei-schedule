@@ -26,8 +26,10 @@ extension View {
                     .preference(key: HeightPreferenceKey.self, value: proxy.size.height)
             }
         )
-        .onPreferenceChange(HeightPreferenceKey.self) { preferences in
-            height.wrappedValue = preferences
+        .onPreferenceChange(HeightPreferenceKey.self) { preference in
+            withAnimation {
+                height.wrappedValue = preference
+            }
         }
     }
 
