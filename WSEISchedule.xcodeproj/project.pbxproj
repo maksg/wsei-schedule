@@ -15,6 +15,7 @@
 		5031A3C525B77CEC005B9322 /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
 		5031A3CD25B77CF1005B9322 /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
 		5031A3D625B78378005B9322 /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3D525B78378005B9322 /* Color+Named.swift */; };
+		5031A3E625B89ED6005B9322 /* LaunchScreen_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5031A3E525B89ED6005B9322 /* LaunchScreen_iPad.storyboard */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
 		50B22B3A25AFA43600A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22B3925AFA43600A71D14 /* Notification+Name.swift */; };
@@ -236,6 +237,7 @@
 		5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HeightReader.swift"; sourceTree = "<group>"; };
 		5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableRowHeight.swift; sourceTree = "<group>"; };
 		5031A3D525B78378005B9322 /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
+		5031A3E525B89ED6005B9322 /* LaunchScreen_iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen_iPad.storyboard; sourceTree = "<group>"; };
 		50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		50B22B3925AFA43600A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
@@ -723,6 +725,7 @@
 				57AD315622AE6B51009EEB1F /* Assets.xcassets */,
 				5773656E22C2349D00C3C9AC /* Colors.xcassets */,
 				57AD315B22AE6B51009EEB1F /* LaunchScreen.storyboard */,
+				5031A3E525B89ED6005B9322 /* LaunchScreen_iPad.storyboard */,
 				57AD31B222AE6C01009EEB1F /* Localizable.strings */,
 				57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */,
 			);
@@ -999,6 +1002,7 @@
 				57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */,
 				57AD315A22AE6B51009EEB1F /* Preview Assets.xcassets in Resources */,
 				57AD315722AE6B51009EEB1F /* Assets.xcassets in Resources */,
+				5031A3E625B89ED6005B9322 /* LaunchScreen_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
