@@ -120,14 +120,10 @@ extension SettingsViewModel: SKProductsRequestDelegate {
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let products = response.products
-        let cashSymbols: [String] = ["💵", "💴", "💶", "💷"]
-        let prices = products.map(\.localizedPrice)
-        let titles = zip(cashSymbols, prices).map { (symbol, price) in
-            "\(symbol)  \(Translation.Settings.Support.donate.localized) \(price)"
-        }
+        let cashSymbols: [UIImage] = ["💵", "💴", "💶", "💷"].compactMap({ $0.image() })
 
         DispatchQueue.main.async { [weak self] in
-            self?.supportDeveloperProducts = zip(titles, products).map(SupportDeveloperProduct.init)
+            self?.supportDeveloperProducts = zip(cashSymbols, products).map(SupportDeveloperProduct.init)
         }
     }
     

@@ -9,25 +9,35 @@
 import SwiftUI
 
 struct StudentInfoRow: View {
+
+    // MARK: Properties
+
     var viewModel: StudentInfoRowViewModel
+
+    // MARK: Views
     
     var body: some View {
         HStack {
             URLImage(url: viewModel.photoUrl, placeholder: .placeholder, customCacheRequest: viewModel.cacheRequest)
                 .cornerRadius(6)
+                .accessibility(hint: Text(Translation.Accessibility.Settings.profilePhoto.localized))
             VStack {
                 Text(viewModel.name)
                     .font(.headline)
+                    .accessibility(hint: Text(Translation.Accessibility.Settings.name.localized))
                 Text(viewModel.number)
                     .font(.subheadline)
+                    .accessibility(hint: Text(Translation.Accessibility.Settings.indexNumber.localized))
                 Text(viewModel.courseName)
                     .font(.footnote)
                     .foregroundColor(.secondary)
+                    .accessibility(hint: Text(Translation.Accessibility.Settings.courseName.localized))
             }
             .frame(maxWidth: .infinity)
             .multilineTextAlignment(.center)
         }
     }
+
 }
 
 struct StudentInfoRow_Previews: PreviewProvider {

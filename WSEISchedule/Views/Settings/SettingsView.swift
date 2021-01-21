@@ -29,8 +29,11 @@ struct SettingsView: View {
                         Button(action: {
                             viewModel.buy(product.product)
                         }, label: {
-                            Text(product.title)
-                                .foregroundColor(.main)
+                            HStack {
+                                Image(uiImage: product.image)
+                                Text(product.title)
+                                    .foregroundColor(.main)
+                            }
                         })
                     }
                 }

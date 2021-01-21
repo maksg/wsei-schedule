@@ -55,6 +55,26 @@ final class Translation {
             case nextTwoLectures = "widget.about.next_two_lectures"
         }
     }
+
+    enum Accessibility {
+        enum Schedule: String {
+            case subject = "accessibility.schedule.subject"
+            case time = "accessibility.schedule.time"
+            case to = "accessibility.schedule.to"
+            case classroom = "accessibility.schedule.classroom"
+            case code = "accessibility.schedule.code"
+            case lecturer = "accessibility.schedule.lecturer"
+            case comments = "accessibility.schedule.comments"
+            case upcomingLecturesList = "accessibility.schedule.upcoming_lectures_list"
+        }
+
+        enum Settings: String {
+            case profilePhoto = "accessibility.settings.profile_photo"
+            case name = "accessibility.settings.name"
+            case indexNumber = "accessibility.settings.index_number"
+            case courseName = "accessibility.settings.course_name"
+        }
+    }
     
 }
 

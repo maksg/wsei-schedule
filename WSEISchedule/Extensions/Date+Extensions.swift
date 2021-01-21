@@ -15,11 +15,22 @@ extension Date {
         formatter.dateFormat = "EEEE dd.MM"
         return formatter.string(from: self)
     }
+
+    var voiceOverDay: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEdMMMM", options: 0, locale: .current)
+        return formatter.string(from: self)
+    }
     
     var shortHour: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: self)
+    }
+
+    var voiceOverHour: String {
+        let components = Calendar.current.dateComponents([.hour, .minute], from: self)
+        return DateComponentsFormatter.localizedString(from: components, unitsStyle: .spellOut) ?? ""
     }
     
     var strippedFromTime: Date {

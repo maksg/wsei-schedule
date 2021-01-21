@@ -7,6 +7,7 @@
 */
 
 // Sign In
+
 "sign_in.login" = "Login";
 "sign_in.password" = "Password";
 "sign_in.sign_in" = "Sign In";
@@ -46,3 +47,19 @@
 "watch.today" = "Today";
 "watch.no_lectures" = "No lectures";
 "watch.no_lectures_today" = "No lectures today";
+
+// Accessibility
+
+"accessibility.schedule.subject" = "Subject";
+"accessibility.schedule.time" = "Time";
+"accessibility.schedule.to" = "to";
+"accessibility.schedule.classroom" = "Classroom";
+"accessibility.schedule.code" = "Code";
+"accessibility.schedule.lecturer" = "Lecturer";
+"accessibility.schedule.comments" = "Comments";
+"accessibility.schedule.upcoming_lectures_list" = "List of upcoming lectures";
+
+"accessibility.settings.profile_photo" = "Profile photo";
+"accessibility.settings.name" = "Name";
+"accessibility.settings.index_number" = "Index number";
+"accessibility.settings.course_name" = "Course name";

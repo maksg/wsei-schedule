@@ -28,6 +28,14 @@ struct LectureRow: View {
         }
     }
 
+    private var time: String {
+        "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)"
+    }
+
+    private var accessibilityTime: String {
+        "\(lecture.fromDate.voiceOverHour) \(Translation.Accessibility.Schedule.to.localized) \(lecture.toDate.voiceOverHour)"
+    }
+
     // MARK: Views
 
     var body: some View {
@@ -36,15 +44,22 @@ struct LectureRow: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(lecture.subject)
                         .font(.headline)
+                        .accessibility(hint: Text(Translation.Accessibility.Schedule.subject.localized))
+
                     HStack {
-                        Image.time.foregroundColor(.red)
-                        HStack(spacing: 1) {
-                            Text(lecture.fromDate.shortHour)
-                            Text("-")
-                            Text(lecture.toDate.shortHour)
-                        }
+                        Image.time
+                            .foregroundColor(.red)
+                            .accessibilityElement()
+                            .accessibility(label: Text(Translation.Accessibility.Schedule.time.localized))
+                        Text(time)
+                            .accessibility(label: Text(accessibilityTime))
+
                         Spacer()
-                        Image.classroom.foregroundColor(.blue)
+
+                        Image.classroom
+                            .foregroundColor(.blue)
+                            .accessibilityElement()
+                            .accessibility(label: Text(Translation.Accessibility.Schedule.classroom.localized))
                         Text(lecture.classroom)
                     }
                 }
@@ -58,17 +73,26 @@ struct LectureRow: View {
 
                 VStack(alignment: .leading, spacing: 8) {
                     HStack(alignment: .top) {
-                        Image.code.foregroundColor(.main)
+                        Image.code
+                            .foregroundColor(.main)
+                            .accessibilityElement()
+                            .accessibility(label: Text(Translation.Accessibility.Schedule.code.localized))
                         Text(lecture.code)
                     }
 
                     HStack(alignment: .top) {
-                        Image.lecturer.foregroundColor(.orange)
+                        Image.lecturer
+                            .foregroundColor(.orange)
+                            .accessibilityElement()
+                            .accessibility(label: Text(Translation.Accessibility.Schedule.lecturer.localized))
                         Text(lecture.lecturer)
                     }
 
                     HStack(alignment: .top) {
-                        Image.comments.foregroundColor(.indigo)
+                        Image.comments
+                            .foregroundColor(.indigo)
+                            .accessibilityElement()
+                            .accessibility(label: Text(Translation.Accessibility.Schedule.comments.localized))
                         Text(lecture.comments)
                     }
                 }

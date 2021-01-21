@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */; };
 		5031A38725B5CF1F005B9322 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A38625B5CF1F005B9322 /* Springboard.swift */; };
 		5031A39725B718F2005B9322 /* View+Uncapitalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A39625B718F2005B9322 /* View+Uncapitalized.swift */; };
 		5031A3A025B71C5E005B9322 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A39F25B71C5E005B9322 /* Image+Named.swift */; };
@@ -231,6 +232,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
 		5031A38625B5CF1F005B9322 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		5031A39625B718F2005B9322 /* View+Uncapitalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Uncapitalized.swift"; sourceTree = "<group>"; };
 		5031A39F25B71C5E005B9322 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 				57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */,
 				572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
+				502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 				572FF8BE252CB5C500FFE530 /* KeyboardInfo.swift in Sources */,
 				5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */,
 				572E7F01234CACF10061A835 /* Translation.swift in Sources */,
+				502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */,
 				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
 				572FF8BB252CB5C500FFE530 /* KeyboardObservable.swift in Sources */,

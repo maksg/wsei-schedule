@@ -37,6 +37,7 @@ struct ScheduleView: View {
             .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)
             .accessibility(identifier: "ScheduleList")
+            .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

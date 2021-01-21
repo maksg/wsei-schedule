@@ -6,18 +6,8 @@
   Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 */
 
-// Alert
-
-"alert.title" = "Alert";
-"alert.confirm" = "Ok";
-"alert.cancel" = "Anuluj";
-
-// Error
-
-"error.title" = "Błąd";
-"error.default" = "Coś się stało";
-
 // Sign In
+
 "sign_in.login" = "Login";
 "sign_in.password" = "Hasło";
 "sign_in.sign_in" = "Zaloguj się";
@@ -57,3 +47,19 @@
 "watch.today" = "dzisiaj";
 "watch.no_lectures" = "Brak wykładów";
 "watch.no_lectures_today" = "Brak wykładów dzisiaj";
+
+// Accessibility
+
+"accessibility.schedule.subject" = "Przedmiot";
+"accessibility.schedule.time" = "Czas";
+"accessibility.schedule.to" = "do";
+"accessibility.schedule.classroom" = "Sala";
+"accessibility.schedule.code" = "Kod";
+"accessibility.schedule.lecturer" = "Wykładowca";
+"accessibility.schedule.comments" = "Komentarze";
+"accessibility.schedule.upcoming_lectures_list" = "Lista nadchodzących zajęć";
+
+"accessibility.settings.profile_photo" = "Zdjęcie profilowe";
+"accessibility.settings.name" = "Imię i nazwisko";
+"accessibility.settings.index_number" = "Numer indeksu";
+"accessibility.settings.course_name" = "Nazwa kierunku";
