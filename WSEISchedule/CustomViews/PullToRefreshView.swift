@@ -10,13 +10,18 @@ import SwiftUI
 
 struct PullToRefreshView: UIViewRepresentable {
 
+    // MARK: Properties
+
     let onRefresh: () -> Void
     @Binding var isRefreshing: Bool
+
+    // MARK: Coordinator
 
     class Coordinator {
         let onRefresh: () -> Void
         let isRefreshing: Binding<Bool>
         var pulledToRefresh: Bool = false
+        var firstRefresh: Bool = true
 
         init(onRefresh: @escaping () -> Void, isRefreshing: Binding<Bool>) {
             self.onRefresh = onRefresh
@@ -29,6 +34,8 @@ struct PullToRefreshView: UIViewRepresentable {
             onRefresh()
         }
     }
+
+    // MARK: Methods
 
     func makeUIView(context: Context) -> UIView {
         return UIView()
@@ -63,16 +70,17 @@ struct PullToRefreshView: UIViewRepresentable {
             refreshControl.beginRefreshing()
         } else {
             guard refreshControl.isRefreshing else { return }
-            let y = refreshControl.frame.maxY + tableView.adjustedContentInset.top
             refreshControl.endRefreshing()
-            if !context.coordinator.pulledToRefresh && tableView.contentOffset.y <= -tableView.adjustedContentInset.top {
-                tableView.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
+            if context.coordinator.firstRefresh && tableView.contentOffset.y <= -tableView.adjustedContentInset.top {
+                let y = refreshControl.frame.maxY + tableView.adjustedContentInset.top
+                tableView.setContentOffset(CGPoint(x: 0, y: -y*5), animated: true)
+                context.coordinator.firstRefresh = false
             }
-            context.coordinator.pulledToRefresh = false
         }
     }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(onRefresh: onRefresh, isRefreshing: $isRefreshing)
     }
+
 }
