@@ -15,6 +15,10 @@ struct PullToRefreshView: UIViewRepresentable {
     let onRefresh: () -> Void
     @Binding var isRefreshing: Bool
 
+    private var isPhone: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone
+    }
+
     // MARK: Coordinator
 
     class Coordinator {
@@ -71,7 +75,7 @@ struct PullToRefreshView: UIViewRepresentable {
         } else {
             guard refreshControl.isRefreshing else { return }
             refreshControl.endRefreshing()
-            if context.coordinator.firstRefresh && tableView.contentOffset.y <= -tableView.adjustedContentInset.top {
+            if context.coordinator.firstRefresh && tableView.contentOffset.y <= -tableView.adjustedContentInset.top && isPhone {
                 let y = refreshControl.frame.maxY + tableView.adjustedContentInset.top
                 tableView.setContentOffset(CGPoint(x: 0, y: -y*5), animated: true)
                 context.coordinator.firstRefresh = false
