@@ -233,6 +233,7 @@
 
 /* Begin PBXFileReference section */
 		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
+		502FE9E425BA14CD0050FEBA /* generate_screenshots.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_screenshots.sh; sourceTree = "<group>"; };
 		5031A38625B5CF1F005B9322 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		5031A39625B718F2005B9322 /* View+Uncapitalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Uncapitalized.swift"; sourceTree = "<group>"; };
 		5031A39F25B71C5E005B9322 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
@@ -575,6 +576,7 @@
 		57AD314422AE6B50009EEB1F = {
 			isa = PBXGroup;
 			children = (
+				502FE9E425BA14CD0050FEBA /* generate_screenshots.sh */,
 				57A6BEB42530904900E9B26C /* ScheduleWidgetExtension.entitlements */,
 				57AD314F22AE6B50009EEB1F /* WSEISchedule */,
 				57AD316622AE6B51009EEB1F /* WSEIScheduleTests */,
