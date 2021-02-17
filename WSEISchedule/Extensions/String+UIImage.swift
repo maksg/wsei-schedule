@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
 
-    func image() -> UIImage? {
+    var image: UIImage? {
         let size = CGSize(width: 30, height: 20)
         let rect = CGRect(origin: CGPoint(), size: size)
         return UIGraphicsImageRenderer(size: size).image { context in

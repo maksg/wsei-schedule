@@ -120,7 +120,7 @@ extension SettingsViewModel: SKProductsRequestDelegate {
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let products = response.products
-        let cashSymbols: [UIImage] = ["💵", "💴", "💶", "💷"].compactMap({ $0.image() })
+        let cashSymbols: [UIImage] = ["💵", "💴", "💶", "💷"].compactMap(\.image)
 
         DispatchQueue.main.async { [weak self] in
             self?.supportDeveloperProducts = zip(cashSymbols, products).map(SupportDeveloperProduct.init)
