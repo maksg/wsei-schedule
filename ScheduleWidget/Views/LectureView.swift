@@ -26,17 +26,6 @@ struct LectureView: View {
     let enabledModules: Set<Module>
     let minimumScaleFactor: CGFloat
 
-    private var formattedDate: String {
-        let date = lecture.fromDate
-        if date.isToday {
-            return Translation.Schedule.today.localized
-        } else if date.isTomorrow {
-            return Translation.Schedule.tomorrow.localized
-        } else {
-            return date.formattedDay
-        }
-    }
-
     // MARK: Initialization
 
     init(lecture: Lecture, enabledModules: Set<LectureView.Module>, minimumScaleFactor: CGFloat = 1.0) {
@@ -72,7 +61,7 @@ struct LectureView: View {
             if enabledModules.contains(.date) {
                 HStack {
                     Spacer()
-                    Text(formattedDate)
+                    Text(lecture.fromDate.formattedDay)
                         .fontWeight(.semibold)
                         .foregroundColor(.main)
                         .lineLimit(1)

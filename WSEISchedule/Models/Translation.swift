@@ -6,8 +6,6 @@ final class Translation {
     
     enum Schedule: String {
         case title = "schedule.title"
-        case today = "schedule.today"
-        case tomorrow = "schedule.tomorrow"
     }
     
     enum Settings: String {
@@ -40,15 +38,12 @@ final class Translation {
     enum Watch: String {
         case noLectures = "watch.no_lectures"
         case noLecturesToday = "watch.no_lectures_today"
-        case today = "watch.today"
     }
     
     enum Widget: String {
         case next = "widget.next"
         case noLecturesToday = "widget.no_lectures_today"
         case noNextLectures = "widget.no_next_lectures"
-        case today = "widget.today"
-        case tomorrow = "widget.tomorrow"
 
         enum About: String {
             case nextLecture = "widget.about.next_lecture"

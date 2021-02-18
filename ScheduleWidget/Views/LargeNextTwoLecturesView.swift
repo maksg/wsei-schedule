@@ -17,14 +17,7 @@ struct LargeNextTwoLecturesView: View {
     let nextLecture: Lecture?
 
     private var formattedDate: String {
-        guard let date = nextLecture?.fromDate else { return "" }
-        if date.isToday {
-            return Translation.Schedule.today.localized
-        } else if date.isTomorrow {
-            return Translation.Schedule.tomorrow.localized
-        } else {
-            return date.formattedDay
-        }
+        nextLecture?.fromDate.formattedDay ?? ""
     }
 
     // MARK: Views

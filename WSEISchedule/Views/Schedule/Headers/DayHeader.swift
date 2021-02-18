@@ -13,35 +13,16 @@ struct DayHeader: View {
     // MARK: Properties
 
     let date: Date
-    var formattedDate: String {
-        if date.isToday {
-            return Translation.Schedule.today.localized
-        } else if date.isTomorrow {
-            return Translation.Schedule.tomorrow.localized
-        } else {
-            return date.formattedDay
-        }
-    }
-
-    var voiceOverDate: String {
-        if date.isToday {
-            return Translation.Schedule.today.localized
-        } else if date.isTomorrow {
-            return Translation.Schedule.tomorrow.localized
-        } else {
-            return date.voiceOverDay
-        }
-    }
 
     // MARK: Views
     
     var body: some View {
-        Text(formattedDate)
+        Text(date.formattedDay)
             .font(.headline)
             .foregroundColor(.main)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
             .uncapitalized()
-            .accessibility(label: Text(voiceOverDate))
+            .accessibility(label: Text(date.voiceOverDay))
     }
 }
 

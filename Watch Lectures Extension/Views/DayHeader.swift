@@ -13,20 +13,11 @@ struct DayHeader: View {
     // MARK: Properties
 
     let date: Date
-    var formattedDate: String {
-        if date.isToday {
-            return Translation.Schedule.today.localized
-        } else if date.isTomorrow {
-            return Translation.Schedule.tomorrow.localized
-        } else {
-            return date.formattedDay
-        }
-    }
 
     // MARK: Views
     
     var body: some View {
-        Text(formattedDate)
+        Text(date.formattedDay)
             .font(.headline)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .uncapitalized()

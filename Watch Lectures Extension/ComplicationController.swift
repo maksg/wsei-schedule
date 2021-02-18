@@ -166,7 +166,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
         } else {
             template.headerTextProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
-            template.body1TextProvider = CLKSimpleTextProvider(text: Translation.Watch.today.localized)
+            template.body1TextProvider = CLKSimpleTextProvider(text: Date().formattedDay)
             template.body2TextProvider = nil
         }
         return template
@@ -180,7 +180,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
         } else {
             template.headerTextProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
-            template.body1TextProvider = CLKSimpleTextProvider(text: Translation.Watch.today.localized)
+            template.body1TextProvider = CLKSimpleTextProvider(text: Date().formattedDay)
             template.body2TextProvider = nil
         }
         return template

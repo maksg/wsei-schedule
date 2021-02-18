@@ -11,15 +11,29 @@ import Foundation
 extension Date {
     
     var formattedDay: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE dd.MM"
-        return formatter.string(from: self)
+        if isToday || isTomorrow {
+            let formatter = DateFormatter()
+            formatter.doesRelativeDateFormatting = true
+            formatter.dateStyle = .short
+            return formatter.string(from: self)
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEE dd.MM"
+            return formatter.string(from: self)
+        }
     }
 
     var voiceOverDay: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEdMMMM", options: 0, locale: .current)
-        return formatter.string(from: self)
+        if isToday || isTomorrow {
+            let formatter = DateFormatter()
+            formatter.doesRelativeDateFormatting = true
+            formatter.dateStyle = .short
+            return formatter.string(from: self)
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEdMMMM", options: 0, locale: .current)
+            return formatter.string(from: self)
+        }
     }
     
     var shortHour: String {
@@ -39,11 +53,11 @@ extension Date {
     }
     
     var isToday: Bool {
-        return Calendar.current.isDateInToday(self)
+        Calendar.current.isDateInToday(self)
     }
     
     var isTomorrow: Bool {
-        return Calendar.current.isDateInTomorrow(self)
+        Calendar.current.isDateInTomorrow(self)
     }
     
 }
