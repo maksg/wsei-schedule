@@ -38,7 +38,7 @@ extension Date {
     
     var shortHour: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
+        formatter.dateFormat = "H:mm"
         return formatter.string(from: self)
     }
 
