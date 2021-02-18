@@ -63,6 +63,7 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<LectureEntry>) -> ()) {
         let lectures = nearestLectures
+
         let entryDate: Date
         if let todaysLecture = lectures.todays {
             if todaysLecture.fromDate > Date() {
@@ -70,10 +71,9 @@ struct Provider: TimelineProvider {
             } else {
                 entryDate = todaysLecture.toDate
             }
-        } else if let nextLecture = lectures.next {
-            entryDate = nextLecture.fromDate
         } else {
-            entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
+            let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+            entryDate = Calendar.current.startOfDay(for: tomorrow)
         }
 
         let entry = LectureEntry(date: entryDate, todaysLecture: lectures.todays, nextLecture: lectures.next)
