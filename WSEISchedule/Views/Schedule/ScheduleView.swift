@@ -34,12 +34,19 @@ struct ScheduleView: View {
             }
             .insetGroupedListStyle()
             .pullToRefresh(onRefresh: viewModel.reloadLectures, isRefreshing: $viewModel.isRefreshing)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
             .onAppear(perform: viewModel.reloadLectures)
             .navigationBarTitle(Tab.schedule.title)
             .accessibility(identifier: "ScheduleList")
             .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    // MARK: Methods
+
+    private func onWillEnterForeground(_ output: NotificationCenter.Publisher.Output) {
+        viewModel.reloadLectures()
     }
     
 }
