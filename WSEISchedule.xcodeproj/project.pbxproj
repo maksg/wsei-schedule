@@ -21,6 +21,18 @@
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
 		50B22B3A25AFA43600A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22B3925AFA43600A71D14 /* Notification+Name.swift */; };
 		50BADAD625DD61FE00E8614C /* UserDefaults+ObjectSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BADAD525DD61FE00E8614C /* UserDefaults+ObjectSaving.swift */; };
+		50BB499326A328A500BFE87B /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB498E26A328A400BFE87B /* APIRequest.swift */; };
+		50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB498F26A328A400BFE87B /* HTTPMethod.swift */; };
+		50BB499526A328A500BFE87B /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB499026A328A400BFE87B /* Route.swift */; };
+		50BB499626A328A500BFE87B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB499126A328A500BFE87B /* Endpoint.swift */; };
+		50BB499726A328A500BFE87B /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB499226A328A500BFE87B /* Request.swift */; };
+		50BB499A26A351AE00BFE87B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 50BB499926A351AE00BFE87B /* SwiftSoup */; };
+		50BB499C26A35F6E00BFE87B /* SignInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB499B26A35F6E00BFE87B /* SignInData.swift */; };
+		50BB499F26A4C8A500BFE87B /* CaptchaReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB499E26A4C8A500BFE87B /* CaptchaReader.swift */; };
+		50BB49A126A5EEDC00BFE87B /* HTMLReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */; };
+		50BB49A426A5F3D600BFE87B /* SignInParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A326A5F3D600BFE87B /* SignInParameters.swift */; };
+		50BB49A626A600F300BFE87B /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A526A600F300BFE87B /* Requestable.swift */; };
+		50BB49A826A6014400BFE87B /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A726A6014400BFE87B /* Routable.swift */; };
 		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
 		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
 		5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
@@ -246,6 +258,17 @@
 		50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		50B22B3925AFA43600A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		50BADAD525DD61FE00E8614C /* UserDefaults+ObjectSaving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+ObjectSaving.swift"; sourceTree = "<group>"; };
+		50BB498E26A328A400BFE87B /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		50BB498F26A328A400BFE87B /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		50BB499026A328A400BFE87B /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		50BB499126A328A500BFE87B /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		50BB499226A328A500BFE87B /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		50BB499B26A35F6E00BFE87B /* SignInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInData.swift; sourceTree = "<group>"; };
+		50BB499E26A4C8A500BFE87B /* CaptchaReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaReader.swift; sourceTree = "<group>"; };
+		50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLReader.swift; sourceTree = "<group>"; };
+		50BB49A326A5F3D600BFE87B /* SignInParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInParameters.swift; sourceTree = "<group>"; };
+		50BB49A526A600F300BFE87B /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		50BB49A726A6014400BFE87B /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		5701F82D22AFD23A005BED89 /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
 		5701F83022AFE084005BED89 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
 		5701F83222AFE361005BED89 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -378,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57791D6523C6150400F91D7F /* StoreKit.framework in Frameworks */,
+				50BB499A26A351AE00BFE87B /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +458,36 @@
 				50BADAD525DD61FE00E8614C /* UserDefaults+ObjectSaving.swift */,
 			);
 			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		50BB498D26A3275C00BFE87B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				50BB498F26A328A400BFE87B /* HTTPMethod.swift */,
+				50BB499026A328A400BFE87B /* Route.swift */,
+				50BB499126A328A500BFE87B /* Endpoint.swift */,
+				50BB499226A328A500BFE87B /* Request.swift */,
+				50BB498E26A328A400BFE87B /* APIRequest.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		50BB499D26A4C86200BFE87B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */,
+				50BB499E26A4C8A500BFE87B /* CaptchaReader.swift */,
+				50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		50BB49A226A5F3C400BFE87B /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				50BB49A326A5F3D600BFE87B /* SignInParameters.swift */,
+			);
+			path = Parameters;
 			sourceTree = "<group>";
 		};
 		5701F82F22AFE041005BED89 /* Headers */ = {
@@ -622,7 +676,9 @@
 				57AD315022AE6B50009EEB1F /* AppDelegate.swift */,
 				57AD315222AE6B50009EEB1F /* SceneDelegate.swift */,
 				57AD318422AE6BC3009EEB1F /* Extensions */,
+				50BB498D26A3275C00BFE87B /* API */,
 				572FF8B2252CB5C500FFE530 /* Keyboard */,
+				50BB499D26A4C86200BFE87B /* Classes */,
 				57AD318022AE6BC3009EEB1F /* Models */,
 				57AD319522AE6BC3009EEB1F /* Protocols */,
 				57AF2A1624A2335F00950F80 /* Modifiers */,
@@ -673,8 +729,9 @@
 				57791D6223C5EA4700F91D7F /* Games.swift */,
 				57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */,
 				577DDF1723C72BA500D841BB /* Student.swift */,
-				5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */,
 				57561BE22535B1EE00DBC3D3 /* MockData.swift */,
+				50BB499B26A35F6E00BFE87B /* SignInData.swift */,
+				50BB49A226A5F3C400BFE87B /* Parameters */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -731,6 +788,8 @@
 			isa = PBXGroup;
 			children = (
 				5701F83622AFF57A005BED89 /* Lecture.swift */,
+				50BB49A526A600F300BFE87B /* Requestable.swift */,
+				50BB49A726A6014400BFE87B /* Routable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -860,6 +919,9 @@
 				57A6BEB22530904800E9B26C /* PBXTargetDependency */,
 			);
 			name = WSEISchedule;
+			packageProductDependencies = (
+				50BB499926A351AE00BFE87B /* SwiftSoup */,
+			);
 			productName = WSEISchedule;
 			productReference = 57AD314D22AE6B50009EEB1F /* WSEISchedule.app */;
 			productType = "com.apple.product-type.application";
@@ -963,6 +1025,9 @@
 				pl,
 			);
 			mainGroup = 57AD314422AE6B50009EEB1F;
+			packageReferences = (
+				50BB499826A351AE00BFE87B /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 57AD314E22AE6B50009EEB1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1122,12 +1187,14 @@
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */,
 				57AD31BA22AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift in Sources */,
+				50BB49A626A600F300BFE87B /* Requestable.swift in Sources */,
 				5701F83722AFF57A005BED89 /* Lecture.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
 				575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */,
 				570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */,
 				577DDF1823C72BA500D841BB /* Student.swift in Sources */,
+				50BB49A826A6014400BFE87B /* Routable.swift in Sources */,
 				577DDF1F23C7614D00D841BB /* UIImage+Named.swift in Sources */,
 				57674F53234DBCF000684C2A /* Color+Named.swift in Sources */,
 				5031A3AD25B77A4A005B9322 /* View+HeightReader.swift in Sources */,
@@ -1138,16 +1205,20 @@
 				502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */,
 				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
+				50BB499326A328A500BFE87B /* APIRequest.swift in Sources */,
 				572FF8BB252CB5C500FFE530 /* KeyboardObservable.swift in Sources */,
 				57791D6323C5EA4700F91D7F /* Games.swift in Sources */,
 				50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */,
 				570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */,
 				5031A3BD25B77B88005B9322 /* AnimatableRowHeight.swift in Sources */,
+				50BB499526A328A500BFE87B /* Route.swift in Sources */,
 				572FF89F252C8DC500FFE530 /* View+Uncapitalized.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
+				50BB499626A328A500BFE87B /* Endpoint.swift in Sources */,
 				572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */,
 				5755866B25308B2D00E0F752 /* Line.swift in Sources */,
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
+				50BB499F26A4C8A500BFE87B /* CaptchaReader.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
 				576B970423ABC69300CA17CF /* StudentInfoRow.swift in Sources */,
 				5787B40E22AEA0F400CC08F2 /* ScheduleWebView.swift in Sources */,
@@ -1158,7 +1229,9 @@
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
 				572FF8B9252CB5C500FFE530 /* Notification+Keyboard.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* RootView.swift in Sources */,
+				50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */,
 				57AD319A22AE6BC3009EEB1F /* Tab.swift in Sources */,
+				50BB49A126A5EEDC00BFE87B /* HTMLReader.swift in Sources */,
 				5773BE1423ACE45400264FC7 /* URLImage.swift in Sources */,
 				572FF8BC252CB5C500FFE530 /* Publishers+Keyboard.swift in Sources */,
 				572FF8BD252CB5C500FFE530 /* UIViewAnimationCurve+Animation.swift in Sources */,
@@ -1168,7 +1241,10 @@
 				57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */,
 				50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */,
 				5701F83122AFE084005BED89 /* DayHeader.swift in Sources */,
+				50BB49A426A5F3D600BFE87B /* SignInParameters.swift in Sources */,
+				50BB499726A328A500BFE87B /* Request.swift in Sources */,
 				57AD31A422AE6BC3009EEB1F /* SettingsViewModel.swift in Sources */,
+				50BB499C26A35F6E00BFE87B /* SignInData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1809,6 +1885,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50BB499826A351AE00BFE87B /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50BB499926A351AE00BFE87B /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50BB499826A351AE00BFE87B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */ = {

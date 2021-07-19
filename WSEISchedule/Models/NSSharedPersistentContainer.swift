@@ -15,4 +15,5 @@ class NSSharedPersistentContainer: NSPersistentContainer {
         storeURL = storeURL?.appendingPathComponent("Lectures.sqlite")
         return storeURL!
     }
+
 }
