@@ -48,6 +48,7 @@ struct SignInView: View {
                 TextField(viewModel.loginPlaceholder, text: $viewModel.login)
                     .textContentType(.username)
                     .autocapitalization(.none)
+                    .disableAutocorrection(true)
                     .padding(.horizontal, 10)
                     .frame(height: 45)
                     .accessibility(identifier: "LoginTextField")

@@ -12,6 +12,7 @@ import WebKit
 import CoreData
 import WatchConnectivity
 import WidgetKit
+import SwiftSoup
 
 final class ScheduleViewModel: NSObject, ObservableObject {
     
@@ -39,7 +40,13 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     @Published var lectureDays: [LectureDay] = []
-    
+
+    private var signInData: SignInData?
+
+    let apiRequest: APIRequest = APIRequest()
+    let captchaReader: CaptchaReader = CaptchaReader()
+    let htmlReader: HTMLReader = HTMLReader()
+
     let webView: ScheduleWebView
     private var session: WCSession?
     
@@ -70,10 +77,66 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     func reloadLectures() {
         fetchLectures(from: persistentContainer.viewContext)
         isRefreshing = true
-        
-        webView.login = student.login
-        webView.password = student.password
-        webView.reload()
+
+        apiRequest.getSignInPageHtml().onDataSuccess({ [weak self] html in
+            self?.handleLoginPageHtml(html)
+        }).onError({ [weak self] error in
+            self?.onError(error)
+        }).make()
+    }
+
+    private func handleLoginPageHtml(_ html: String) {
+        do {
+            let signInData = try htmlReader.readSignInData(fromHtml: html)
+            self.signInData = signInData
+
+            if let captchaSrc = signInData.captchaSrc {
+                downloadCaptcha(path: captchaSrc)
+            } else {
+                signIn(data: signInData)
+            }
+        } catch {
+            print(error)
+        }
+    }
+
+    private func downloadCaptcha(path: String) {
+        apiRequest.downloadCaptcha(path: path).onImageDownloadSuccess({ [weak self] image in
+            if let image = image {
+                self?.readCaptcha(from: image)
+            }
+        }).onError({ [weak self] error in
+            self?.onError(error)
+        }).make()
+    }
+
+    private func readCaptcha(from image: UIImage) {
+        captchaReader.readCaptcha(image) { [weak self] result in
+            switch result {
+            case .success(let captcha):
+                guard let data = self?.signInData else { return }
+                self?.signIn(data: data, captcha: captcha)
+            case .failure(let error):
+                print(error)
+                self?.reloadLectures()
+            }
+        }
+    }
+
+    private func signIn(data: SignInData, captcha: String? = nil) {
+        let signInParameters = SignInParameters(
+            usernameId: data.usernameId,
+            passwordId: data.passwordId,
+            username: student.login,
+            password: student.password,
+            captcha: captcha
+        )
+
+        apiRequest.signIn(parameters: signInParameters).onDataSuccess({ html in
+            print(html)
+        }).onError({ [weak self] error in
+            self?.onError(error)
+        }).make()
     }
     
     func activateWatchSession() {
@@ -128,7 +191,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     private func convertDataToLectureList(data: Any?) -> [CoreDataLecture] {
         guard let data = data as? [[String: String]] else { return [] }
         
-        let filteredData = data.map { (lecture) -> [String : String] in
+        let filteredData = data.map { (lecture) -> [String: String] in
             Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
                 let splitValue = value.replacingOccurrences(of: "\n", with: "")
                     .split(separator: ":", maxSplits: 1)
@@ -170,6 +233,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")
         }
+    }
+
+    private func onError(_ error: Error) {
+        print(error)
     }
 
 }
