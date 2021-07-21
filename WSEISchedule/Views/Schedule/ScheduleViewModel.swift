@@ -79,13 +79,13 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         isRefreshing = true
 
         apiRequest.getSignInPageHtml().onDataSuccess({ [weak self] html in
-            self?.handleLoginPageHtml(html)
+            self?.readSignInPageHtml(html)
         }).onError({ [weak self] error in
             self?.onError(error)
         }).make()
     }
 
-    private func handleLoginPageHtml(_ html: String) {
+    private func readSignInPageHtml(_ html: String) {
         do {
             let signInData = try htmlReader.readSignInData(fromHtml: html)
             self.signInData = signInData
@@ -124,7 +124,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
 
     private func signIn(data: SignInData, captcha: String? = nil) {
-        let signInParameters = SignInParameters(
+        let parameters = SignInParameters(
             usernameId: data.usernameId,
             passwordId: data.passwordId,
             username: student.login,
@@ -132,11 +132,34 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             captcha: captcha
         )
 
-        apiRequest.signIn(parameters: signInParameters).onDataSuccess({ html in
-            print(html)
+        apiRequest.signIn(parameters: parameters).onDataSuccess({ [weak self] html in
+            self?.fetchSchedule()
         }).onError({ [weak self] error in
             self?.onError(error)
         }).make()
+    }
+
+    private func fetchSchedule() {
+        let parameters = ScheduleParameters(fromDate: Calendar.current.date(byAdding: .year, value: -1, to: Date())!, toDate: Date())
+
+        apiRequest.getScheduleHtml(parameters: parameters).onDataSuccess({ [weak self] html in
+            self?.readScheduleHtml(html)
+        }).onError({ [weak self] error in
+            self?.onError(error)
+        }).make()
+    }
+
+    private func readScheduleHtml(_ html: String) {
+        do {
+            let lectureDictionaries = try htmlReader.readLectures(fromHtml: html)
+            let managedContext = persistentContainer.viewContext
+            let lectures = lectureDictionaries.map { dictionary in
+                CoreDataLecture(fromDictionary: dictionary, inContext: managedContext)
+            }
+            print(lectures)
+        } catch {
+            print(error)
+        }
     }
     
     func activateWatchSession() {

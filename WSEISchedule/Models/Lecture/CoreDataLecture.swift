@@ -21,7 +21,7 @@ final class CoreDataLecture: NSManagedObject, Lecture {
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         formatter.timeZone = TimeZone(identifier: "Europe/Warsaw")
         
-        let date = String(dictionary["Data Zajęć"]?.split(separator: " ").first ?? "")
+        let date = dictionary["Data Zajęć"]?.split(separator: " ").first ?? ""
         let fromTime = dictionary["Czas od"] ?? ""
         let toTime = dictionary["Czas do"] ?? ""
         

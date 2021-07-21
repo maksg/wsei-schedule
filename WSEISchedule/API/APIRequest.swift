@@ -34,4 +34,8 @@ final class APIRequest {
         return Request(url: URL(string: urlString)!)
     }
 
+    func getScheduleHtml(parameters: ScheduleParameters) -> Requestable {
+        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters))
+    }
+
 }
