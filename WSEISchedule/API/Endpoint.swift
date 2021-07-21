@@ -9,13 +9,13 @@ import Foundation
 
 enum Endpoint: Routable {
 
-    case getSignInPageHtml
+    case getSignInHtml
     case signIn(parameters: SignInParameters)
     case getScheduleHtml(parameters: ScheduleParameters)
 
     var route: Route {
         switch self {
-        case .getSignInPageHtml:
+        case .getSignInHtml:
             return Route(path: "Konto/LogowanieStudenta", method: .get)
         case .signIn(let parameters):
             return Route(path: "Konto/LogowanieStudenta", method: .post, parameters: parameters.dictionary)

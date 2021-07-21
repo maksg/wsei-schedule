@@ -13,8 +13,8 @@ final class APIRequest {
 
     private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
 
-    func getSignInPageHtml() -> Requestable {
-        let request = Request(url: url, endpoint: Endpoint.getSignInPageHtml)
+    func getSignInHtml() -> Requestable {
+        let request = Request(url: url, endpoint: Endpoint.getSignInHtml)
         request.clearCookies()
         return request
     }

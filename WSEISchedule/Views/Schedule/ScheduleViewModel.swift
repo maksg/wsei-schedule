@@ -17,8 +17,16 @@ import SwiftSoup
 final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
-    
-    var student: Student { UserDefaults.standard.student }
+
+    var student: Student {
+        get {
+            UserDefaults.standard.student
+        }
+        set {
+            UserDefaults.standard.student = newValue
+        }
+    }
+
     @Published var errorMessage: String = ""
     @Published var isRefreshing: Bool = false
     
@@ -78,14 +86,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         fetchLectures(from: persistentContainer.viewContext)
         isRefreshing = true
 
-        apiRequest.getSignInPageHtml().onDataSuccess({ [weak self] html in
-            self?.readSignInPageHtml(html)
+        apiRequest.getSignInHtml().onDataSuccess({ [weak self] html in
+            self?.readSignInData(fromHtml: html)
         }).onError({ [weak self] error in
             self?.onError(error)
         }).make()
     }
 
-    private func readSignInPageHtml(_ html: String) {
+    private func readSignInData(fromHtml html: String) {
         do {
             let signInData = try htmlReader.readSignInData(fromHtml: html)
             self.signInData = signInData
@@ -133,23 +141,37 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         )
 
         apiRequest.signIn(parameters: parameters).onDataSuccess({ [weak self] html in
+            self?.readStudentData(fromHtml: html)
             self?.fetchSchedule()
         }).onError({ [weak self] error in
             self?.onError(error)
         }).make()
     }
 
+    private func readStudentData(fromHtml html: String) {
+        do {
+            let studentData = try htmlReader.readStudentData(fromHtml: html)
+
+            student.name = studentData.name
+            student.albumNumber = studentData.albumNumber
+            student.courseName = studentData.courseName
+            student.photoUrl = studentData.photoUrl
+        } catch {
+            print(error)
+        }
+    }
+
     private func fetchSchedule() {
         let parameters = ScheduleParameters(fromDate: Calendar.current.date(byAdding: .year, value: -1, to: Date())!, toDate: Date())
 
         apiRequest.getScheduleHtml(parameters: parameters).onDataSuccess({ [weak self] html in
-            self?.readScheduleHtml(html)
+            self?.readLectures(fromHtml: html)
         }).onError({ [weak self] error in
             self?.onError(error)
         }).make()
     }
 
-    private func readScheduleHtml(_ html: String) {
+    private func readLectures(fromHtml html: String) {
         do {
             let lectureDictionaries = try htmlReader.readLectures(fromHtml: html)
             let managedContext = persistentContainer.viewContext

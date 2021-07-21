@@ -33,6 +33,24 @@ final class HTMLReader {
         return SignInData(usernameId: usernameId, passwordId: passwordId, captchaSrc: captchaSrc)
     }
 
+    func readStudentData(fromHtml html: String) throws -> StudentData {
+        let doc = try SwiftSoup.parse(html)
+        let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src") ?? ""
+        let photoUrl = URL(string: "https://dziekanat.wsei.edu.pl\(photoSource)")!
+
+        let paragraphElement = try doc.select("#td_naglowek p").first()
+        try paragraphElement?.select("br").append("\\n")
+        let paragraph = try paragraphElement?.text().replacingOccurrences(of: "\\n", with: "\n") ?? ""
+        let paragraphLines = paragraph.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
+
+        if paragraphLines.count >= 4 {
+            return StudentData(name: paragraphLines[1], albumNumber: paragraphLines[2], courseName: paragraphLines[3], photoUrl: photoUrl)
+        } else {
+            return StudentData(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
+        }
+
+    }
+
     func readLectures(fromHtml html: String) throws -> [[String: String]] {
         let doc = try SwiftSoup.parse(html)
         let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first()
