@@ -27,7 +27,6 @@ final class SettingsViewModel: NSObject, ObservableObject {
     var isSignedIn: Bool { !student.login.isEmpty }
     
     @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
-    let webView: ScheduleWebView
     
     @Published var supportDeveloperProducts: [SupportDeveloperProduct] = []
     @Published var showThankYouAlert: Bool = false
@@ -40,36 +39,28 @@ final class SettingsViewModel: NSObject, ObservableObject {
         })
         return container
     }()
-    
-    init(webView: ScheduleWebView) {
-        self.webView = webView
+
+    let apiRequest: APIRequest
+    let captchaReader: CaptchaReader
+    let htmlReader: HTMLReader
+
+    // MARK: Initialization
+
+    init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
+        self.apiRequest = apiRequest
+        self.captchaReader = captchaReader
+        self.htmlReader = htmlReader
         super.init()
         
-        webView.loadStudentInfo = loadStudentInfo
         getInAppPurchases()
-        
-        if isSignedIn {
-            studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
-        }
     }
     
     // MARK: Methods
-    
-    func reloadLectures() {
-        webView.login = student.login
-        webView.password = student.password
-        webView.reload()
-    }
-    
-    private func loadStudentInfo(_ data: Any?) {
-        guard let data = data as? [String : String] else { return }
-        
-        student.name = data["name"] ?? ""
-        student.albumNumber = data["number"] ?? ""
-        student.courseName = data["course_name"] ?? ""
-        student.photoUrl = URL(string: data["photo_url"] ?? "")
-        
-        studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
+
+    func loadStudentInfo() {
+        if isSignedIn {
+            studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
+        }
     }
     
     private func removeAllLectures() {
@@ -104,6 +95,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
         studentInfoRowViewModel = nil
         removeAllLectures()
         URLCache.shared.removeAllCachedResponses()
+        apiRequest.clearCookies()
 
         if #available(iOS 14.0, *) {
             WidgetCenter.shared.reloadAllTimelines()

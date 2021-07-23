@@ -8,7 +8,7 @@
 
 // Sign In
 
-"sign_in.login" = "Login";
+"sign_in.username" = "Login";
 "sign_in.password" = "Hasło";
 "sign_in.sign_in" = "Zaloguj się";
 "sign_in.sign_out" = "Wyloguj się";

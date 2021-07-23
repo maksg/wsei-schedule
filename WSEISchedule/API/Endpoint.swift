@@ -16,11 +16,11 @@ enum Endpoint: Routable {
     var route: Route {
         switch self {
         case .getSignInHtml:
-            return Route(path: "Konto/LogowanieStudenta", method: .get)
+            return Route(path: "/Konto/LogowanieStudenta", method: .get)
         case .signIn(let parameters):
-            return Route(path: "Konto/LogowanieStudenta", method: .post, parameters: parameters.dictionary)
+            return Route(path: "/Konto/LogowanieStudenta", method: .post, parameters: parameters.dictionary)
         case .getScheduleHtml(let parameters):
-            return Route(path: "Plany/PlanyStudentowGridCustom", method: .post, parameters: parameters.dictionary)
+            return Route(path: "/Plany/PlanyStudentowGridCustom", method: .post, parameters: parameters.dictionary)
         }
     }
 

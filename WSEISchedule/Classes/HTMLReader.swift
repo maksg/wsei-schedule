@@ -9,12 +9,17 @@
 import Foundation
 import SwiftSoup
 
+enum HTMLReaderError: Error {
+    case invalidHtml
+}
+
 final class HTMLReader {
 
     func readSignInData(fromHtml html: String) throws -> SignInData {
         let doc = try SwiftSoup.parse(html)
-        let form = try doc.select("#form_logowanie").first()
-        let elements = try form?.select("tr[style=''] input") ?? Elements()
+        guard let form = try doc.select("#form_logowanie").first() else { throw HTMLReaderError.invalidHtml }
+
+        let elements = try form.select("tr[style=''] input")
 
         var usernameId: String = ""
         var passwordId: String = ""
@@ -27,20 +32,21 @@ final class HTMLReader {
             }
         }
 
-        let captchaImg = try form?.select("#captchaImg").first()
-        let captchaSrc = try captchaImg?.attr("src")
-
+        let captchaSrc = try form.select("#captchaImg").first()?.attr("src")
         return SignInData(usernameId: usernameId, passwordId: passwordId, captchaSrc: captchaSrc)
     }
 
     func readStudentData(fromHtml html: String) throws -> StudentData {
         let doc = try SwiftSoup.parse(html)
-        let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src") ?? ""
+        guard
+            let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src"),
+            let paragraphElement = try doc.select("#td_naglowek p").first()
+        else { throw HTMLReaderError.invalidHtml }
+
         let photoUrl = URL(string: "https://dziekanat.wsei.edu.pl\(photoSource)")!
 
-        let paragraphElement = try doc.select("#td_naglowek p").first()
-        try paragraphElement?.select("br").append("\\n")
-        let paragraph = try paragraphElement?.text().replacingOccurrences(of: "\\n", with: "\n") ?? ""
+        try paragraphElement.select("br").append("\\n")
+        let paragraph = try paragraphElement.text().replacingOccurrences(of: "\\n", with: "\n")
         let paragraphLines = paragraph.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
 
         if paragraphLines.count >= 4 {
@@ -53,11 +59,15 @@ final class HTMLReader {
 
     func readLectures(fromHtml html: String) throws -> [[String: String]] {
         let doc = try SwiftSoup.parse(html)
-        let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first()
-        let headers = try tableBody?.select("#gridViewPlanyStudentow_DXHeadersRow0 td.dxgvHeader_Aqua").map({ try $0.text() }) ?? []
+        guard
+            let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first(),
+            try doc.select("#gridViewPlanyStudentow_DXEmptyRow").first() == nil
+        else { throw HTMLReaderError.invalidHtml }
+
+        let headers = try tableBody.select("#gridViewPlanyStudentow_DXHeadersRow0 td.dxgvHeader_Aqua").map({ try $0.text() })
 
         var currentDateRowText = ""
-        let rows = try tableBody?.select("tr.dxgvGroupRow_Aqua, tr.dxgvDataRow_Aqua") ?? Elements()
+        let rows = try tableBody.select("tr.dxgvGroupRow_Aqua, tr.dxgvDataRow_Aqua")
         let lectures = try rows.compactMap { row -> [String: String]? in
             let elements = try row.select("td")
 

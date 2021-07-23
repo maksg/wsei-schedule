@@ -12,19 +12,45 @@ final class SignInViewModel: ObservableObject {
 
     // MARK: Properties
     
-    var login: String = ""
+    var username: String = ""
     var password: String = ""
     
-    var loginPlaceholder: String { Translation.SignIn.login.localized }
+    var usernamePlaceholder: String { Translation.SignIn.username.localized }
     var passwordPlaceholder: String { Translation.SignIn.password.localized }
+
+    var finishSignIn: (() -> Void)?
+
+    let apiRequest: APIRequest
+    let captchaReader: CaptchaReader
+    let htmlReader: HTMLReader
+
+    // MARK: Initialization
+
+    init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
+        self.apiRequest = apiRequest
+        self.captchaReader = captchaReader
+        self.htmlReader = htmlReader
+    }
 
     // MARK: Methods
 
-    func signIn(onSuccess: (() -> Void)?) {
-        UserDefaults.standard.student.login = login
-        UserDefaults.standard.student.password = password
-        onSuccess?()
+    func signIn() {
+        startSigningIn(username: username, password: password)
     }
     
 }
 
+extension SignInViewModel: SignInable {
+
+    func onSignIn(html: String, username: String, password: String) {
+        UserDefaults.standard.student.login = username
+        UserDefaults.standard.student.password = password
+
+        finishSignIn?()
+    }
+
+    func onError(_ error: Error) {
+        print(error)
+    }
+
+}

@@ -12,7 +12,11 @@ final class RootViewModel: ObservableObject {
 
     // MARK: Properties
 
-    let webView: ScheduleWebView
+    let apiRequest = APIRequest()
+    let captchaReader = CaptchaReader()
+    let htmlReader = HTMLReader()
+
+    let signInViewModel: SignInViewModel
     let scheduleViewModel: ScheduleViewModel
     let settingsViewModel: SettingsViewModel
     
@@ -27,10 +31,14 @@ final class RootViewModel: ObservableObject {
     // MARK: Initialization
     
     init() {
-        webView = ScheduleWebView()
-        scheduleViewModel = ScheduleViewModel(webView: webView)
-        settingsViewModel = SettingsViewModel(webView: webView)
+        signInViewModel = SignInViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
+        scheduleViewModel = ScheduleViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
+        settingsViewModel = SettingsViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         isSignedIn = !student.login.isEmpty
+
+        signInViewModel.finishSignIn = { [weak self] in
+            self?.reloadLectures()
+        }
     }
 
     // MARK: Methods
@@ -41,8 +49,6 @@ final class RootViewModel: ObservableObject {
         }
         guard isSignedIn else { return }
 
-        webView.login = student.login
-        webView.password = student.password
-        webView.reload()
+        
     }
 }

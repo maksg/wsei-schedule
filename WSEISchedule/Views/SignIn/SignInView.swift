@@ -12,9 +12,7 @@ struct SignInView: View {
 
     // MARK: Methods
 
-    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: SignInViewModel
-    var onDismiss: (() -> Void)?
 
     // MARK: Views
     
@@ -45,7 +43,7 @@ struct SignInView: View {
             }
             
             VStack(spacing: 0) {
-                TextField(viewModel.loginPlaceholder, text: $viewModel.login)
+                TextField(viewModel.usernamePlaceholder, text: $viewModel.username)
                     .textContentType(.username)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -83,13 +81,13 @@ struct SignInView: View {
     // MARK: Methods
     
     private func signIn() {
-        viewModel.signIn(onSuccess: onDismiss)
+        viewModel.signIn()
     }
 
 }
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(viewModel: SignInViewModel())
+        SignInView(viewModel: SignInViewModel(apiRequest: APIRequest(), captchaReader: CaptchaReader(), htmlReader: HTMLReader()))
     }
 }
