@@ -51,21 +51,19 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
     private var signInData: SignInData?
 
-    let apiRequest: APIRequest = APIRequest()
-    let captchaReader: CaptchaReader = CaptchaReader()
-    let htmlReader: HTMLReader = HTMLReader()
+    let apiRequest: APIRequest
+    let captchaReader: CaptchaReader
+    let htmlReader: HTMLReader
 
-    let webView: ScheduleWebView
     private var session: WCSession?
     
     // MARK: Initialization
     
-    init(webView: ScheduleWebView) {
-        self.webView = webView
+    init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
+        self.apiRequest = apiRequest
+        self.captchaReader = captchaReader
+        self.htmlReader = htmlReader
         super.init()
-        
-        webView.loadLectures = loadLectures
-        webView.setErrorMessage = setErrorMessage
         
         activateWatchSession()
         observeRemoveAllLecturesNotification()
@@ -85,67 +83,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     func reloadLectures() {
         fetchLectures(from: persistentContainer.viewContext)
         isRefreshing = true
-
-        apiRequest.getSignInHtml().onDataSuccess({ [weak self] html in
-            self?.readSignInData(fromHtml: html)
-        }).onError({ [weak self] error in
-            self?.onError(error)
-        }).make()
-    }
-
-    private func readSignInData(fromHtml html: String) {
-        do {
-            let signInData = try htmlReader.readSignInData(fromHtml: html)
-            self.signInData = signInData
-
-            if let captchaSrc = signInData.captchaSrc {
-                downloadCaptcha(path: captchaSrc)
-            } else {
-                signIn(data: signInData)
-            }
-        } catch {
-            print(error)
-        }
-    }
-
-    private func downloadCaptcha(path: String) {
-        apiRequest.downloadCaptcha(path: path).onImageDownloadSuccess({ [weak self] image in
-            if let image = image {
-                self?.readCaptcha(from: image)
-            }
-        }).onError({ [weak self] error in
-            self?.onError(error)
-        }).make()
-    }
-
-    private func readCaptcha(from image: UIImage) {
-        captchaReader.readCaptcha(image) { [weak self] result in
-            switch result {
-            case .success(let captcha):
-                guard let data = self?.signInData else { return }
-                self?.signIn(data: data, captcha: captcha)
-            case .failure(let error):
-                print(error)
-                self?.reloadLectures()
-            }
-        }
-    }
-
-    private func signIn(data: SignInData, captcha: String? = nil) {
-        let parameters = SignInParameters(
-            usernameId: data.usernameId,
-            passwordId: data.passwordId,
-            username: student.login,
-            password: student.password,
-            captcha: captcha
-        )
-
-        apiRequest.signIn(parameters: parameters).onDataSuccess({ [weak self] html in
-            self?.readStudentData(fromHtml: html)
-            self?.fetchSchedule()
-        }).onError({ [weak self] error in
-            self?.onError(error)
-        }).make()
+        fetchSchedule()
     }
 
     private func readStudentData(fromHtml html: String) {
@@ -178,9 +116,17 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             let lectures = lectureDictionaries.map { dictionary in
                 CoreDataLecture(fromDictionary: dictionary, inContext: managedContext)
             }
-            print(lectures)
+
+            deleteLectures(from: managedContext)
+
+            generateLectureDays(from: lectures)
+            saveLectures(to: managedContext)
+
+            if #available(iOS 14.0, *) {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
         } catch {
-            print(error)
+            onError(error)
         }
     }
     
@@ -213,43 +159,11 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
     
-    func loadLectures(fromData data: Any?) {
-        let managedContext = persistentContainer.viewContext
-        deleteLectures(from: managedContext)
-        
-        let lectures = convertDataToLectureList(data: data)
-        generateLectureDays(from: lectures)
-        saveLectures(to: managedContext)
-
-        if #available(iOS 14.0, *) {
-            WidgetCenter.shared.reloadAllTimelines()
-        }
-    }
-    
     func setErrorMessage(_ errorMessage: String) {
         self.errorMessage = errorMessage
 
         guard !errorMessage.isEmpty else { return }
         isRefreshing = false
-    }
-    
-    private func convertDataToLectureList(data: Any?) -> [CoreDataLecture] {
-        guard let data = data as? [[String: String]] else { return [] }
-        
-        let filteredData = data.map { (lecture) -> [String: String] in
-            Dictionary(uniqueKeysWithValues: lecture.compactMap({ (key, value) -> (String, String)? in
-                let splitValue = value.replacingOccurrences(of: "\n", with: "")
-                    .split(separator: ":", maxSplits: 1)
-                    .map({ String($0.trimmingCharacters(in: .whitespacesAndNewlines)) })
-                guard splitValue.count > 1 else { return nil }
-                return (splitValue[0], splitValue[1])
-            }))
-        }
-        
-        let managedContext = persistentContainer.viewContext
-        return filteredData.map {
-            CoreDataLecture(fromDictionary: $0, inContext: managedContext)
-        }
     }
     
     func generateLectureDays(from lectures: [CoreDataLecture]?) {
@@ -280,8 +194,17 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
-    private func onError(_ error: Error) {
-        print(error)
+}
+
+extension ScheduleViewModel: SignInable {
+
+    func onSignIn(html: String, username: String, password: String) {
+        readStudentData(fromHtml: html)
+        fetchSchedule()
+    }
+
+    func onError(_ error: Error) {
+        startSigningIn(username: student.login, password: student.password)
     }
 
 }

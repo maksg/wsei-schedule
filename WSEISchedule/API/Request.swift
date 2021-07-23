@@ -73,10 +73,6 @@ final class Request: Requestable {
     
     // MARK: Methods
 
-    func clearCookies() {
-        HTTPCookieStorage.shared.cookies?.forEach(HTTPCookieStorage.shared.deleteCookie)
-    }
-
     func onDataSuccess(_ callback: @escaping (String) -> Void) -> Self {
         dataSuccessCallback = { [debug] data in
             let responseData: String

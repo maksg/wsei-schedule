@@ -11,31 +11,28 @@ import UIKit
 
 final class APIRequest {
 
-    private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
+    private let url = URL(string: "https://dziekanat.wsei.edu.pl")!
 
     func getSignInHtml() -> Requestable {
-        let request = Request(url: url, endpoint: Endpoint.getSignInHtml)
-        request.clearCookies()
-        return request
+        clearCookies()
+        return Request(url: url, endpoint: Endpoint.getSignInHtml, debug: true)
     }
 
     func signIn(parameters: SignInParameters) -> Requestable {
-        Request(url: url, endpoint: Endpoint.signIn(parameters: parameters))
+        Request(url: url, endpoint: Endpoint.signIn(parameters: parameters), debug: true)
     }
 
-    func downloadCaptcha(path: String) -> Requestable {
-        var path = path
-        if path.first == "/" {
-            path.removeFirst()
-        }
-
-        let urlString = url.absoluteString + path
-
-        return Request(url: URL(string: urlString)!)
+    func downloadImage(path: String) -> Requestable {
+        let url = URL(string: url.absoluteString + path)!
+        return Request(url: url, debug: true)
     }
 
     func getScheduleHtml(parameters: ScheduleParameters) -> Requestable {
-        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters))
+        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters), debug: true)
+    }
+
+    func clearCookies() {
+        HTTPCookieStorage.shared.cookies?.forEach(HTTPCookieStorage.shared.deleteCookie)
     }
 
 }

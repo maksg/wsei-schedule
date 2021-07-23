@@ -44,7 +44,7 @@ struct RootView: View {
         if viewModel.isSignedIn {
             content
         } else {
-            SignInView(viewModel: SignInViewModel(), onDismiss: viewModel.reloadLectures)
+            SignInView(viewModel: viewModel.signInViewModel)
                 .transition(.move(edge: .bottom))
         }
     }

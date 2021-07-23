@@ -11,7 +11,6 @@ import UIKit
 
 protocol Requestable {
 
-    func clearCookies()
     func onDataSuccess(_ callback: @escaping (String) -> Void) -> Self
     func onImageDownloadSuccess(_ callback: @escaping (UIImage?) -> Void) -> Self
     func onError(_ callback: @escaping (Error) -> Void) -> Self

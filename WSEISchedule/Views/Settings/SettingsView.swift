@@ -57,6 +57,7 @@ struct SettingsView: View {
             .accessibility(identifier: "SettingsList")
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(perform: loadStudentInfo)
         .alert(isPresented: $viewModel.showThankYouAlert) {
             Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
                   message: Text(Translation.Settings.ThankYouAlert.message.localized),
@@ -65,6 +66,10 @@ struct SettingsView: View {
     }
 
     // MARK: Methods
+
+    private func loadStudentInfo() {
+        viewModel.loadStudentInfo()
+    }
     
     private func signOut() {
         viewModel.signOut()
@@ -75,6 +80,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel(webView: ScheduleWebView()), isSignedIn: .constant(true))
+        SettingsView(viewModel: SettingsViewModel(apiRequest: APIRequest(), captchaReader: CaptchaReader(), htmlReader: HTMLReader()), isSignedIn: .constant(true))
     }
 }
