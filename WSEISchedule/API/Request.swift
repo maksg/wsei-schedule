@@ -45,7 +45,7 @@ final class Request: Requestable {
             } else {
                 let stringParameters = parameters as NSDictionary as! [String: String]
                 let encodedParameters = stringParameters.map { (key, value) -> String in
-                    "\(key)=\(value.xWwwFormUrlEncoded)"
+                    "\(key)=\(value.formUrlEncoded)"
                 }
                 request.httpBody = encodedParameters.joined(separator: "&").data(using: .utf8)
             }
@@ -86,7 +86,9 @@ final class Request: Requestable {
                 print(responseData)
             }
 
-            callback(responseData)
+            DispatchQueue.main.async {
+                callback(responseData)
+            }
         }
         return self
     }
@@ -104,13 +106,19 @@ final class Request: Requestable {
                 print(image as Any)
             }
 
-            callback(image)
+            DispatchQueue.main.async {
+                callback(image)
+            }
         }
         return self
     }
 
     func onError(_ callback: @escaping (Error) -> Void) -> Self {
-        errorCallback = callback
+        errorCallback = { error in
+            DispatchQueue.main.async {
+                callback(error)
+            }
+        }
         return self
     }
 
@@ -136,17 +144,6 @@ final class Request: Requestable {
         }
 
         task.resume()
-    }
-
-}
-
-extension String {
-
-    var xWwwFormUrlEncoded: String {
-        var allowedCharacters = CharacterSet.alphanumerics
-        allowedCharacters.insert(charactersIn: "-._* ")
-
-        return addingPercentEncoding(withAllowedCharacters: allowedCharacters)?.replacingOccurrences(of: " ", with: "+") ?? ""
     }
 
 }

@@ -37,18 +37,15 @@ final class RootViewModel: ObservableObject {
         isSignedIn = !student.login.isEmpty
 
         signInViewModel.finishSignIn = { [weak self] in
-            self?.reloadLectures()
+            self?.checkSignInStatus()
         }
     }
 
     // MARK: Methods
     
-    func reloadLectures() {
+    func checkSignInStatus() {
         withAnimation {
             isSignedIn = !student.login.isEmpty
         }
-        guard isSignedIn else { return }
-
-        
     }
 }
