@@ -58,9 +58,32 @@ final class SettingsViewModel: NSObject, ObservableObject {
     // MARK: Methods
 
     func loadStudentInfo() {
-        if isSignedIn {
-            studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
+        setupStudentInfoRow()
+        
+        apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
+            self?.readStudentInfo(fromHtml: html)
+        }).onError({ [weak self] error in
+            self?.onError(error)
+        }).make()
+    }
+
+    private func readStudentInfo(fromHtml html: String) {
+        do {
+            let studentInfo = try htmlReader.readStudentInfo(fromHtml: html)
+
+            student.name = studentInfo.name
+            student.albumNumber = studentInfo.albumNumber
+            student.courseName = studentInfo.courseName
+            student.photoUrl = studentInfo.photoUrl
+        } catch {
+            print(error)
         }
+
+        setupStudentInfoRow()
+    }
+
+    private func setupStudentInfoRow() {
+        studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
     }
     
     private func removeAllLectures() {
@@ -104,6 +127,18 @@ final class SettingsViewModel: NSObject, ObservableObject {
         UserDefaults.standard.signOut()
     }
     
+}
+
+extension SettingsViewModel: SignInable {
+
+    func onSignIn(html: String, username: String, password: String) {
+        readStudentInfo(fromHtml: html)
+    }
+
+    func onError(_ error: Error) {
+        startSigningIn(username: student.login, password: student.password)
+    }
+
 }
 
 // MARK: SKProductsRequestDelegate

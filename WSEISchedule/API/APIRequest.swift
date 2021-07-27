@@ -15,11 +15,11 @@ final class APIRequest {
 
     func getSignInHtml() -> Requestable {
         clearCookies()
-        return Request(url: url, endpoint: Endpoint.getSignInHtml, debug: true)
+        return Request(url: url, endpoint: Endpoint.getSignInHtml)
     }
 
     func signIn(parameters: SignInParameters) -> Requestable {
-        Request(url: url, endpoint: Endpoint.signIn(parameters: parameters), debug: true)
+        Request(url: url, endpoint: Endpoint.signIn(parameters: parameters))
     }
 
     func downloadImage(path: String) -> Requestable {
@@ -27,8 +27,12 @@ final class APIRequest {
         return Request(url: url, debug: true)
     }
 
+    func getMainHtml() -> Requestable {
+        Request(url: url, endpoint: Endpoint.getMainHtml)
+    }
+
     func getScheduleHtml(parameters: ScheduleParameters) -> Requestable {
-        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters), debug: true)
+        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters))
     }
 
     func clearCookies() {

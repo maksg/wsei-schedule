@@ -20,8 +20,8 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                if viewModel.studentInfoRowViewModel != nil {
-                    StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel!)
+                if let studentInfoRowViewModel = viewModel.studentInfoRowViewModel {
+                    StudentInfoRow(viewModel: studentInfoRowViewModel)
                         .frame(height: 80)
                 }
                 Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {

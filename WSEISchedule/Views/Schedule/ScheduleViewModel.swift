@@ -86,19 +86,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         fetchSchedule()
     }
 
-    private func readStudentData(fromHtml html: String) {
-        do {
-            let studentData = try htmlReader.readStudentData(fromHtml: html)
-
-            student.name = studentData.name
-            student.albumNumber = studentData.albumNumber
-            student.courseName = studentData.courseName
-            student.photoUrl = studentData.photoUrl
-        } catch {
-            print(error)
-        }
-    }
-
     private func fetchSchedule() {
         let parameters = ScheduleParameters(fromDate: Calendar.current.date(byAdding: .year, value: -1, to: Date())!, toDate: Date())
 
@@ -199,7 +186,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 extension ScheduleViewModel: SignInable {
 
     func onSignIn(html: String, username: String, password: String) {
-        readStudentData(fromHtml: html)
         fetchSchedule()
     }
 
