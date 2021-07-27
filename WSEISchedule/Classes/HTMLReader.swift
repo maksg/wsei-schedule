@@ -36,7 +36,7 @@ final class HTMLReader {
         return SignInData(usernameId: usernameId, passwordId: passwordId, captchaSrc: captchaSrc)
     }
 
-    func readStudentData(fromHtml html: String) throws -> StudentData {
+    func readStudentInfo(fromHtml html: String) throws -> StudentInfo {
         let doc = try SwiftSoup.parse(html)
         guard
             let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src"),
@@ -50,9 +50,9 @@ final class HTMLReader {
         let paragraphLines = paragraph.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
 
         if paragraphLines.count >= 4 {
-            return StudentData(name: paragraphLines[1], albumNumber: paragraphLines[2], courseName: paragraphLines[3], photoUrl: photoUrl)
+            return StudentInfo(name: paragraphLines[1], albumNumber: paragraphLines[2], courseName: paragraphLines[3], photoUrl: photoUrl)
         } else {
-            return StudentData(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
+            return StudentInfo(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
         }
 
     }
