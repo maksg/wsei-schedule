@@ -27,6 +27,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
+    var unsuccessfulSignInAttempts: Int = 0
+
     @Published var errorMessage: String = ""
     @Published var isRefreshing: Bool = false
     
@@ -112,6 +114,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             if #available(iOS 14.0, *) {
                 WidgetCenter.shared.reloadAllTimelines()
             }
+
+            resetErrors()
         } catch {
             onError(error)
         }
@@ -160,7 +164,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             self.lectureDays = []
             return
         }
-        
+
         let futureLectures = self.lectures[nearestLectureIndex..<self.lectures.count]
         self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime
@@ -190,7 +194,11 @@ extension ScheduleViewModel: SignInable {
     }
 
     func onError(_ error: Error) {
-        startSigningIn(username: student.login, password: student.password)
+        onSignInError(error, username: student.login, password: student.password)
+    }
+
+    func onErrorMessage(_ errorMessage: String) {
+        setErrorMessage(errorMessage)
     }
 
 }

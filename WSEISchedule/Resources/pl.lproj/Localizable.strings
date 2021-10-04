@@ -58,3 +58,7 @@
 "accessibility.settings.name" = "Imię i nazwisko";
 "accessibility.settings.index_number" = "Numer indeksu";
 "accessibility.settings.course_name" = "Nazwa kierunku";
+
+// Errors
+
+"error.unknown" = "Wystąpił niespodziewany błąd";

@@ -11,6 +11,13 @@ import SwiftSoup
 
 enum HTMLReaderError: Error {
     case invalidHtml
+    case invalidCaptcha
+}
+
+extension HTMLReaderError: LocalizedError {
+    public var errorDescription: String? {
+        return Translation.Error.unknown.localized
+    }
 }
 
 final class HTMLReader {
@@ -59,6 +66,7 @@ final class HTMLReader {
 
     func readLectures(fromHtml html: String) throws -> [[String: String]] {
         let doc = try SwiftSoup.parse(html)
+        print(html)
         guard
             let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first(),
             try doc.select("#gridViewPlanyStudentow_DXEmptyRow").first() == nil
@@ -93,6 +101,20 @@ final class HTMLReader {
                 result[header] = text
             }
             return result
+        }
+    }
+
+    func readSignInError(fromHtml html: String) throws -> String {
+        let doc = try SwiftSoup.parse(html)
+        guard
+            let errorElement = try doc.select(".validation-summary-errors ul li").first()
+        else { throw HTMLReaderError.invalidHtml }
+
+        let errorMessage = try errorElement.text()
+        if errorMessage.contains("captcha") || errorMessage.contains("kod z obrazka") {
+            throw HTMLReaderError.invalidCaptcha
+        } else {
+            return errorMessage
         }
     }
 

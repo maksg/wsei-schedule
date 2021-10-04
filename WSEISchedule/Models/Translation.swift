@@ -70,6 +70,10 @@ final class Translation {
             case courseName = "accessibility.settings.course_name"
         }
     }
+
+    enum Error: String {
+        case unknown = "error.unknown"
+    }
     
 }
 
