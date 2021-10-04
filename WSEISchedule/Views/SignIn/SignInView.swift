@@ -43,7 +43,7 @@ struct SignInView: View {
             }
             
             VStack(spacing: 0) {
-                TextField(viewModel.usernamePlaceholder, text: $viewModel.username)
+                TextField(Translation.SignIn.username.localized, text: $viewModel.username)
                     .textContentType(.username)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -55,7 +55,7 @@ struct SignInView: View {
                     .frame(height: 1)
                     .padding(.leading, 10)
                 
-                SecureField(viewModel.passwordPlaceholder, text: $viewModel.password)
+                SecureField(Translation.SignIn.password.localized, text: $viewModel.password)
                     .textContentType(.password)
                     .padding(.horizontal, 10)
                     .frame(height: 45)

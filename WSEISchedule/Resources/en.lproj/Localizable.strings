@@ -58,3 +58,7 @@
 "accessibility.settings.name" = "Name";
 "accessibility.settings.index_number" = "Index number";
 "accessibility.settings.course_name" = "Course name";
+
+// Errors
+
+"error.unknown" = "Unknown error occured";

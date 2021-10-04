@@ -12,10 +12,14 @@ protocol SignInable: AnyObject {
     var apiRequest: APIRequest { get }
     var captchaReader: CaptchaReader { get }
     var htmlReader: HTMLReader { get }
+    var unsuccessfulSignInAttempts: Int { get set }
 
     func startSigningIn(username: String, password: String)
     func onSignIn(html: String, username: String, password: String)
     func onError(_ error: Error)
+    func onSignInError(_ error: Error, username: String, password: String)
+    func onErrorMessage(_ errorMessage: String)
+    func resetErrors()
 }
 
 extension SignInable {
@@ -44,9 +48,11 @@ extension SignInable {
 
     private func downloadCaptcha(path: String, signInData: SignInData, username: String, password: String) {
         apiRequest.downloadImage(path: path).onImageDownloadSuccess({ [weak self] image in
-            if let image = image {
-                self?.readCaptcha(from: image, signInData: signInData, username: username, password: password)
+            guard let image = image else {
+                self?.onError(HTMLReaderError.invalidCaptcha)
+                return
             }
+            self?.readCaptcha(from: image, signInData: signInData, username: username, password: password)
         }).onError({ [weak self] error in
             self?.onError(error)
         }).make()
@@ -73,10 +79,38 @@ extension SignInable {
         )
 
         apiRequest.signIn(parameters: parameters).onDataSuccess({ [weak self] html in
-            self?.onSignIn(html: html, username: username, password: password)
+            self?.checkForError(html: html, username: username, password: password)
         }).onError({ [weak self] error in
-            self?.onError(error)
+            self?.onSignInError(error, username: username, password: password)
         }).make()
+    }
+
+    private func checkForError(html: String, username: String, password: String) {
+        do {
+            let errorMessage = try htmlReader.readSignInError(fromHtml: html)
+            onErrorMessage(errorMessage)
+        } catch HTMLReaderError.invalidHtml {
+            onErrorMessage("")
+            onSignIn(html: html, username: username, password: password)
+        } catch {
+            onErrorMessage("")
+            onError(error)
+        }
+    }
+
+    func onSignInError(_ error: Error, username: String, password: String) {
+        unsuccessfulSignInAttempts += 1
+
+        if unsuccessfulSignInAttempts < 4 {
+            startSigningIn(username: username, password: password)
+        } else {
+            onErrorMessage(error.localizedDescription)
+        }
+    }
+
+    func resetErrors() {
+        onErrorMessage("")
+        unsuccessfulSignInAttempts = 0
     }
 
 }

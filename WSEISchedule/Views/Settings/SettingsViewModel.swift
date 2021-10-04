@@ -24,7 +24,10 @@ final class SettingsViewModel: NSObject, ObservableObject {
             UserDefaults.standard.student = newValue
         }
     }
+    
     var isSignedIn: Bool { !student.login.isEmpty }
+
+    var unsuccessfulSignInAttempts: Int = 0
     
     @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
     
@@ -75,6 +78,8 @@ final class SettingsViewModel: NSObject, ObservableObject {
             student.albumNumber = studentInfo.albumNumber
             student.courseName = studentInfo.courseName
             student.photoUrl = studentInfo.photoUrl
+
+            resetErrors()
         } catch {
             print(error)
         }
@@ -102,7 +107,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     private func getInAppPurchases() {
-        let productIdentifiers = (1...4).map { "supportDeveloper\($0)" }
+        let productIdentifiers = (1...4).map({ "supportDeveloper\($0)" })
         let productsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
         productsRequest.delegate = self
         productsRequest.start()
@@ -137,6 +142,10 @@ extension SettingsViewModel: SignInable {
 
     func onError(_ error: Error) {
         startSigningIn(username: student.login, password: student.password)
+    }
+
+    func onErrorMessage(_ errorMessage: String) {
+        print(errorMessage)
     }
 
 }

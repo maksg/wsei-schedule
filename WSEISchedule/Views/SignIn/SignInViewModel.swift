@@ -12,13 +12,12 @@ final class SignInViewModel: ObservableObject {
 
     // MARK: Properties
     
-    var username: String = ""
-    var password: String = ""
-    
-    var usernamePlaceholder: String { Translation.SignIn.username.localized }
-    var passwordPlaceholder: String { Translation.SignIn.password.localized }
+    @Published var username: String = ""
+    @Published var password: String = ""
 
     var finishSignIn: (() -> Void)?
+
+    var unsuccessfulSignInAttempts: Int = 0
 
     let apiRequest: APIRequest
     let captchaReader: CaptchaReader
@@ -46,11 +45,16 @@ extension SignInViewModel: SignInable {
         UserDefaults.standard.student.login = username
         UserDefaults.standard.student.password = password
 
+        resetErrors()
         finishSignIn?()
     }
 
     func onError(_ error: Error) {
-        print(error)
+        signIn()
+    }
+    
+    func onErrorMessage(_ errorMessage: String) {
+        print(errorMessage)
     }
 
 }

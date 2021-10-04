@@ -24,7 +24,7 @@ final class APIRequest {
 
     func downloadImage(path: String) -> Requestable {
         let url = URL(string: url.absoluteString + path)!
-        return Request(url: url, debug: true)
+        return Request(url: url)
     }
 
     func getMainHtml() -> Requestable {
