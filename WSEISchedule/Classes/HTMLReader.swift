@@ -66,7 +66,7 @@ final class HTMLReader {
 
     func readLectures(fromHtml html: String) throws -> [[String: String]] {
         let doc = try SwiftSoup.parse(html)
-        print(html)
+
         guard
             let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first(),
             try doc.select("#gridViewPlanyStudentow_DXEmptyRow").first() == nil

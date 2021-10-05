@@ -9,12 +9,18 @@
 import UIKit
 import Vision
 
-final class CaptchaReader {
+enum CaptchaReaderError: Error {
+    case missingCGImage
+    case failedReadingCaptcha
+}
 
-    enum CaptchaReaderError: Error {
-        case missingCGImage
-        case failedReadingCaptcha
+extension CaptchaReaderError: LocalizedError {
+    public var errorDescription: String? {
+        return Translation.Error.unknown.localized
     }
+}
+
+final class CaptchaReader {
 
     // MARK: Properties
 

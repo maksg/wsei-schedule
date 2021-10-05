@@ -13,17 +13,20 @@ enum Endpoint: Routable {
     case signIn(parameters: SignInParameters)
     case getMainHtml
     case getScheduleHtml(parameters: ScheduleParameters)
+    case getMarksHtml
 
     var route: Route {
         switch self {
         case .getSignInHtml:
-            return Route(path: "/Konto/LogowanieStudenta", method: .get)
+            return Route(path: "Konto/LogowanieStudenta", method: .get)
         case .signIn(let parameters):
-            return Route(path: "/Konto/LogowanieStudenta", method: .post, parameters: parameters.dictionary)
+            return Route(path: "Konto/LogowanieStudenta", method: .post, parameters: parameters.dictionary)
         case .getMainHtml:
-            return Route(path: "/", method: .get)
+            return Route(path: "", method: .get)
         case .getScheduleHtml(let parameters):
-            return Route(path: "/Plany/PlanyStudentowGridCustom", method: .post, parameters: parameters.dictionary)
+            return Route(path: "Plany/PlanyStudentowGridCustom", method: .post, parameters: parameters.dictionary)
+        case .getMarksHtml:
+            return Route(path: "TokStudiow/StudentPrzedmiotyIOceny/Oceny", method: .get)
         }
     }
 
