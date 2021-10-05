@@ -104,6 +104,7 @@ extension SignInable {
         if unsuccessfulSignInAttempts < 4 {
             startSigningIn(username: username, password: password)
         } else {
+            unsuccessfulSignInAttempts = 0
             onErrorMessage(error.localizedDescription)
         }
     }

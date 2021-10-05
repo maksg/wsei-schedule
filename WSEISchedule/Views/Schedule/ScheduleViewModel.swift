@@ -149,12 +149,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             print(error)
         }
     }
-    
-    func setErrorMessage(_ errorMessage: String) {
-        self.errorMessage = errorMessage
 
-        guard !errorMessage.isEmpty else { return }
-        isRefreshing = false
+    func setErrorMessage(_ errorMessage: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.errorMessage = errorMessage
+
+            guard !errorMessage.isEmpty else { return }
+            self?.isRefreshing = false
+        }
     }
     
     func generateLectureDays(from lectures: [CoreDataLecture]?) {

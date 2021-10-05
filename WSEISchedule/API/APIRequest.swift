@@ -11,7 +11,7 @@ import UIKit
 
 final class APIRequest {
 
-    private let url = URL(string: "https://dziekanat.wsei.edu.pl")!
+    private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
 
     func getSignInHtml() -> Requestable {
         clearCookies()
@@ -23,7 +23,8 @@ final class APIRequest {
     }
 
     func downloadImage(path: String) -> Requestable {
-        let url = URL(string: url.absoluteString + path)!
+        let urlString = url.absoluteString.dropLast()
+        let url = URL(string: urlString + path)!
         return Request(url: url)
     }
 
@@ -33,6 +34,10 @@ final class APIRequest {
 
     func getScheduleHtml(parameters: ScheduleParameters) -> Requestable {
         Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters))
+    }
+
+    func getMarksHtml() -> Requestable {
+        Request(url: url, endpoint: Endpoint.getMarksHtml)
     }
 
     func clearCookies() {
