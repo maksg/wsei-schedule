@@ -111,9 +111,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             generateLectureDays(from: lectures)
             saveLectures(to: managedContext)
 
-            if #available(iOS 14.0, *) {
-                WidgetCenter.shared.reloadAllTimelines()
-            }
+            WidgetCenter.shared.reloadAllTimelines()
 
             resetErrors()
         } catch {

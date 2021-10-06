@@ -21,7 +21,7 @@ struct DayHeader: View {
             .font(.headline)
             .foregroundColor(.main)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-            .uncapitalized()
+            .textCase(.none)
             .accessibility(label: Text(date.voiceOverDay))
     }
 }

@@ -52,11 +52,11 @@ struct SettingsView: View {
                     .accessibility(identifier: "SignOutButton")
                 }
             }
-            .insetGroupedListStyle()
+            .listStyle(.insetGrouped)
             .navigationBarTitle(Tab.settings.title)
             .accessibility(identifier: "SettingsList")
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(.stack)
         .onAppear(perform: loadStudentInfo)
         .alert(isPresented: $viewModel.showThankYouAlert) {
             Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),

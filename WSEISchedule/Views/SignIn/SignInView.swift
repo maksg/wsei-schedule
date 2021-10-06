@@ -75,7 +75,6 @@ struct SignInView: View {
         .frame(maxWidth: 500)
         .padding(26)
         .animation(.default)
-        .keyboardAdaptive()
     }
 
     // MARK: Methods

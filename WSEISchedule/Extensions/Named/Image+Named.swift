@@ -14,13 +14,7 @@ extension Image {
 
     static var schedule: Image { Image(systemName: "calendar") }
     static var grades: Image { Image(systemName: "rosette") }
-    static var settings: Image {
-        if #available(iOS 14, macOS 11, *) {
-            return Image(systemName: "gearshape.2.fill")
-        } else {
-            return Image(systemName: "gear")
-        }
-    }
+    static var settings: Image { Image(systemName: "gearshape.2.fill") }
 
     static var time: Image { Image(systemName: "alarm.fill") }
     static var classroom: Image { Image(systemName: "location.fill") }
