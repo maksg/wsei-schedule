@@ -19,7 +19,7 @@ final class Request: Requestable {
     
     // MARK: Initialization
     
-    init(url: URL, endpoint: Routable, debug: Bool = false) {
+    init(url: URL, endpoint: Routable, debug: Bool = true) {
         let method = endpoint.route.method
         let parameters = endpoint.route.parameters
 

@@ -120,6 +120,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let lecture = lectureDay?.lectures.first(where: { $0.toDate > Date() })
         return lecture
     }
+
+    // MARK: Providers
     
     private func imageProvider(named: String) -> CLKImageProvider {
         let image = UIImage(named: named)!
@@ -133,106 +135,199 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let imageProvider = CLKFullColorImageProvider(fullColorImage: image)
         return imageProvider
     }
+
+    private func subjectTextProvider(lecture: Lecture) -> CLKSimpleTextProvider {
+        CLKSimpleTextProvider(text: lecture.subject)
+    }
+
+    private func classroomTextProvider(lecture: Lecture) -> CLKSimpleTextProvider {
+        CLKSimpleTextProvider(text: lecture.classroom)
+    }
+
+    private func timeTextProvider(lecture: Lecture) -> CLKSimpleTextProvider {
+        CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")
+    }
+
+    private func shortTimeAndClassroomProvider(lecture: Lecture) -> CLKSimpleTextProvider {
+        CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour) \(lecture.classroom)")
+    }
+
+    private func timeAndClassroomProvider(lecture: Lecture) -> CLKSimpleTextProvider {
+        CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour) \(lecture.classroom)")
+    }
+
+    private var formattedDayTextProvider: CLKSimpleTextProvider {
+        CLKSimpleTextProvider(text: Date().formattedDay)
+    }
+
+    private var noLecturesTextProvider: CLKSimpleTextProvider {
+        CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+    }
+
+    // MARK: Templates
     
     private var circularSmallTemplate: CLKComplicationTemplateCircularSmallSimpleImage {
-        let template = CLKComplicationTemplateCircularSmallSimpleImage()
-        template.imageProvider = imageProvider(named: "Complication/Circular")
-        return template
+        let imageProvider = imageProvider(named: "Complication/Circular")
+        return CLKComplicationTemplateCircularSmallSimpleImage(imageProvider: imageProvider)
     }
     
     private var modularSmallTemplate: CLKComplicationTemplateModularSmallSimpleImage {
-        let template = CLKComplicationTemplateModularSmallSimpleImage()
-        template.imageProvider = imageProvider(named: "Complication/Modular")
-        return template
+        let imageProvider = imageProvider(named: "Complication/Modular")
+        return CLKComplicationTemplateModularSmallSimpleImage(imageProvider: imageProvider)
     }
     
     private var extraLargeTemplate: CLKComplicationTemplateExtraLargeSimpleImage {
-        let template = CLKComplicationTemplateExtraLargeSimpleImage()
-        template.imageProvider = imageProvider(named: "Complication/Extra Large")
-        return template
+        let imageProvider = imageProvider(named: "Complication/Extra Large")
+        return CLKComplicationTemplateExtraLargeSimpleImage(imageProvider: imageProvider)
     }
     
     private var graphicCircularTemplate: CLKComplicationTemplateGraphicCircularImage {
-        let template = CLKComplicationTemplateGraphicCircularImage()
-        template.imageProvider = fullColorImageProvider(named: "Complication/Graphic Circular")
-        return template
+        let imageProvider = fullColorImageProvider(named: "Complication/Graphic Circular")
+        return CLKComplicationTemplateGraphicCircularImage(imageProvider: imageProvider)
     }
     
     private var modularLargeTemplate: CLKComplicationTemplateModularLargeStandardBody {
-        let template = CLKComplicationTemplateModularLargeStandardBody()
         if let lecture = todayLecture {
-            template.headerTextProvider = CLKSimpleTextProvider(text: lecture.subject)
-            template.body1TextProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")
-            template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
+            let headerTextProvider = subjectTextProvider(lecture: lecture)
+            let body1TextProvider = timeTextProvider(lecture: lecture)
+            let body2TextProvider = classroomTextProvider(lecture: lecture)
+
+            return CLKComplicationTemplateModularLargeStandardBody(
+                headerTextProvider: headerTextProvider,
+                body1TextProvider: body1TextProvider,
+                body2TextProvider: body2TextProvider
+            )
         } else {
-            template.headerTextProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
-            template.body1TextProvider = CLKSimpleTextProvider(text: Date().formattedDay)
-            template.body2TextProvider = nil
+            let headerTextProvider = noLecturesTextProvider
+            let body1TextProvider = formattedDayTextProvider
+
+            return CLKComplicationTemplateModularLargeStandardBody(
+                headerTextProvider: headerTextProvider,
+                body1TextProvider: body1TextProvider
+            )
         }
-        return template
     }
     
     private var graphicRectangularTemplate: CLKComplicationTemplateGraphicRectangularStandardBody {
-        let template = CLKComplicationTemplateGraphicRectangularStandardBody()
         if let lecture = todayLecture {
-            template.headerTextProvider = CLKSimpleTextProvider(text: lecture.subject)
-            template.body1TextProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour)")
-            template.body2TextProvider = CLKSimpleTextProvider(text: lecture.classroom)
+            let headerTextProvider = subjectTextProvider(lecture: lecture)
+            let body1TextProvider = timeTextProvider(lecture: lecture)
+            let body2TextProvider = classroomTextProvider(lecture: lecture)
+
+            return CLKComplicationTemplateGraphicRectangularStandardBody(
+                headerTextProvider: headerTextProvider,
+                body1TextProvider: body1TextProvider,
+                body2TextProvider: body2TextProvider
+            )
         } else {
-            template.headerTextProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
-            template.body1TextProvider = CLKSimpleTextProvider(text: Date().formattedDay)
-            template.body2TextProvider = nil
+            let headerTextProvider = noLecturesTextProvider
+            let body1TextProvider = formattedDayTextProvider
+
+            return CLKComplicationTemplateGraphicRectangularStandardBody(
+                headerTextProvider: headerTextProvider,
+                body1TextProvider: body1TextProvider
+            )
         }
-        return template
     }
     
     private var graphicBezelTemplate: CLKComplicationTemplateGraphicBezelCircularText {
-        let template = CLKComplicationTemplateGraphicBezelCircularText()
-        template.circularTemplate = graphicCircularTemplate
+        let circularTemplate = graphicCircularTemplate
+        let textProvider: CLKSimpleTextProvider
+
         if let lecture = todayLecture {
-            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour) \(lecture.classroom)")
+            textProvider = timeAndClassroomProvider(lecture: lecture)
         } else {
-            template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLecturesToday.localized)
+            textProvider = noLecturesTextProvider
         }
-        return template
+
+        return CLKComplicationTemplateGraphicBezelCircularText(
+            circularTemplate: circularTemplate,
+            textProvider: textProvider
+        )
     }
     
     private var graphicCornerTemplate: CLKComplicationTemplateGraphicCornerTextImage {
-        let template = CLKComplicationTemplateGraphicCornerTextImage()
-        template.imageProvider = fullColorImageProvider(named: "Complication/Graphic Corner")
+        let imageProvider = fullColorImageProvider(named: "Complication/Graphic Corner")
+        let textProvider: CLKSimpleTextProvider
+
         if let lecture = todayLecture {
-            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)  \(lecture.classroom)")
+            textProvider = shortTimeAndClassroomProvider(lecture: lecture)
         } else {
-            template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+            textProvider = noLecturesTextProvider
         }
-        return template
+
+        return CLKComplicationTemplateGraphicCornerTextImage(
+            textProvider: textProvider,
+            imageProvider: imageProvider
+        )
     }
     
     private var utilitySmallTemplate: CLKComplicationTemplateUtilitarianSmallSquare {
-        let template = CLKComplicationTemplateUtilitarianSmallSquare()
-        template.imageProvider = imageProvider(named: "Complication/Utilitarian")
-        return template
+        let imageProvider = imageProvider(named: "Complication/Utilitarian")
+        return CLKComplicationTemplateUtilitarianSmallSquare(imageProvider: imageProvider)
     }
     
     private var utilitySmallFlatTemplate: CLKComplicationTemplateUtilitarianSmallFlat {
-        let template = CLKComplicationTemplateUtilitarianSmallFlat()
+        let textProvider: CLKSimpleTextProvider
+
         if let lecture = todayLecture {
-            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour) \(lecture.classroom)")
+            textProvider = shortTimeAndClassroomProvider(lecture: lecture)
         } else {
-            template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+            textProvider = noLecturesTextProvider
         }
-        return template
+
+        return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
     }
     
     private var utilityLargeTemplate: CLKComplicationTemplateUtilitarianLargeFlat {
-        let template = CLKComplicationTemplateUtilitarianLargeFlat()
-        template.imageProvider = imageProvider(named: "Utility Large")
+        let imageProvider = imageProvider(named: "Utility Large")
+        let textProvider: CLKSimpleTextProvider
+
         if let lecture = todayLecture {
-            template.textProvider = CLKSimpleTextProvider(text: "\(lecture.fromDate.shortHour)-\(lecture.toDate.shortHour) \(lecture.classroom)")
+            textProvider = timeAndClassroomProvider(lecture: lecture)
         } else {
-            template.textProvider = CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+            textProvider = noLecturesTextProvider
         }
-        return template
+
+        return CLKComplicationTemplateUtilitarianLargeFlat(
+            textProvider: textProvider,
+            imageProvider: imageProvider
+        )
+    }
+
+    // MARK: - Descriptors
+
+    func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
+        let scheduleSupportedFamilies: [CLKComplicationFamily] = [
+            .modularSmall,
+            .utilitarianSmall,
+            .circularSmall,
+            .extraLarge,
+            .graphicCircular,
+        ]
+
+        let scheduleDescriptor = CLKComplicationDescriptor(
+            identifier: "ScheduleDescriptor",
+            displayName: Translation.Watch.Complications.schedule.localized,
+            supportedFamilies: scheduleSupportedFamilies
+        )
+
+        let upcomingLectureSupportedFamilies: [CLKComplicationFamily] = [
+            .modularLarge,
+            .utilitarianSmallFlat,
+            .utilitarianLarge,
+            .graphicCorner,
+            .graphicBezel,
+            .graphicRectangular
+        ]
+
+        let upcomingLectureDescriptor = CLKComplicationDescriptor(
+            identifier: "UpcomingLectureDescriptor",
+            displayName: Translation.Watch.Complications.upcomingLecture.localized,
+            supportedFamilies: upcomingLectureSupportedFamilies
+        )
+
+        handler([scheduleDescriptor, upcomingLectureDescriptor])
     }
     
 }

@@ -20,7 +20,7 @@ struct DayHeader: View {
         Text(date.formattedDay)
             .font(.headline)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .uncapitalized()
+            .textCase(.none)
     }
 
 }

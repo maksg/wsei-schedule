@@ -42,6 +42,11 @@ final class Translation {
     enum Watch: String {
         case noLectures = "watch.no_lectures"
         case noLecturesToday = "watch.no_lectures_today"
+
+        enum Complications: String {
+            case schedule = "watch.complications.schedule"
+            case upcomingLecture = "watch.complications.upcoming_lecture"
+        }
     }
     
     enum Widget: String {

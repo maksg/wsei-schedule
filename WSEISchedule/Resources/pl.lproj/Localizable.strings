@@ -47,6 +47,9 @@
 "watch.no_lectures" = "Brak wykładów";
 "watch.no_lectures_today" = "Brak wykładów dzisiaj";
 
+"watch.complications.schedule" = "Harmonogram";
+"watch.complications.upcoming_lecture" = "Nadchodzący wykład";
+
 // Accessibility
 
 "accessibility.schedule.subject" = "Przedmiot";

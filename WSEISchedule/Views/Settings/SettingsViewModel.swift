@@ -125,9 +125,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
         URLCache.shared.removeAllCachedResponses()
         apiRequest.clearCookies()
 
-        if #available(iOS 14.0, *) {
-            WidgetCenter.shared.reloadAllTimelines()
-        }
+        WidgetCenter.shared.reloadAllTimelines()
 
         UserDefaults.standard.signOut()
     }

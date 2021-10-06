@@ -29,13 +29,13 @@ struct GradesView: View {
                 
                 ForEach(viewModel.grades, content: GradeRow.init)
             }
-            .insetGroupedListStyle()
+            .listStyle(.insetGrouped)
             .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
             .navigationBarTitle(Tab.grades.title)
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(.stack)
         .onAppear(perform: reload)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
     }
