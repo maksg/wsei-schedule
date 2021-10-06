@@ -19,6 +19,10 @@
 
 "schedule.title" = "Schedule";
 
+// Grades
+
+"grades.title" = "Grades";
+
 // Settings
 
 "settings.title" = "Settings";
@@ -53,6 +57,8 @@
 "accessibility.schedule.lecturer" = "Lecturer";
 "accessibility.schedule.comments" = "Comments";
 "accessibility.schedule.upcoming_lectures_list" = "List of upcoming lectures";
+
+"accessibility.grades.list" = "List of grades";
 
 "accessibility.settings.profile_photo" = "Profile photo";
 "accessibility.settings.name" = "Name";

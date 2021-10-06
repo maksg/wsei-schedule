@@ -3,9 +3,13 @@
 //
 
 final class Translation {
-    
+
     enum Schedule: String {
         case title = "schedule.title"
+    }
+
+    enum Grades: String {
+        case title = "grades.title"
     }
     
     enum Settings: String {
@@ -61,6 +65,10 @@ final class Translation {
             case lecturer = "accessibility.schedule.lecturer"
             case comments = "accessibility.schedule.comments"
             case upcomingLecturesList = "accessibility.schedule.upcoming_lectures_list"
+        }
+
+        enum Grades: String {
+            case list = "accessibility.grades.list"
         }
 
         enum Settings: String {

@@ -12,7 +12,7 @@ struct LectureRow: View {
 
     // MARK: Properties
 
-    var lecture: Lecture
+    let lecture: Lecture
     @State private var showDetails: Bool = false
 
     @State private var expandedHeight: CGFloat = .zero

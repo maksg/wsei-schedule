@@ -19,6 +19,10 @@
 
 "schedule.title" = "Harmonogram";
 
+// Grades
+
+"grades.title" = "Oceny";
+
 // Settings
 
 "settings.title" = "Ustawienia";
@@ -53,6 +57,8 @@
 "accessibility.schedule.lecturer" = "Wykładowca";
 "accessibility.schedule.comments" = "Komentarze";
 "accessibility.schedule.upcoming_lectures_list" = "Lista nadchodzących zajęć";
+
+"accessibility.grades.list" = "Lista ocen";
 
 "accessibility.settings.profile_photo" = "Zdjęcie profilowe";
 "accessibility.settings.name" = "Imię i nazwisko";

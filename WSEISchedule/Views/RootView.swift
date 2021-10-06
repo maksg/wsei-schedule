@@ -25,6 +25,10 @@ struct RootView: View {
                     .tabItem(Tab.schedule.tabItem)
                     .tag(Tab.schedule)
 
+                GradesView(viewModel: viewModel.gradesViewModel)
+                    .tabItem(Tab.grades.tabItem)
+                    .tag(Tab.grades)
+
                 SettingsView(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                     .tabItem(Tab.settings.tabItem)
                     .tag(Tab.settings)
