@@ -18,6 +18,7 @@ final class RootViewModel: ObservableObject {
 
     let signInViewModel: SignInViewModel
     let scheduleViewModel: ScheduleViewModel
+    let gradesViewModel: GradesViewModel
     let settingsViewModel: SettingsViewModel
     
     @Published var selectedTab: Tab = .schedule
@@ -33,6 +34,7 @@ final class RootViewModel: ObservableObject {
     init() {
         signInViewModel = SignInViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         scheduleViewModel = ScheduleViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
+        gradesViewModel = GradesViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         settingsViewModel = SettingsViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         isSignedIn = !student.login.isEmpty
 

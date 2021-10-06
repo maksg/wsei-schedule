@@ -20,6 +20,12 @@
 		503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */; };
 		503BCA9826A867B200FD8091 /* StudentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9726A867B200FD8091 /* StudentInfo.swift */; };
 		504A723126A99FCF002EA50C /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A723026A99FCF002EA50C /* SignInable.swift */; };
+		505BB41B270DB0A000F556C5 /* GradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41A270DB0A000F556C5 /* GradesView.swift */; };
+		505BB41D270DB0AA00F556C5 /* GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */; };
+		505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41F270DC72F00F556C5 /* GradeRow.swift */; };
+		505BB422270DC76200F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
+		505BB423270DCA4900F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
+		505BB424270DCA4B00F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
 		50851BCD26AF0CF60006F96C /* String+FormUrlEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
@@ -259,6 +265,10 @@
 		503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParameters.swift; sourceTree = "<group>"; };
 		503BCA9726A867B200FD8091 /* StudentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfo.swift; sourceTree = "<group>"; };
 		504A723026A99FCF002EA50C /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
+		505BB41A270DB0A000F556C5 /* GradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesView.swift; sourceTree = "<group>"; };
+		505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewModel.swift; sourceTree = "<group>"; };
+		505BB41F270DC72F00F556C5 /* GradeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRow.swift; sourceTree = "<group>"; };
+		505BB421270DC76200F556C5 /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+FormUrlEncoded.swift"; sourceTree = "<group>"; };
 		50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
@@ -444,6 +454,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		505BB419270DB07E00F556C5 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				505BB41E270DC70100F556C5 /* Rows */,
+				505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */,
+				505BB41A270DB0A000F556C5 /* GradesView.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
+		505BB41E270DC70100F556C5 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				505BB41F270DC72F00F556C5 /* GradeRow.swift */,
+			);
+			path = Rows;
+			sourceTree = "<group>";
+		};
 		50851BCB26AF0CC40006F96C /* String */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +649,7 @@
 		578B99EC22D5D81F0031126D /* Rows */ = {
 			isa = PBXGroup;
 			children = (
+				50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */,
 				576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */,
 				576B970323ABC69300CA17CF /* StudentInfoRow.swift */,
 			);
@@ -741,6 +770,7 @@
 				572E7F00234CACF10061A835 /* Translation.swift */,
 				57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */,
 				57791D6223C5EA4700F91D7F /* Games.swift */,
+				505BB421270DC76200F556C5 /* Grade.swift */,
 				57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */,
 				577DDF1723C72BA500D841BB /* Student.swift */,
 				57561BE22535B1EE00DBC3D3 /* MockData.swift */,
@@ -769,6 +799,7 @@
 			children = (
 				570C5AC72345EAA9005EBC4D /* SignIn */,
 				57AD319022AE6BC3009EEB1F /* Schedule */,
+				505BB419270DB07E00F556C5 /* Grades */,
 				57AD318D22AE6BC3009EEB1F /* Settings */,
 				57506BD822B910C80056A099 /* RootViewModel.swift */,
 				57AD319322AE6BC3009EEB1F /* RootView.swift */,
@@ -825,7 +856,6 @@
 			isa = PBXGroup;
 			children = (
 				5701F82D22AFD23A005BED89 /* LectureRow.swift */,
-				50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */,
 			);
 			path = Rows;
 			sourceTree = "<group>";
@@ -1150,6 +1180,7 @@
 				57A4EF2A22BA568200C08CE7 /* LectureDay.swift in Sources */,
 				572E7F03234CAD160061A835 /* Translation.swift in Sources */,
 				578A72EF22BA4C890009130A /* ContentView.swift in Sources */,
+				505BB423270DCA4900F556C5 /* Grade.swift in Sources */,
 				578A72F322BA4C890009130A /* ExtensionDelegate.swift in Sources */,
 				5031A3CD25B77CF1005B9322 /* AnimatableRowHeight.swift in Sources */,
 			);
@@ -1170,6 +1201,7 @@
 				57FCB7D12538A48700509C3C /* NoLecturesTodayView.swift in Sources */,
 				571045E425385BCA0031B0A5 /* ScheduleWidgets.swift in Sources */,
 				57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */,
+				505BB424270DCA4B00F556C5 /* Grade.swift in Sources */,
 				57A6BEF525309F0700E9B26C /* CoreDataLecture+CoreDataProperties.swift in Sources */,
 				5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */,
 				57A6BF2D2530A32800E9B26C /* Translation.swift in Sources */,
@@ -1202,11 +1234,13 @@
 				57AD31BA22AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift in Sources */,
 				50BB49A626A600F300BFE87B /* Requestable.swift in Sources */,
 				5701F83722AFF57A005BED89 /* Lecture.swift in Sources */,
+				505BB422270DC76200F556C5 /* Grade.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
 				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
 				575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */,
 				570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */,
 				577DDF1823C72BA500D841BB /* Student.swift in Sources */,
+				505BB41D270DB0AA00F556C5 /* GradesViewModel.swift in Sources */,
 				50BB49A826A6014400BFE87B /* Routable.swift in Sources */,
 				577DDF1F23C7614D00D841BB /* UIImage+Named.swift in Sources */,
 				57674F53234DBCF000684C2A /* Color+Named.swift in Sources */,
@@ -1219,6 +1253,7 @@
 				502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */,
 				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
+				505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */,
 				50BB499326A328A500BFE87B /* APIRequest.swift in Sources */,
 				572FF8BB252CB5C500FFE530 /* KeyboardObservable.swift in Sources */,
 				57791D6323C5EA4700F91D7F /* Games.swift in Sources */,
@@ -1229,6 +1264,7 @@
 				572FF89F252C8DC500FFE530 /* View+Uncapitalized.swift in Sources */,
 				503BCA9826A867B200FD8091 /* StudentInfo.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
+				505BB41B270DB0A000F556C5 /* GradesView.swift in Sources */,
 				503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */,
 				50BB499626A328A500BFE87B /* Endpoint.swift in Sources */,
 				572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */,

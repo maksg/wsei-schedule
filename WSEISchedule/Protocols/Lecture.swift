@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Lecture {
-    
+
     var lecturer: String { get }
     var classroom: String { get }
     var fromDate: Date { get }

@@ -13,6 +13,7 @@ extension Image {
     static var logo: Image { Image("logo") }
 
     static var schedule: Image { Image(systemName: "calendar") }
+    static var grades: Image { Image(systemName: "rosette") }
     static var settings: Image {
         if #available(iOS 14, macOS 11, *) {
             return Image(systemName: "gearshape.2.fill")

@@ -10,12 +10,15 @@ import SwiftUI
 
 enum Tab: Int, CaseIterable {
     case schedule
+    case grades
     case settings
 
     var image: Image {
         switch self {
         case .schedule:
             return Image.schedule
+        case .grades:
+            return Image.grades
         case .settings:
             return Image.settings
         }
@@ -25,6 +28,8 @@ enum Tab: Int, CaseIterable {
         switch self {
         case .schedule:
             return Translation.Schedule.title.localized
+        case .grades:
+            return Translation.Grades.title.localized
         case .settings:
             return Translation.Settings.title.localized
         }

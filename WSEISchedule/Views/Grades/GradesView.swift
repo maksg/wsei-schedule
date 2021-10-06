@@ -1,21 +1,21 @@
 //
-//  ScheduleView.swift
+//  GradesView.swift
 //  WSEISchedule
 //
-//  Created by Maksymilian Galas on 09/06/2019.
-//  Copyright © 2019 Infinity Pi Ltd. All rights reserved.
+//  Created by Maksymilian Galas on 06/10/2021.
+//  Copyright © 2021 Infinity Pi Ltd. All rights reserved.
 //
 
 import SwiftUI
 
-struct ScheduleView: View {
+struct GradesView: View {
 
     // MARK: Properties
 
-    @ObservedObject var viewModel: ScheduleViewModel
+    @ObservedObject var viewModel: GradesViewModel
 
     // MARK: Views
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -26,17 +26,14 @@ struct ScheduleView: View {
                         .foregroundColor(.white)
                         .listRowBackground(Color.red)
                 }
-                ForEach(viewModel.lectureDays) { lectureDay in
-                    Section(header: DayHeader(date: lectureDay.date)) {
-                        ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
-                    }
-                }
+                
+                ForEach(viewModel.grades, content: GradeRow.init)
             }
             .insetGroupedListStyle()
             .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
-            .navigationBarTitle(Tab.schedule.title)
-            .accessibility(identifier: "ScheduleList")
-            .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
+            .navigationBarTitle(Tab.grades.title)
+            .accessibility(identifier: "GradesList")
+            .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: reload)
@@ -50,13 +47,13 @@ struct ScheduleView: View {
     }
 
     private func reload() {
-        viewModel.reloadLectures()
+        viewModel.reloadGrades()
     }
-    
+
 }
 
-struct ScheduleView_Previews: PreviewProvider {
+struct GradesView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleView(viewModel: ScheduleViewModel(apiRequest: APIRequest(), captchaReader: CaptchaReader(), htmlReader: HTMLReader()))
+        GradesView(viewModel: GradesViewModel(apiRequest: APIRequest(), captchaReader: CaptchaReader(), htmlReader: HTMLReader()))
     }
 }

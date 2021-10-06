@@ -36,8 +36,8 @@ final class APIRequest {
         Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters))
     }
 
-    func getMarksHtml() -> Requestable {
-        Request(url: url, endpoint: Endpoint.getMarksHtml)
+    func getGradesHtml() -> Requestable {
+        Request(url: url, endpoint: Endpoint.getGradesHtml)
     }
 
     func clearCookies() {

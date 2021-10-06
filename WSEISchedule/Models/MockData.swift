@@ -11,5 +11,7 @@ import Foundation
 final class MockData {
 
     static let lecture = CodableLecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject", comments: "Comments")
+
+    static let grade = Grade(id: 1, subject: "Subject", lecturer: "Lecturer", value: "4,5")
     
 }

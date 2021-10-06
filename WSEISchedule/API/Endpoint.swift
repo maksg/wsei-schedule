@@ -13,7 +13,7 @@ enum Endpoint: Routable {
     case signIn(parameters: SignInParameters)
     case getMainHtml
     case getScheduleHtml(parameters: ScheduleParameters)
-    case getMarksHtml
+    case getGradesHtml
 
     var route: Route {
         switch self {
@@ -25,7 +25,7 @@ enum Endpoint: Routable {
             return Route(path: "", method: .get)
         case .getScheduleHtml(let parameters):
             return Route(path: "Plany/PlanyStudentowGridCustom", method: .post, parameters: parameters.dictionary)
-        case .getMarksHtml:
+        case .getGradesHtml:
             return Route(path: "TokStudiow/StudentPrzedmiotyIOceny/Oceny", method: .get)
         }
     }
