@@ -26,7 +26,11 @@ final class GradesViewModel: NSObject, ObservableObject {
     @Published var errorMessage: String = ""
     @Published var isRefreshing: Bool = false
 
-    @Published var grades: [Grade] = []
+    @Published var grades: [Grade] = [] {
+        didSet {
+            isRefreshing = false
+        }
+    }
 
     let apiRequest: APIRequest
     let captchaReader: CaptchaReader
@@ -44,7 +48,28 @@ final class GradesViewModel: NSObject, ObservableObject {
     // MARK: Methods
 
     func reloadGrades() {
-        grades = [MockData.grade]
+        isRefreshing = true
+        fetchGrades()
+    }
+
+    private func fetchGrades() {
+        apiRequest.getGradesHtml().onDataSuccess({ [weak self] html in
+            self?.readGrades(fromHtml: html)
+        }).onError({ [weak self] error in
+            self?.onError(error)
+        }).make()
+    }
+
+    private func readGrades(fromHtml html: String) {
+        do {
+            let gradesDictionary = try htmlReader.readGrades(fromHtml: html)
+
+            self.grades = gradesDictionary.map(Grade.init)
+
+            resetErrors()
+        } catch {
+            onError(error)
+        }
     }
 
     func setErrorMessage(_ errorMessage: String) {
