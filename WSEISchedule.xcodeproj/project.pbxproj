@@ -460,14 +460,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		50BB499D26A4C86200BFE87B /* Classes */ = {
+		50BB499D26A4C86200BFE87B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */,
 				50BB499E26A4C8A500BFE87B /* CaptchaReader.swift */,
 				50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */,
 			);
-			path = Classes;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		50BB49A226A5F3C400BFE87B /* Parameters */ = {
@@ -651,7 +651,7 @@
 				57AD315222AE6B50009EEB1F /* SceneDelegate.swift */,
 				57AD318422AE6BC3009EEB1F /* Extensions */,
 				50BB498D26A3275C00BFE87B /* API */,
-				50BB499D26A4C86200BFE87B /* Classes */,
+				50BB499D26A4C86200BFE87B /* Utilities */,
 				57AD318022AE6BC3009EEB1F /* Models */,
 				57AD319522AE6BC3009EEB1F /* Protocols */,
 				57AF2A1624A2335F00950F80 /* Modifiers */,

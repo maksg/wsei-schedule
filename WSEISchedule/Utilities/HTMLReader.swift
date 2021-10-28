@@ -83,7 +83,7 @@ final class HTMLReader {
                 currentDateRowText = try elements.map({ try $0.text() }).first(where: { !$0.isEmpty }) ?? ""
                 return nil
             } else {
-                var dictionary = try generateLectureDictionary(headers: headers, elements: elements)
+                var dictionary = try zipTableData(headers: headers, elements: elements)
                 dictionary.addDateKey(currentDateRowText)
                 return dictionary
             }
@@ -92,7 +92,7 @@ final class HTMLReader {
         return lectures
     }
 
-    private func generateLectureDictionary(headers: [String], elements: Elements) throws -> [String: String] {
+    private func zipTableData(headers: [String], elements: Elements) throws -> [String: String] {
         try zip(headers, elements).reduce([String: String]()) { result, group in
             let (header, element) = group
             var result = result
@@ -101,6 +101,24 @@ final class HTMLReader {
                 result[header] = text
             }
             return result
+        }
+    }
+
+    func readGrades(fromHtml html: String) throws -> [[String: String]] {
+        let doc = try SwiftSoup.parse(html)
+
+        guard
+            let table = try doc.select("#td_tresc table.dane").first()
+        else { throw HTMLReaderError.invalidHtml }
+
+        let headers = try table.select("thead th").map({ try $0.text() })
+        let rows = try table.select("tbody tr")
+
+        return try rows.compactMap { row -> [String: String]? in
+            let elements = try row.select("td")
+            try elements.select("br").append("\\n")
+            let dictionary = try zipTableData(headers: headers, elements: elements)
+            return dictionary
         }
     }
 
