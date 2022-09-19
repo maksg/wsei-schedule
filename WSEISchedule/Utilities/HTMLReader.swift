@@ -26,16 +26,22 @@ final class HTMLReader {
         let doc = try SwiftSoup.parse(html)
         guard let form = try doc.select("#form_logowanie").first() else { throw HTMLReaderError.invalidHtml }
 
-        let elements = try form.select("tr[style=''] input")
+        let elements = try form.select("input")
 
         var usernameId: String = ""
         var passwordId: String = ""
         for element in elements {
             let id = try element.attr("id")
-            if try element.attr("type") == "password" {
+            guard !id.contains("captcha") else { continue }
+            let type = try element.attr("type")
+
+            switch type {
+            case "password":
                 passwordId = id
-            } else {
+            case "text":
                 usernameId = id
+            default:
+                break
             }
         }
 
@@ -47,17 +53,17 @@ final class HTMLReader {
         let doc = try SwiftSoup.parse(html)
         guard
             let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src"),
-            let paragraphElement = try doc.select("#td_naglowek p").first()
+            let infoElement = try doc.select(".identify").first()
         else { throw HTMLReaderError.invalidHtml }
 
         let photoUrl = URL(string: "https://dziekanat.wsei.edu.pl\(photoSource)")!
 
-        try paragraphElement.select("br").append("\\n")
-        let paragraph = try paragraphElement.text().replacingOccurrences(of: "\\n", with: "\n")
-        let paragraphLines = paragraph.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
+        try infoElement.select("br").append("\\n")
+        let info = try infoElement.text().replacingOccurrences(of: "\\n", with: "\n")
+        let infoLines = info.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
 
-        if paragraphLines.count >= 4 {
-            return StudentInfo(name: paragraphLines[1], albumNumber: paragraphLines[2], courseName: paragraphLines[3], photoUrl: photoUrl)
+        if infoLines.count >= 4 {
+            return StudentInfo(name: infoLines[1], albumNumber: infoLines[2], courseName: infoLines[3], photoUrl: photoUrl)
         } else {
             return StudentInfo(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
         }
@@ -72,18 +78,22 @@ final class HTMLReader {
             try doc.select("#gridViewPlanyStudentow_DXEmptyRow").first() == nil
         else { throw HTMLReaderError.invalidHtml }
 
-        let headers = try tableBody.select("#gridViewPlanyStudentow_DXHeadersRow0 td.dxgvHeader_Aqua").map({ try $0.text() })
+        var headers: [String] = []
 
         var currentDateRowText = ""
-        let rows = try tableBody.select("tr.dxgvGroupRow_Aqua, tr.dxgvDataRow_Aqua")
+        let rows = try tableBody.select("> tr")
         let lectures = try rows.compactMap { row -> [String: String]? in
-            let elements = try row.select("td")
+            let id = row.id()
+            let texts = try row.select("> td").map({ try $0.text() })
 
-            if row.hasClass("dxgvGroupRow_Aqua") {
-                currentDateRowText = try elements.map({ try $0.text() }).first(where: { !$0.isEmpty }) ?? ""
+            if id == "gridViewPlanyStudentow_DXHeadersRow0" {
+                headers = texts
+                return nil
+            } else if id.contains("gridViewPlanyStudentow_DXGroupRowExp") {
+                currentDateRowText = texts.first(where: { !$0.isEmpty }) ?? ""
                 return nil
             } else {
-                var dictionary = try zipTableData(headers: headers, elements: elements)
+                var dictionary = zipTableData(headers: headers, texts: texts)
                 dictionary.addDateKey(currentDateRowText)
                 return dictionary
             }
@@ -92,12 +102,11 @@ final class HTMLReader {
         return lectures
     }
 
-    private func zipTableData(headers: [String], elements: Elements) throws -> [String: String] {
-        try zip(headers, elements).reduce([String: String]()) { result, group in
-            let (header, element) = group
+    private func zipTableData(headers: [String], texts: [String]) -> [String: String] {
+        zip(headers, texts).reduce([String: String]()) { result, group in
+            let (header, text) = group
             var result = result
             if !header.isEmpty {
-                let text = try element.text()
                 result[header] = text
             }
             return result
@@ -108,7 +117,7 @@ final class HTMLReader {
         let doc = try SwiftSoup.parse(html)
 
         guard
-            let table = try doc.select("#td_tresc table.dane").first()
+            let table = try doc.select("#accordion div[id*='Przedmioty'] table").first()
         else { throw HTMLReaderError.invalidHtml }
 
         let headers = try table.select("thead th").map({ try $0.text() })
@@ -117,7 +126,8 @@ final class HTMLReader {
         return try rows.compactMap { row -> [String: String]? in
             let elements = try row.select("td")
             try elements.select("br").append("\\n")
-            let dictionary = try zipTableData(headers: headers, elements: elements)
+            let texts = try elements.map({ try $0.text() })
+            let dictionary = zipTableData(headers: headers, texts: texts)
             return dictionary
         }
     }

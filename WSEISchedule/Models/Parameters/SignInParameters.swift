@@ -19,6 +19,7 @@ struct SignInParameters {
     let captcha: String?
 
     var dictionary: [String: String] {
+        guard usernameId != passwordId else { return [:] }
         var dictionary = [usernameId: username, passwordId: password]
         if let captcha = captcha {
             dictionary["captcha"] = captcha
