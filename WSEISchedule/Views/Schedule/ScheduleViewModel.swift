@@ -48,8 +48,9 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             sendLecturesToWatch()
         }
     }
-    
-    @Published var lectureDays: [LectureDay] = []
+
+    private var lectureDays: [LectureDay] = []
+    @Published var lectureWeeks: [LectureWeek] = []
 
     private var signInData: SignInData?
 
@@ -169,6 +170,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime
             lectureDays[date].lectures += [lecture]
+        })
+        self.lectureWeeks = self.lectureDays.reduce(into: [LectureWeek](), { (lectureWeeks, lectureDay) in
+            let date = lectureDay.date
+            lectureWeeks[date].lectureDays += [lectureDay]
         })
     }
     
