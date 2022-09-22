@@ -73,10 +73,7 @@ final class HTMLReader {
     func readLectures(fromHtml html: String) throws -> [[String: String]] {
         let doc = try SwiftSoup.parse(html)
 
-        guard
-            let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first(),
-            try doc.select("#gridViewPlanyStudentow_DXEmptyRow").first() == nil
-        else { throw HTMLReaderError.invalidHtml }
+        guard let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first() else { throw HTMLReaderError.invalidHtml }
 
         var headers: [String] = []
 
@@ -92,10 +89,12 @@ final class HTMLReader {
             } else if id.contains("gridViewPlanyStudentow_DXGroupRowExp") {
                 currentDateRowText = texts.first(where: { !$0.isEmpty }) ?? ""
                 return nil
-            } else {
+            } else if id.contains("gridViewPlanyStudentow_DXDataRow") {
                 var dictionary = zipTableData(headers: headers, texts: texts)
                 dictionary.addDateKey(currentDateRowText)
                 return dictionary
+            } else {
+                return nil
             }
         }
 

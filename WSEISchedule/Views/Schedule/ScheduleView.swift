@@ -26,9 +26,12 @@ struct ScheduleView: View {
                         .foregroundColor(.white)
                         .listRowBackground(Color.red)
                 }
-                ForEach(viewModel.lectureDays) { lectureDay in
-                    Section(header: DayHeader(date: lectureDay.date)) {
-                        ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
+                ForEach(viewModel.lectureWeeks) { lectureWeek in
+                    Section {
+                        ForEach(lectureWeek.lectureDays) { lectureDay in
+                            DayHeader(date: lectureDay.date)
+                            ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
+                        }
                     }
                 }
             }

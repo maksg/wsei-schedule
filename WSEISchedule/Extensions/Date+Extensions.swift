@@ -59,5 +59,9 @@ extension Date {
     var isTomorrow: Bool {
         Calendar.current.isDateInTomorrow(self)
     }
+
+    var startOfWeek: Date {
+        Calendar.current.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date!
+    }
     
 }
