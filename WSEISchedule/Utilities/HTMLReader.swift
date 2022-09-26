@@ -22,6 +22,12 @@ extension HTMLReaderError: LocalizedError {
 
 final class HTMLReader {
 
+    func isSignedIn(fromHtml html: String) -> Bool {
+        let doc = try? SwiftSoup.parse(html)
+        let sidebar = try? doc?.select("#sidebar").first()
+        return sidebar != nil
+    }
+
     func readSignInData(fromHtml html: String) throws -> SignInData {
         let doc = try SwiftSoup.parse(html)
         guard let form = try doc.select("#form_logowanie").first() else { throw HTMLReaderError.invalidHtml }
@@ -30,6 +36,7 @@ final class HTMLReader {
 
         var usernameId: String = ""
         var passwordId: String = ""
+
         for element in elements {
             let id = try element.attr("id")
             guard !id.contains("captcha") else { continue }
@@ -67,13 +74,14 @@ final class HTMLReader {
         } else {
             return StudentInfo(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
         }
-
     }
 
     func readLectures(fromHtml html: String) throws -> [[String: String]] {
         let doc = try SwiftSoup.parse(html)
-
-        guard let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first() else { throw HTMLReaderError.invalidHtml }
+        guard
+            let tableBody = try doc.select("#gridViewPlanyStudentow_DXMainTable tbody").first(),
+            try doc.select("#gridViewPlanyStudentow_DXEmptyRow").first() == nil
+        else { throw HTMLReaderError.invalidHtml }
 
         var headers: [String] = []
 

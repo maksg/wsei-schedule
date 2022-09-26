@@ -81,7 +81,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
 
             resetErrors()
         } catch {
-            print(error)
+            onError(error)
         }
 
         setupStudentInfoRow()
@@ -142,7 +142,7 @@ extension SettingsViewModel: SignInable {
         startSigningIn(username: student.login, password: student.password)
     }
 
-    func onErrorMessage(_ errorMessage: String) {
+    func showErrorMessage(_ errorMessage: String) {
         print(errorMessage)
     }
 
