@@ -53,7 +53,7 @@ extension SignInViewModel: SignInable {
         signIn()
     }
     
-    func onErrorMessage(_ errorMessage: String) {
+    func showErrorMessage(_ errorMessage: String) {
         print(errorMessage)
     }
 

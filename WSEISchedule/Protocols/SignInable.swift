@@ -17,8 +17,9 @@ protocol SignInable: AnyObject {
     func startSigningIn(username: String, password: String)
     func onSignIn(html: String, username: String, password: String)
     func onError(_ error: Error)
+    func onSignInError(_ error: Error)
     func onSignInError(_ error: Error, username: String, password: String)
-    func onErrorMessage(_ errorMessage: String)
+    func showErrorMessage(_ errorMessage: String)
     func resetErrors()
 }
 
@@ -28,7 +29,7 @@ extension SignInable {
         apiRequest.getSignInHtml().onDataSuccess({ [weak self] html in
             self?.readSignInData(fromHtml: html, username: username, password: password)
         }).onError({ [weak self] error in
-            self?.onError(error)
+            self?.onSignInError(error, username: username, password: password)
         }).make()
     }
 
@@ -42,19 +43,19 @@ extension SignInable {
                 finishSigningIn(data: signInData, username: username, password: password)
             }
         } catch {
-            onError(error)
+            onSignInError(error, username: username, password: password)
         }
     }
 
     private func downloadCaptcha(path: String, signInData: SignInData, username: String, password: String) {
         apiRequest.downloadImage(path: path).onImageDownloadSuccess({ [weak self] image in
             guard let image = image else {
-                self?.onError(HTMLReaderError.invalidCaptcha)
+                self?.onSignInError(HTMLReaderError.invalidCaptcha, username: username, password: password)
                 return
             }
             self?.readCaptcha(from: image, signInData: signInData, username: username, password: password)
         }).onError({ [weak self] error in
-            self?.onError(error)
+            self?.onSignInError(error, username: username, password: password)
         }).make()
     }
 
@@ -64,7 +65,7 @@ extension SignInable {
             case .success(let captcha):
                 self?.finishSigningIn(data: signInData, username: username, password: password, captcha: captcha)
             case .failure(let error):
-                self?.onError(error)
+                self?.onSignInError(error, username: username, password: password)
             }
         }
     }
@@ -88,14 +89,19 @@ extension SignInable {
     private func checkForError(html: String, username: String, password: String) {
         do {
             let errorMessage = try htmlReader.readSignInError(fromHtml: html)
-            onErrorMessage(errorMessage)
+            showErrorMessage(errorMessage)
         } catch HTMLReaderError.invalidHtml {
-            onErrorMessage("")
+            showErrorMessage("")
             onSignIn(html: html, username: username, password: password)
         } catch {
-            onErrorMessage("")
-            onError(error)
+            showErrorMessage("")
+            onSignInError(error, username: username, password: password)
         }
+    }
+
+    func onSignInError(_ error: Error) {
+        let student = UserDefaults.standard.student
+        onSignInError(error, username: student.login, password: student.password)
     }
 
     func onSignInError(_ error: Error, username: String, password: String) {
@@ -105,12 +111,12 @@ extension SignInable {
             startSigningIn(username: username, password: password)
         } else {
             unsuccessfulSignInAttempts = 0
-            onErrorMessage(error.localizedDescription)
+            showErrorMessage(error.localizedDescription)
         }
     }
 
     func resetErrors() {
-        onErrorMessage("")
+        showErrorMessage("")
         unsuccessfulSignInAttempts = 0
     }
 

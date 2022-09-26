@@ -12,15 +12,6 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     // MARK: Properties
 
-    var student: Student {
-        get {
-            UserDefaults.standard.student
-        }
-        set {
-            UserDefaults.standard.student = newValue
-        }
-    }
-
     var unsuccessfulSignInAttempts: Int = 0
 
     @Published var errorMessage: String = ""
@@ -63,21 +54,10 @@ final class GradesViewModel: NSObject, ObservableObject {
     private func readGrades(fromHtml html: String) {
         do {
             let gradesDictionary = try htmlReader.readGrades(fromHtml: html)
-
             self.grades = gradesDictionary.map(Grade.init)
-
             resetErrors()
         } catch {
             onError(error)
-        }
-    }
-
-    func setErrorMessage(_ errorMessage: String) {
-        DispatchQueue.main.async { [weak self] in
-            self?.errorMessage = errorMessage
-
-            guard !errorMessage.isEmpty else { return }
-            self?.isRefreshing = false
         }
     }
     
@@ -86,14 +66,20 @@ final class GradesViewModel: NSObject, ObservableObject {
 extension GradesViewModel: SignInable {
 
     func onSignIn(html: String, username: String, password: String) {
+        fetchGrades()
     }
 
     func onError(_ error: Error) {
-        onSignInError(error, username: student.login, password: student.password)
+        onSignInError(error)
     }
 
-    func onErrorMessage(_ errorMessage: String) {
-        setErrorMessage(errorMessage)
+    func showErrorMessage(_ errorMessage: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.errorMessage = errorMessage
+
+            guard !errorMessage.isEmpty else { return }
+            self?.isRefreshing = false
+        }
     }
 
 }

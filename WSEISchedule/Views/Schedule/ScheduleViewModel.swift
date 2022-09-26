@@ -18,15 +18,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: Properties
 
-    var student: Student {
-        get {
-            UserDefaults.standard.student
-        }
-        set {
-            UserDefaults.standard.student = newValue
-        }
-    }
-
     var unsuccessfulSignInAttempts: Int = 0
 
     @Published var errorMessage: String = ""
@@ -148,15 +139,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             print(error)
         }
     }
-
-    func setErrorMessage(_ errorMessage: String) {
-        DispatchQueue.main.async { [weak self] in
-            self?.errorMessage = errorMessage
-
-            guard !errorMessage.isEmpty else { return }
-            self?.isRefreshing = false
-        }
-    }
     
     func generateLectureDays(from lectures: [CoreDataLecture]?) {
         self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
@@ -199,11 +181,29 @@ extension ScheduleViewModel: SignInable {
     }
 
     func onError(_ error: Error) {
-        onSignInError(error, username: student.login, password: student.password)
+        apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
+            self?.checkIfSignedIn(html: html, error: error)
+        }).onError({ [weak self] error in
+            self?.onSignInError(error)
+        }).make()
     }
 
-    func onErrorMessage(_ errorMessage: String) {
-        setErrorMessage(errorMessage)
+    private func checkIfSignedIn(html: String, error: Error) {
+        let isSignedIn = htmlReader.isSignedIn(fromHtml: html)
+        if isSignedIn {
+            print("Already signed in")
+        } else {
+            onSignInError(error)
+        }
+    }
+
+    func showErrorMessage(_ errorMessage: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.errorMessage = errorMessage
+
+            guard !errorMessage.isEmpty else { return }
+            self?.isRefreshing = false
+        }
     }
 
 }
