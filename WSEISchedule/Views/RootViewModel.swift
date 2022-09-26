@@ -23,8 +23,8 @@ final class RootViewModel: ObservableObject {
     
     @Published var selectedTab: Tab = .schedule
     
-    var student: Student {
-        UserDefaults.standard.student
+    var username: String {
+        Keychain.standard.retrieveUsernameAndPassword().username
     }
     
     @Published var isSignedIn: Bool = false
@@ -36,7 +36,7 @@ final class RootViewModel: ObservableObject {
         scheduleViewModel = ScheduleViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         gradesViewModel = GradesViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         settingsViewModel = SettingsViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
-        isSignedIn = !student.login.isEmpty
+        isSignedIn = !username.isEmpty
 
         signInViewModel.finishSignIn = { [weak self] in
             self?.checkSignInStatus()
@@ -47,7 +47,7 @@ final class RootViewModel: ObservableObject {
     
     func checkSignInStatus() {
         withAnimation {
-            isSignedIn = !student.login.isEmpty
+            isSignedIn = !username.isEmpty
         }
     }
 }

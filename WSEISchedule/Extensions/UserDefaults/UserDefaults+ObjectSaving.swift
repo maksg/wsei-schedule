@@ -9,13 +9,13 @@
 import Foundation
 
 extension UserDefaults {
-    func setObject<Object>(_ object: Object, forKey: String) where Object: Encodable {
+    func setObject<Object>(_ object: Object, forKey key: String) where Object: Encodable {
         guard let data = try? JSONEncoder().encode(object) else { return }
-        set(data, forKey: forKey)
+        set(data, forKey: key)
     }
 
-    func getObject<Object>(forKey: String) -> Object? where Object: Decodable {
-        guard let data = self.data(forKey: forKey) else { return nil }
+    func getObject<Object>(forKey key: String) -> Object? where Object: Decodable {
+        guard let data = self.data(forKey: key) else { return nil }
         return try? JSONDecoder().decode(Object.self, from: data)
     }
 }

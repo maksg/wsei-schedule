@@ -19,6 +19,8 @@
 		503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */; };
 		503BCA9826A867B200FD8091 /* StudentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9726A867B200FD8091 /* StudentInfo.swift */; };
 		504A723126A99FCF002EA50C /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A723026A99FCF002EA50C /* SignInable.swift */; };
+		504AD2C828E234800071F57B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AD2C728E234800071F57B /* Keychain.swift */; };
+		504AD2C928E239190071F57B /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
 		505BB41B270DB0A000F556C5 /* GradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41A270DB0A000F556C5 /* GradesView.swift */; };
 		505BB41D270DB0AA00F556C5 /* GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */; };
 		505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41F270DC72F00F556C5 /* GradeRow.swift */; };
@@ -73,7 +75,6 @@
 		57561C3B2535B5B300DBC3D3 /* LectureEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C2B2535B5A000DBC3D3 /* LectureEntry.swift */; };
 		57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C432535C46200DBC3D3 /* MediumNextLectureView.swift */; };
 		57674F53234DBCF000684C2A /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57674F52234DBCF000684C2A /* Color+Named.swift */; };
-		5769E2132534A4F000D4391A /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
 		5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B422AE6E20009EEB1F /* Lectures.xcdatamodeld */; };
 		576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
 		576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */; };
@@ -234,6 +235,7 @@
 		503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParameters.swift; sourceTree = "<group>"; };
 		503BCA9726A867B200FD8091 /* StudentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfo.swift; sourceTree = "<group>"; };
 		504A723026A99FCF002EA50C /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
+		504AD2C728E234800071F57B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		505BB41A270DB0A000F556C5 /* GradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesView.swift; sourceTree = "<group>"; };
 		505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewModel.swift; sourceTree = "<group>"; };
 		505BB41F270DC72F00F556C5 /* GradeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRow.swift; sourceTree = "<group>"; };
@@ -468,6 +470,8 @@
 				5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */,
 				50BB499E26A4C8A500BFE87B /* CaptchaReader.swift */,
 				50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */,
+				504AD2C728E234800071F57B /* Keychain.swift */,
+				57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -700,7 +704,6 @@
 				577DDF1923C73DE100D841BB /* Lecture */,
 				57AD318222AE6BC3009EEB1F /* Tab.swift */,
 				572E7F00234CACF10061A835 /* Translation.swift */,
-				57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */,
 				57791D6223C5EA4700F91D7F /* Games.swift */,
 				505BB421270DC76200F556C5 /* Grade.swift */,
 				57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */,
@@ -1083,6 +1086,7 @@
 				571045ED25385BF80031B0A5 /* NextTwoLecturesWidget.swift in Sources */,
 				57561BC92535AF4600DBC3D3 /* NoNextLecturesView.swift in Sources */,
 				571045F625385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift in Sources */,
+				504AD2C928E239190071F57B /* NSSharedPersistentContainer.swift in Sources */,
 				57A6BEFD25309F2300E9B26C /* Lecture.swift in Sources */,
 				571045CD253859A00031B0A5 /* LargeNextTwoLecturesView.swift in Sources */,
 				57561C232535B58700DBC3D3 /* Provider.swift in Sources */,
@@ -1098,7 +1102,6 @@
 				57A6BEC02530908200E9B26C /* NextLectureWidget.swift in Sources */,
 				57561BDA2535B15100DBC3D3 /* SmallNextLectureView.swift in Sources */,
 				57A6BEED25309F0300E9B26C /* CoreDataLecture.swift in Sources */,
-				5769E2132534A4F000D4391A /* NSSharedPersistentContainer.swift in Sources */,
 				57A6BF0525309F6100E9B26C /* Image+Named.swift in Sources */,
 				571045FF2538769B0031B0A5 /* LectureView.swift in Sources */,
 				57561BEB2535B21800DBC3D3 /* MockData.swift in Sources */,
@@ -1147,6 +1150,7 @@
 				5031A3BD25B77B88005B9322 /* AnimatableRowHeight.swift in Sources */,
 				50BB499526A328A500BFE87B /* Route.swift in Sources */,
 				503BCA9826A867B200FD8091 /* StudentInfo.swift in Sources */,
+				504AD2C828E234800071F57B /* Keychain.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
 				505BB41B270DB0A000F556C5 /* GradesView.swift in Sources */,
 				503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */,

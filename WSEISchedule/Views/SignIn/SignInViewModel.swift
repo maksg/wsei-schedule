@@ -42,9 +42,7 @@ final class SignInViewModel: ObservableObject {
 extension SignInViewModel: SignInable {
 
     func onSignIn(html: String, username: String, password: String) {
-        UserDefaults.standard.student.login = username
-        UserDefaults.standard.student.password = password
-
+        Keychain.standard.save(username: username, password: password)
         resetErrors()
         finishSignIn?()
     }
