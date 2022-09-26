@@ -100,8 +100,8 @@ extension SignInable {
     }
 
     func onSignInError(_ error: Error) {
-        let student = UserDefaults.standard.student
-        onSignInError(error, username: student.login, password: student.password)
+        let student = Keychain.standard.retrieveUsernameAndPassword()
+        onSignInError(error, username: student.username, password: student.password)
     }
 
     func onSignInError(_ error: Error, username: String, password: String) {

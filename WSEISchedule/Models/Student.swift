@@ -9,8 +9,6 @@
 import Foundation
 
 struct Student: Codable {
-    var login: String
-    var password: String
     var name: String
     var albumNumber: String
     var courseName: String

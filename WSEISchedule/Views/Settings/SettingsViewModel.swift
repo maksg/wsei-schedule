@@ -24,8 +24,6 @@ final class SettingsViewModel: NSObject, ObservableObject {
             UserDefaults.standard.student = newValue
         }
     }
-    
-    var isSignedIn: Bool { !student.login.isEmpty }
 
     var unsuccessfulSignInAttempts: Int = 0
     
@@ -139,7 +137,7 @@ extension SettingsViewModel: SignInable {
     }
 
     func onError(_ error: Error) {
-        startSigningIn(username: student.login, password: student.password)
+        onSignInError(error)
     }
 
     func showErrorMessage(_ errorMessage: String) {
