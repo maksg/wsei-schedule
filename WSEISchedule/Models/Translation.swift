@@ -6,6 +6,7 @@ final class Translation {
 
     enum Schedule: String {
         case title = "schedule.title"
+        case noLectures = "schedule.no_lectures"
     }
 
     enum Grades: String {

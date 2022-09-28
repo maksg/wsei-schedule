@@ -18,6 +18,7 @@
 // Schedule
 
 "schedule.title" = "Schedule";
+"schedule.no_lectures" = "No lectures";
 
 // Grades
 
@@ -63,7 +64,7 @@
 
 "accessibility.grades.list" = "List of grades";
 "accessibility.grades.subject" = "Subject";
-"accessibility.grades.lecture_form" = "Lecture form";
+"accessibility.grades.lecture_form" = "Form of lecture";
 "accessibility.grades.lecturer" = "Lecturer";
 "accessibility.grades.grade" = "Grade";
 "accessibility.grades.ects" = "ECTS";
