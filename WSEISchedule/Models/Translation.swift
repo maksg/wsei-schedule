@@ -74,6 +74,11 @@ final class Translation {
 
         enum Grades: String {
             case list = "accessibility.grades.list"
+            case subject = "accessibility.grades.subject"
+            case lectureForm = "accessibility.grades.lecture_form"
+            case lecturer = "accessibility.grades.lecturer"
+            case grade = "accessibility.grades.grade"
+            case ects = "accessibility.grades.ects"
         }
 
         enum Settings: String {

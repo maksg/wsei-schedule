@@ -18,18 +18,45 @@ struct GradeRow: View {
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(grade.subject)
                     .font(.headline)
-                Text(grade.lecturer)
-                    .font(.footnote)
+                    .accessibility(hint: Text(Translation.Accessibility.Grades.subject.localized))
+
+                HStack(alignment: .top) {
+                    Image.code
+                        .foregroundColor(.main)
+                        .accessibilityElement()
+                        .accessibility(label: Text(Translation.Accessibility.Grades.lectureForm.localized))
+                    Text(grade.lectureForm)
+                }
+
+                HStack(alignment: .top) {
+                    Image.lecturer
+                        .foregroundColor(.orange)
+                        .accessibilityElement()
+                        .accessibility(label: Text(Translation.Accessibility.Grades.lecturer.localized))
+                    Text(grade.lecturer)
+                }
             }
+            .font(.footnote)
 
             Spacer()
 
-            Text(grade.value)
-                .font(.headline)
-                .foregroundColor(.main)
+            VStack(spacing: 8) {
+                Text(grade.value)
+                    .font(.headline)
+                    .foregroundColor(.main)
+                    .accessibility(hint: Text(Translation.Accessibility.Grades.grade.localized))
+                
+                if !grade.ects.isEmpty {
+                    Text("ECTS: \(grade.ects)")
+                        .font(.footnote)
+                        .fontWeight(.medium)
+                        .accessibility(hint: Text(Translation.Accessibility.Grades.ects.localized))
+                }
+            }
+            .frame(width: 60)
         }
     }
 }

@@ -61,7 +61,7 @@ extension Date {
     }
 
     var startOfWeek: Date {
-        Calendar.current.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date!
+        Calendar(identifier: .iso8601).dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date!
     }
     
 }
