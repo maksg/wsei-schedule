@@ -9,16 +9,18 @@
 import Foundation
 
 struct Grade: Identifiable {
-    let id: String
+    var id: String {
+        subject + lecturer + lectureForm + value
+    }
     let subject: String
     let lecturer: String
+    let lectureForm: String
+    let ects: String
     let value: String
 }
 
 extension Grade {
     init(fromDictionary dictionary: [String: String]) {
-        self.id = dictionary["Nr"] ?? ""
-
         let subjectAndLecturer = dictionary["Przedmiot i prowadzący"]?
             .replacingOccurrences(of: "\\n", with: "\n")
             .split(separator: "\n")
@@ -32,6 +34,11 @@ extension Grade {
             self.lecturer = ""
         }
 
+        self.lectureForm = dictionary["Forma zajęć:"]?
+            .replacingOccurrences(of: " \\n ", with: "\n")
+            .trimmingCharacters(in: .whitespaces) ?? ""
+
+        self.ects = dictionary["Punkty ECTS"] ?? ""
         self.value = dictionary["Ocena"] ?? ""
     }
 }

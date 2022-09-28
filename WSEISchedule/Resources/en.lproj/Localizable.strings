@@ -62,6 +62,11 @@
 "accessibility.schedule.upcoming_lectures_list" = "List of upcoming lectures";
 
 "accessibility.grades.list" = "List of grades";
+"accessibility.grades.subject" = "Subject";
+"accessibility.grades.lecture_form" = "Lecture form";
+"accessibility.grades.lecturer" = "Lecturer";
+"accessibility.grades.grade" = "Grade";
+"accessibility.grades.ects" = "ECTS";
 
 "accessibility.settings.profile_photo" = "Profile photo";
 "accessibility.settings.name" = "Name";

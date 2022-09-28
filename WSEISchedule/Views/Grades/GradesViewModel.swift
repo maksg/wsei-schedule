@@ -54,7 +54,7 @@ final class GradesViewModel: NSObject, ObservableObject {
     private func readGrades(fromHtml html: String) {
         do {
             let gradesDictionary = try htmlReader.readGrades(fromHtml: html)
-            self.grades = gradesDictionary.map(Grade.init)
+            self.grades = gradesDictionary.map(Grade.init).filter({ !$0.value.isEmpty })
             resetErrors()
         } catch {
             onError(error)
