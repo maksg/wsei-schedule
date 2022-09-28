@@ -26,11 +26,16 @@ struct ScheduleView: View {
                         .foregroundColor(.white)
                         .listRowBackground(Color.red)
                 }
-                ForEach(viewModel.lectureWeeks) { lectureWeek in
-                    Section {
-                        ForEach(lectureWeek.lectureDays) { lectureDay in
-                            DayHeader(date: lectureDay.date)
-                            ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
+
+                if viewModel.lectureWeeks.isEmpty {
+                    Text(Translation.Schedule.noLectures.localized)
+                } else {
+                    ForEach(viewModel.lectureWeeks) { lectureWeek in
+                        Section {
+                            ForEach(lectureWeek.lectureDays) { lectureDay in
+                                DayHeader(date: lectureDay.date)
+                                ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
+                            }
                         }
                     }
                 }

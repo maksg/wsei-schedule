@@ -18,6 +18,7 @@
 // Schedule
 
 "schedule.title" = "Harmonogram";
+"schedule.no_lectures" = "Brak wykładów";
 
 // Grades
 
@@ -62,6 +63,11 @@
 "accessibility.schedule.upcoming_lectures_list" = "Lista nadchodzących zajęć";
 
 "accessibility.grades.list" = "Lista ocen";
+"accessibility.grades.subject" = "Przedmiot";
+"accessibility.grades.lecture_form" = "Forma zajęć";
+"accessibility.grades.lecturer" = "Wykładowca";
+"accessibility.grades.grade" = "Ocena";
+"accessibility.grades.ects" = "ECTS";
 
 "accessibility.settings.profile_photo" = "Zdjęcie profilowe";
 "accessibility.settings.name" = "Imię i nazwisko";
