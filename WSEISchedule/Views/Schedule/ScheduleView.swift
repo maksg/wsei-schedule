@@ -17,36 +17,33 @@ struct ScheduleView: View {
     // MARK: Views
     
     var body: some View {
-        NavigationView {
-            List {
-                if !viewModel.errorMessage.isEmpty {
-                    Text(viewModel.errorMessage)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .listRowBackground(Color.red)
-                }
+        List {
+            if !viewModel.errorMessage.isEmpty {
+                Text(viewModel.errorMessage)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(.white)
+                    .listRowBackground(Color.red)
+            }
 
-                if viewModel.lectureWeeks.isEmpty {
-                    Text(Translation.Schedule.noLectures.localized)
-                } else {
-                    ForEach(viewModel.lectureWeeks) { lectureWeek in
-                        Section {
-                            ForEach(lectureWeek.lectureDays) { lectureDay in
-                                DayHeader(date: lectureDay.date)
-                                ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
-                            }
+            if viewModel.lectureWeeks.isEmpty {
+                Text(Translation.Schedule.noLectures.localized)
+            } else {
+                ForEach(viewModel.lectureWeeks) { lectureWeek in
+                    Section {
+                        ForEach(lectureWeek.lectureDays) { lectureDay in
+                            DayHeader(date: lectureDay.date)
+                            ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
                         }
                     }
                 }
             }
-            .listStyle(.insetGrouped)
-            .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
-            .navigationBarTitle(Tab.schedule.title)
-            .accessibility(identifier: "ScheduleList")
-            .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         }
-        .navigationViewStyle(.stack)
+        .listStyle(.insetGrouped)
+        .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
+        .navigationBarTitle(Tab.schedule.title)
+        .accessibility(identifier: "ScheduleList")
+        .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         .onAppear(perform: reload)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
     }

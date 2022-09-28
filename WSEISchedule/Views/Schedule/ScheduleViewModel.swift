@@ -196,6 +196,7 @@ extension ScheduleViewModel: SignInable {
         let isSignedIn = htmlReader.isSignedIn(fromHtml: html)
         if isSignedIn {
             print("Already signed in")
+            showErrorMessage("")
         } else {
             onSignInError(error)
         }
