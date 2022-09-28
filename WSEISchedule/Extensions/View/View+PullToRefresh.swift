@@ -11,9 +11,15 @@ import SwiftUI
 extension View {
 
     func pullToRefresh(onRefresh: @escaping () -> Void, isRefreshing: Binding<Bool>) -> some View {
-        VStack(spacing: 0) {
-            self
-            PullToRefreshView(onRefresh: onRefresh, isRefreshing: isRefreshing).frame(height: 0)
+        if #available(iOS 15.0, *) {
+            return refreshable {
+                onRefresh()
+            }
+        } else {
+            return VStack(spacing: 0) {
+                self
+                PullToRefreshView(onRefresh: onRefresh, isRefreshing: isRefreshing).frame(height: 0)
+            }
         }
     }
 
