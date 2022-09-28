@@ -21,26 +21,52 @@ struct RootView: View {
     private var content: some View {
         if horizontalSizeClass == .compact {
             TabView(selection: $viewModel.selectedTab) {
-                ScheduleView(viewModel: viewModel.scheduleViewModel)
-                    .tabItem(Tab.schedule.tabItem)
-                    .tag(Tab.schedule)
+                NavigationView {
+                    ScheduleView(viewModel: viewModel.scheduleViewModel)
+                }
+                .tabItem(Tab.schedule.tabItem)
+                .tag(Tab.schedule)
 
-                GradesView(viewModel: viewModel.gradesViewModel)
-                    .tabItem(Tab.grades.tabItem)
-                    .tag(Tab.grades)
+                NavigationView {
+                    GradesView(viewModel: viewModel.gradesViewModel)
+                }
+                .tabItem(Tab.grades.tabItem)
+                .tag(Tab.grades)
 
-                SettingsView(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
-                    .tabItem(Tab.settings.tabItem)
-                    .tag(Tab.settings)
+                NavigationView {
+                    SettingsView(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
+                }
+                .tabItem(Tab.settings.tabItem)
+                .tag(Tab.settings)
             }.accentColor(.main)
         } else {
-            HStack(spacing: 0) {
-                ScheduleView(viewModel: viewModel.scheduleViewModel)
-                    .frame(minWidth: 500)
-                Color.quaternary.frame(width: 1)
-                SettingsView(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
-                    .frame(minWidth: 140, maxWidth: 400)
-            }
+            NavigationView {
+                List(selection: $viewModel.selectedListItem) {
+                    NavigationLink {
+                        ScheduleView(viewModel: viewModel.scheduleViewModel)
+                    } label: {
+                        Tab.schedule.label
+                    }
+                    .tag(Tab.schedule)
+
+                    NavigationLink {
+                        GradesView(viewModel: viewModel.gradesViewModel)
+                    } label: {
+                        Tab.grades.label
+                    }
+                    .tag(Tab.grades)
+                    SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
+                }
+                .listStyle(.insetGrouped)
+                .navigationTitle("WSEI Schedule")
+
+                switch viewModel.selectedListItem {
+                case .grades:
+                    GradesView(viewModel: viewModel.gradesViewModel)
+                default:
+                    ScheduleView(viewModel: viewModel.scheduleViewModel)
+                }
+            }.accentColor(.main)
         }
     }
     

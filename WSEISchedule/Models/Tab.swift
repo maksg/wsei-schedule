@@ -40,4 +40,12 @@ enum Tab: Int, CaseIterable {
         image.imageScale(.large)
         Text(title)
     }
+
+    var label: some View {
+        Label {
+            Text(title)
+        } icon: {
+            image
+        }
+    }
 }

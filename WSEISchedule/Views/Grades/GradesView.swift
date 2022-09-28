@@ -17,25 +17,22 @@ struct GradesView: View {
     // MARK: Views
 
     var body: some View {
-        NavigationView {
-            List {
-                if !viewModel.errorMessage.isEmpty {
-                    Text(viewModel.errorMessage)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .listRowBackground(Color.red)
-                }
-                
-                ForEach(viewModel.grades, content: GradeRow.init)
+        List {
+            if !viewModel.errorMessage.isEmpty {
+                Text(viewModel.errorMessage)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(.white)
+                    .listRowBackground(Color.red)
             }
-            .listStyle(.insetGrouped)
-            .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
-            .navigationBarTitle(Tab.grades.title)
-            .accessibility(identifier: "GradesList")
-            .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
+
+            ForEach(viewModel.grades, content: GradeRow.init)
         }
-        .navigationViewStyle(.stack)
+        .listStyle(.insetGrouped)
+        .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
+        .navigationBarTitle(Tab.grades.title)
+        .accessibility(identifier: "GradesList")
+        .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
         .onAppear(perform: reload)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
     }

@@ -20,8 +20,25 @@ final class RootViewModel: ObservableObject {
     let scheduleViewModel: ScheduleViewModel
     let gradesViewModel: GradesViewModel
     let settingsViewModel: SettingsViewModel
-    
-    @Published var selectedTab: Tab = .schedule
+
+    @Published var selectedTab: Tab = .schedule {
+        didSet {
+            guard selectedTab != selectedListItem else { return }
+            switch selectedTab {
+            case .settings:
+                selectedListItem = .schedule
+            default:
+                selectedListItem = selectedTab
+            }
+        }
+    }
+
+    @Published var selectedListItem: Tab? = .schedule {
+        didSet {
+            guard selectedTab != selectedListItem && selectedTab != .settings else { return }
+            selectedTab = selectedListItem ?? .schedule
+        }
+    }
     
     var username: String {
         Keychain.standard.retrieveUsernameAndPassword().username

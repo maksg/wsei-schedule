@@ -18,45 +18,64 @@ struct SettingsView: View {
     // MARK: Views
     
     var body: some View {
-        NavigationView {
-            List {
-                if let studentInfoRowViewModel = viewModel.studentInfoRowViewModel {
+        List {
+            SettingsViewContent(viewModel: viewModel, isSignedIn: $isSignedIn)
+        }
+        .listStyle(.insetGrouped)
+        .navigationBarTitle(Tab.settings.title)
+        .accessibility(identifier: "SettingsList")
+    }
+    
+}
+
+struct SettingsViewContent: View {
+
+    // MARK: Properties
+
+    @ObservedObject var viewModel: SettingsViewModel
+    @Binding var isSignedIn: Bool
+
+    // MARK: Views
+
+    var body: some View {
+        Group {
+            if let studentInfoRowViewModel = viewModel.studentInfoRowViewModel {
+                Section {
                     StudentInfoRow(viewModel: studentInfoRowViewModel)
                         .frame(height: 80)
                 }
-                Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
-                    ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in
-                        Button(action: {
-                            viewModel.buy(product.product)
-                        }, label: {
-                            HStack {
-                                Image(uiImage: product.image)
-                                Text(product.title)
-                                    .foregroundColor(.main)
-                            }
-                        })
-                    }
-                }
-                Section(header: Text(Translation.Settings.Games.header.localized.uppercased())) {
-                    ForEach(Games.allCases, content: GameRow.init)
-                }
-                Section {
-                    Button(action: signOut) {
+            }
+
+            Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
+                ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in
+                    Button(action: {
+                        viewModel.buy(product.product)
+                    }, label: {
                         HStack {
-                            Image.signOut
-                                .foregroundColor(.red)
-                            Text(Translation.SignIn.signOut.localized)
+                            Image(uiImage: product.image)
+                            Text(product.title)
                                 .foregroundColor(.main)
                         }
-                    }
-                    .accessibility(identifier: "SignOutButton")
+                    })
                 }
             }
-            .listStyle(.insetGrouped)
-            .navigationBarTitle(Tab.settings.title)
-            .accessibility(identifier: "SettingsList")
+
+            Section(header: Text(Translation.Settings.Games.header.localized.uppercased())) {
+                ForEach(Games.allCases, content: GameRow.init)
+            }
+
+            Section {
+                Button(action: signOut) {
+                    HStack {
+                        Image.signOut
+                            .foregroundColor(.red)
+                        Text(Translation.SignIn.signOut.localized)
+                            .foregroundColor(.main)
+                    }
+                }
+                .accessibility(identifier: "SignOutButton")
+            }
         }
-        .navigationViewStyle(.stack)
         .onAppear(perform: loadStudentInfo)
         .alert(isPresented: $viewModel.showThankYouAlert) {
             Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
@@ -70,12 +89,12 @@ struct SettingsView: View {
     private func loadStudentInfo() {
         viewModel.loadStudentInfo()
     }
-    
+
     private func signOut() {
         viewModel.signOut()
         isSignedIn = false
     }
-    
+
 }
 
 struct SettingsView_Previews: PreviewProvider {
