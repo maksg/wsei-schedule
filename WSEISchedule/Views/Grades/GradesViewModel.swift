@@ -19,7 +19,9 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     @Published var grades: [Grade] = [] {
         didSet {
-            isRefreshing = false
+            DispatchQueue.main.async { [weak self] in
+                self?.isRefreshing = false
+            }
         }
     }
 
@@ -39,7 +41,9 @@ final class GradesViewModel: NSObject, ObservableObject {
     // MARK: Methods
 
     func reloadGrades() {
-        isRefreshing = true
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = true
+        }
         fetchGrades()
     }
 

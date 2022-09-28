@@ -35,7 +35,9 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     private var lectures: [CoreDataLecture] = [] {
         didSet {
-            isRefreshing = false
+            DispatchQueue.main.async { [weak self] in
+                self?.isRefreshing = false
+            }
             sendLecturesToWatch()
         }
     }
@@ -76,7 +78,9 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     func reloadLectures() {
         fetchLectures(from: persistentContainer.viewContext)
-        isRefreshing = true
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = true
+        }
         fetchSchedule()
     }
 
