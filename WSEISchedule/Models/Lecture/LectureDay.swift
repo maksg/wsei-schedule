@@ -27,4 +27,11 @@ extension Array where Element == LectureDay {
             }
         }
     }
+
+    init(lectures: [Lecture]) {
+        self = lectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
+            let date = lecture.fromDate.strippedFromTime
+            lectureDays[date].lectures += [lecture]
+        })
+    }
 }

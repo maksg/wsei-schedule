@@ -20,6 +20,10 @@
 "schedule.title" = "Harmonogram";
 "schedule.no_lectures" = "Brak wykładów";
 
+// Schedule History
+
+"schedule_history.title" = "Historia";
+
 // Grades
 
 "grades.title" = "Oceny";
@@ -75,6 +79,8 @@
 "accessibility.schedule.lecturer" = "Wykładowca";
 "accessibility.schedule.comments" = "Komentarze";
 "accessibility.schedule.upcoming_lectures_list" = "Lista nadchodzących zajęć";
+
+"accessibility.schedule_history.list" = "Lista przeszłych zajęć";
 
 "accessibility.grades.list" = "Lista ocen";
 "accessibility.grades.subject" = "Przedmiot";

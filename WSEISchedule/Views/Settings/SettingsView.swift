@@ -22,7 +22,7 @@ struct SettingsView: View {
             SettingsViewContent(viewModel: viewModel, isSignedIn: $isSignedIn)
         }
         .listStyle(.insetGrouped)
-        .navigationBarTitle(Tab.settings.title)
+        .navigationTitle(Tab.settings.title)
         .accessibility(identifier: "SettingsList")
     }
     

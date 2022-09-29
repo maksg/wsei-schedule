@@ -32,13 +32,14 @@ struct GradesView: View {
             }
             .listStyle(.insetGrouped)
             .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
-            .navigationBarTitle(Tab.grades.title)
+            .navigationTitle(Tab.grades.title)
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
             .onAppear(perform: reload)
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
         } else {
             PremiumView()
+                .navigationBarHidden(true)
         }
     }
 

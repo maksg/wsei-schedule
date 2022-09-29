@@ -42,8 +42,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
-    private var lectureDays: [LectureDay] = []
     @Published var lectureWeeks: [LectureWeek] = []
+    var previousLectureWeeks: [LectureWeek] = []
 
     private var signInData: SignInData?
 
@@ -73,7 +73,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
     private func removeAllLectures(_ notification: Notification) {
         lectures = []
-        lectureDays = []
     }
     
     func reloadLectures() {
@@ -85,7 +84,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
 
     private func fetchSchedule() {
-        let parameters = ScheduleParameters(fromDate: Calendar.current.date(byAdding: .year, value: -1, to: Date())!, toDate: Date())
+        let parameters = ScheduleParameters(fromDate: Calendar.current.date(byAdding: .year, value: -2, to: Date())!, toDate: Date())
 
         apiRequest.getScheduleHtml(parameters: parameters).onDataSuccess({ [weak self] html in
             self?.readLectures(fromHtml: html)
@@ -146,21 +145,16 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     func generateLectureDays(from lectures: [CoreDataLecture]?) {
         self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
-        
-        guard let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) else {
-            self.lectureDays = []
-            return
-        }
 
-        let futureLectures = self.lectures[nearestLectureIndex..<self.lectures.count]
-        self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
-            let date = lecture.fromDate.strippedFromTime
-            lectureDays[date].lectures += [lecture]
-        })
-        self.lectureWeeks = self.lectureDays.reduce(into: [LectureWeek](), { (lectureWeeks, lectureDay) in
-            let date = lectureDay.date
-            lectureWeeks[date].lectureDays += [lectureDay]
-        })
+        let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) ?? self.lectures.endIndex
+
+        let futureLectures = Array(self.lectures[nearestLectureIndex...])
+        let lectureDays = Array<LectureDay>(lectures: futureLectures)
+        self.lectureWeeks = Array<LectureWeek>(lectureDays: lectureDays)
+
+        let previousLectures = Array(self.lectures[..<nearestLectureIndex].reversed())
+        let previousLectureDays = Array(Array<LectureDay>(lectures: previousLectures).reversed())
+        self.previousLectureWeeks = Array<LectureWeek>(lectureDays: previousLectureDays).reversed()
     }
     
     private func deleteLectures(from context: NSManagedObjectContext) {

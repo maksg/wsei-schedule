@@ -18,7 +18,7 @@ extension Date {
             return formatter.string(from: self)
         } else {
             let formatter = DateFormatter()
-            formatter.dateFormat = "EEEE dd.MM"
+            formatter.dateFormat = "EEEE dd.MM yyyy"
             return formatter.string(from: self)
         }
     }
