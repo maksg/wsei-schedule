@@ -18,7 +18,7 @@ struct PremiumView: View {
     // MARK: Views
 
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
             ScrollView {
                 VStack(spacing: 40) {
                     Text(Translation.Premium.title.localized)
@@ -50,13 +50,18 @@ struct PremiumView: View {
                 .padding(.horizontal, 16)
             }
 
-            Button("\(Translation.Premium.button.localized) \(viewModel.price)", action: buyPremium)
+            Button("\(Translation.Premium.buy.localized) \(viewModel.price)", action: buyPremium)
                 .font(.headline)
                 .padding(16)
                 .frame(maxWidth: .infinity)
                 .background(Color.main)
-                .cornerRadius(17)
+                .cornerRadius(16)
                 .foregroundColor(.white)
+
+            Button(action: restorePurchase) {
+                Text(Translation.Premium.restore.localized)
+                    .foregroundColor(.main)
+            }
         }
         .padding(32)
     }
@@ -65,6 +70,10 @@ struct PremiumView: View {
 
     private func buyPremium() {
         viewModel.buyPremium()
+    }
+
+    private func restorePurchase() {
+        viewModel.restorePurchase()
     }
     
 }

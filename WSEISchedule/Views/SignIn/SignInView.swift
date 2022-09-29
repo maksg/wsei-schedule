@@ -66,7 +66,12 @@ struct SignInView: View {
             
             Button(action: signIn) {
                 Text(Translation.SignIn.signIn.localized)
-                    .foregroundColor(.main)
+                    .font(.headline)
+                    .padding(16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.main)
+                    .cornerRadius(16)
+                    .foregroundColor(.white)
             }
             .accessibility(identifier: "SignInButton")
 
