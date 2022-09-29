@@ -10,8 +10,9 @@ import Foundation
 
 extension UserDefaults {
     
-    private enum Key: String, CaseIterable {
+    enum Key: String, CaseIterable {
         case student
+        case premium
     }
 
     // MARK: Properties
@@ -31,9 +32,7 @@ extension UserDefaults {
     // MARK: Methods
     
     func signOut() {
-        Key.allCases.forEach { key in
-            removeObject(forKey: key.rawValue)
-        }
+        removeObject(forKey: Key.student.rawValue)
     }
     
 }

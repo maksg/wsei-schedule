@@ -34,6 +34,20 @@
 "settings.thank_you_alert.dismiss" = "Nie ma problemu";
 "settings.games.header" = "Gry do przejścia w trakcie wykładów";
 
+// Premium
+
+"premium.title" = "Odblokuj więcej z Premium";
+"premium.button" = "Kup Premium za";
+
+"premium.grades.title" = "Oceny";
+"premium.grades.content" = "Przeglądaj wszystkie swoje oceny z danego semestru.";
+
+"premium.schedule_history.title" = "Historia harmonogramu";
+"premium.schedule_history.content" = "Sprawdź wszystkie zajęcia z przeszłości.";
+
+"premium.coming_soon.title" = "Więcej wkrótce";
+"premium.coming_soon.content" = "Mnóstwo nowych funkcjonalności nadejdzie w przyszłych aktualizacjach!";
+
 // Widget
 
 "widget.next" = "Następne";
