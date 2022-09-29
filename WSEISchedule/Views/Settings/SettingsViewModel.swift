@@ -118,7 +118,9 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     func signOut() {
-        studentInfoRowViewModel = nil
+        DispatchQueue.main.async { [weak self] in
+            self?.studentInfoRowViewModel = nil
+        }
         removeAllLectures()
         URLCache.shared.removeAllCachedResponses()
         apiRequest.clearCookies()
@@ -126,6 +128,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
         WidgetCenter.shared.reloadAllTimelines()
 
         UserDefaults.standard.signOut()
+        Keychain.standard.signOut()
     }
     
 }

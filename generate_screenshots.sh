@@ -21,7 +21,7 @@ simulators=(
     "iPhone 8 Plus"
     "iPhone 12 Pro Max"
     "iPad Pro (12.9-inch) (2nd generation)"
-    "iPad Pro (12.9-inch) (4th generation)"
+    "iPad Pro (12.9-inch) (5th generation)"
 )
 
 # All the languages we want to screenshot (ISO 3166-1 codes)

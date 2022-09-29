@@ -19,7 +19,14 @@ final class Keychain {
             kSecClass: kSecClassGenericPassword
         ] as CFDictionary
 
-        SecItemAdd(keychainItemQuery, nil)
+        let status = SecItemAdd(keychainItemQuery, nil)
+        if status != errSecSuccess {
+            let credentials = retrieveUsernameAndPassword()
+            if credentials.username.isEmpty || credentials.password.isEmpty {
+                signOut()
+                save(username: username, password: password)
+            }
+        }
     }
 
     func retrieveUsernameAndPassword() -> (username: String, password: String) {
@@ -40,5 +47,15 @@ final class Keychain {
         else { return ("", "") }
 
         return (username, password)
+    }
+
+    func signOut() {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecReturnAttributes: true,
+            kSecReturnData: true
+        ] as CFDictionary
+
+        SecItemDelete(query as CFDictionary)
     }
 }

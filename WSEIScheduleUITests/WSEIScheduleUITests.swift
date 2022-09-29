@@ -15,6 +15,10 @@ class WSEIScheduleUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            XCUIDevice.shared.orientation = .landscapeLeft
+        }
     }
 
     override func tearDownWithError() throws {
@@ -36,7 +40,7 @@ class WSEIScheduleUITests: XCTestCase {
 
         app.buttons["SignInButton"].tap()
 
-        let firstCell = app.tables["ScheduleList"].children(matching: .cell).element(boundBy: 0)
+        let firstCell = app.collectionViews["ScheduleList"].cells.element(boundBy: 1)
         XCTAssert(firstCell.waitForExistence(timeout: 20))
         firstCell.tap()
 
@@ -47,7 +51,14 @@ class WSEIScheduleUITests: XCTestCase {
         let tabBar = app.tabBars.firstMatch
         if tabBar.exists {
             tabBar.buttons.element(boundBy: 1).tap()
+            takeScreenshot(named: "Grades")
+
+            tabBar.buttons.element(boundBy: 2).tap()
             takeScreenshot(named: "Settings")
+        } else {
+            let collectionView = app.collectionViews.firstMatch
+            collectionView.buttons.element(boundBy: 1).tap()
+            takeScreenshot(named: "Grades")
         }
 
         app.buttons["SignOutButton"].tap()
