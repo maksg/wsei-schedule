@@ -4,6 +4,15 @@
 
 final class Translation {
 
+    enum SignIn: String {
+        case username = "sign_in.username"
+        case password = "sign_in.password"
+        case signIn = "sign_in.sign_in"
+        case signOut = "sign_in.sign_out"
+        case title = "sign_in.title"
+        case privacyMessage = "sign_in.privacy_message"
+    }
+
     enum Schedule: String {
         case title = "schedule.title"
         case noLectures = "schedule.no_lectures"
@@ -22,6 +31,7 @@ final class Translation {
             case donate = "settings.support.donate"
             case header = "settings.support.header"
         }
+
         enum ThankYouAlert: String {
             case title = "settings.thank_you_alert.title"
             case message = "settings.thank_you_alert.message"
@@ -30,14 +40,25 @@ final class Translation {
         
         case title = "settings.title"
     }
-    
-    enum SignIn: String {
-        case username = "sign_in.username"
-        case password = "sign_in.password"
-        case signIn = "sign_in.sign_in"
-        case signOut = "sign_in.sign_out"
-        case title = "sign_in.title"
-        case privacyMessage = "sign_in.privacy_message"
+
+    enum Premium: String {
+        enum Grades: String {
+            case title = "premium.grades.title"
+            case content = "premium.grades.content"
+        }
+
+        enum ScheduleHistory: String {
+            case title = "premium.schedule_history.title"
+            case content = "premium.schedule_history.content"
+        }
+
+        enum ComingSoon: String {
+            case title = "premium.coming_soon.title"
+            case content = "premium.coming_soon.content"
+        }
+
+        case title = "premium.title"
+        case button = "premium.button"
     }
     
     enum Watch: String {

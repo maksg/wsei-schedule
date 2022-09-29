@@ -13,8 +13,11 @@ extension Image {
     static var logo: Image { Image("logo") }
 
     static var schedule: Image { Image(systemName: "calendar") }
+    static var scheduleHistory: Image { Image(systemName: "clock.arrow.circlepath") }
     static var grades: Image { Image(systemName: "rosette") }
     static var settings: Image { Image(systemName: "gearshape.2.fill") }
+
+    static var comingSoon: Image { Image(systemName: "megaphone.fill") }
 
     static var time: Image { Image(systemName: "alarm.fill") }
     static var classroom: Image { Image(systemName: "location.fill") }

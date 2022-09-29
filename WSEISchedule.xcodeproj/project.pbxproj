@@ -16,6 +16,8 @@
 		5031A3CD25B77CF1005B9322 /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
 		5031A3D625B78378005B9322 /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3D525B78378005B9322 /* Color+Named.swift */; };
 		5031A3E625B89ED6005B9322 /* LaunchScreen_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5031A3E525B89ED6005B9322 /* LaunchScreen_iPad.storyboard */; };
+		503A0D0828E5C7C2001E912F /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503A0D0728E5C7C2001E912F /* PremiumView.swift */; };
+		503A0D0A28E5F8F6001E912F /* PremiumItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503A0D0928E5F8F6001E912F /* PremiumItem.swift */; };
 		503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */; };
 		503BCA9826A867B200FD8091 /* StudentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9726A867B200FD8091 /* StudentInfo.swift */; };
 		504A723126A99FCF002EA50C /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A723026A99FCF002EA50C /* SignInable.swift */; };
@@ -232,6 +234,8 @@
 		5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableRowHeight.swift; sourceTree = "<group>"; };
 		5031A3D525B78378005B9322 /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
 		5031A3E525B89ED6005B9322 /* LaunchScreen_iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen_iPad.storyboard; sourceTree = "<group>"; };
+		503A0D0728E5C7C2001E912F /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
+		503A0D0928E5F8F6001E912F /* PremiumItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumItem.swift; sourceTree = "<group>"; };
 		503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParameters.swift; sourceTree = "<group>"; };
 		503BCA9726A867B200FD8091 /* StudentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfo.swift; sourceTree = "<group>"; };
 		504A723026A99FCF002EA50C /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
@@ -402,6 +406,15 @@
 				5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		503A0D0428E5C78B001E912F /* Premium */ = {
+			isa = PBXGroup;
+			children = (
+				503A0D0728E5C7C2001E912F /* PremiumView.swift */,
+				503A0D0928E5F8F6001E912F /* PremiumItem.swift */,
+			);
+			path = Premium;
 			sourceTree = "<group>";
 		};
 		505BB419270DB07E00F556C5 /* Grades */ = {
@@ -732,6 +745,7 @@
 		57AD318C22AE6BC3009EEB1F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				503A0D0428E5C78B001E912F /* Premium */,
 				570C5AC72345EAA9005EBC4D /* SignIn */,
 				57AD319022AE6BC3009EEB1F /* Schedule */,
 				505BB419270DB07E00F556C5 /* Grades */,
@@ -1118,6 +1132,7 @@
 				5773BE1623ACEC8F00264FC7 /* URLImageDownloader.swift in Sources */,
 				57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */,
 				57791D6723C6191900F91D7F /* SKProduct+LocalizedPrice.swift in Sources */,
+				503A0D0A28E5F8F6001E912F /* PremiumItem.swift in Sources */,
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */,
 				57AD31BA22AE6ECF009EEB1F /* CoreDataLecture+CoreDataProperties.swift in Sources */,
@@ -1137,6 +1152,7 @@
 				5031A3AD25B77A4A005B9322 /* View+HeightReader.swift in Sources */,
 				504A723126A99FCF002EA50C /* SignInable.swift in Sources */,
 				50BADAD625DD61FE00E8614C /* UserDefaults+ObjectSaving.swift in Sources */,
+				503A0D0828E5C7C2001E912F /* PremiumView.swift in Sources */,
 				5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */,
 				572E7F01234CACF10061A835 /* Translation.swift in Sources */,
 				502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */,

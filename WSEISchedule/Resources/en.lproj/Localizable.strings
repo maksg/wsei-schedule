@@ -34,6 +34,20 @@
 "settings.thank_you_alert.dismiss" = "No problem";
 "settings.games.header" = "Games to play during lecture";
 
+// Premium
+
+"premium.title" = "Unlock more with Premium";
+"premium.button" = "Buy Premium for";
+
+"premium.grades.title" = "Grades";
+"premium.grades.content" = "View all of your grades for the current semester.";
+
+"premium.schedule_history.title" = "Schedule history";
+"premium.schedule_history.content" = "Check all the lectures that are in the past.";
+
+"premium.coming_soon.title" = "More coming soon";
+"premium.coming_soon.content" = "A whole lot of new features will be coming in future updates!";
+
 // Widget
 
 "widget.next" = "Next";
