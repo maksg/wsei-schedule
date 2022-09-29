@@ -21,14 +21,30 @@ class Springboard {
         // Force delete the app from the springboard
         let icon = springboard.otherElements["Home screen icons"].icons["WSEI Schedule"]
         if icon.exists {
-            icon.press(forDuration: 1.3)
+            icon.press(forDuration: 1)
 
             let removeAppButton = springboard.buttons["Remove App"]
-            if removeAppButton.exists {
+            if removeAppButton.waitForExistence(timeout: 5) {
                 removeAppButton.tap()
+            } else {
+                XCTFail("Button \"Remove App\" not found")
             }
-            springboard.buttons["Delete App"].tap()
-            springboard.buttons["Delete"].tap()
+
+            let deleteAppButton = springboard.alerts.buttons["Delete App"]
+            if deleteAppButton.waitForExistence(timeout: 5) {
+                deleteAppButton.tap()
+            }
+            else {
+                XCTFail("Button \"Delete App\" not found")
+            }
+
+            let deleteButton = springboard.alerts.buttons["Delete"]
+            if deleteButton.waitForExistence(timeout: 5) {
+                deleteButton.tap()
+            }
+            else {
+                XCTFail("Button \"Delete\" not found")
+            }
         }
     }
 }

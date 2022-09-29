@@ -92,7 +92,9 @@ struct SettingsViewContent: View {
 
     private func signOut() {
         viewModel.signOut()
-        isSignedIn = false
+        DispatchQueue.main.async {
+            isSignedIn = false
+        }
     }
 
 }

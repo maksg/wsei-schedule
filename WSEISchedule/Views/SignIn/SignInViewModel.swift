@@ -34,6 +34,7 @@ final class SignInViewModel: ObservableObject {
     // MARK: Methods
 
     func signIn() {
+        guard !username.isEmpty && !password.isEmpty else { return }
         startSigningIn(username: username, password: password)
     }
     
