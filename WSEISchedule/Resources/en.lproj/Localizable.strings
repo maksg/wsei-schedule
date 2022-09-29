@@ -6,6 +6,8 @@
   Copyright © 2019 Infinity Pi Ltd. All rights reserved.
 */
 
+"wsei_schedule" = "WSEI Schedule";
+
 // Sign In
 
 "sign_in.username" = "Login";
@@ -34,7 +36,7 @@
 "settings.support.header" = "Support developer";
 "settings.support.donate" = "Donate";
 "settings.thank_you_alert.title" = "Thank you!";
-"settings.thank_you_alert.message" = "Thank you so much for your purchase. I really appreciate it 🙏🏻";
+"settings.thank_you_alert.message" = "Thank you so much for your support!";
 "settings.thank_you_alert.dismiss" = "No problem";
 "settings.games.header" = "Games to play during lecture";
 

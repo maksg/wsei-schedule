@@ -58,7 +58,7 @@ struct RootView: View {
                     SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                 }
                 .listStyle(.insetGrouped)
-                .navigationTitle("WSEI Schedule")
+                .navigationTitle(Translation.wseiSchedule.localized)
 
                 switch viewModel.selectedListItem {
                 case .grades:
