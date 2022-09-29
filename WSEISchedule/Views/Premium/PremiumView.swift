@@ -13,6 +13,7 @@ struct PremiumView: View {
     // MARK: Properties
 
     @AppStorage(UserDefaults.Key.premium.rawValue) var isPremium: Bool = false
+    @ObservedObject private var viewModel: PremiumViewModel = PremiumViewModel()
 
     // MARK: Views
 
@@ -49,7 +50,7 @@ struct PremiumView: View {
                 .padding(.horizontal, 16)
             }
 
-            Button("\(Translation.Premium.button.localized) $4.99", action: buyPremium)
+            Button("\(Translation.Premium.button.localized) \(viewModel.price)", action: buyPremium)
                 .font(.headline)
                 .padding(16)
                 .frame(maxWidth: .infinity)
@@ -63,8 +64,9 @@ struct PremiumView: View {
     // MARK: Methods
 
     private func buyPremium() {
-        isPremium = true
+        viewModel.buyPremium()
     }
+    
 }
 
 struct PremiumView_Previews: PreviewProvider {
