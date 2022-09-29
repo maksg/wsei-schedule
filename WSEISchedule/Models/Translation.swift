@@ -18,6 +18,10 @@ final class Translation {
         case noLectures = "schedule.no_lectures"
     }
 
+    enum ScheduleHistory: String {
+        case title = "schedule_history.title"
+    }
+
     enum Grades: String {
         case title = "grades.title"
     }
@@ -92,6 +96,10 @@ final class Translation {
             case lecturer = "accessibility.schedule.lecturer"
             case comments = "accessibility.schedule.comments"
             case upcomingLecturesList = "accessibility.schedule.upcoming_lectures_list"
+        }
+
+        enum ScheduleHistory: String {
+            case list = "accessibility.schedule_history.list"
         }
 
         enum Grades: String {

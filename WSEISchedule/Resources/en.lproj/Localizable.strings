@@ -20,6 +20,10 @@
 "schedule.title" = "Schedule";
 "schedule.no_lectures" = "No lectures";
 
+// Schedule History
+
+"schedule_history.title" = "History";
+
 // Grades
 
 "grades.title" = "Grades";
@@ -75,6 +79,8 @@
 "accessibility.schedule.lecturer" = "Lecturer";
 "accessibility.schedule.comments" = "Comments";
 "accessibility.schedule.upcoming_lectures_list" = "List of upcoming lectures";
+
+"accessibility.schedule_history.list" = "List of past lectures";
 
 "accessibility.grades.list" = "List of grades";
 "accessibility.grades.subject" = "Subject";

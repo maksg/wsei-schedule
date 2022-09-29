@@ -9,7 +9,6 @@
 import Foundation
 
 protocol Lecture {
-
     var lecturer: String { get }
     var classroom: String { get }
     var fromDate: Date { get }
@@ -17,13 +16,10 @@ protocol Lecture {
     var code: String { get }
     var subject: String { get }
     var comments: String { get }
-    
 }
 
 extension Lecture {
-    
     var id: String {
         fromDate.description + code
     }
-    
 }

@@ -29,4 +29,11 @@ extension Array where Element == LectureWeek {
             }
         }
     }
+
+    init(lectureDays: [LectureDay]) {
+        self = lectureDays.reduce(into: [LectureWeek](), { (lectureWeeks, lectureDay) in
+            let date = lectureDay.date
+            lectureWeeks[date].lectureDays += [lectureDay]
+        })
+    }
 }

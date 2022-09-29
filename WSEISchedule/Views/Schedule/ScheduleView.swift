@@ -41,7 +41,16 @@ struct ScheduleView: View {
         }
         .listStyle(.insetGrouped)
         .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
-        .navigationBarTitle(Tab.schedule.title)
+        .navigationTitle(Tab.schedule.title)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    ScheduleHistoryView(lectureWeeks: viewModel.previousLectureWeeks)
+                } label: {
+                    Image.scheduleHistory
+                }
+            }
+        }
         .accessibility(identifier: "ScheduleList")
         .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         .onAppear(perform: reload)
