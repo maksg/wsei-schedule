@@ -62,7 +62,8 @@ final class Translation {
         }
 
         case title = "premium.title"
-        case button = "premium.button"
+        case buy = "premium.buy"
+        case restore = "premium.restore"
     }
     
     enum Watch: String {

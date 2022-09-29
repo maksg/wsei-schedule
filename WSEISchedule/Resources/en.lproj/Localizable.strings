@@ -41,7 +41,8 @@
 // Premium
 
 "premium.title" = "Unlock more with Premium";
-"premium.button" = "Buy Premium for";
+"premium.buy" = "Buy Premium for";
+"premium.restore" = "Restore purchase";
 
 "premium.grades.title" = "Grades";
 "premium.grades.content" = "View all of your grades for the current semester.";

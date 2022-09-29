@@ -41,6 +41,10 @@ final class PremiumViewModel: NSObject, ObservableObject {
         SKPaymentQueue.default().add(payment)
     }
 
+    func restorePurchase() {
+        SKPaymentQueue.default().restoreCompletedTransactions()
+    }
+
 }
 
 // MARK: SKProductsRequestDelegate
@@ -65,9 +69,16 @@ extension PremiumViewModel: SKProductsRequestDelegate {
 extension PremiumViewModel: SKPaymentTransactionObserver {
 
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions where transaction.transactionState == .purchased && transaction.payment.productIdentifier == "premium" {
-            SKPaymentQueue.default().finishTransaction(transaction)
-            UserDefaults.standard.premium = true
+        for transaction in transactions where transaction.payment.productIdentifier == "premium" {
+            switch transaction.transactionState {
+            case .purchased, .restored:
+                SKPaymentQueue.default().finishTransaction(transaction)
+                UserDefaults.standard.premium = true
+            case .failed:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            default:
+                break
+            }
         }
     }
 

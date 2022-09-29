@@ -41,7 +41,8 @@
 // Premium
 
 "premium.title" = "Odblokuj więcej z Premium";
-"premium.button" = "Kup Premium za";
+"premium.buy" = "Kup Premium za";
+"premium.restore" = "Przywróć zakup";
 
 "premium.grades.title" = "Oceny";
 "premium.grades.content" = "Przeglądaj wszystkie swoje oceny z danego semestru.";
