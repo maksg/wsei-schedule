@@ -29,6 +29,15 @@ extension UserDefaults {
         }
     }
 
+    var premium: Bool {
+        get {
+            bool(forKey: Key.premium.rawValue)
+        }
+        set {
+            set(newValue, forKey: Key.premium.rawValue)
+        }
+    }
+
     // MARK: Methods
     
     func signOut() {

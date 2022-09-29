@@ -171,7 +171,7 @@ extension SettingsViewModel: SKProductsRequestDelegate {
 extension SettingsViewModel: SKPaymentTransactionObserver {
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions where transaction.transactionState == .purchased {
+        for transaction in transactions where transaction.transactionState == .purchased && transaction.payment.productIdentifier.contains("supportDeveloper") {
             SKPaymentQueue.default().finishTransaction(transaction)
             showThankYouAlert = true
         }
