@@ -84,7 +84,9 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
 
     private func fetchSchedule() {
-        let parameters = ScheduleParameters(fromDate: Calendar.current.date(byAdding: .year, value: -1, to: Date())!, toDate: Date())
+        let fromDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
+        let toDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
+        let parameters = ScheduleParameters(fromDate: fromDate, toDate: toDate)
 
         apiRequest.getScheduleHtml(parameters: parameters).onDataSuccess({ [weak self] html in
             self?.readLectures(fromHtml: html)
