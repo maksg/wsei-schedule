@@ -8,13 +8,13 @@
 import Foundation
 import SwiftSoup
 import UIKit
+import WebKit
 
 final class APIRequest {
 
     private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
 
     func getSignInHtml() -> Requestable {
-        clearCookies()
         return Request(url: url, endpoint: Endpoint.getSignInHtml)
     }
 
@@ -40,8 +40,10 @@ final class APIRequest {
         Request(url: url, endpoint: Endpoint.getGradesHtml)
     }
 
-    func clearCookies() {
-        HTTPCookieStorage.shared.cookies?.forEach(HTTPCookieStorage.shared.deleteCookie)
+    func clearCache() {
+        HTTPCookieStorage.shared.removeCookies(since: .distantPast)
+        URLCache.shared.removeAllCachedResponses()
+        WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: .distantPast, completionHandler: {})
     }
 
 }

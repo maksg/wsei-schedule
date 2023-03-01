@@ -8,116 +8,47 @@
 
 import UIKit
 
-protocol SignInable: AnyObject {
-    var apiRequest: APIRequest { get }
-    var captchaReader: CaptchaReader { get }
-    var htmlReader: HTMLReader { get }
-    var unsuccessfulSignInAttempts: Int { get set }
-
-    func startSigningIn(username: String, password: String)
-    func onSignIn(html: String, username: String, password: String)
+protocol SignInable: AnyObject, WebAuthenticationPresentationContextProviding {
+    func startSigningIn()
+    func startSigningIn(silently: Bool)
+    func onSignIn()
     func onError(_ error: Error)
-    func onSignInError(_ error: Error)
-    func onSignInError(_ error: Error, username: String, password: String)
     func showErrorMessage(_ errorMessage: String)
-    func resetErrors()
 }
 
 extension SignInable {
 
-    func startSigningIn(username: String, password: String) {
-        apiRequest.getSignInHtml().onDataSuccess({ [weak self] html in
-            self?.readSignInData(fromHtml: html, username: username, password: password)
-        }).onError({ [weak self] error in
-            self?.onSignInError(error, username: username, password: password)
-        }).make()
+    func presentationAnchor(for session: WebAuthenticationSession) -> WebAuthenticationSession.PresentationAnchor? {
+        return UIApplication.shared.windows.first
     }
 
-    private func readSignInData(fromHtml html: String, username: String, password: String) {
-        do {
-            let signInData = try htmlReader.readSignInData(fromHtml: html)
-
-            if let captchaSrc = signInData.captchaSrc {
-                downloadCaptcha(path: captchaSrc, signInData: signInData, username: username, password: password)
-            } else {
-                finishSigningIn(data: signInData, username: username, password: password)
-            }
-        } catch {
-            onSignInError(error, username: username, password: password)
-        }
+    func startSigningIn() {
+        startSigningIn(silently: true)
     }
 
-    private func downloadCaptcha(path: String, signInData: SignInData, username: String, password: String) {
-        apiRequest.downloadImage(path: path).onImageDownloadSuccess({ [weak self] image in
-            guard let image = image else {
-                self?.onSignInError(HTMLReaderError.invalidCaptcha, username: username, password: password)
-                return
-            }
-            self?.readCaptcha(from: image, signInData: signInData, username: username, password: password)
-        }).onError({ [weak self] error in
-            self?.onSignInError(error, username: username, password: password)
-        }).make()
-    }
-
-    private func readCaptcha(from image: UIImage, signInData: SignInData, username: String, password: String) {
-        captchaReader.readCaptcha(image) { [weak self] result in
+    func startSigningIn(silently: Bool) {
+        let url = URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
+        let authSession = WebAuthenticationSession(url: url) { [weak self] result in
             switch result {
-            case .success(let captcha):
-                self?.finishSigningIn(data: signInData, username: username, password: password, captcha: captcha)
+            case .success(let cookies):
+                cookies.forEach(HTTPCookieStorage.shared.setCookie)
+                UserDefaults.standard.cookies = cookies
+                self?.onSignIn()
             case .failure(let error):
-                self?.onSignInError(error, username: username, password: password)
+                self?.onError(error)
             }
         }
+
+        authSession.presentationContextProvider = self
+        authSession.start(silently: silently)
     }
 
-    private func finishSigningIn(data: SignInData, username: String, password: String, captcha: String? = nil) {
-        let parameters = SignInParameters(
-            usernameId: data.usernameId,
-            passwordId: data.passwordId,
-            username: username,
-            password: password,
-            captcha: captcha
-        )
-
-        apiRequest.signIn(parameters: parameters).onDataSuccess({ [weak self] html in
-            self?.checkForError(html: html, username: username, password: password)
-        }).onError({ [weak self] error in
-            self?.onSignInError(error, username: username, password: password)
-        }).make()
-    }
-
-    private func checkForError(html: String, username: String, password: String) {
-        do {
-            let errorMessage = try htmlReader.readSignInError(fromHtml: html)
-            showErrorMessage(errorMessage)
-        } catch HTMLReaderError.invalidHtml {
-            showErrorMessage("")
-            onSignIn(html: html, username: username, password: password)
-        } catch {
-            showErrorMessage("")
-            onSignInError(error, username: username, password: password)
-        }
-    }
-
-    func onSignInError(_ error: Error) {
-        let student = Keychain.standard.retrieveUsernameAndPassword()
-        onSignInError(error, username: student.username, password: student.password)
-    }
-
-    func onSignInError(_ error: Error, username: String, password: String) {
-        unsuccessfulSignInAttempts += 1
-
-        if unsuccessfulSignInAttempts < 4 {
-            startSigningIn(username: username, password: password)
-        } else {
-            unsuccessfulSignInAttempts = 0
-            showErrorMessage(error.localizedDescription)
-        }
+    func onError(_ error: Error) {
+        showErrorMessage(error.localizedDescription)
     }
 
     func resetErrors() {
         showErrorMessage("")
-        unsuccessfulSignInAttempts = 0
     }
 
 }

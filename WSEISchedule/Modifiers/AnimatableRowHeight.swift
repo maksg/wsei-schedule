@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AnimatableRowHeight: AnimatableModifier {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     var height: CGFloat = 0
 
@@ -19,7 +19,7 @@ struct AnimatableRowHeight: AnimatableModifier {
         set { height = newValue }
     }
 
-    // MARK: Views
+    // MARK: - Views
 
     func body(content: Content) -> some View {
         content.frame(height: height, alignment: .top).clipped()

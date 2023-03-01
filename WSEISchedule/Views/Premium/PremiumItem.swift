@@ -10,14 +10,14 @@ import SwiftUI
 
 struct PremiumItem: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let image: Image
     let color: Color
     let title: String
     let content: String
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         HStack(spacing: 0) {

@@ -10,11 +10,11 @@ import SwiftUI
 
 struct DayHeader: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let date: Date
 
-    // MARK: Views
+    // MARK: - Views
     
     var body: some View {
         Text(date.formattedDay)

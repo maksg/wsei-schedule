@@ -10,7 +10,7 @@ import Foundation
 
 final class GradesViewModel: NSObject, ObservableObject {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     var unsuccessfulSignInAttempts: Int = 0
 
@@ -19,9 +19,7 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     @Published var grades: [Grade] = [] {
         didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.isRefreshing = false
-            }
+            stopRefreshing()
         }
     }
 
@@ -29,7 +27,7 @@ final class GradesViewModel: NSObject, ObservableObject {
     let captchaReader: CaptchaReader
     let htmlReader: HTMLReader
 
-    // MARK: Initialization
+    // MARK: - Initialization
 
     init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
@@ -38,16 +36,19 @@ final class GradesViewModel: NSObject, ObservableObject {
         super.init()
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     func reloadGrades() {
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = true
-        }
+        startRefreshing()
         fetchGrades()
     }
 
     private func fetchGrades() {
+        guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
+            stopRefreshing()
+            return
+        }
+        
         apiRequest.getGradesHtml().onDataSuccess({ [weak self] html in
             self?.readGrades(fromHtml: html)
         }).onError({ [weak self] error in
@@ -64,17 +65,25 @@ final class GradesViewModel: NSObject, ObservableObject {
             onError(error)
         }
     }
+
+    private func startRefreshing() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = true
+        }
+    }
+
+    private func stopRefreshing() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = false
+        }
+    }
     
 }
 
 extension GradesViewModel: SignInable {
 
-    func onSignIn(html: String, username: String, password: String) {
+    func onSignIn() {
         fetchGrades()
-    }
-
-    func onError(_ error: Error) {
-        onSignInError(error)
     }
 
     func showErrorMessage(_ errorMessage: String) {

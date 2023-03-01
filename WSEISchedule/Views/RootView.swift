@@ -10,12 +10,12 @@ import SwiftUI
 
 struct RootView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @ObservedObject var viewModel: RootViewModel
 
-    // MARK: Views
+    // MARK: - Views
 
     @ViewBuilder
     private var content: some View {
@@ -80,6 +80,8 @@ struct RootView: View {
     }
 
 }
+
+// MARK: -
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {

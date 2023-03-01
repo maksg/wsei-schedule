@@ -16,9 +16,7 @@ import SwiftSoup
 
 final class ScheduleViewModel: NSObject, ObservableObject {
     
-    // MARK: Properties
-
-    var unsuccessfulSignInAttempts: Int = 0
+    // MARK: - Properties
 
     @Published var errorMessage: String = ""
     @Published var isRefreshing: Bool = false
@@ -35,9 +33,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     private var lectures: [CoreDataLecture] = [] {
         didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.isRefreshing = false
-            }
+            stopRefreshing()
             sendLecturesToWatch()
         }
     }
@@ -53,7 +49,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
     private var session: WCSession?
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
@@ -65,7 +61,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         observeRemoveAllLecturesNotification()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
 
     private func observeRemoveAllLecturesNotification() {
         NotificationCenter.default.addObserver(forName: .removeAllLectures, object: nil, queue: nil, using: removeAllLectures)
@@ -77,13 +73,16 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     func reloadLectures() {
         fetchLectures(from: persistentContainer.viewContext)
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = true
-        }
+        startRefreshing()
         fetchSchedule()
     }
 
     private func fetchSchedule() {
+        guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
+            stopRefreshing()
+            return
+        }
+
         let fromDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
         let toDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
         let parameters = ScheduleParameters(fromDate: fromDate, toDate: toDate)
@@ -124,7 +123,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     private func fetchLectures(from context: NSManagedObjectContext) {
-        let fetchRequest: NSFetchRequest<CoreDataLecture> = CoreDataLecture.fetchRequest()
+        let fetchRequest = CoreDataLecture.fetchRequest()
         
         do {
             let lectures = try context.fetch(fetchRequest)
@@ -152,7 +151,9 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
         let futureLectures = Array(self.lectures[nearestLectureIndex...])
         let lectureDays = Array<LectureDay>(lectures: futureLectures)
-        self.lectureWeeks = Array<LectureWeek>(lectureDays: lectureDays)
+        DispatchQueue.main.async { [weak self] in
+            self?.lectureWeeks = Array<LectureWeek>(lectureDays: lectureDays)
+        }
 
         let previousLectures = Array(self.lectures[..<nearestLectureIndex].reversed())
         let previousLectureDays = Array(Array<LectureDay>(lectures: previousLectures).reversed())
@@ -172,11 +173,23 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
+    private func startRefreshing() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = true
+        }
+    }
+
+    private func stopRefreshing() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = false
+        }
+    }
+
 }
 
 extension ScheduleViewModel: SignInable {
 
-    func onSignIn(html: String, username: String, password: String) {
+    func onSignIn() {
         fetchSchedule()
     }
 
@@ -184,7 +197,7 @@ extension ScheduleViewModel: SignInable {
         apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
             self?.checkIfSignedIn(html: html, error: error)
         }).onError({ [weak self] error in
-            self?.onSignInError(error)
+            self?.showErrorMessage(error.localizedDescription)
         }).make()
     }
 
@@ -192,9 +205,9 @@ extension ScheduleViewModel: SignInable {
         let isSignedIn = htmlReader.isSignedIn(fromHtml: html)
         if isSignedIn {
             print("Already signed in")
-            showErrorMessage("")
+            resetErrors()
         } else {
-            onSignInError(error)
+            startSigningIn()
         }
     }
 

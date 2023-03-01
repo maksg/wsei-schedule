@@ -10,7 +10,7 @@ import SwiftUI
 
 final class RootViewModel: ObservableObject {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let apiRequest = APIRequest()
     let captchaReader = CaptchaReader()
@@ -40,31 +40,33 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    var username: String {
-        Keychain.standard.retrieveUsernameAndPassword().username
+    var cookies: [HTTPCookie] {
+        UserDefaults.standard.cookies
     }
     
     @Published var isSignedIn: Bool = false
 
-    // MARK: Initialization
+    // MARK: - Initialization
     
     init() {
         signInViewModel = SignInViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         scheduleViewModel = ScheduleViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         gradesViewModel = GradesViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
         settingsViewModel = SettingsViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
-        isSignedIn = !username.isEmpty
+
+        cookies.forEach(HTTPCookieStorage.shared.setCookie)
+        isSignedIn = !cookies.isEmpty
 
         signInViewModel.finishSignIn = { [weak self] in
             self?.checkSignInStatus()
         }
     }
 
-    // MARK: Methods
+    // MARK: - Methods
     
     func checkSignInStatus() {
         withAnimation {
-            isSignedIn = !username.isEmpty
+            isSignedIn = !cookies.isEmpty
         }
     }
 }

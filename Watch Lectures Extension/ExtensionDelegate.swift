@@ -11,7 +11,7 @@ import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     private var lectures: [CodableLecture] = []
     var lectureDays: [LectureDay] = [] {
@@ -21,7 +21,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
     private let session: WCSession = .default
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     override init() {
         super.init()
@@ -30,7 +30,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         session.activate()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func reloadLectures() {
         let context = session.receivedApplicationContext
@@ -40,7 +40,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     private func fetchLectures(from context: [String : Any]) {
         guard let data = context["lectures"] as? Data else { return }
         do {
-            let lectures = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [CodableLecture]
+            let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
+            unarchiver.requiresSecureCoding = false
+            let lectures = unarchiver.decodeObject(of: NSArray.self, forKey: NSKeyedArchiveRootObjectKey) as? [CodableLecture] ?? []
             generateLectureDays(from: lectures)
         } catch {
             print(error)
@@ -64,7 +66,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         })
     }
     
-    // MARK: Delegate
+    // MARK: - Delegate
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.

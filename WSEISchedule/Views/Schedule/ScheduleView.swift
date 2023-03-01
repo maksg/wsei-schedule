@@ -10,11 +10,11 @@ import SwiftUI
 
 struct ScheduleView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @ObservedObject var viewModel: ScheduleViewModel
 
-    // MARK: Views
+    // MARK: - Views
     
     var body: some View {
         List {
@@ -57,7 +57,7 @@ struct ScheduleView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func onWillEnterForeground(_ output: NotificationCenter.Publisher.Output) {
         reload()

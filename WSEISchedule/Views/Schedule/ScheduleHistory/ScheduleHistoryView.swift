@@ -10,12 +10,12 @@ import SwiftUI
 
 struct ScheduleHistoryView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @AppStorage(UserDefaults.Key.premium.rawValue) var isPremium: Bool = false
     let lectureWeeks: [LectureWeek]
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         if isPremium {

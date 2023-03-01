@@ -11,14 +11,14 @@ import WidgetKit
 
 struct NextLectureWidgetEntryView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @Environment(\.widgetFamily) var family: WidgetFamily
 
     var entry: Provider.Entry
     var lecture: Lecture? { entry.todaysLecture ?? entry.nextLecture }
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         if let lecture = lecture {

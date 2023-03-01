@@ -11,11 +11,11 @@ import WidgetKit
 
 struct MediumNextLectureView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let lecture: Lecture
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         LectureView(lecture: lecture, enabledModules: [.date, .timeAndClassroom, .code], minimumScaleFactor: 0.9)

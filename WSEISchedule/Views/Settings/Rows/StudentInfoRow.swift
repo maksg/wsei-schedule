@@ -10,11 +10,11 @@ import SwiftUI
 
 struct StudentInfoRow: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     var viewModel: StudentInfoRowViewModel
 
-    // MARK: Views
+    // MARK: - Views
     
     var body: some View {
         HStack {

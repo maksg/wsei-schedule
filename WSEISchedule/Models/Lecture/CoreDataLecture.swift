@@ -27,7 +27,7 @@ final class CoreDataLecture: NSManagedObject, Lecture {
         
         self.fromDate = formatter.date(from: "\(date) \(fromTime)") ?? Date()
         self.toDate = formatter.date(from: "\(date) \(toTime)") ?? Date()
-        self.subject = dictionary["Przedmiot"] ?? ""
+        self.subject = dictionary["Zajęcia"] ?? ""
         self.classroom = dictionary["Sala"] ?? ""
         self.lecturer = dictionary["Prowadzący"] ?? ""
         self.code = dictionary["Grupy"] ?? ""

@@ -10,12 +10,12 @@ import SwiftUI
 
 struct PremiumView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @AppStorage(UserDefaults.Key.premium.rawValue) var isPremium: Bool = false
     @ObservedObject private var viewModel: PremiumViewModel = PremiumViewModel()
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         VStack(spacing: 16) {
@@ -66,7 +66,7 @@ struct PremiumView: View {
         .padding(32)
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func buyPremium() {
         viewModel.buyPremium()

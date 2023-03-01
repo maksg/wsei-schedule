@@ -10,11 +10,11 @@ import SwiftUI
 
 struct GameRow: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let game: Games
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         Button(action: openGameUrl) {
@@ -31,7 +31,7 @@ struct GameRow: View {
         .frame(height: 30)
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func openGameUrl() {
         UIApplication.shared.open(game.url, options: [:])

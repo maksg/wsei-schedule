@@ -13,9 +13,10 @@ extension UserDefaults {
     enum Key: String, CaseIterable {
         case student
         case premium
+        case cookies
     }
 
-    // MARK: Properties
+    // MARK: - Properties
     
     var student: Student {
         get {
@@ -38,10 +39,24 @@ extension UserDefaults {
         }
     }
 
-    // MARK: Methods
+    var cookies: [HTTPCookie] {
+        get {
+            guard let data = UserDefaults.standard.object(forKey: Key.cookies.rawValue) as? Data else { return [] }
+            guard let unarchiver = try? NSKeyedUnarchiver(forReadingFrom: data) else { return [] }
+            unarchiver.requiresSecureCoding = false
+            return unarchiver.decodeObject(of: NSArray.self, forKey: NSKeyedArchiveRootObjectKey) as? [HTTPCookie] ?? []
+        }
+        set {
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: newValue, requiringSecureCoding: false) else { return }
+            set(data, forKey: Key.cookies.rawValue)
+        }
+    }
+
+    // MARK: - Methods
     
     func signOut() {
         removeObject(forKey: Key.student.rawValue)
+        removeObject(forKey: Key.cookies.rawValue)
     }
     
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NoNextLecturesView: View {
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         VStack(spacing: 10) {

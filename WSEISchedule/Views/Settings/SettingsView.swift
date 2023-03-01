@@ -10,12 +10,12 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     @ObservedObject var viewModel: SettingsViewModel
     @Binding var isSignedIn: Bool
 
-    // MARK: Views
+    // MARK: - Views
     
     var body: some View {
         List {
@@ -30,12 +30,12 @@ struct SettingsView: View {
 
 struct SettingsViewContent: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @ObservedObject var viewModel: SettingsViewModel
     @Binding var isSignedIn: Bool
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         Group {
@@ -84,7 +84,7 @@ struct SettingsViewContent: View {
         }
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func loadStudentInfo() {
         viewModel.loadStudentInfo()

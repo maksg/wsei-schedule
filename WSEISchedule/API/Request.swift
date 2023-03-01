@@ -9,7 +9,7 @@ import UIKit
 
 final class Request: Requestable {
     
-    // MARK: Properties
+    // MARK: - Properties
 
     private let request: URLRequest
     private let debug: Bool
@@ -17,7 +17,7 @@ final class Request: Requestable {
     private var dataSuccessCallback: ((Data?) -> Void)? = nil
     private var errorCallback: ((Error) -> Void)? = nil
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     init(url: URL, endpoint: Routable, debug: Bool = true) {
         let method = endpoint.route.method
@@ -71,7 +71,7 @@ final class Request: Requestable {
         self.debug = debug
     }
     
-    // MARK: Methods
+    // MARK: - Methods
 
     func onDataSuccess(_ callback: @escaping (String) -> Void) -> Self {
         dataSuccessCallback = { [debug] data in

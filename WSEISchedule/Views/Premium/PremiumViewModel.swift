@@ -11,7 +11,7 @@ import StoreKit
 
 final class PremiumViewModel: NSObject, ObservableObject {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @Published private var premiumProduct: SKProduct?
 
@@ -19,14 +19,14 @@ final class PremiumViewModel: NSObject, ObservableObject {
         premiumProduct?.localizedPrice ?? "---"
     }
 
-    // MARK: Initialization
+    // MARK: - Initialization
 
     override init() {
         super.init()
         fetchProduct()
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func fetchProduct() {
         let productsRequest = SKProductsRequest(productIdentifiers: ["premium"])
@@ -47,7 +47,7 @@ final class PremiumViewModel: NSObject, ObservableObject {
 
 }
 
-// MARK: SKProductsRequestDelegate
+// MARK: - SKProductsRequestDelegate
 
 extension PremiumViewModel: SKProductsRequestDelegate {
 
@@ -64,7 +64,7 @@ extension PremiumViewModel: SKProductsRequestDelegate {
 
 }
 
-// MARK: SKPaymentTransactionObserver
+// MARK: - SKPaymentTransactionObserver
 
 extension PremiumViewModel: SKPaymentTransactionObserver {
 

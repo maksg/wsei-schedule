@@ -11,7 +11,7 @@ import WidgetKit
 
 struct LargeNextTwoLecturesView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let todaysLecture: Lecture?
     let nextLecture: Lecture?
@@ -20,7 +20,7 @@ struct LargeNextTwoLecturesView: View {
         nextLecture?.fromDate.formattedDay ?? ""
     }
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         VStack(spacing: 0) {

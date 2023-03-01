@@ -10,12 +10,12 @@ import SwiftUI
 
 struct GradesView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @AppStorage(UserDefaults.Key.premium.rawValue) var isPremium: Bool = false
     @ObservedObject var viewModel: GradesViewModel
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         if isPremium {
@@ -43,7 +43,7 @@ struct GradesView: View {
         }
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func onWillEnterForeground(_ output: NotificationCenter.Publisher.Output) {
         reload()

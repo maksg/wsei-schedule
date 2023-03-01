@@ -22,14 +22,14 @@ extension CaptchaReaderError: LocalizedError {
 
 final class CaptchaReader {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     private let textRecognitionWorkQueue: DispatchQueue
     private var textRecognitionRequest: VNRecognizeTextRequest!
 
     private var completionHandler: ((Result<String, Error>) -> Void)?
 
-    // MARK: Initialization
+    // MARK: - Initialization
 
     init() {
         textRecognitionWorkQueue = DispatchQueue(label: "TextRecognitionQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
@@ -40,7 +40,7 @@ final class CaptchaReader {
         textRecognitionRequest.customWords = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map(String.init)
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func vnRequestCompletionHandler(request: VNRequest, error: Error?) {
         let observations = request.results as? [VNRecognizedTextObservation]

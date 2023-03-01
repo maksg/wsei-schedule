@@ -56,6 +56,6 @@ final class Keychain {
             kSecReturnData: true
         ] as CFDictionary
 
-        SecItemDelete(query as CFDictionary)
+        SecItemDelete(query)
     }
 }

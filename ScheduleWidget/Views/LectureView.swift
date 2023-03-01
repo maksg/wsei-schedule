@@ -20,13 +20,13 @@ struct LectureView: View {
         case comments
     }
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let lecture: Lecture
     let enabledModules: Set<Module>
     let minimumScaleFactor: CGFloat
 
-    // MARK: Initialization
+    // MARK: - Initialization
 
     init(lecture: Lecture, enabledModules: Set<LectureView.Module>, minimumScaleFactor: CGFloat = 1.0) {
         self.lecture = lecture
@@ -34,7 +34,7 @@ struct LectureView: View {
         self.minimumScaleFactor = minimumScaleFactor
     }
 
-    // MARK: Views
+    // MARK: - Views
 
     var timeView: some View {
         HStack {

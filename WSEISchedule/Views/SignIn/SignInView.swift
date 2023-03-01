@@ -10,12 +10,12 @@ import SwiftUI
 
 struct SignInView: View {
 
-    // MARK: Methods
+    // MARK: - Methods
 
     @ObservedObject var viewModel: SignInViewModel
 
-    // MARK: Views
-    
+    // MARK: - Views
+
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
@@ -82,8 +82,8 @@ struct SignInView: View {
         .animation(.default)
     }
 
-    // MARK: Methods
-    
+    // MARK: - Methods
+
     private func signIn() {
         viewModel.signIn()
     }

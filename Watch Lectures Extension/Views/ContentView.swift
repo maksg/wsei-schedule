@@ -10,11 +10,11 @@ import SwiftUI
 
 struct ContentView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @ObservedObject var viewModel: ContentViewModel
 
-    // MARK: Views
+    // MARK: - Views
     
     var body: some View {
         List {
@@ -31,7 +31,7 @@ struct ContentView: View {
         .onAppear(perform: onAppear)
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func onAppear() {
         viewModel.reloadLectures()

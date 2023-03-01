@@ -121,7 +121,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return lecture
     }
 
-    // MARK: Providers
+    // MARK: - Providers
     
     private func imageProvider(named: String) -> CLKImageProvider {
         let image = UIImage(named: named)!
@@ -164,7 +164,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
     }
 
-    // MARK: Templates
+    // MARK: - Templates
     
     private var circularSmallTemplate: CLKComplicationTemplateCircularSmallSimpleImage {
         let imageProvider = imageProvider(named: "Complication/Circular")

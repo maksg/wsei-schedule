@@ -8,9 +8,9 @@
 
 import Foundation
 
-final class SignInViewModel: ObservableObject {
+final class SignInViewModel: NSObject, ObservableObject {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     @Published var username: String = ""
     @Published var password: String = ""
@@ -23,7 +23,7 @@ final class SignInViewModel: ObservableObject {
     let captchaReader: CaptchaReader
     let htmlReader: HTMLReader
 
-    // MARK: Initialization
+    // MARK: - Initialization
 
     init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
@@ -31,25 +31,19 @@ final class SignInViewModel: ObservableObject {
         self.htmlReader = htmlReader
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     func signIn() {
-        guard !username.isEmpty && !password.isEmpty else { return }
-        startSigningIn(username: username, password: password)
+        startSigningIn(silently: false)
     }
     
 }
 
 extension SignInViewModel: SignInable {
 
-    func onSignIn(html: String, username: String, password: String) {
-        Keychain.standard.save(username: username, password: password)
+    func onSignIn() {
         resetErrors()
         finishSignIn?()
-    }
-
-    func onError(_ error: Error) {
-        signIn()
     }
     
     func showErrorMessage(_ errorMessage: String) {

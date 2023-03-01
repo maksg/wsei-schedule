@@ -14,7 +14,7 @@ import WidgetKit
 
 final class SettingsViewModel: NSObject, ObservableObject {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var student: Student {
         get {
@@ -45,7 +45,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     let captchaReader: CaptchaReader
     let htmlReader: HTMLReader
 
-    // MARK: Initialization
+    // MARK: - Initialization
 
     init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
@@ -56,9 +56,13 @@ final class SettingsViewModel: NSObject, ObservableObject {
         getInAppPurchases()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
 
     func loadStudentInfo() {
+        guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
+            return
+        }
+
         setupStudentInfoRow()
         
         apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
@@ -122,8 +126,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
             self?.studentInfoRowViewModel = nil
         }
         removeAllLectures()
-        URLCache.shared.removeAllCachedResponses()
-        apiRequest.clearCookies()
+        apiRequest.clearCache()
 
         WidgetCenter.shared.reloadAllTimelines()
 
@@ -135,12 +138,12 @@ final class SettingsViewModel: NSObject, ObservableObject {
 
 extension SettingsViewModel: SignInable {
 
-    func onSignIn(html: String, username: String, password: String) {
-        readStudentInfo(fromHtml: html)
-    }
-
-    func onError(_ error: Error) {
-        onSignInError(error)
+    func onSignIn() {
+        apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
+            self?.readStudentInfo(fromHtml: html)
+        }).onError({ [weak self] error in
+            self?.showErrorMessage(error.localizedDescription)
+        }).make()
     }
 
     func showErrorMessage(_ errorMessage: String) {
@@ -149,7 +152,7 @@ extension SettingsViewModel: SignInable {
 
 }
 
-// MARK: SKProductsRequestDelegate
+// MARK: - SKProductsRequestDelegate
 
 extension SettingsViewModel: SKProductsRequestDelegate {
     
@@ -169,7 +172,7 @@ extension SettingsViewModel: SKProductsRequestDelegate {
     
 }
 
-// MARK: SKPaymentTransactionObserver
+// MARK: - SKPaymentTransactionObserver
 
 extension SettingsViewModel: SKPaymentTransactionObserver {
     

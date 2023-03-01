@@ -11,11 +11,11 @@ import WidgetKit
 
 struct SmallNextLectureView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let lecture: Lecture
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         LectureView(lecture: lecture, enabledModules: [.date, .time, .classroom], minimumScaleFactor: 0.7)

@@ -11,7 +11,7 @@ import WidgetKit
 
 struct NextTwoLecturesWidgetEntryView: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     @Environment(\.widgetFamily) var family: WidgetFamily
 
@@ -19,7 +19,7 @@ struct NextTwoLecturesWidgetEntryView: View {
     var todaysLecture: Lecture? { entry.todaysLecture }
     var nextLecture: Lecture? { entry.nextLecture }
 
-    // MARK: Views
+    // MARK: - Views
 
     var body: some View {
         if todaysLecture == nil && nextLecture == nil {

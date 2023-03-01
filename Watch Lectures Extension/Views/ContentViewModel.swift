@@ -13,18 +13,18 @@ import WatchConnectivity
 
 final class ContentViewModel: NSObject, ObservableObject {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     @Published var lectureDays: [LectureDay] = []
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     override init() {
         super.init()
         NotificationCenter.default.addObserver(forName: .didReloadLectures, object: nil, queue: .main, using: reloadLectures)
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func reloadLectures(_ notification: Notification? = nil) {
         let delegate = WKExtension.shared().delegate as? ExtensionDelegate

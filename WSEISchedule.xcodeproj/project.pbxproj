@@ -49,6 +49,7 @@
 		50BB49A426A5F3D600BFE87B /* SignInParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A326A5F3D600BFE87B /* SignInParameters.swift */; };
 		50BB49A626A600F300BFE87B /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A526A600F300BFE87B /* Requestable.swift */; };
 		50BB49A826A6014400BFE87B /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A726A6014400BFE87B /* Routable.swift */; };
+		50D1AC8629B0036100A1BD4E /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */; };
 		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
 		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
 		5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
@@ -265,6 +266,7 @@
 		50BB49A326A5F3D600BFE87B /* SignInParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInParameters.swift; sourceTree = "<group>"; };
 		50BB49A526A600F300BFE87B /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		50BB49A726A6014400BFE87B /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
 		5701F82D22AFD23A005BED89 /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
 		5701F83022AFE084005BED89 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
 		5701F83222AFE361005BED89 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */,
 				504AD2C728E234800071F57B /* Keychain.swift */,
 				57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */,
+				50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1146,6 +1149,7 @@
 				501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */,
 				5773BE1623ACEC8F00264FC7 /* URLImageDownloader.swift in Sources */,
 				57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */,
+				50D1AC8629B0036100A1BD4E /* WebAuthenticationSession.swift in Sources */,
 				57791D6723C6191900F91D7F /* SKProduct+LocalizedPrice.swift in Sources */,
 				503A0D0A28E5F8F6001E912F /* PremiumItem.swift in Sources */,
 				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
@@ -1777,7 +1781,7 @@
 			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
 			requirement = {
 				kind = exactVersion;
-				version = 2.4.3;
+				version = 2.5.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

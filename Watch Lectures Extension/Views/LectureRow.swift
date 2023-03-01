@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LectureRow: View {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     var lecture: Lecture
     @State private var showDetails: Bool = false
@@ -28,7 +28,7 @@ struct LectureRow: View {
         }
     }
 
-    // MARK: Views
+    // MARK: - Views
     
     var body: some View {
         Button(action: onTap) {
@@ -77,7 +77,7 @@ struct LectureRow: View {
         .animatableRowHeight(rowHeight)
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     private func onTap() {
         withAnimation(.easeInOut(duration: 0.1)) {

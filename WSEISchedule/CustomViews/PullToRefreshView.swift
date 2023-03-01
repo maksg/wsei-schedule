@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PullToRefreshView: UIViewRepresentable {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let onRefresh: () -> Void
     @Binding var isRefreshing: Bool
@@ -19,7 +19,7 @@ struct PullToRefreshView: UIViewRepresentable {
         UIDevice.current.userInterfaceIdiom == .phone
     }
 
-    // MARK: Coordinator
+    // MARK: - Coordinator
 
     class Coordinator {
         let onRefresh: () -> Void
@@ -39,7 +39,7 @@ struct PullToRefreshView: UIViewRepresentable {
         }
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     func makeUIView(context: Context) -> UIView {
         return UIView()
