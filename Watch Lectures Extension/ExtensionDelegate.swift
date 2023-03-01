@@ -51,16 +51,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
     
-    func generateLectureDays(from lectures: [CodableLecture]?) {
-        self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
+    func generateLectureDays(from unsortedLectures: [CodableLecture]?) {
+        lectures = unsortedLectures?.sorted { $0.fromDate < $1.fromDate } ?? []
         
-        guard let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) else {
-            self.lectureDays = []
+        guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else {
+            lectureDays = []
             return
         }
         
-        let futureLectures = self.lectures[nearestLectureIndex..<self.lectures.count]
-        self.lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
+        let futureLectures = lectures[nearestLectureIndex..<lectures.count]
+        lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime
             lectureDays[date].lectures += [lecture]
         })

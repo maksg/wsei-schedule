@@ -144,20 +144,20 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
     
-    func generateLectureDays(from lectures: [CoreDataLecture]?) {
-        self.lectures = lectures?.sorted { $0.fromDate < $1.fromDate } ?? []
+    func generateLectureDays(from unsortedLectures: [CoreDataLecture]?) {
+        lectures = unsortedLectures?.sorted { $0.fromDate < $1.fromDate } ?? []
 
-        let nearestLectureIndex = self.lectures.firstIndex(where: { $0.toDate > Date() }) ?? self.lectures.endIndex
+        let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) ?? lectures.endIndex
 
-        let futureLectures = Array(self.lectures[nearestLectureIndex...])
+        let futureLectures = lectures[nearestLectureIndex...]
         let lectureDays = Array<LectureDay>(lectures: futureLectures)
         DispatchQueue.main.async { [weak self] in
-            self?.lectureWeeks = Array<LectureWeek>(lectureDays: lectureDays)
+            self?.lectureWeeks = Array(lectureDays: lectureDays)
         }
 
-        let previousLectures = Array(self.lectures[..<nearestLectureIndex].reversed())
-        let previousLectureDays = Array(Array<LectureDay>(lectures: previousLectures).reversed())
-        self.previousLectureWeeks = Array<LectureWeek>(lectureDays: previousLectureDays).reversed()
+        let previousLectures = lectures[..<nearestLectureIndex].reversed()
+        let previousLectureDays = Array<LectureDay>(lectures: previousLectures)
+        previousLectureWeeks = Array(lectureDays: previousLectureDays)
     }
     
     private func deleteLectures(from context: NSManagedObjectContext) {
