@@ -59,11 +59,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             return
         }
         
-        let futureLectures = lectures[nearestLectureIndex..<lectures.count]
-        lectureDays = futureLectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
-            let date = lecture.fromDate.strippedFromTime
-            lectureDays[date].lectures += [lecture]
-        })
+        let futureLectures = lectures[nearestLectureIndex...]
+        lectureDays = Array<LectureDay>(lectures: futureLectures)
     }
     
     // MARK: - Delegate

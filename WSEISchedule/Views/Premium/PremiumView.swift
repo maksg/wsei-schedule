@@ -12,7 +12,6 @@ struct PremiumView: View {
 
     // MARK: - Properties
 
-    @AppStorage(UserDefaults.Key.premium.rawValue) var isPremium: Bool = false
     @ObservedObject private var viewModel: PremiumViewModel = PremiumViewModel()
 
     // MARK: - Views
@@ -77,6 +76,8 @@ struct PremiumView: View {
     }
     
 }
+
+// MARK: -
 
 struct PremiumView_Previews: PreviewProvider {
     static var previews: some View {

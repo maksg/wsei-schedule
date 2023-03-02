@@ -45,7 +45,7 @@ struct GradesView: View {
 
     // MARK: - Methods
 
-    private func onWillEnterForeground(_ output: NotificationCenter.Publisher.Output) {
+    private func onWillEnterForeground(_: NotificationCenter.Publisher.Output) {
         reload()
     }
 
@@ -55,8 +55,10 @@ struct GradesView: View {
 
 }
 
+// MARK: -
+
 struct GradesView_Previews: PreviewProvider {
     static var previews: some View {
-        GradesView(viewModel: GradesViewModel(apiRequest: APIRequest(), captchaReader: CaptchaReader(), htmlReader: HTMLReader()))
+        GradesView(viewModel: GradesViewModel(apiRequest: APIRequest(), htmlReader: HTMLReader()))
     }
 }

@@ -24,7 +24,6 @@ struct PullToRefreshView: UIViewRepresentable {
     class Coordinator {
         let onRefresh: () -> Void
         let isRefreshing: Binding<Bool>
-        var pulledToRefresh: Bool = false
         var firstRefresh: Bool = true
 
         init(onRefresh: @escaping () -> Void, isRefreshing: Binding<Bool>) {
@@ -33,7 +32,6 @@ struct PullToRefreshView: UIViewRepresentable {
         }
 
         @objc func onValueChanged() {
-            pulledToRefresh = true
             isRefreshing.wrappedValue = true
             onRefresh()
         }

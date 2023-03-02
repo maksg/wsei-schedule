@@ -39,19 +39,15 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     @Published var lectureWeeks: [LectureWeek] = []
     var previousLectureWeeks: [LectureWeek] = []
 
-    private var signInData: SignInData?
-
     let apiRequest: APIRequest
-    let captchaReader: CaptchaReader
     let htmlReader: HTMLReader
 
     private var session: WCSession?
     
     // MARK: - Initialization
     
-    init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
+    init(apiRequest: APIRequest, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
-        self.captchaReader = captchaReader
         self.htmlReader = htmlReader
         super.init()
         
@@ -65,7 +61,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         NotificationCenter.default.addObserver(forName: .removeAllLectures, object: nil, queue: nil, using: removeAllLectures)
     }
 
-    private func removeAllLectures(_ notification: Notification) {
+    private func removeAllLectures(_: Notification) {
         lectures = []
     }
     
@@ -109,6 +105,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
             resetErrors()
         } catch {
+            checkIfSignedIn(html: html, error: error)
             onError(error)
         }
     }
@@ -191,19 +188,10 @@ extension ScheduleViewModel: SignInable {
         fetchSchedule()
     }
 
-    func onError(_ error: Error) {
-        apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
-            self?.checkIfSignedIn(html: html, error: error)
-        }).onError({ [weak self] error in
-            self?.showErrorMessage(error.localizedDescription)
-        }).make()
-    }
-
     private func checkIfSignedIn(html: String, error: Error) {
         let isSignedIn = htmlReader.isSignedIn(fromHtml: html)
         if isSignedIn {
-            print("Already signed in")
-            resetErrors()
+            onError(error)
         } else {
             startSigningIn()
         }

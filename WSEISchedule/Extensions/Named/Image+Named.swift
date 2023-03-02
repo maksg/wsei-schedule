@@ -9,7 +9,6 @@
 import SwiftUI
 
 extension Image {
-    
     static var logo: Image { Image("logo") }
 
     static var schedule: Image { Image(systemName: "calendar") }
@@ -26,5 +25,4 @@ extension Image {
     static var comments: Image { Image(systemName: "info.circle.fill") }
 
     static var signOut: Image { Image(systemName: "power") }
-    
 }

@@ -70,8 +70,8 @@ class WebAuthenticationSession: NSObject {
         ]
 
         updateNavigationItems()
-        backButton.primaryAction = UIAction(image: UIImage(systemName: "chevron.backward"), handler: goBack)
-        forwardButton.primaryAction = UIAction(image: UIImage(systemName: "chevron.forward"), handler: goForward)
+        backButton.primaryAction = UIAction(image: .back, handler: goBack)
+        forwardButton.primaryAction = UIAction(image: .forward, handler: goForward)
         let fixedSpace = UIBarButtonItem(systemItem: .fixedSpace)
         fixedSpace.width = 40
         viewController.toolbarItems = [
@@ -79,7 +79,7 @@ class WebAuthenticationSession: NSObject {
             fixedSpace,
             forwardButton,
             UIBarButtonItem(systemItem: .flexibleSpace),
-            UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), primaryAction: UIAction(handler: reload))
+            UIBarButtonItem(image: .share, primaryAction: UIAction(handler: share))
         ]
 
         viewController.view.addSubview(webView)
@@ -108,7 +108,7 @@ class WebAuthenticationSession: NSObject {
             guard SecTrustEvaluateWithError(serverTrust, nil) else { return }
             fullString.insert(NSAttributedString(string: " "), at: 0)
             let imageAttachment = NSTextAttachment()
-            imageAttachment.image = UIImage(systemName: "lock.fill")
+            imageAttachment.image = .secure
             fullString.insert(NSAttributedString(attachment: imageAttachment), at: 0)
 
             DispatchQueue.main.async {
@@ -171,20 +171,27 @@ class WebAuthenticationSession: NSObject {
         topController.present(navigationController, animated: true)
     }
 
-    private func reload(_ action: UIAction) {
+    private func dismiss(_: UIAction) {
+        navigationController.dismiss(animated: true)
+    }
+
+    private func reload(_: UIAction) {
         webView.reload()
     }
 
-    private func goBack(_ action: UIAction) {
+    private func goBack(_: UIAction) {
         webView.goBack()
     }
 
-    private func goForward(_ action: UIAction) {
+    private func goForward(_: UIAction) {
         webView.goForward()
     }
 
-    private func dismiss(_ action: UIAction) {
-        navigationController.dismiss(animated: true)
+    private func share(_: UIAction) {
+    }
+
+    deinit {
+        observation.invalidate()
     }
 
 }

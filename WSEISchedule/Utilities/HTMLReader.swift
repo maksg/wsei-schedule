@@ -11,7 +11,6 @@ import SwiftSoup
 
 enum HTMLReaderError: Error {
     case invalidHtml
-    case invalidCaptcha
 }
 
 extension HTMLReaderError: LocalizedError {
@@ -28,35 +27,7 @@ final class HTMLReader {
         return sidebar != nil
     }
 
-    func readSignInData(fromHtml html: String) throws -> SignInData {
-        let doc = try SwiftSoup.parse(html)
-        guard let form = try doc.select("#form_logowanie").first() else { throw HTMLReaderError.invalidHtml }
-
-        let elements = try form.select("input")
-
-        var usernameId: String = ""
-        var passwordId: String = ""
-
-        for element in elements {
-            let id = try element.attr("id")
-            guard !id.contains("captcha") else { continue }
-            let type = try element.attr("type")
-
-            switch type {
-            case "password":
-                passwordId = id
-            case "text":
-                usernameId = id
-            default:
-                break
-            }
-        }
-
-        let captchaSrc = try form.select("#captchaImg").first()?.attr("src")
-        return SignInData(usernameId: usernameId, passwordId: passwordId, captchaSrc: captchaSrc)
-    }
-
-    func readStudentInfo(fromHtml html: String) throws -> StudentInfo {
+    func readStudentInfo(fromHtml html: String) throws -> Student {
         let doc = try SwiftSoup.parse(html)
         guard
             let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src"),
@@ -70,9 +41,9 @@ final class HTMLReader {
         let infoLines = info.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
 
         if infoLines.count >= 4 {
-            return StudentInfo(name: infoLines[1], albumNumber: infoLines[2], courseName: infoLines[3], photoUrl: photoUrl)
+            return Student(name: infoLines[1], albumNumber: infoLines[2], courseName: infoLines[3], photoUrl: photoUrl)
         } else {
-            return StudentInfo(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
+            return Student(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
         }
     }
 
@@ -136,20 +107,6 @@ final class HTMLReader {
             let texts = try elements.map({ try $0.text() })
             let dictionary = zipTableData(headers: headers, texts: texts)
             return dictionary
-        }
-    }
-
-    func readSignInError(fromHtml html: String) throws -> String {
-        let doc = try SwiftSoup.parse(html)
-        guard
-            let errorElement = try doc.select(".validation-summary-errors ul li").first()
-        else { throw HTMLReaderError.invalidHtml }
-
-        let errorMessage = try errorElement.text()
-        if errorMessage.contains("captcha") || errorMessage.contains("kod z obrazka") {
-            throw HTMLReaderError.invalidCaptcha
-        } else {
-            return errorMessage
         }
     }
 

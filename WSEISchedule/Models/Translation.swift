@@ -5,8 +5,6 @@
 enum Translation: String {
 
     enum SignIn: String {
-        case username = "sign_in.username"
-        case password = "sign_in.password"
         case signIn = "sign_in.sign_in"
         case signOut = "sign_in.sign_out"
         case title = "sign_in.title"

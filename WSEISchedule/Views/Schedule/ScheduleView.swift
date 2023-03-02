@@ -59,7 +59,7 @@ struct ScheduleView: View {
 
     // MARK: - Methods
 
-    private func onWillEnterForeground(_ output: NotificationCenter.Publisher.Output) {
+    private func onWillEnterForeground(_: NotificationCenter.Publisher.Output) {
         reload()
     }
 
@@ -69,8 +69,10 @@ struct ScheduleView: View {
     
 }
 
+// MARK: -
+
 struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleView(viewModel: ScheduleViewModel(apiRequest: APIRequest(), captchaReader: CaptchaReader(), htmlReader: HTMLReader()))
+        ScheduleView(viewModel: ScheduleViewModel(apiRequest: APIRequest(), htmlReader: HTMLReader()))
     }
 }

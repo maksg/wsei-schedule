@@ -9,8 +9,8 @@
 import Foundation
 
 struct Student: Codable {
-    var name: String
-    var albumNumber: String
-    var courseName: String
-    var photoUrl: URL?
+    let name: String
+    let albumNumber: String
+    let courseName: String
+    let photoUrl: URL?
 }

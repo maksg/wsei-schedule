@@ -24,8 +24,6 @@ final class SettingsViewModel: NSObject, ObservableObject {
             UserDefaults.standard.student = newValue
         }
     }
-
-    var unsuccessfulSignInAttempts: Int = 0
     
     @Published var studentInfoRowViewModel: StudentInfoRowViewModel?
     
@@ -42,14 +40,12 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }()
 
     let apiRequest: APIRequest
-    let captchaReader: CaptchaReader
     let htmlReader: HTMLReader
 
     // MARK: - Initialization
 
-    init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
+    init(apiRequest: APIRequest, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
-        self.captchaReader = captchaReader
         self.htmlReader = htmlReader
         super.init()
         
@@ -74,13 +70,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
 
     private func readStudentInfo(fromHtml html: String) {
         do {
-            let studentInfo = try htmlReader.readStudentInfo(fromHtml: html)
-
-            student.name = studentInfo.name
-            student.albumNumber = studentInfo.albumNumber
-            student.courseName = studentInfo.courseName
-            student.photoUrl = studentInfo.photoUrl
-
+            student = try htmlReader.readStudentInfo(fromHtml: html)
             resetErrors()
         } catch {
             onError(error)
@@ -131,7 +121,6 @@ final class SettingsViewModel: NSObject, ObservableObject {
         WidgetCenter.shared.reloadAllTimelines()
 
         UserDefaults.standard.signOut()
-        Keychain.standard.signOut()
     }
     
 }
@@ -139,11 +128,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
 extension SettingsViewModel: SignInable {
 
     func onSignIn() {
-        apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
-            self?.readStudentInfo(fromHtml: html)
-        }).onError({ [weak self] error in
-            self?.showErrorMessage(error.localizedDescription)
-        }).make()
+        loadStudentInfo()
     }
 
     func showErrorMessage(_ errorMessage: String) {

@@ -15,20 +15,6 @@ final class APIRequest {
 
     private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
 
-    func getSignInHtml() -> Requestable {
-        return Request(url: url, endpoint: Endpoint.getSignInHtml)
-    }
-
-    func signIn(parameters: SignInParameters) -> Requestable {
-        Request(url: url, endpoint: Endpoint.signIn(parameters: parameters))
-    }
-
-    func downloadImage(path: String) -> Requestable {
-        let urlString = url.absoluteString.dropLast()
-        let url = URL(string: urlString + path)!
-        return Request(url: url)
-    }
-
     func getMainHtml() -> Requestable {
         Request(url: url, endpoint: Endpoint.getMainHtml)
     }

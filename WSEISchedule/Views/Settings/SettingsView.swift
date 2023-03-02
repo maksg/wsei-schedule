@@ -99,8 +99,10 @@ struct SettingsViewContent: View {
 
 }
 
+// MARK: -
+
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel(apiRequest: APIRequest(), captchaReader: CaptchaReader(), htmlReader: HTMLReader()), isSignedIn: .constant(true))
+        SettingsView(viewModel: SettingsViewModel(apiRequest: APIRequest(), htmlReader: HTMLReader()), isSignedIn: .constant(true))
     }
 }

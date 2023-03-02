@@ -40,6 +40,8 @@ struct StudentInfoRow: View {
 
 }
 
+// MARK: -
+
 struct StudentInfoRow_Previews: PreviewProvider {
     static var previews: some View {
         StudentInfoRow(viewModel: StudentInfoRowViewModel(name: "John Appleseed", number: "12345", courseName: "WSEI Programming", photoUrl: nil))

@@ -10,8 +10,6 @@
 
 // Sign In
 
-"sign_in.username" = "Login";
-"sign_in.password" = "Hasło";
 "sign_in.sign_in" = "Zaloguj się";
 "sign_in.sign_out" = "Wyloguj się";
 "sign_in.title" = "Zaloguj się do dziekanat.wsei.edu.pl";

@@ -13,7 +13,6 @@ final class RootViewModel: ObservableObject {
     // MARK: - Properties
 
     let apiRequest = APIRequest()
-    let captchaReader = CaptchaReader()
     let htmlReader = HTMLReader()
 
     let signInViewModel: SignInViewModel
@@ -49,10 +48,10 @@ final class RootViewModel: ObservableObject {
     // MARK: - Initialization
     
     init() {
-        signInViewModel = SignInViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
-        scheduleViewModel = ScheduleViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
-        gradesViewModel = GradesViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
-        settingsViewModel = SettingsViewModel(apiRequest: apiRequest, captchaReader: captchaReader, htmlReader: htmlReader)
+        signInViewModel = SignInViewModel()
+        scheduleViewModel = ScheduleViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
+        gradesViewModel = GradesViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
+        settingsViewModel = SettingsViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
 
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
         isSignedIn = !cookies.isEmpty

@@ -41,6 +41,8 @@ struct PremiumItem: View {
 
 }
 
+// MARK: -
+
 struct PremiumItem_Previews: PreviewProvider {
     static var previews: some View {
         PremiumItem(image: .comingSoon, color: .orange, title: "Title", content: "Content")

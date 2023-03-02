@@ -12,8 +12,6 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     // MARK: - Properties
 
-    var unsuccessfulSignInAttempts: Int = 0
-
     @Published var errorMessage: String = ""
     @Published var isRefreshing: Bool = false
 
@@ -24,14 +22,12 @@ final class GradesViewModel: NSObject, ObservableObject {
     }
 
     let apiRequest: APIRequest
-    let captchaReader: CaptchaReader
     let htmlReader: HTMLReader
 
     // MARK: - Initialization
 
-    init(apiRequest: APIRequest, captchaReader: CaptchaReader, htmlReader: HTMLReader) {
+    init(apiRequest: APIRequest, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
-        self.captchaReader = captchaReader
         self.htmlReader = htmlReader
         super.init()
     }

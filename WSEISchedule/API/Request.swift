@@ -62,15 +62,6 @@ final class Request: Requestable {
         self.request = request
         self.debug = debug
     }
-
-    init(url: URL, debug: Bool = false) {
-        if debug {
-            print(url.absoluteString)
-        }
-
-        self.request = URLRequest(url: url)
-        self.debug = debug
-    }
     
     // MARK: - Methods
 
@@ -89,26 +80,6 @@ final class Request: Requestable {
 
             DispatchQueue.main.async {
                 callback(responseData)
-            }
-        }
-        return self
-    }
-
-    func onImageDownloadSuccess(_ callback: @escaping (UIImage?) -> Void) -> Self {
-        dataSuccessCallback = { [debug] data in
-            let image: UIImage?
-            if let data = data {
-                image = UIImage(data: data)
-            } else {
-                image = nil
-            }
-
-            if debug {
-                print(image as Any)
-            }
-
-            DispatchQueue.main.async {
-                callback(image)
             }
         }
         return self

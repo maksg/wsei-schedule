@@ -9,8 +9,11 @@
 import UIKit
 
 extension UIImage {
-    
     static var placeholder: UIImage { UIImage(named: "placeholder")! }
-    
+
+    static var back: UIImage { UIImage(systemName: "chevron.backward")! }
+    static var forward: UIImage { UIImage(systemName: "chevron.forward")! }
+    static var share: UIImage { UIImage(systemName: "square.and.arrow.up")! }
+    static var secure: UIImage { UIImage(systemName: "lock.fill")! }
 }
 

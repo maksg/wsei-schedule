@@ -61,6 +61,8 @@ struct GradeRow: View {
     }
 }
 
+// MARK: -
+
 struct GradeRow_Previews: PreviewProvider {
     static var previews: some View {
         GradeRow(grade: MockData.grade)

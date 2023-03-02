@@ -39,6 +39,8 @@ struct GameRow: View {
 
 }
 
+// MARK: -
+
 struct GameRow_Previews: PreviewProvider {
     static var previews: some View {
         GameRow(game: .scareCrows)

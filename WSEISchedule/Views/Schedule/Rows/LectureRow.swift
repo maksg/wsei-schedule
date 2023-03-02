@@ -116,6 +116,8 @@ struct LectureRow: View {
 
 }
 
+// MARK: -
+
 struct LectureRow_Previews: PreviewProvider {
     static var previews: some View {
         LectureRow(lecture: MockData.lecture)

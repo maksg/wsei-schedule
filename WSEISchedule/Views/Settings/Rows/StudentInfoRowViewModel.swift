@@ -9,12 +9,16 @@
 import Foundation
 
 final class StudentInfoRowViewModel {
+
+    // MARK: - Properties
     
     let name: String
     let number: String
     let courseName: String
     let photoUrl: URL?
     let cacheRequest: URLRequest
+
+    // MARK: - Initialization
     
     convenience init(student: Student) {
         self.init(name: student.name, number: student.albumNumber, courseName: student.courseName, photoUrl: student.photoUrl)
