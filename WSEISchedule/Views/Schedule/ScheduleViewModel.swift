@@ -31,7 +31,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     private var lectures: [CoreDataLecture] = [] {
         didSet {
-            stopRefreshing()
             sendLecturesToWatch()
         }
     }
@@ -65,15 +64,13 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         lectures = []
     }
     
-    func reloadLectures() {
+    func reloadLectures() async {
         fetchLectures(from: persistentContainer.viewContext)
-        startRefreshing()
-        fetchSchedule()
+        await fetchSchedule()
     }
 
-    private func fetchSchedule() {
+    private func fetchSchedule() async {
         guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
-            stopRefreshing()
             return
         }
 
@@ -81,11 +78,12 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         let toDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
         let parameters = ScheduleParameters(fromDate: fromDate, toDate: toDate)
 
-        apiRequest.getScheduleHtml(parameters: parameters).onDataSuccess({ [weak self] html in
-            self?.readLectures(fromHtml: html)
-        }).onError({ [weak self] error in
-            self?.onError(error)
-        }).make()
+        do {
+            let html = try await apiRequest.getScheduleHtml(parameters: parameters).make()
+            readLectures(fromHtml: html)
+        } catch {
+            onError(error)
+        }
     }
 
     private func readLectures(fromHtml html: String) {
@@ -168,24 +166,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
-    private func startRefreshing() {
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = true
-        }
-    }
-
-    private func stopRefreshing() {
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = false
-        }
-    }
-
 }
 
 extension ScheduleViewModel: SignInable {
 
     func onSignIn() {
-        fetchSchedule()
+        Task {
+            await fetchSchedule()
+        }
     }
 
     private func checkIfSignedIn(html: String, error: Error) {

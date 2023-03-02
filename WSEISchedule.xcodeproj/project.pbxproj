@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5014D31129B152780045718A /* View+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5014D31029B152780045718A /* View+Async.swift */; };
 		501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E128E61723004103B1 /* ScheduleHistoryView.swift */; };
 		501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E628E633D8004103B1 /* PremiumViewModel.swift */; };
 		502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */; };
@@ -226,6 +227,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5014D31029B152780045718A /* View+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Async.swift"; sourceTree = "<group>"; };
 		501B82E128E61723004103B1 /* ScheduleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleHistoryView.swift; path = WSEISchedule/Views/Schedule/ScheduleHistory/ScheduleHistoryView.swift; sourceTree = SOURCE_ROOT; };
 		501B82E628E633D8004103B1 /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
 		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			children = (
 				575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */,
 				5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */,
+				5014D31029B152780045718A /* View+Async.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */,
 				57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */,
 				575218E8252DFEBB007FA0A5 /* PullToRefreshView.swift in Sources */,
+				5014D31129B152780045718A /* View+Async.swift in Sources */,
 				57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */,
 				50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */,
 				5701F83122AFE084005BED89 /* DayHeader.swift in Sources */,

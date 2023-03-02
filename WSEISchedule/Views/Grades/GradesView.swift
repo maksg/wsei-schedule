@@ -36,7 +36,7 @@ struct GradesView: View {
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
             .onAppear(perform: reload)
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
+            .onWillEnterForeground(perform: onWillEnterForeground)
         } else {
             PremiumView()
                 .navigationBarHidden(true)
@@ -45,12 +45,12 @@ struct GradesView: View {
 
     // MARK: - Methods
 
-    private func onWillEnterForeground(_: NotificationCenter.Publisher.Output) {
-        reload()
+    private func onWillEnterForeground() async {
+        await reload()
     }
 
-    private func reload() {
-        viewModel.reloadGrades()
+    private func reload() async {
+        await viewModel.reloadGrades()
     }
 
 }

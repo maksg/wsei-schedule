@@ -10,18 +10,12 @@ import Foundation
 
 enum Endpoint: Routable {
 
-    case getSignInHtml
-    case signIn(parameters: SignInParameters)
     case getMainHtml
     case getScheduleHtml(parameters: ScheduleParameters)
     case getGradesHtml
 
     var route: Route {
         switch self {
-        case .getSignInHtml:
-            return Route(path: "Konto/LogowanieStudenta", method: .get)
-        case .signIn(let parameters):
-            return Route(path: "Konto/LogowanieStudenta", method: .post, parameters: parameters.dictionary)
         case .getMainHtml:
             return Route(path: "", method: .get)
         case .getScheduleHtml(let parameters):

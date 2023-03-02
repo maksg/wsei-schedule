@@ -15,11 +15,7 @@ final class GradesViewModel: NSObject, ObservableObject {
     @Published var errorMessage: String = ""
     @Published var isRefreshing: Bool = false
 
-    @Published var grades: [Grade] = [] {
-        didSet {
-            stopRefreshing()
-        }
-    }
+    @Published var grades: [Grade] = []
 
     let apiRequest: APIRequest
     let htmlReader: HTMLReader
@@ -34,43 +30,30 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     // MARK: - Methods
 
-    func reloadGrades() {
-        startRefreshing()
-        fetchGrades()
+    func reloadGrades() async {
+        await fetchGrades()
     }
 
-    private func fetchGrades() {
+    private func fetchGrades() async {
         guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
-            stopRefreshing()
             return
         }
-        
-        apiRequest.getGradesHtml().onDataSuccess({ [weak self] html in
-            self?.readGrades(fromHtml: html)
-        }).onError({ [weak self] error in
-            self?.onError(error)
-        }).make()
-    }
 
-    private func readGrades(fromHtml html: String) {
         do {
-            let gradesDictionary = try htmlReader.readGrades(fromHtml: html)
-            self.grades = gradesDictionary.map(Grade.init).filter({ !$0.value.isEmpty })
-            resetErrors()
+            let html = try await apiRequest.getGradesHtml().make()
+            readGrades(fromHtml: html)
         } catch {
             onError(error)
         }
     }
 
-    private func startRefreshing() {
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = true
-        }
-    }
-
-    private func stopRefreshing() {
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = false
+    private func readGrades(fromHtml html: String) {
+        do {
+            let gradesDictionary = try htmlReader.readGrades(fromHtml: html)
+            grades = gradesDictionary.map(Grade.init).filter({ !$0.value.isEmpty })
+            resetErrors()
+        } catch {
+            onError(error)
         }
     }
     
@@ -79,7 +62,9 @@ final class GradesViewModel: NSObject, ObservableObject {
 extension GradesViewModel: SignInable {
 
     func onSignIn() {
-        fetchGrades()
+        Task {
+            await fetchGrades()
+        }
     }
 
     func showErrorMessage(_ errorMessage: String) {

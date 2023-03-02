@@ -54,18 +54,19 @@ final class SettingsViewModel: NSObject, ObservableObject {
     
     // MARK: - Methods
 
-    func loadStudentInfo() {
+    func loadStudentInfo() async {
         guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
             return
         }
 
         setupStudentInfoRow()
-        
-        apiRequest.getMainHtml().onDataSuccess({ [weak self] html in
-            self?.readStudentInfo(fromHtml: html)
-        }).onError({ [weak self] error in
-            self?.onError(error)
-        }).make()
+
+        do {
+            let html = try await apiRequest.getMainHtml().make()
+            readStudentInfo(fromHtml: html)
+        } catch {
+            onError(error)
+        }
     }
 
     private func readStudentInfo(fromHtml html: String) {
@@ -80,7 +81,10 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
 
     private func setupStudentInfoRow() {
-        studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.studentInfoRowViewModel = StudentInfoRowViewModel(student: self.student)
+        }
     }
     
     private func removeAllLectures() {
@@ -128,7 +132,9 @@ final class SettingsViewModel: NSObject, ObservableObject {
 extension SettingsViewModel: SignInable {
 
     func onSignIn() {
-        loadStudentInfo()
+        Task {
+            await loadStudentInfo()
+        }
     }
 
     func showErrorMessage(_ errorMessage: String) {

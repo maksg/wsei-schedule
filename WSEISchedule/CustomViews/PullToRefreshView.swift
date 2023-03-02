@@ -12,8 +12,9 @@ struct PullToRefreshView: UIViewRepresentable {
 
     // MARK: - Properties
 
-    let onRefresh: () -> Void
+    let onRefresh: () async -> Void
     @Binding var isRefreshing: Bool
+    @State var firstRefresh: Bool = true
 
     private var isPhone: Bool {
         UIDevice.current.userInterfaceIdiom == .phone
@@ -22,18 +23,18 @@ struct PullToRefreshView: UIViewRepresentable {
     // MARK: - Coordinator
 
     class Coordinator {
-        let onRefresh: () -> Void
-        let isRefreshing: Binding<Bool>
-        var firstRefresh: Bool = true
+        let parent: PullToRefreshView
 
-        init(onRefresh: @escaping () -> Void, isRefreshing: Binding<Bool>) {
-            self.onRefresh = onRefresh
-            self.isRefreshing = isRefreshing
+        init(parent: PullToRefreshView) {
+            self.parent = parent
         }
 
         @objc func onValueChanged() {
-            isRefreshing.wrappedValue = true
-            onRefresh()
+            parent.isRefreshing = true
+            Task {
+                await parent.onRefresh()
+                parent.isRefreshing = false
+            }
         }
     }
 
@@ -73,16 +74,16 @@ struct PullToRefreshView: UIViewRepresentable {
         } else {
             guard refreshControl.isRefreshing else { return }
             refreshControl.endRefreshing()
-            if context.coordinator.firstRefresh && tableView.contentOffset.y <= -tableView.adjustedContentInset.top && isPhone {
+            if firstRefresh && tableView.contentOffset.y <= -tableView.adjustedContentInset.top && isPhone {
                 let y = refreshControl.frame.maxY + tableView.adjustedContentInset.top
                 tableView.setContentOffset(CGPoint(x: 0, y: -y*5), animated: true)
-                context.coordinator.firstRefresh = false
+                firstRefresh = false
             }
         }
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(onRefresh: onRefresh, isRefreshing: $isRefreshing)
+        Coordinator(parent: self)
     }
 
 }

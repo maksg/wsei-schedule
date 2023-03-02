@@ -10,10 +10,10 @@ import SwiftUI
 
 extension View {
 
-    func pullToRefresh(onRefresh: @escaping () -> Void, isRefreshing: Binding<Bool>) -> some View {
+    func pullToRefresh(onRefresh: @escaping () async -> Void, isRefreshing: Binding<Bool>) -> some View {
         if #available(iOS 15.0, *) {
             return refreshable {
-                onRefresh()
+                await onRefresh()
             }
         } else {
             return VStack(spacing: 0) {

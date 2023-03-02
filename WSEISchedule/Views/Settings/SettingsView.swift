@@ -86,8 +86,8 @@ struct SettingsViewContent: View {
 
     // MARK: - Methods
 
-    private func loadStudentInfo() {
-        viewModel.loadStudentInfo()
+    private func loadStudentInfo() async {
+        await viewModel.loadStudentInfo()
     }
 
     private func signOut() {

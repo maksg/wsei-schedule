@@ -14,9 +14,6 @@ final class Request: Requestable {
 
     private let request: URLRequest
     private let debug: Bool
-
-    private var dataSuccessCallback: ((Data?) -> Void)?
-    private var errorCallback: ((Error) -> Void)?
     
     // MARK: - Initialization
     
@@ -65,57 +62,13 @@ final class Request: Requestable {
     
     // MARK: - Methods
 
-    func onDataSuccess(_ callback: @escaping (String) -> Void) -> Self {
-        dataSuccessCallback = { [debug] data in
-            let responseData: String
-            if let data = data {
-                responseData = String(data: data, encoding: .utf8) ?? ""
-            } else {
-                responseData = ""
-            }
-
-            if debug {
-                print(responseData)
-            }
-
-            DispatchQueue.main.async {
-                callback(responseData)
-            }
+    func make() async throws -> String {
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let responseData = String(data: data, encoding: .utf8) ?? ""
+        if debug {
+            print(responseData)
         }
-        return self
-    }
-
-    func onError(_ callback: @escaping (Error) -> Void) -> Self {
-        errorCallback = { error in
-            DispatchQueue.main.async {
-                callback(error)
-            }
-        }
-        return self
-    }
-
-    func make() {
-        let task = URLSession.shared.dataTask(with: request) { [request, dataSuccessCallback, errorCallback] (data, response, error) in
-            guard let data = data else {
-                if let error = error {
-                    print(error)
-                    errorCallback?(error)
-                    return
-                }
-
-                fatalError("Data and error should never both be nil")
-            }
-
-            let url = request.url!
-            let httpResponse = response as? HTTPURLResponse
-            let fields = httpResponse?.allHeaderFields as? [String: String]
-            let cookies = HTTPCookie.cookies(withResponseHeaderFields: fields!, for: url)
-            HTTPCookieStorage.shared.setCookies(cookies, for: url, mainDocumentURL: nil)
-
-            dataSuccessCallback?(data)
-        }
-
-        task.resume()
+        return responseData
     }
 
 }

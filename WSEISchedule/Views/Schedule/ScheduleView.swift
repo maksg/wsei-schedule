@@ -54,17 +54,17 @@ struct ScheduleView: View {
         .accessibility(identifier: "ScheduleList")
         .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         .onAppear(perform: reload)
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: onWillEnterForeground)
+        .onWillEnterForeground(perform: onWillEnterForeground)
     }
 
     // MARK: - Methods
 
-    private func onWillEnterForeground(_: NotificationCenter.Publisher.Output) {
-        reload()
+    private func onWillEnterForeground() async {
+        await reload()
     }
 
-    private func reload() {
-        viewModel.reloadLectures()
+    private func reload() async {
+        await viewModel.reloadLectures()
     }
     
 }
