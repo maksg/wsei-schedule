@@ -27,43 +27,48 @@ class WebAuthenticationSession: NSObject {
     private let webView: WKWebView = WKWebView()
     private let backButton: UIBarButtonItem = UIBarButtonItem()
     private let forwardButton: UIBarButtonItem = UIBarButtonItem()
+    private let secureImageView: UIImageView = UIImageView(image: .secure)
+    private let titleLabel: UILabel = UILabel()
 
     private let url: URL
     private let completionHandler: WebAuthenticationSession.CompletionHandler
-    private let observation: NSKeyValueObservation
 
     private var timer: Timer?
     private var isPresented: Bool = false
+    private var didRetry: Bool = false
 
     // MARK: - Initialization
 
     init(url: URL, completionHandler: @escaping WebAuthenticationSession.CompletionHandler) {
         self.url = url
         self.completionHandler = completionHandler
-
-        self.observation = webView.observe(\.estimatedProgress, options: .new) { [weak progressView] _, change in
-            guard let progressView, let progress = change.newValue else { return }
-
-            if progressView.alpha == 0 {
-                progressView.alpha = 1
-                progressView.setProgress(0, animated: false)
-            }
-
-            progressView.setProgress(Float(progress), animated: true)
-
-            if progress >= 1.0 {
-                UIView.animate(withDuration: 1.0) {
-                    progressView.alpha = 0
-                }
-            }
-        }
     }
 
     // MARK: - Methods
 
+    func start(silently: Bool = true) {
+        setupViewController()
+
+        let request = URLRequest(url: url)
+        webView.load(request)
+
+        if !silently {
+            present()
+        }
+    }
+
     private func setupViewController() {
+        secureImageView.tintColor = .label
+        secureImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        titleLabel.lineBreakMode = .byTruncatingHead
+
+        let stackView = UIStackView(arrangedSubviews: [secureImageView, titleLabel])
+        stackView.spacing = 8
+        viewController.navigationItem.titleView = stackView
+
         viewController.edgesForExtendedLayout = []
-        viewController.navigationItem.titleView = UILabel()
         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: dismiss))
         viewController.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(systemItem: .refresh, primaryAction: UIAction(handler: reload))
@@ -96,24 +101,14 @@ class WebAuthenticationSession: NSObject {
         backButton.isEnabled = webView.canGoBack
         forwardButton.isEnabled = webView.canGoForward
 
-        let label = viewController.navigationItem.titleView as? UILabel
-        let host = webView.url?.host ?? ""
-
-        let fullString = NSMutableAttributedString(string: host, attributes: [.font: UIFont.preferredFont(forTextStyle: .headline)])
-        label?.attributedText = fullString
-        label?.sizeToFit()
+        secureImageView.isHidden = true
+        titleLabel.text = webView.url?.host ?? ""
 
         guard let serverTrust = webView.serverTrust else { return }
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).async { [weak self] in
             guard SecTrustEvaluateWithError(serverTrust, nil) else { return }
-            fullString.insert(NSAttributedString(string: " "), at: 0)
-            let imageAttachment = NSTextAttachment()
-            imageAttachment.image = .secure
-            fullString.insert(NSAttributedString(attachment: imageAttachment), at: 0)
-
-            DispatchQueue.main.async {
-                label?.attributedText = fullString
-                label?.sizeToFit()
+            DispatchQueue.main.async { [weak self] in
+                self?.secureImageView.isHidden = false
             }
         }
     }
@@ -139,6 +134,10 @@ class WebAuthenticationSession: NSObject {
         webView.trailingAnchor.constraint(equalTo: parent.trailingAnchor).isActive = true
 
         webView.navigationDelegate = delegate
+        webView.allowsBackForwardNavigationGestures = true
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
     }
 
     private func setupProgressView(parent: UIView) {
@@ -146,17 +145,6 @@ class WebAuthenticationSession: NSObject {
         progressView.topAnchor.constraint(equalTo: parent.topAnchor).isActive = true
         progressView.leadingAnchor.constraint(equalTo: parent.leadingAnchor).isActive = true
         progressView.trailingAnchor.constraint(equalTo: parent.trailingAnchor).isActive = true
-    }
-
-    func start(silently: Bool = true) {
-        setupViewController()
-
-        let request = URLRequest(url: url)
-        webView.load(request)
-
-        if !silently {
-            present()
-        }
     }
 
     private func present() {
@@ -188,10 +176,33 @@ class WebAuthenticationSession: NSObject {
     }
 
     private func share(_: UIAction) {
+        guard let url = webView.url else { return }
+        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = navigationController.view
+        navigationController.present(activityViewController, animated: true)
     }
 
-    deinit {
-        observation.invalidate()
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let _ = object as? WKWebView else { return }
+
+        if keyPath == #keyPath(WKWebView.canGoBack) || keyPath == #keyPath(WKWebView.canGoForward) {
+            updateNavigationItems()
+        } else if keyPath == #keyPath(WKWebView.estimatedProgress) {
+            let progress = webView.estimatedProgress
+
+            if progressView.alpha == 0 {
+                progressView.alpha = 1
+                progressView.setProgress(0, animated: false)
+            }
+
+            progressView.setProgress(Float(progress), animated: true)
+
+            if progress >= 1.0 {
+                UIView.animate(withDuration: 1.0) { [weak progressView] in
+                    progressView?.alpha = 0
+                }
+            }
+        }
     }
 
 }
@@ -205,11 +216,24 @@ extension WebAuthenticationSession: WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        completionHandler(.failure(error))
+        retry(error: error)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        completionHandler(.failure(error))
+        retry(error: error)
+    }
+
+    private func retry(error: Error) {
+        guard !didRetry else {
+            completionHandler(.failure(error))
+            navigationController.dismiss(animated: true)
+            return
+        }
+
+        didRetry = true
+        WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: .distantPast, completionHandler: {})
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
