@@ -1,6 +1,6 @@
 //
 //  String+FormUrlEncoded.swift
-//  String+FormUrlEncoded
+//  WSEISchedule
 //
 //  Created by Maksymilian Galas on 26/07/2021.
 //  Copyright © 2021 Infinity Pi Ltd. All rights reserved.

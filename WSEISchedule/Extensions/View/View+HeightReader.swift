@@ -27,8 +27,12 @@ extension View {
             }
         )
         .onPreferenceChange(HeightPreferenceKey.self) { preference in
-            withAnimation {
+            if height.wrappedValue == .zero {
                 height.wrappedValue = preference
+            } else {
+                withAnimation {
+                    height.wrappedValue = preference
+                }
             }
         }
     }

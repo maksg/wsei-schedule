@@ -13,7 +13,7 @@ import CoreData
 extension CoreDataLecture {
 
     @nonobjc class func fetchRequest() -> NSFetchRequest<CoreDataLecture> {
-        return NSFetchRequest<CoreDataLecture>(entityName: "Lecture")
+        return NSFetchRequest(entityName: "Lecture")
     }
 
     @NSManaged var lecturer: String

@@ -1,8 +1,9 @@
 //
 //  Endpoint.swift
-//  Offer Sniper
+//  WSEISchedule
 //
 //  Created by Maksymilian Galas on 13/07/2021.
+//  Copyright © 2021 Infinity Pi Ltd. All rights reserved.
 //
 
 import Foundation

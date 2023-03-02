@@ -1,8 +1,9 @@
 //
 //  Request.swift
-//  Offer Sniper
+//  WSEISchedule
 //
 //  Created by Maksymilian Galas on 13/07/2021.
+//  Copyright © 2021 Infinity Pi Ltd. All rights reserved.
 //
 
 import UIKit
@@ -14,8 +15,8 @@ final class Request: Requestable {
     private let request: URLRequest
     private let debug: Bool
 
-    private var dataSuccessCallback: ((Data?) -> Void)? = nil
-    private var errorCallback: ((Error) -> Void)? = nil
+    private var dataSuccessCallback: ((Data?) -> Void)?
+    private var errorCallback: ((Error) -> Void)?
     
     // MARK: - Initialization
     

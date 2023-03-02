@@ -10,14 +10,14 @@ import Foundation
 
 @objc(CodableLecture)
 final class CodableLecture: NSObject, NSCoding, Lecture {
-    
-    var lecturer: String
-    var classroom: String
-    var fromDate: Date
-    var toDate: Date
-    var code: String
-    var subject: String
-    var comments: String
+
+    let lecturer: String
+    let classroom: String
+    let fromDate: Date
+    let toDate: Date
+    let code: String
+    let subject: String
+    let comments: String
     
     func encode(with coder: NSCoder) {
         coder.encode(fromDate, forKey: "fromDate")
@@ -38,7 +38,7 @@ final class CodableLecture: NSObject, NSCoding, Lecture {
         code = coder.decodeObject(forKey: "code") as? String ?? ""
         comments = coder.decodeObject(forKey: "comments") as? String ?? ""
     }
-    
+
     init(lecturer: String, classroom: String, fromDate: Date, toDate: Date, code: String, subject: String, comments: String) {
         self.lecturer = lecturer
         self.classroom = classroom
