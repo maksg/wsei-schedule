@@ -13,7 +13,7 @@ final class GradesViewModel: NSObject, ObservableObject {
     // MARK: - Properties
 
     @Published var errorMessage: String = ""
-    @Published var isRefreshing: Bool = false
+    @Published var isRefreshing: Bool = true
 
     @Published var grades: [Grade] = []
 
@@ -39,6 +39,10 @@ final class GradesViewModel: NSObject, ObservableObject {
             return
         }
 
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = true
+        }
+
         do {
             let html = try await apiRequest.getGradesHtml().make()
             readGrades(fromHtml: html)
@@ -50,7 +54,9 @@ final class GradesViewModel: NSObject, ObservableObject {
     private func readGrades(fromHtml html: String) {
         do {
             let gradesDictionary = try htmlReader.readGrades(fromHtml: html)
-            grades = gradesDictionary.map(Grade.init).filter({ !$0.value.isEmpty })
+            DispatchQueue.main.async { [weak self] in
+                self?.grades = gradesDictionary.map(Grade.init).filter({ !$0.value.isEmpty })
+            }
             resetErrors()
         } catch {
             onError(error)
@@ -70,8 +76,6 @@ extension GradesViewModel: SignInable {
     func showErrorMessage(_ errorMessage: String) {
         DispatchQueue.main.async { [weak self] in
             self?.errorMessage = errorMessage
-
-            guard !errorMessage.isEmpty else { return }
             self?.isRefreshing = false
         }
     }

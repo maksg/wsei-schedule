@@ -28,7 +28,16 @@ struct GradesView: View {
                         .listRowBackground(Color.red)
                 }
 
-                ForEach(viewModel.grades, content: GradeRow.init)
+                if viewModel.grades.isEmpty {
+                    if viewModel.isRefreshing {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        Text(Translation.Grades.noGrades.localized)
+                    }
+                } else {
+                    ForEach(viewModel.grades, content: GradeRow.init)
+                }
             }
             .listStyle(.insetGrouped)
             .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)

@@ -23,7 +23,7 @@ extension UserDefaults {
             if let student: Student = getObject(forKey: Key.student.rawValue) {
                 return student
             }
-            return Student(name: "", albumNumber: "", courseName: "", photoUrl: nil)
+            return Student()
         }
         set {
             setObject(newValue, forKey: Key.student.rawValue)

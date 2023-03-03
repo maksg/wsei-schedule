@@ -39,12 +39,15 @@ struct SettingsViewContent: View {
 
     var body: some View {
         Group {
-            if let studentInfoRowViewModel = viewModel.studentInfoRowViewModel {
-                Section {
-                    StudentInfoRow(viewModel: studentInfoRowViewModel)
-                        .frame(height: 80)
+            Section {
+                if viewModel.isRefreshing {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                } else {
+                    StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel)
                 }
             }
+            .frame(height: 80)
 
             Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
                 ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in

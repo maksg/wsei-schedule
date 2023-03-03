@@ -27,7 +27,12 @@ struct ScheduleView: View {
             }
 
             if viewModel.lectureWeeks.isEmpty {
-                Text(Translation.Schedule.noLectures.localized)
+                if viewModel.isRefreshing {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                } else {
+                    Text(Translation.Schedule.noLectures.localized)
+                }
             } else {
                 ForEach(viewModel.lectureWeeks) { lectureWeek in
                     Section {

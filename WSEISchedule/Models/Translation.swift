@@ -22,6 +22,7 @@ enum Translation: String {
 
     enum Grades: String {
         case title = "grades.title"
+        case noGrades = "grades.no_grades"
     }
     
     enum Settings: String {

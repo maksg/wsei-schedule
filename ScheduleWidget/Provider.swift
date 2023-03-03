@@ -22,7 +22,7 @@ struct Provider: TimelineProvider {
     }
 
     private func fetchLectures(from context: NSManagedObjectContext) -> [Lecture] {
-        let fetchRequest: NSFetchRequest<CoreDataLecture> = CoreDataLecture.fetchRequest()
+        let fetchRequest = CoreDataLecture.fetchRequest()
 
         do {
             let lectures = try context.fetch(fetchRequest)

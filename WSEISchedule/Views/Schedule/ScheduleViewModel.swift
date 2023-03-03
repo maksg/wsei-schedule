@@ -18,7 +18,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     // MARK: - Properties
 
     @Published var errorMessage: String = ""
-    @Published var isRefreshing: Bool = false
+    @Published var isRefreshing: Bool = true
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -74,6 +74,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             return
         }
 
+        DispatchQueue.main.async { [weak self] in
+            self?.isRefreshing = true
+        }
+
         let fromDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
         let toDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
         let parameters = ScheduleParameters(fromDate: fromDate, toDate: toDate)
@@ -103,8 +107,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
             resetErrors()
         } catch {
-            checkIfSignedIn(html: html, error: error)
-            onError(error)
+            checkIfIsSignedIn(html: html, error: error)
         }
     }
     
@@ -176,7 +179,7 @@ extension ScheduleViewModel: SignInable {
         }
     }
 
-    private func checkIfSignedIn(html: String, error: Error) {
+    private func checkIfIsSignedIn(html: String, error: Error) {
         let isSignedIn = htmlReader.isSignedIn(fromHtml: html)
         if isSignedIn {
             onError(error)
@@ -188,8 +191,6 @@ extension ScheduleViewModel: SignInable {
     func showErrorMessage(_ errorMessage: String) {
         DispatchQueue.main.async { [weak self] in
             self?.errorMessage = errorMessage
-
-            guard !errorMessage.isEmpty else { return }
             self?.isRefreshing = false
         }
     }

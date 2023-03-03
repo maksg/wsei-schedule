@@ -27,20 +27,22 @@ extension SignInable {
     }
 
     func startSigningIn(silently: Bool) {
-        let url = URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
-        let authSession = WebAuthenticationSession(url: url) { [weak self] result in
-            switch result {
-            case .success(let cookies):
-                cookies.forEach(HTTPCookieStorage.shared.setCookie)
-                UserDefaults.standard.cookies = cookies
-                self?.onSignIn()
-            case .failure(let error):
-                self?.onError(error)
+        DispatchQueue.main.async {
+            let url = URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
+            let authSession = WebAuthenticationSession(url: url) { [weak self] result in
+                switch result {
+                case .success(let cookies):
+                    cookies.forEach(HTTPCookieStorage.shared.setCookie)
+                    UserDefaults.standard.cookies = cookies
+                    self?.onSignIn()
+                case .failure(let error):
+                    self?.onError(error)
+                }
             }
-        }
 
-        authSession.presentationContextProvider = self
-        authSession.start(silently: silently)
+            authSession.presentationContextProvider = self
+            authSession.start(silently: silently)
+        }
     }
 
     func onError(_ error: Error) {

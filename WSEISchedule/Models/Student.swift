@@ -14,3 +14,12 @@ struct Student: Codable {
     let courseName: String
     let photoUrl: URL?
 }
+
+extension Student {
+    init() {
+        name = ""
+        albumNumber = ""
+        courseName = ""
+        photoUrl = nil
+    }
+}
