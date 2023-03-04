@@ -16,7 +16,7 @@ final class URLImageDownloader: ObservableObject {
         }
     }
     
-    @Published var image: UIImage?
+    @DispatchMainPublished var image: UIImage?
     private let customCacheRequest: URLRequest?
     
     init(url: URL?, customCacheRequest: URLRequest? = nil) {
@@ -33,13 +33,11 @@ final class URLImageDownloader: ObservableObject {
             image = UIImage(data: data)
         }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             guard let data = data, let response = response else { return }
             let cachedResponse = CachedURLResponse(response: response, data: data)
             URLCache.shared.storeCachedResponse(cachedResponse, for: cacheRequest)
-            DispatchQueue.main.async { [weak self] in
-                self?.image = UIImage(data: data)
-            }
+            self?.image = UIImage(data: data)
         }.resume()
     }
 }

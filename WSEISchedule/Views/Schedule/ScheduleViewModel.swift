@@ -17,8 +17,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: - Properties
 
-    @Published var errorMessage: String = ""
-    @Published var isRefreshing: Bool = true
+    @DispatchMainPublished var errorMessage: String = ""
+    @DispatchMainPublished var isRefreshing: Bool = true
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -35,7 +35,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
-    @Published var lectureWeeks: [LectureWeek] = []
+    @DispatchMainPublished var lectureWeeks: [LectureWeek] = []
     var previousLectureWeeks: [LectureWeek] = []
 
     let apiRequest: APIRequest
@@ -74,9 +74,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             return
         }
 
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = true
-        }
+        isRefreshing = true
 
         let fromDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
         let toDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
@@ -147,9 +145,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
         let futureLectures = lectures[nearestLectureIndex...]
         let lectureDays = Array<LectureDay>(lectures: futureLectures)
-        DispatchQueue.main.async { [weak self] in
-            self?.lectureWeeks = Array(lectureDays: lectureDays)
-        }
+        lectureWeeks = Array(lectureDays: lectureDays)
 
         let previousLectures = lectures[..<nearestLectureIndex].reversed()
         let previousLectureDays = Array<LectureDay>(lectures: previousLectures)
@@ -189,10 +185,8 @@ extension ScheduleViewModel: SignInable {
     }
 
     func showErrorMessage(_ errorMessage: String) {
-        DispatchQueue.main.async { [weak self] in
-            self?.errorMessage = errorMessage
-            self?.isRefreshing = false
-        }
+        self.errorMessage = errorMessage
+        self.isRefreshing = false
     }
 
 }

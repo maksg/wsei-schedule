@@ -24,6 +24,7 @@
 		503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */; };
 		50493B8029B362240011964C /* GradeSemester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B7F29B362240011964C /* GradeSemester.swift */; };
 		50493B8229B362560011964C /* Dictionary+KeyFromText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B8129B362560011964C /* Dictionary+KeyFromText.swift */; };
+		50493B8729B3884B0011964C /* DispatchMainPublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B8629B3884B0011964C /* DispatchMainPublished.swift */; };
 		504A723126A99FCF002EA50C /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A723026A99FCF002EA50C /* SignInable.swift */; };
 		504AD2C828E234800071F57B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AD2C728E234800071F57B /* Keychain.swift */; };
 		504AD2C928E239190071F57B /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
@@ -245,6 +246,7 @@
 		503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParameters.swift; sourceTree = "<group>"; };
 		50493B7F29B362240011964C /* GradeSemester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSemester.swift; sourceTree = "<group>"; };
 		50493B8129B362560011964C /* Dictionary+KeyFromText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+KeyFromText.swift"; sourceTree = "<group>"; };
+		50493B8629B3884B0011964C /* DispatchMainPublished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchMainPublished.swift; sourceTree = "<group>"; };
 		504A723026A99FCF002EA50C /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
 		504AD2C728E234800071F57B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		505BB41A270DB0A000F556C5 /* GradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesView.swift; sourceTree = "<group>"; };
@@ -431,6 +433,14 @@
 				503A0D0928E5F8F6001E912F /* PremiumItem.swift */,
 			);
 			path = Premium;
+			sourceTree = "<group>";
+		};
+		50493B8529B388390011964C /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				50493B8629B3884B0011964C /* DispatchMainPublished.swift */,
+			);
+			path = PropertyWrappers;
 			sourceTree = "<group>";
 		};
 		505BB419270DB07E00F556C5 /* Grades */ = {
@@ -690,6 +700,7 @@
 				50BB499D26A4C86200BFE87B /* Utilities */,
 				57AD318022AE6BC3009EEB1F /* Models */,
 				57AD319522AE6BC3009EEB1F /* Protocols */,
+				50493B8529B388390011964C /* PropertyWrappers */,
 				57AF2A1624A2335F00950F80 /* Modifiers */,
 				574C6ED922AFCBB900215D88 /* CustomViews */,
 				57AD318C22AE6BC3009EEB1F /* Views */,
@@ -1202,6 +1213,7 @@
 				57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */,
 				57561BE32535B1EE00DBC3D3 /* MockData.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
+				50493B8729B3884B0011964C /* DispatchMainPublished.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* RootView.swift in Sources */,
 				50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */,
 				50493B8229B362560011964C /* Dictionary+KeyFromText.swift in Sources */,

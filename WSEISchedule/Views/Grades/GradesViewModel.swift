@@ -12,10 +12,10 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     // MARK: - Properties
 
-    @Published var errorMessage: String = ""
-    @Published var isRefreshingAll: Bool = true
-    @Published var isRefreshing: Set<String> = []
-    @Published var isExpanded: Set<String> = [] {
+    @DispatchMainPublished var errorMessage: String = ""
+    @DispatchMainPublished var isRefreshingAll: Bool = true
+    @DispatchMainPublished var isRefreshing: Set<String> = []
+    @DispatchMainPublished var isExpanded: Set<String> = [] {
         didSet {
             let ids = isExpanded.filter { id in
                 !oldValue.contains(id) && gradeSemesters.first(where: { $0.id == id })?.grades.isEmpty == true
@@ -27,7 +27,7 @@ final class GradesViewModel: NSObject, ObservableObject {
             }
         }
     }
-    @Published var gradeSemesters: [GradeSemester] = UserDefaults.standard.gradeSemesters
+    @DispatchMainPublished var gradeSemesters: [GradeSemester] = UserDefaults.standard.gradeSemesters
 
     let apiRequest: APIRequest
     let htmlReader: HTMLReader
@@ -51,9 +51,7 @@ final class GradesViewModel: NSObject, ObservableObject {
             return
         }
 
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshingAll = true
-        }
+        isRefreshingAll = true
 
         do {
             let html = try await apiRequest.getGradeSemesterHtml().make()
@@ -68,12 +66,11 @@ final class GradesViewModel: NSObject, ObservableObject {
             let gradeSemesters = try htmlReader.readGradeSemesters(fromHtml: html)
             UserDefaults.standard.gradeSemesters = gradeSemesters
 
-            DispatchQueue.main.async { [weak self] in
-                if let currentSemesterId = gradeSemesters.first?.id {
-                    self?.isExpanded = [currentSemesterId]
-                }
-                self?.gradeSemesters = gradeSemesters
+            if let currentSemesterId = gradeSemesters.first?.id {
+                isExpanded = [currentSemesterId]
             }
+            self.gradeSemesters = gradeSemesters
+
             resetErrors()
         } catch {
             checkIfIsSignedIn(html: html, error: error)
@@ -81,18 +78,14 @@ final class GradesViewModel: NSObject, ObservableObject {
     }
 
     private func fetchGrades(forSemesterId semesterId: String) async {
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing.insert(semesterId)
-        }
+        isRefreshing.insert(semesterId)
 
         do {
             let html = try await apiRequest.getGradesHtml(semesterId: semesterId).make()
             readGrades(fromHtml: html, semesterId: semesterId)
         } catch {
             onError(error)
-            DispatchQueue.main.async { [weak self] in
-                self?.isRefreshing.remove(semesterId)
-            }
+            isRefreshing.remove(semesterId)
         }
     }
 
@@ -100,17 +93,14 @@ final class GradesViewModel: NSObject, ObservableObject {
         do {
             let grades = try htmlReader.readGrades(fromHtml: html)
 
-            DispatchQueue.main.async { [weak self] in
-                guard let index = self?.gradeSemesters.firstIndex(where: { $0.id == semesterId }) else { return }
-                self?.gradeSemesters[index].grades = grades
-                self?.isRefreshing.remove(semesterId)
-            }
+            guard let index = gradeSemesters.firstIndex(where: { $0.id == semesterId }) else { return }
+            gradeSemesters[index].grades = grades
+            isRefreshing.remove(semesterId)
+            
             resetErrors()
         } catch {
             onError(error)
-            DispatchQueue.main.async { [weak self] in
-                self?.isRefreshing.remove(semesterId)
-            }
+            isRefreshing.remove(semesterId)
         }
     }
     
@@ -134,10 +124,8 @@ extension GradesViewModel: SignInable {
     }
 
     func showErrorMessage(_ errorMessage: String) {
-        DispatchQueue.main.async { [weak self] in
-            self?.errorMessage = errorMessage
-            self?.isRefreshingAll = false
-        }
+        self.errorMessage = errorMessage
+        self.isRefreshingAll = false
     }
 
 }

@@ -25,10 +25,10 @@ final class SettingsViewModel: NSObject, ObservableObject {
         }
     }
     
-    @Published var studentInfoRowViewModel: StudentInfoRowViewModel = StudentInfoRowViewModel(student: Student())
-    @Published var supportDeveloperProducts: [SupportDeveloperProduct] = []
-    @Published var showThankYouAlert: Bool = false
-    @Published var isRefreshing: Bool = true
+    @DispatchMainPublished var studentInfoRowViewModel: StudentInfoRowViewModel = StudentInfoRowViewModel(student: Student())
+    @DispatchMainPublished var supportDeveloperProducts: [SupportDeveloperProduct] = []
+    @DispatchMainPublished var showThankYouAlert: Bool = false
+    @DispatchMainPublished var isRefreshing: Bool = true
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -61,9 +61,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
         }
 
         if studentInfoRowViewModel.name.isEmpty {
-            DispatchQueue.main.async { [weak self] in
-                self?.isRefreshing = true
-            }
+            isRefreshing = true
         }
 
         do {
@@ -84,16 +82,11 @@ final class SettingsViewModel: NSObject, ObservableObject {
 
         setupStudentInfoRow()
 
-        DispatchQueue.main.async { [weak self] in
-            self?.isRefreshing = false
-        }
+        isRefreshing = false
     }
 
     private func setupStudentInfoRow() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.studentInfoRowViewModel = StudentInfoRowViewModel(student: self.student)
-        }
+        studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
     }
     
     private func removeAllLectures() {
@@ -125,17 +118,13 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     func signOut() {
+        studentInfoRowViewModel = StudentInfoRowViewModel(student: Student())
         removeAllLectures()
         apiRequest.clearCache()
 
         WidgetCenter.shared.reloadAllTimelines()
 
         UserDefaults.standard.signOut()
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.studentInfoRowViewModel = StudentInfoRowViewModel(student: self.student)
-        }
     }
     
 }
@@ -161,10 +150,7 @@ extension SettingsViewModel: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let products = response.products
         let cashSymbols: [UIImage] = ["💵", "💴", "💶", "💷"].compactMap(\.image)
-
-        DispatchQueue.main.async { [weak self] in
-            self?.supportDeveloperProducts = zip(cashSymbols, products).map(SupportDeveloperProduct.init)
-        }
+        supportDeveloperProducts = zip(cashSymbols, products).map(SupportDeveloperProduct.init)
     }
     
     func request(_ request: SKRequest, didFailWithError error: Error) {

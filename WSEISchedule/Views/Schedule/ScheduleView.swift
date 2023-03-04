@@ -31,6 +31,7 @@ struct ScheduleView: View {
                 if viewModel.isRefreshing {
                     ProgressView()
                         .frame(maxWidth: .infinity)
+                        .id(UUID())
                 } else {
                     Text(Translation.Schedule.noLectures.localized)
                 }

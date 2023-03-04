@@ -13,7 +13,7 @@ final class PremiumViewModel: NSObject, ObservableObject {
 
     // MARK: - Properties
 
-    @Published private var premiumProduct: SKProduct?
+    @DispatchMainPublished private var premiumProduct: SKProduct?
 
     var price: String {
         premiumProduct?.localizedPrice ?? "---"
@@ -52,9 +52,7 @@ final class PremiumViewModel: NSObject, ObservableObject {
 extension PremiumViewModel: SKProductsRequestDelegate {
 
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        DispatchQueue.main.async { [weak self] in
-            self?.premiumProduct = response.products.first
-        }
+        premiumProduct = response.products.first
     }
 
     func request(_ request: SKRequest, didFailWithError error: Error) {

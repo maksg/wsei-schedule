@@ -43,6 +43,7 @@ struct SettingsViewContent: View {
                 if viewModel.isRefreshing {
                     ProgressView()
                         .frame(maxWidth: .infinity)
+                        .id(UUID())
                 } else {
                     StudentInfoRow(viewModel: viewModel.studentInfoRowViewModel)
                 }

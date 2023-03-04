@@ -49,6 +49,7 @@ struct GradesView: View {
                     if viewModel.isRefreshingAll {
                         ProgressView()
                             .frame(maxWidth: .infinity)
+                            .id(UUID())
                     } else {
                         Text(Translation.Grades.noGrades.localized)
                     }
@@ -59,6 +60,7 @@ struct GradesView: View {
                                 if isRefreshing(key: semester.id) {
                                     ProgressView()
                                         .frame(maxWidth: .infinity)
+                                        .id(UUID())
                                 } else {
                                     Text(Translation.Grades.noGrades.localized)
                                 }
