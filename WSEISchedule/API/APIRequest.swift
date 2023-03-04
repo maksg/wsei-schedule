@@ -23,8 +23,12 @@ final class APIRequest {
         Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters))
     }
 
-    func getGradesHtml() -> Requestable {
-        Request(url: url, endpoint: Endpoint.getGradesHtml)
+    func getGradeSemesterHtml() -> Requestable {
+        Request(url: url, endpoint: Endpoint.getGradeSemestersHtml)
+    }
+
+    func getGradesHtml(semesterId: String) -> Requestable {
+        Request(url: url, endpoint: Endpoint.getGradesHtml(semesterId: semesterId))
     }
 
     func clearCache() {

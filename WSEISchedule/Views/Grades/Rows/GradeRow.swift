@@ -44,10 +44,12 @@ struct GradeRow: View {
             Spacer()
 
             VStack(spacing: 8) {
-                Text(grade.value)
-                    .font(.headline)
-                    .foregroundColor(.main)
-                    .accessibility(hint: Text(Translation.Accessibility.Grades.grade.localized))
+                if !grade.value.isEmpty {
+                    Text(grade.value)
+                        .font(.headline)
+                        .foregroundColor(grade.value == "2" ? .red : .main)
+                        .accessibility(hint: Text(Translation.Accessibility.Grades.grade.localized))
+                }
                 
                 if !grade.ects.isEmpty {
                     Text("ECTS: \(grade.ects)")

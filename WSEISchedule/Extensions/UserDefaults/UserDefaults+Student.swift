@@ -14,16 +14,14 @@ extension UserDefaults {
         case student
         case premium
         case cookies
+        case gradeSemesters
     }
 
     // MARK: - Properties
     
     var student: Student {
         get {
-            if let student: Student = getObject(forKey: Key.student.rawValue) {
-                return student
-            }
-            return Student()
+            return getObject(forKey: Key.student.rawValue) ?? Student()
         }
         set {
             setObject(newValue, forKey: Key.student.rawValue)
@@ -52,11 +50,25 @@ extension UserDefaults {
         }
     }
 
+    var gradeSemesters: [GradeSemester] {
+        get {
+            return getObject(forKey: Key.gradeSemesters.rawValue) ?? []
+        }
+        set {
+            setObject(newValue, forKey: Key.gradeSemesters.rawValue)
+        }
+    }
+
     // MARK: - Methods
     
     func signOut() {
-        removeObject(forKey: Key.student.rawValue)
-        removeObject(forKey: Key.cookies.rawValue)
+        removeObject(forKey: .cookies)
+        removeObject(forKey: .student)
+        removeObject(forKey: .gradeSemesters)
+    }
+
+    private func removeObject(forKey key: Key) {
+        removeObject(forKey: key.rawValue)
     }
     
 }

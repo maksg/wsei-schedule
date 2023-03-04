@@ -70,7 +70,7 @@ final class HTMLReader {
                 return nil
             } else if id.contains("gridViewPlanyStudentow_DXDataRow") {
                 var dictionary = zipTableData(headers: headers, texts: texts)
-                dictionary.addDateKey(currentDateRowText)
+                dictionary.addKey(fromText: currentDateRowText)
                 return dictionary
             } else {
                 return nil
@@ -91,36 +91,51 @@ final class HTMLReader {
         }
     }
 
-    func readGrades(fromHtml html: String) throws -> [[String: String]] {
+    func readGrades(fromHtml html: String) throws -> [Grade] {
         let doc = try SwiftSoup.parse(html)
 
         guard
-            let table = try doc.select("#accordion div[id*='Przedmioty'] table").first()
+            let table = try doc.select("table").first()
         else { throw HTMLReaderError.invalidHtml }
 
         let headers = try table.select("thead th").map({ try $0.text() })
         let rows = try table.select("tbody tr")
 
-        return try rows.compactMap { row -> [String: String]? in
+        return try rows.map({ row in
             let elements = try row.select("td")
             try elements.select("br").append("\\n")
             let texts = try elements.map({ try $0.text() })
             let dictionary = zipTableData(headers: headers, texts: texts)
-            return dictionary
+            return Grade(fromDictionary: dictionary)
+        }).filter({ !$0.value.isEmpty || !$0.ects.isEmpty })
+    }
+
+    func readGradeSemesters(fromHtml html: String) throws -> [GradeSemester] {
+        let doc = try SwiftSoup.parse(html)
+        let cards = try doc.select("#accordion .card")
+
+        guard !cards.isEmpty() else { throw HTMLReaderError.invalidHtml }
+
+        var gradeSemesters = try cards.map { card in
+            let id = try card.select("div[id*='Przedmioty']").first()?.id().digits ?? ""
+            let header = try card.select("#headingOne .row div").first()
+            try header?.select("br").append("\\n")
+            let text = try header?.text().replacingOccurrences(of: "\\n", with: "\n") ?? ""
+            return GradeSemester(id: id, text: text)
         }
+
+        guard !gradeSemesters.isEmpty else { throw HTMLReaderError.invalidHtml }
+        let currentSemesterCardHtml = try cards.first()?.select("div[id*='Przedmioty']").first()?.html() ?? ""
+        let currentSemesterGrades = try readGrades(fromHtml: currentSemesterCardHtml)
+        gradeSemesters[0].grades = currentSemesterGrades
+
+        return gradeSemesters
     }
 
 }
 
-private extension Dictionary where Key == String, Value == String {
-
-    mutating func addDateKey(_ dateRowText: String) {
-        let splitDateRow = dateRowText.split(separator: ":", maxSplits: 1)
-        guard splitDateRow.count >= 2 else { return }
-
-        let key = String(splitDateRow[0])
-        let value = splitDateRow[1].trimmingCharacters(in: .whitespaces)
-        self[key] = value
+private extension String {
+    var digits: String {
+        components(separatedBy: .decimalDigits.inverted).joined()
     }
-
 }

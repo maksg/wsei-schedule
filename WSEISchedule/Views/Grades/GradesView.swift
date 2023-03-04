@@ -12,8 +12,25 @@ struct GradesView: View {
 
     // MARK: - Properties
 
-    @AppStorage(UserDefaults.Key.premium.rawValue) var isPremium: Bool = false
+    @AppStorage(UserDefaults.Key.premium.rawValue) private var isPremium: Bool = false
     @ObservedObject var viewModel: GradesViewModel
+
+    private func isExpanded(key: String) -> Binding<Bool> {
+        Binding<Bool>(
+            get: { viewModel.isExpanded.contains(key) },
+            set: { isExpanding in
+                if isExpanding {
+                    viewModel.isExpanded.insert(key)
+                } else {
+                    viewModel.isExpanded.remove(key)
+                }
+            }
+        )
+    }
+
+    private func isRefreshing(key: String) -> Bool {
+        viewModel.isRefreshing.contains(key)
+    }
 
     // MARK: - Views
 
@@ -28,19 +45,41 @@ struct GradesView: View {
                         .listRowBackground(Color.red)
                 }
 
-                if viewModel.grades.isEmpty {
-                    if viewModel.isRefreshing {
+                if viewModel.gradeSemesters.isEmpty {
+                    if viewModel.isRefreshingAll {
                         ProgressView()
                             .frame(maxWidth: .infinity)
                     } else {
                         Text(Translation.Grades.noGrades.localized)
                     }
                 } else {
-                    ForEach(viewModel.grades, content: GradeRow.init)
+                    ForEach(viewModel.gradeSemesters) { semester in
+                        DisclosureGroup(isExpanded: isExpanded(key: semester.id)) {
+                            if semester.grades.isEmpty {
+                                if isRefreshing(key: semester.id) {
+                                    ProgressView()
+                                        .frame(maxWidth: .infinity)
+                                } else {
+                                    Text(Translation.Grades.noGrades.localized)
+                                }
+                            } else {
+                                ForEach(semester.grades, content: GradeRow.init)
+                            }
+                        } label: {
+                            HStack {
+                                Text(semester.name)
+                                    .foregroundColor(.main)
+                                Spacer()
+                                Text(semester.status.title)
+                                    .foregroundColor(semester.status.color)
+                            }
+                            .font(.headline)
+                        }
+                    }
                 }
             }
             .listStyle(.insetGrouped)
-            .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
+            .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshingAll)
             .navigationTitle(Tab.grades.title)
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
@@ -59,7 +98,7 @@ struct GradesView: View {
     }
 
     private func reload() async {
-        await viewModel.reloadGrades()
+        await viewModel.fetchGradeSemesters()
     }
 
 }

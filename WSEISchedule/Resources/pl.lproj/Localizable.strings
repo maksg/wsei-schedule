@@ -28,6 +28,11 @@
 
 "grades.title" = "Oceny";
 "grades.no_grades" = "Brak ocen";
+"grades.semester.summer" = "letni";
+"grades.semester.winter" = "zimowy";
+"grades.semester.status.passed" = "Zaliczony";
+"grades.semester.status.in_progress" = "W trakcie nauki";
+"grades.semester.status.not_passed" = "Niezaliczony";
 
 // Settings
 

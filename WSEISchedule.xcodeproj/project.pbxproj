@@ -22,6 +22,8 @@
 		503A0D0828E5C7C2001E912F /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503A0D0728E5C7C2001E912F /* PremiumView.swift */; };
 		503A0D0A28E5F8F6001E912F /* PremiumItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503A0D0928E5F8F6001E912F /* PremiumItem.swift */; };
 		503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */; };
+		50493B8029B362240011964C /* GradeSemester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B7F29B362240011964C /* GradeSemester.swift */; };
+		50493B8229B362560011964C /* Dictionary+KeyFromText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B8129B362560011964C /* Dictionary+KeyFromText.swift */; };
 		504A723126A99FCF002EA50C /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A723026A99FCF002EA50C /* SignInable.swift */; };
 		504AD2C828E234800071F57B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AD2C728E234800071F57B /* Keychain.swift */; };
 		504AD2C928E239190071F57B /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
@@ -241,6 +243,8 @@
 		503A0D0728E5C7C2001E912F /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
 		503A0D0928E5F8F6001E912F /* PremiumItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumItem.swift; sourceTree = "<group>"; };
 		503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleParameters.swift; sourceTree = "<group>"; };
+		50493B7F29B362240011964C /* GradeSemester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSemester.swift; sourceTree = "<group>"; };
+		50493B8129B362560011964C /* Dictionary+KeyFromText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+KeyFromText.swift"; sourceTree = "<group>"; };
 		504A723026A99FCF002EA50C /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
 		504AD2C728E234800071F57B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		505BB41A270DB0A000F556C5 /* GradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesView.swift; sourceTree = "<group>"; };
@@ -731,6 +735,7 @@
 				572E7F00234CACF10061A835 /* Translation.swift */,
 				57791D6223C5EA4700F91D7F /* Games.swift */,
 				505BB421270DC76200F556C5 /* Grade.swift */,
+				50493B7F29B362240011964C /* GradeSemester.swift */,
 				57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */,
 				577DDF1723C72BA500D841BB /* Student.swift */,
 				57561BE22535B1EE00DBC3D3 /* MockData.swift */,
@@ -748,6 +753,7 @@
 				576B96FA23ABBCA300CA17CF /* Named */,
 				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
+				50493B8129B362560011964C /* Dictionary+KeyFromText.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1172,6 +1178,7 @@
 				5701F83922AFF5DA005BED89 /* CodableLecture.swift in Sources */,
 				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
 				505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */,
+				50493B8029B362240011964C /* GradeSemester.swift in Sources */,
 				50BB499326A328A500BFE87B /* APIRequest.swift in Sources */,
 				57791D6323C5EA4700F91D7F /* Games.swift in Sources */,
 				50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */,
@@ -1197,6 +1204,7 @@
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* RootView.swift in Sources */,
 				50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */,
+				50493B8229B362560011964C /* Dictionary+KeyFromText.swift in Sources */,
 				57AD319A22AE6BC3009EEB1F /* Tab.swift in Sources */,
 				50BB49A126A5EEDC00BFE87B /* HTMLReader.swift in Sources */,
 				5773BE1423ACE45400264FC7 /* URLImage.swift in Sources */,

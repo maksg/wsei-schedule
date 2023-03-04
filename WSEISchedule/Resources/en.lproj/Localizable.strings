@@ -28,6 +28,11 @@
 
 "grades.title" = "Grades";
 "grades.no_grades" = "No grades";
+"grades.semester.summer" = "summer";
+"grades.semester.winter" = "winter";
+"grades.semester.status.passed" = "Passed";
+"grades.semester.status.in_progress" = "In progress";
+"grades.semester.status.not_passed" = "Not passed";
 
 // Settings
 

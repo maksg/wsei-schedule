@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Grade: Identifiable {
+struct Grade: Identifiable, Codable {
     var id: String {
         subject + lecturer + lectureForm + value
     }

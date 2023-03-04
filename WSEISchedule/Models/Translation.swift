@@ -23,6 +23,17 @@ enum Translation: String {
     enum Grades: String {
         case title = "grades.title"
         case noGrades = "grades.no_grades"
+
+        enum Semester: String {
+            case summer = "grades.semester.summer"
+            case winter = "grades.semester.winter"
+
+            enum Status: String {
+                case passed = "grades.semester.status.passed"
+                case inProgress = "grades.semester.status.in_progress"
+                case notPassed = "grades.semester.status.not_passed"
+            }
+        }
     }
     
     enum Settings: String {
