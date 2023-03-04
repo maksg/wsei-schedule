@@ -13,6 +13,7 @@ struct ScheduleView: View {
     // MARK: - Properties
 
     @ObservedObject var viewModel: ScheduleViewModel
+    @State private var isScheduleHistoryActive: Bool = false
 
     // MARK: - Views
     
@@ -45,7 +46,7 @@ struct ScheduleView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshing)
+        .pullToRefresh(onRefresh: reload)
         .navigationTitle(Tab.schedule.title)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

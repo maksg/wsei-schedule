@@ -51,7 +51,7 @@
 "premium.restore" = "Restore purchase";
 
 "premium.grades.title" = "Grades";
-"premium.grades.content" = "View all of your grades for the current semester.";
+"premium.grades.content" = "View all of your grades for the current and past semesters.";
 
 "premium.schedule_history.title" = "Schedule history";
 "premium.schedule_history.content" = "Check all the lectures that are in the past.";

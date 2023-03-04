@@ -51,7 +51,7 @@
 "premium.restore" = "Przywróć zakup";
 
 "premium.grades.title" = "Oceny";
-"premium.grades.content" = "Przeglądaj wszystkie swoje oceny z danego semestru.";
+"premium.grades.content" = "Przeglądaj wszystkie swoje oceny z aktualnego i przeszłych semestrów.";
 
 "premium.schedule_history.title" = "Historia harmonogramu";
 "premium.schedule_history.content" = "Sprawdź wszystkie zajęcia z przeszłości.";

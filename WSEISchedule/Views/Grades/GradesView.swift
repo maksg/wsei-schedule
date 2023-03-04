@@ -79,7 +79,7 @@ struct GradesView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .pullToRefresh(onRefresh: reload, isRefreshing: $viewModel.isRefreshingAll)
+            .pullToRefresh(onRefresh: reload)
             .navigationTitle(Tab.grades.title)
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))

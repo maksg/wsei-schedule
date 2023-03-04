@@ -10,7 +10,7 @@ import SwiftUI
 
 extension View {
 
-    func pullToRefresh(onRefresh: @escaping () async -> Void, isRefreshing: Binding<Bool>) -> some View {
+    func pullToRefresh(onRefresh: @escaping () async -> Void) -> some View {
         if #available(iOS 15.0, *) {
             return refreshable {
                 await onRefresh()
@@ -18,7 +18,7 @@ extension View {
         } else {
             return VStack(spacing: 0) {
                 self
-                PullToRefreshView(onRefresh: onRefresh, isRefreshing: isRefreshing).frame(height: 0)
+                PullToRefreshView(onRefresh: onRefresh).frame(height: 0)
             }
         }
     }

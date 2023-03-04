@@ -27,8 +27,14 @@ extension View {
             }
         )
         .onPreferenceChange(HeightPreferenceKey.self) { preference in
-            if height.wrappedValue == .zero {
-                height.wrappedValue = preference
+            if #available(iOS 15, *) {
+                if height.wrappedValue == .zero {
+                    height.wrappedValue = preference
+                } else {
+                    withAnimation {
+                        height.wrappedValue = preference
+                    }
+                }
             } else {
                 withAnimation {
                     height.wrappedValue = preference
