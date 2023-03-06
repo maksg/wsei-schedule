@@ -29,7 +29,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     @DispatchMainPublished var supportDeveloperProducts: [SupportDeveloperProduct] = []
     @DispatchMainPublished var showThankYouAlert: Bool = false
     @DispatchMainPublished var isRefreshing: Bool = true
-    
+
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
         container.loadPersistentStores { (_, error) in
@@ -89,21 +89,6 @@ final class SettingsViewModel: NSObject, ObservableObject {
         studentInfoRowViewModel = StudentInfoRowViewModel(student: student)
     }
     
-    private func removeAllLectures() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CoreDataLecture.fetchRequest()
-        let context = persistentContainer.viewContext
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-
-            NotificationCenter.default.post(name: .removeAllLectures, object: nil)
-        } catch let error as NSError {
-            print(error.debugDescription)
-        }
-    }
-    
     private func getInAppPurchases() {
         let productIdentifiers = (1...4).map({ "supportDeveloper\($0)" })
         let productsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
@@ -118,13 +103,17 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     func signOut() {
-        studentInfoRowViewModel = StudentInfoRowViewModel(student: Student())
-        removeAllLectures()
+        UserDefaults.standard.signOut()
+
+        deleteAllLectures()
         apiRequest.clearCache()
+        setupStudentInfoRow()
 
         WidgetCenter.shared.reloadAllTimelines()
+    }
 
-        UserDefaults.standard.signOut()
+    private func deleteAllLectures() {
+        NotificationCenter.default.post(name: .deleteAllLectures, object: nil)
     }
     
 }

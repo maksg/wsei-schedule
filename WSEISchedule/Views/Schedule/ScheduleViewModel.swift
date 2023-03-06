@@ -51,16 +51,19 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         super.init()
         
         activateWatchSession()
-        observeRemoveAllLecturesNotification()
+        observeDeleteAllLecturesNotification()
     }
     
     // MARK: - Methods
 
-    private func observeRemoveAllLecturesNotification() {
-        NotificationCenter.default.addObserver(forName: .removeAllLectures, object: nil, queue: nil, using: removeAllLectures)
+    private func observeDeleteAllLecturesNotification() {
+        NotificationCenter.default.addObserver(forName: .deleteAllLectures, object: nil, queue: nil, using: deleteAllLectures)
     }
 
-    private func removeAllLectures(_: Notification) {
+    private func deleteAllLectures(_: Notification) {
+        let context = persistentContainer.viewContext
+        deleteLectures(from: context)
+        saveLectures(to: context)
         lectures = []
     }
     
@@ -91,15 +94,15 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     private func readLectures(fromHtml html: String) {
         do {
             let lectureDictionaries = try htmlReader.readLectures(fromHtml: html)
-            let managedContext = persistentContainer.viewContext
-            let lectures = lectureDictionaries.map { dictionary in
-                CoreDataLecture(fromDictionary: dictionary, inContext: managedContext)
+            let context = persistentContainer.viewContext
+            deleteLectures(from: context)
+
+            lectures = lectureDictionaries.map { dictionary in
+                CoreDataLecture(fromDictionary: dictionary, in: context)
             }
 
-            deleteLectures(from: managedContext)
-
             generateLectureDays(from: lectures)
-            saveLectures(to: managedContext)
+            saveLectures(to: context)
 
             WidgetCenter.shared.reloadAllTimelines()
 
@@ -120,7 +123,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         let fetchRequest = CoreDataLecture.fetchRequest()
 
         do {
-            let lectures = try context.fetch(fetchRequest)
+            lectures = try context.fetch(fetchRequest)
             generateLectureDays(from: lectures)
         } catch let error as NSError {
             print(error.debugDescription)
@@ -129,9 +132,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     private func sendLecturesToWatch() {
         do {
-            let codableLectures = lectures.map(CodableLecture.init)
-            let data = try NSKeyedArchiver.archivedData(withRootObject: codableLectures, requiringSecureCoding: false)
-            let context = ["lectures": data]
+            guard let lecturesData = lectures.compactMap(Lecture.init).encoded else { return }
+            let context = ["lectures": lecturesData]
             try session?.updateApplicationContext(context)
         } catch {
             print(error)
@@ -139,16 +141,16 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     func generateLectureDays(from unsortedLectures: [CoreDataLecture]?) {
-        lectures = unsortedLectures?.sorted { $0.fromDate < $1.fromDate } ?? []
+        let lectures = unsortedLectures?.compactMap(Lecture.init).sorted { $0.fromDate < $1.fromDate } ?? []
 
         let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) ?? lectures.endIndex
 
         let futureLectures = lectures[nearestLectureIndex...]
-        let lectureDays = Array<LectureDay>(lectures: futureLectures)
+        let lectureDays = Array(lectures: futureLectures)
         lectureWeeks = Array(lectureDays: lectureDays)
 
         let previousLectures = lectures[..<nearestLectureIndex].reversed()
-        let previousLectureDays = Array<LectureDay>(lectures: previousLectures)
+        let previousLectureDays = Array(lectures: previousLectures)
         previousLectureWeeks = Array(lectureDays: previousLectureDays)
     }
     

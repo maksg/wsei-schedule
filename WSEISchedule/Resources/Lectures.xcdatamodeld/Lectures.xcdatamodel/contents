@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5384c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Lecture" representedClassName="Lecture" syncable="YES">
-        <attribute name="classroom" optional="YES" attributeType="String"/>
-        <attribute name="code" optional="YES" attributeType="String"/>
-        <attribute name="comments" optional="YES" attributeType="String"/>
-        <attribute name="fromDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="lecturer" optional="YES" attributeType="String"/>
-        <attribute name="subject" optional="YES" attributeType="String"/>
-        <attribute name="toDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Lecture" representedClassName=".CoreDataLecture" syncable="YES">
+        <attribute name="classroom" attributeType="String" defaultValueString=""/>
+        <attribute name="code" attributeType="String" defaultValueString=""/>
+        <attribute name="comments" attributeType="String" defaultValueString=""/>
+        <attribute name="fromDate" attributeType="Date" defaultDateTimeInterval="-3187301040" usesScalarValueType="YES"/>
+        <attribute name="lecturer" attributeType="String" defaultValueString=""/>
+        <attribute name="subject" attributeType="String" defaultValueString=""/>
+        <attribute name="toDate" attributeType="Date" defaultDateTimeInterval="-3187301040" usesScalarValueType="YES"/>
     </entity>
-    <elements>
-        <element name="Lecture" positionX="-63" positionY="-18" width="128" height="148"/>
-    </elements>
 </model>

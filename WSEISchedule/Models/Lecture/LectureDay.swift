@@ -28,7 +28,7 @@ extension Array where Element == LectureDay {
         }
     }
 
-    init(lectures: some Collection<some Lecture>) {
+    init(lectures: some Collection<Lecture>) {
         self = lectures.reduce(into: [LectureDay](), { (lectureDays, lecture) in
             let date = lecture.fromDate.strippedFromTime
             lectureDays[date].lectures += [lecture]

@@ -9,5 +9,5 @@
 import Foundation
 
 extension Notification.Name {
-    static let removeAllLectures = Notification.Name(rawValue: "RemoveAllLectures")
+    static let deleteAllLectures = Notification.Name(rawValue: "DeleteAllLectures")
 }

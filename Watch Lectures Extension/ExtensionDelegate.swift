@@ -13,7 +13,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     // MARK: - Properties
     
-    private var lectures: [CodableLecture] = []
+    private var lectures: [Lecture] = []
     var lectureDays: [LectureDay] = [] {
         didSet {
             NotificationCenter.default.post(name: .didReloadLectures, object: nil)
@@ -38,20 +38,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
     
     private func fetchLectures(from context: [String : Any]) {
-        guard let data = context["lectures"] as? Data else { return }
-        do {
-            let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
-            unarchiver.requiresSecureCoding = false
-            let lectures = unarchiver.decodeObject(of: NSArray.self, forKey: NSKeyedArchiveRootObjectKey) as? [CodableLecture] ?? []
-            generateLectureDays(from: lectures)
-        } catch {
-            print(error)
-            self.lectures = []
-            self.lectureDays = []
-        }
+        guard let data = context["lectures"] as? Data, let lectures = Array(data: data) else { return }
+        generateLectureDays(from: lectures)
     }
     
-    func generateLectureDays(from unsortedLectures: [CodableLecture]?) {
+    func generateLectureDays(from unsortedLectures: [Lecture]?) {
         lectures = unsortedLectures?.sorted { $0.fromDate < $1.fromDate } ?? []
         
         guard let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) else {
@@ -60,7 +51,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
         
         let futureLectures = lectures[nearestLectureIndex...]
-        lectureDays = Array<LectureDay>(lectures: futureLectures)
+        lectureDays = Array(lectures: futureLectures)
     }
     
     // MARK: - Delegate

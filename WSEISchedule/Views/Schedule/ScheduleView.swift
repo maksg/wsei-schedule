@@ -40,7 +40,7 @@ struct ScheduleView: View {
                     Section {
                         ForEach(lectureWeek.lectureDays) { lectureDay in
                             DayHeader(date: lectureDay.date)
-                            ForEach(lectureDay.lectures, id: \.id, content: LectureRow.init)
+                            ForEach(lectureDay.lectures, content: LectureRow.init)
                         }
                     }
                 }

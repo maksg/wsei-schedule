@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
 
         do {
             let lectures = try context.fetch(fetchRequest)
-            return lectures.sorted(by: { $0.fromDate < $1.fromDate })
+            return lectures.compactMap(Lecture.init).sorted(by: { $0.fromDate < $1.fromDate })
         } catch let error as NSError {
             print(error.debugDescription)
             return []

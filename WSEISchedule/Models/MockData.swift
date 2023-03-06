@@ -9,6 +9,6 @@
 import Foundation
 
 final class MockData {
-    static let lecture = CodableLecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject", comments: "Comments")
+    static let lecture = Lecture(lecturer: "Lecturer", classroom: "Classroom", fromDate: Date(), toDate: Date(), code: "Code", subject: "Subject", comments: "Comments")
     static let grade = Grade(subject: "Subject", lecturer: "Lecturer", lectureForm: "Consultations", ects: "8", value: "4,5")
 }

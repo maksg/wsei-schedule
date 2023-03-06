@@ -10,10 +10,21 @@
 import Foundation
 import CoreData
 
-@objc(Lecture)
-final class CoreDataLecture: NSManagedObject, Lecture {
+final class CoreDataLecture: NSManagedObject {
+
+    class func fetchRequest() -> NSFetchRequest<CoreDataLecture> {
+        NSFetchRequest(entityName: "Lecture")
+    }
+
+    @NSManaged var lecturer: String?
+    @NSManaged var classroom: String?
+    @NSManaged var fromDate: Date?
+    @NSManaged var toDate: Date?
+    @NSManaged var code: String?
+    @NSManaged var subject: String?
+    @NSManaged var comments: String?
     
-    convenience init(fromDictionary dictionary: [String : String], inContext context: NSManagedObjectContext) {
+    convenience init(fromDictionary dictionary: [String : String], in context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entity(forEntityName: "Lecture", in: context)!
         self.init(entity: entity, insertInto: context)
         
@@ -25,13 +36,13 @@ final class CoreDataLecture: NSManagedObject, Lecture {
         let fromTime = dictionary["Czas od"] ?? ""
         let toTime = dictionary["Czas do"] ?? ""
         
-        self.fromDate = formatter.date(from: "\(date) \(fromTime)") ?? Date()
-        self.toDate = formatter.date(from: "\(date) \(toTime)") ?? Date()
-        self.subject = dictionary["Zajęcia"] ?? ""
-        self.classroom = dictionary["Sala"] ?? ""
-        self.lecturer = dictionary["Prowadzący"] ?? ""
-        self.code = dictionary["Grupy"] ?? ""
-        self.comments = dictionary["Uwagi"] ?? ""
+        self.fromDate = formatter.date(from: "\(date) \(fromTime)")
+        self.toDate = formatter.date(from: "\(date) \(toTime)")
+        self.subject = dictionary["Zajęcia"]
+        self.classroom = dictionary["Sala"]
+        self.lecturer = dictionary["Prowadzący"]
+        self.code = dictionary["Grupy"]
+        self.comments = dictionary["Uwagi"]
     }
 
 }
