@@ -91,7 +91,6 @@ struct GradesView: View {
             .onWillEnterForeground(perform: onWillEnterForeground)
         } else {
             PremiumView()
-                .navigationBarHidden(true)
         }
     }
 

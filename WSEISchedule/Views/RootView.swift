@@ -27,6 +27,43 @@ struct RootView: View {
             .scrollToTop(viewModel.$scrollToTop, condition: { viewModel.selectedTab == .grades })
     }
 
+    @available(iOS 16.0, *)
+    struct NewNavigationSplitView: View {
+        @State private var columnVisibility: NavigationSplitViewVisibility = .doubleColumn
+        @ObservedObject var viewModel: RootViewModel
+
+        var body: some View {
+            NavigationSplitView(columnVisibility: $columnVisibility) {
+                List(selection: $viewModel.selectedListItem) {
+                    NavigationLink(value: Tab.schedule) {
+                        Tab.schedule.label
+                    }
+
+                    NavigationLink(value: Tab.grades) {
+                        Tab.grades.label
+                    }
+
+                    SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
+                }
+                .listStyle(.insetGrouped)
+                .navigationTitle(Translation.wseiSchedule.localized)
+            } detail: {
+                switch viewModel.selectedListItem {
+                case .grades:
+                    NavigationStack {
+                        GradesView(viewModel: viewModel.gradesViewModel)
+                    }
+                default:
+                    NavigationStack {
+                        ScheduleView(viewModel: viewModel.scheduleViewModel)
+                    }
+                }
+            }
+            .navigationSplitViewStyle(.balanced)
+            .accentColor(.main)
+        }
+    }
+
     @ViewBuilder
     private var content: some View {
         if horizontalSizeClass == .compact {
@@ -51,35 +88,39 @@ struct RootView: View {
             }
             .accentColor(.main)
         } else {
-            NavigationView {
-                List(selection: $viewModel.selectedListItem) {
-                    NavigationLink {
-                        scheduleView
-                    } label: {
-                        Tab.schedule.label
-                    }
-                    .tag(Tab.schedule)
+            if #available(iOS 16.0, *) {
+                NewNavigationSplitView(viewModel: viewModel)
+            } else {
+                NavigationView {
+                    List(selection: $viewModel.selectedListItem) {
+                        NavigationLink {
+                            scheduleView
+                        } label: {
+                            Tab.schedule.label
+                        }
+                        .tag(Tab.schedule)
 
-                    NavigationLink {
+                        NavigationLink {
+                            gradesView
+                        } label: {
+                            Tab.grades.label
+                        }
+                        .tag(Tab.grades)
+
+                        SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
+                    }
+                    .listStyle(.insetGrouped)
+                    .navigationTitle(Translation.wseiSchedule.localized)
+
+                    switch viewModel.selectedListItem {
+                    case .grades:
                         gradesView
-                    } label: {
-                        Tab.grades.label
+                    default:
+                        scheduleView
                     }
-                    .tag(Tab.grades)
-
-                    SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                 }
-                .listStyle(.insetGrouped)
-                .navigationTitle(Translation.wseiSchedule.localized)
-
-                switch viewModel.selectedListItem {
-                case .grades:
-                    gradesView
-                default:
-                    scheduleView
-                }
+                .accentColor(.main)
             }
-            .accentColor(.main)
         }
     }
     
