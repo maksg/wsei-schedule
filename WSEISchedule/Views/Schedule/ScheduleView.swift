@@ -19,6 +19,8 @@ struct ScheduleView: View {
     
     var body: some View {
         List {
+            ScrollToTopView()
+
             if !viewModel.errorMessage.isEmpty {
                 Text(viewModel.errorMessage)
                     .multilineTextAlignment(.center)

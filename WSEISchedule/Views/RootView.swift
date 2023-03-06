@@ -17,18 +17,28 @@ struct RootView: View {
 
     // MARK: - Views
 
+    private var scheduleView: some View {
+        ScheduleView(viewModel: viewModel.scheduleViewModel)
+            .scrollToTop(viewModel.$scrollToTop, condition: { viewModel.selectedTab == .schedule })
+    }
+
+    private var gradesView: some View {
+        GradesView(viewModel: viewModel.gradesViewModel)
+            .scrollToTop(viewModel.$scrollToTop, condition: { viewModel.selectedTab == .grades })
+    }
+
     @ViewBuilder
     private var content: some View {
         if horizontalSizeClass == .compact {
             TabView(selection: $viewModel.selectedTab) {
                 NavigationView {
-                    ScheduleView(viewModel: viewModel.scheduleViewModel)
+                    scheduleView
                 }
                 .tabItem(Tab.schedule.tabItem)
                 .tag(Tab.schedule)
 
                 NavigationView {
-                    GradesView(viewModel: viewModel.gradesViewModel)
+                    gradesView
                 }
                 .tabItem(Tab.grades.tabItem)
                 .tag(Tab.grades)
@@ -38,23 +48,25 @@ struct RootView: View {
                 }
                 .tabItem(Tab.settings.tabItem)
                 .tag(Tab.settings)
-            }.accentColor(.main)
+            }
+            .accentColor(.main)
         } else {
             NavigationView {
                 List(selection: $viewModel.selectedListItem) {
                     NavigationLink {
-                        ScheduleView(viewModel: viewModel.scheduleViewModel)
+                        scheduleView
                     } label: {
                         Tab.schedule.label
                     }
                     .tag(Tab.schedule)
 
                     NavigationLink {
-                        GradesView(viewModel: viewModel.gradesViewModel)
+                        gradesView
                     } label: {
                         Tab.grades.label
                     }
                     .tag(Tab.grades)
+
                     SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                 }
                 .listStyle(.insetGrouped)
@@ -62,11 +74,12 @@ struct RootView: View {
 
                 switch viewModel.selectedListItem {
                 case .grades:
-                    GradesView(viewModel: viewModel.gradesViewModel)
+                    gradesView
                 default:
-                    ScheduleView(viewModel: viewModel.scheduleViewModel)
+                    scheduleView
                 }
-            }.accentColor(.main)
+            }
+            .accentColor(.main)
         }
     }
     

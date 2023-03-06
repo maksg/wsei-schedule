@@ -22,6 +22,10 @@ final class RootViewModel: ObservableObject {
 
     @Published var selectedTab: Tab = .schedule {
         didSet {
+            if selectedTab == oldValue {
+                scrollToTop = ()
+            }
+
             guard selectedTab != selectedListItem else { return }
             switch selectedTab {
             case .settings:
@@ -38,6 +42,8 @@ final class RootViewModel: ObservableObject {
             selectedTab = selectedListItem ?? .schedule
         }
     }
+
+    @Published var scrollToTop: Void = ()
     
     var cookies: [HTTPCookie] {
         UserDefaults.standard.cookies

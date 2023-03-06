@@ -37,6 +37,8 @@ struct GradesView: View {
     var body: some View {
         if isPremium {
             List {
+                ScrollToTopView()
+
                 if !viewModel.errorMessage.isEmpty {
                     Text(viewModel.errorMessage)
                         .multilineTextAlignment(.center)
