@@ -35,8 +35,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
-    @DispatchMainPublished var lectureWeeks: [LectureWeek] = []
+    @DispatchMainPublished var lectureWeeks: [LectureWeek] = [] {
+        didSet {
+            firstLectureId = lectureWeeks.first?.lectureDays.first?.lectures.first?.id
+        }
+    }
+
     var previousLectureWeeks: [LectureWeek] = []
+    var firstLectureId: String?
 
     let apiRequest: APIRequest
     let htmlReader: HTMLReader
@@ -65,6 +71,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         deleteLectures(from: context)
         saveLectures(to: context)
         lectures = []
+    }
+
+    func showDetails(for lecture: Lecture) -> Bool {
+        firstLectureId == lecture.id
     }
     
     func reloadLectures() async {
@@ -140,7 +150,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
     
-    func generateLectureDays(from unsortedLectures: [CoreDataLecture]?) {
+    private func generateLectureDays(from unsortedLectures: [CoreDataLecture]?) {
         let lectures = unsortedLectures?.compactMap(Lecture.init).sorted { $0.fromDate < $1.fromDate } ?? []
 
         let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) ?? lectures.endIndex

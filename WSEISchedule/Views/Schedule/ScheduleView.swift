@@ -42,7 +42,9 @@ struct ScheduleView: View {
                     Section {
                         ForEach(lectureWeek.lectureDays) { lectureDay in
                             DayHeader(date: lectureDay.date)
-                            ForEach(lectureDay.lectures, content: LectureRow.init)
+                            ForEach(lectureDay.lectures) { lecture in
+                                LectureRow(lecture: lecture, showDetails: viewModel.showDetails(for: lecture))
+                            }
                         }
                     }
                 }

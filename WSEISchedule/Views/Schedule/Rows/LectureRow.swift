@@ -13,7 +13,7 @@ struct LectureRow: View {
     // MARK: - Properties
 
     let lecture: Lecture
-    @State private var showDetails: Bool = false
+    @State private var showDetails: Bool
 
     @State private var expandedHeight: CGFloat = .zero
     @State private var defaultHeight: CGFloat = .zero
@@ -34,6 +34,17 @@ struct LectureRow: View {
 
     private var accessibilityTime: String {
         "\(lecture.fromDate.voiceOverHour) \(Translation.Accessibility.Schedule.to.localized) \(lecture.toDate.voiceOverHour)"
+    }
+
+    // MARK: - Initialization
+
+    init(lecture: Lecture) {
+        self.init(lecture: lecture, showDetails: false)
+    }
+
+    init(lecture: Lecture, showDetails: Bool = false) {
+        self.lecture = lecture
+        self._showDetails = State(initialValue: showDetails)
     }
 
     // MARK: - Views
