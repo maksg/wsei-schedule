@@ -123,7 +123,7 @@ struct RootView: View {
             }
         }
     }
-    
+
     var body: some View {
         if viewModel.isSignedIn {
             content

@@ -59,6 +59,9 @@ final class RootViewModel: ObservableObject {
         gradesViewModel = GradesViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
         settingsViewModel = SettingsViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
 
+        // TODO: Remove once everyone migrates
+        Keychain.clean()
+
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
         isSignedIn = !cookies.isEmpty
 

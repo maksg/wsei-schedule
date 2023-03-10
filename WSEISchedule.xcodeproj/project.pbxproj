@@ -37,6 +37,7 @@
 		501B1A2929BB91F4008AACAA /* DispatchMainPublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B8629B3884B0011964C /* DispatchMainPublished.swift */; };
 		501B1A2A29BBA5E4008AACAA /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
 		501B1A2C29BBA6CC008AACAA /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3D525B78378005B9322 /* Color+Named.swift */; };
+		501B1A2E29BBACB6008AACAA /* WSEISchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B1A2D29BBACB6008AACAA /* WSEISchedule.swift */; };
 		501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E128E61723004103B1 /* ScheduleHistoryView.swift */; };
 		501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E628E633D8004103B1 /* PremiumViewModel.swift */; };
 		502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */; };
@@ -127,8 +128,6 @@
 		57A6BF352530A32C00E9B26C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
 		57A6BF3D2530A35200E9B26C /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */; };
 		57A6BF452530A35600E9B26C /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318622AE6BC3009EEB1F /* String+Localized.swift */; };
-		57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD315022AE6B50009EEB1F /* AppDelegate.swift */; };
-		57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD315222AE6B50009EEB1F /* SceneDelegate.swift */; };
 		57AD315722AE6B51009EEB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57AD315622AE6B51009EEB1F /* Assets.xcassets */; };
 		57AD315A22AE6B51009EEB1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57AD315922AE6B51009EEB1F /* Preview Assets.xcassets */; };
 		57AD315D22AE6B51009EEB1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57AD315B22AE6B51009EEB1F /* LaunchScreen.storyboard */; };
@@ -222,6 +221,7 @@
 		500F218D29B78F43007E8D3E /* WSEIScheduleWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSEIScheduleWatch.swift; sourceTree = "<group>"; };
 		500F21D129BB6008007E8D3E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5014D31029B152780045718A /* View+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Async.swift"; sourceTree = "<group>"; };
+		501B1A2D29BBACB6008AACAA /* WSEISchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSEISchedule.swift; sourceTree = "<group>"; };
 		501B82E128E61723004103B1 /* ScheduleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleHistoryView.swift; path = WSEISchedule/Views/Schedule/ScheduleHistory/ScheduleHistoryView.swift; sourceTree = SOURCE_ROOT; };
 		501B82E628E633D8004103B1 /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
 		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
@@ -311,8 +311,6 @@
 		57A6BEB42530904900E9B26C /* ScheduleWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScheduleWidgetExtension.entitlements; sourceTree = "<group>"; };
 		57A6BEBF2530908200E9B26C /* NextLectureWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextLectureWidget.swift; sourceTree = "<group>"; };
 		57AD314D22AE6B50009EEB1F /* WSEISchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSEISchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		57AD315022AE6B50009EEB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		57AD315222AE6B50009EEB1F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		57AD315622AE6B51009EEB1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57AD315922AE6B51009EEB1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		57AD315C22AE6B51009EEB1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -646,8 +644,7 @@
 			isa = PBXGroup;
 			children = (
 				57DDE76922B7B23F00924367 /* WSEISchedule.entitlements */,
-				57AD315022AE6B50009EEB1F /* AppDelegate.swift */,
-				57AD315222AE6B50009EEB1F /* SceneDelegate.swift */,
+				501B1A2D29BBACB6008AACAA /* WSEISchedule.swift */,
 				57AD318422AE6BC3009EEB1F /* Extensions */,
 				50BB498D26A3275C00BFE87B /* API */,
 				50BB499D26A4C86200BFE87B /* Utilities */,
@@ -1085,12 +1082,10 @@
 				50D1AC8629B0036100A1BD4E /* WebAuthenticationSession.swift in Sources */,
 				57791D6723C6191900F91D7F /* SKProduct+LocalizedPrice.swift in Sources */,
 				503A0D0A28E5F8F6001E912F /* PremiumItem.swift in Sources */,
-				57AD315122AE6B50009EEB1F /* AppDelegate.swift in Sources */,
 				57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */,
 				50BB49A626A600F300BFE87B /* Requestable.swift in Sources */,
 				505BB422270DC76200F556C5 /* Grade.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
-				57AD315322AE6B50009EEB1F /* SceneDelegate.swift in Sources */,
 				575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */,
 				5067A43628DCA35400FFF92D /* LectureWeek.swift in Sources */,
 				570C5ACB2345EAD8005EBC4D /* SignInViewModel.swift in Sources */,
@@ -1106,6 +1101,7 @@
 				5701F83322AFE361005BED89 /* Date+Extensions.swift in Sources */,
 				572E7F01234CACF10061A835 /* Translation.swift in Sources */,
 				500F218629B6196E007E8D3E /* View+ScrollToTop.swift in Sources */,
+				501B1A2E29BBACB6008AACAA /* WSEISchedule.swift in Sources */,
 				502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */,
 				5701F83922AFF5DA005BED89 /* Lecture.swift in Sources */,
 				576B96FE23ABBFFF00CA17CF /* Image+Named.swift in Sources */,
