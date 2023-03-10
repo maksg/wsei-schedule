@@ -38,6 +38,9 @@
 		501B1A2A29BBA5E4008AACAA /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
 		501B1A2C29BBA6CC008AACAA /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3D525B78378005B9322 /* Color+Named.swift */; };
 		501B1A2E29BBACB6008AACAA /* WSEISchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B1A2D29BBACB6008AACAA /* WSEISchedule.swift */; };
+		501B1A3129BBBC8C008AACAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501B1A3329BBBC8C008AACAA /* InfoPlist.strings */; };
+		501B1A3529BBBCED008AACAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501B1A3329BBBC8C008AACAA /* InfoPlist.strings */; };
+		501B1A3629BBBD68008AACAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501B1A3329BBBC8C008AACAA /* InfoPlist.strings */; };
 		501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E128E61723004103B1 /* ScheduleHistoryView.swift */; };
 		501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E628E633D8004103B1 /* PremiumViewModel.swift */; };
 		502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */; };
@@ -222,6 +225,8 @@
 		500F21D129BB6008007E8D3E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5014D31029B152780045718A /* View+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Async.swift"; sourceTree = "<group>"; };
 		501B1A2D29BBACB6008AACAA /* WSEISchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSEISchedule.swift; sourceTree = "<group>"; };
+		501B1A3229BBBC8C008AACAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		501B1A3429BBBC8E008AACAA /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		501B82E128E61723004103B1 /* ScheduleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleHistoryView.swift; path = WSEISchedule/Views/Schedule/ScheduleHistory/ScheduleHistoryView.swift; sourceTree = SOURCE_ROOT; };
 		501B82E628E633D8004103B1 /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
 		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
@@ -656,6 +661,7 @@
 				57AD318C22AE6BC3009EEB1F /* Views */,
 				57AD31AC22AE6BD0009EEB1F /* Resources */,
 				57AD315E22AE6B51009EEB1F /* Info.plist */,
+				501B1A3329BBBC8C008AACAA /* InfoPlist.strings */,
 				57AD315822AE6B51009EEB1F /* Preview Content */,
 			);
 			path = WSEISchedule;
@@ -966,6 +972,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				501B1A1429BB8B5B008AACAA /* Colors.xcassets in Resources */,
+				501B1A3529BBBCED008AACAA /* InfoPlist.strings in Resources */,
 				500F21C729B79304007E8D3E /* Assets.xcassets in Resources */,
 				501B1A1329BB6482008AACAA /* Localizable.strings in Resources */,
 			);
@@ -976,6 +983,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57A6BEAF2530904800E9B26C /* Assets.xcassets in Resources */,
+				501B1A3629BBBD68008AACAA /* InfoPlist.strings in Resources */,
 				57A6BF352530A32C00E9B26C /* Localizable.strings in Resources */,
 				57A6BF252530A17C00E9B26C /* Colors.xcassets in Resources */,
 			);
@@ -986,6 +994,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5773656F22C2349D00C3C9AC /* Colors.xcassets in Resources */,
+				501B1A3129BBBC8C008AACAA /* InfoPlist.strings in Resources */,
 				57AD315D22AE6B51009EEB1F /* LaunchScreen.storyboard in Resources */,
 				57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */,
 				57AD315A22AE6B51009EEB1F /* Preview Assets.xcassets in Resources */,
@@ -1193,6 +1202,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		501B1A3329BBBC8C008AACAA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				501B1A3229BBBC8C008AACAA /* en */,
+				501B1A3429BBBC8E008AACAA /* pl */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		57AD315B22AE6B51009EEB1F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
