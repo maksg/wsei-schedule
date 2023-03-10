@@ -29,6 +29,8 @@ final class GradesViewModel: NSObject, ObservableObject {
     }
     @DispatchMainPublished var gradeSemesters: [GradeSemester] = UserDefaults.standard.gradeSemesters
 
+    var isSigningIn: Bool = false
+
     let apiRequest: APIRequest
     let htmlReader: HTMLReader
 

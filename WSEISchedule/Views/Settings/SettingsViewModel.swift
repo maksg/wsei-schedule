@@ -39,6 +39,8 @@ final class SettingsViewModel: NSObject, ObservableObject {
         return container
     }()
 
+    var isSigningIn: Bool = false
+
     let apiRequest: APIRequest
     let htmlReader: HTMLReader
 

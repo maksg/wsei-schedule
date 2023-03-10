@@ -28,7 +28,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
         return container
     }()
-    
+
     private var lectures: [CoreDataLecture] = [] {
         didSet {
             sendLecturesToWatch()
@@ -43,6 +43,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
     var previousLectureWeeks: [LectureWeek] = []
     var firstLectureId: String?
+
+    var isSigningIn: Bool = false
 
     let apiRequest: APIRequest
     let htmlReader: HTMLReader

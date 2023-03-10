@@ -12,6 +12,7 @@ final class SignInViewModel: NSObject, ObservableObject {
 
     // MARK: - Properties
 
+    var isSigningIn: Bool = false
     var finishSignIn: (() -> Void)?
 
     // MARK: - Methods

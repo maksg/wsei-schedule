@@ -9,6 +9,16 @@
 import UIKit
 import WebKit
 
+enum WebAuthenticationSessionError: Error {
+    case cancelled
+}
+
+extension WebAuthenticationSessionError: LocalizedError {
+    public var errorDescription: String? {
+        return Translation.Error.unknown.localized
+    }
+}
+
 protocol WebAuthenticationPresentationContextProviding: NSObjectProtocol {
     func presentationAnchor(for session: WebAuthenticationSession) -> WebAuthenticationSession.PresentationAnchor?
 }
@@ -157,6 +167,7 @@ class WebAuthenticationSession: NSObject {
 
         guard let topController, !isPresented else { return }
         isPresented = true
+        navigationController.transitioningDelegate = self
         topController.present(navigationController, animated: true)
     }
 
@@ -208,6 +219,17 @@ class WebAuthenticationSession: NSObject {
 
 }
 
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension WebAuthenticationSession: UIViewControllerTransitioningDelegate {
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        completionHandler(.failure(WebAuthenticationSessionError.cancelled))
+        return nil
+    }
+
+}
+
 // MARK: - WKNavigationDelegate
 
 extension WebAuthenticationSession: WKNavigationDelegate {
@@ -245,7 +267,7 @@ extension WebAuthenticationSession: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         updateNavigationItems()
 
-        guard !isPresented else { return }
+        guard webView.url != signInSuccessUrl && !isPresented else { return }
         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
             self?.present()
         }

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol SignInable: AnyObject, WebAuthenticationPresentationContextProviding {
+    var isSigningIn: Bool { get set }
     func startSigningIn()
     func startSigningIn(silently: Bool)
     func onSignIn()
@@ -27,9 +28,13 @@ extension SignInable {
     }
 
     func startSigningIn(silently: Bool) {
+        guard !isSigningIn else { return }
+        isSigningIn = true
+
         DispatchQueue.main.async {
             let url = URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
             let authSession = WebAuthenticationSession(url: url) { [weak self] result in
+                self?.isSigningIn = false
                 switch result {
                 case .success(let cookies):
                     cookies.forEach(HTTPCookieStorage.shared.setCookie)
