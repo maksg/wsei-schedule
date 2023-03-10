@@ -12,6 +12,7 @@ struct LectureView: View {
 
     enum Module {
         case date
+        case dateSpacer
         case time
         case classroom
         case timeAndClassroom
@@ -66,13 +67,17 @@ struct LectureView: View {
                         .foregroundColor(.main)
                         .lineLimit(1)
                 }
+
+                if enabledModules.contains(.dateSpacer) {
+                    Spacer()
+                }
             }
 
             Text(lecture.subject)
                 .font(.headline)
                 .minimumScaleFactor(minimumScaleFactor)
 
-            Spacer()
+            Spacer().frame(height: 0)
 
             if enabledModules.contains(.time) {
                 timeView
@@ -109,6 +114,10 @@ struct LectureView: View {
                     Image.comments.foregroundColor(.indigo)
                     Text(lecture.comments)
                 }
+            }
+
+            if enabledModules.contains(.dateSpacer) {
+                Spacer()
             }
         }
         .font(.footnote)

@@ -18,7 +18,7 @@ struct MediumNextLectureView: View {
     // MARK: - Views
 
     var body: some View {
-        LectureView(lecture: lecture, enabledModules: [.date, .timeAndClassroom, .code], minimumScaleFactor: 0.9)
+        LectureView(lecture: lecture, enabledModules: [.date, .dateSpacer, .timeAndClassroom, .code], minimumScaleFactor: 0.9)
     }
 
 }

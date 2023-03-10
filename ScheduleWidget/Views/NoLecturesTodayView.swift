@@ -14,9 +14,11 @@ struct NoLecturesTodayView: View {
 
     var body: some View {
         VStack(spacing: 10) {
+            Spacer()
             Text("😎")
                 .font(.largeTitle)
             Text(Translation.Widget.noLecturesToday.localized)
+            Spacer()
         }
     }
 }

@@ -25,30 +25,22 @@ struct LargeNextTwoLecturesView: View {
     var body: some View {
         VStack(spacing: 0) {
             if let todaysLecture = todaysLecture {
+                Spacer()
                 LectureView(lecture: todaysLecture, enabledModules: [.timeAndClassroom, .code, .lecturer, .comments])
                     .layoutPriority(1)
+                Spacer()
             } else {
                 NoLecturesTodayView()
                     .padding()
             }
 
-            HStack {
-                Text(Translation.Widget.next.localized)
-                    .fontWeight(.semibold)
-                Spacer()
-                Text(formattedDate)
-                    .fontWeight(.semibold)
-            }
-            .padding()
-            .font(.footnote)
-            .frame(height: 30)
-            .background(Color.main.opacity(0.4))
+            Divider()
 
             if let nextLecture = nextLecture {
                 if todaysLecture == nil {
-                    LectureView(lecture: nextLecture, enabledModules: [.timeAndClassroom, .code, .lecturer, .comments])
+                    LectureView(lecture: nextLecture, enabledModules: [.date, .timeAndClassroom, .code, .lecturer, .comments])
                 } else {
-                    LectureView(lecture: nextLecture, enabledModules: [.timeAndClassroom])
+                    LectureView(lecture: nextLecture, enabledModules: [.date, .timeAndClassroom])
                 }
             } else {
                 NoNextLecturesView()
