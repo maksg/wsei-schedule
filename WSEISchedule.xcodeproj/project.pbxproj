@@ -9,17 +9,40 @@
 /* Begin PBXBuildFile section */
 		500F218429B61694007E8D3E /* ScrollToTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500F218329B61694007E8D3E /* ScrollToTopView.swift */; };
 		500F218629B6196E007E8D3E /* View+ScrollToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500F218529B6196E007E8D3E /* View+ScrollToTop.swift */; };
+		500F218E29B78F43007E8D3E /* WSEIScheduleWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500F218D29B78F43007E8D3E /* WSEIScheduleWatch.swift */; };
+		500F21AE29B78F44007E8D3E /* WSEIScheduleWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 500F218B29B78F43007E8D3E /* WSEIScheduleWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		500F21B829B790CB007E8D3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A72EE22BA4C890009130A /* ContentView.swift */; };
+		500F21B929B790CF007E8D3E /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F91E022BA5A3E00C1FC53 /* ContentViewModel.swift */; };
+		500F21BA29B790D2007E8D3E /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A730922BA4FB90009130A /* LectureRow.swift */; };
+		500F21BB29B790D5007E8D3E /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A4EF2722BA565C00C08CE7 /* DayHeader.swift */; };
+		500F21BC29B790D9007E8D3E /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22B3925AFA43600A71D14 /* Notification+Name.swift */; };
+		500F21C029B79267007E8D3E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A72F422BA4C890009130A /* ComplicationController.swift */; };
+		500F21C229B79289007E8D3E /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
+		500F21C329B792A0007E8D3E /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* Lecture.swift */; };
+		500F21C429B792A3007E8D3E /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
+		500F21C629B792AB007E8D3E /* CoreDataLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */; };
+		500F21C729B79304007E8D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578A72E222BA4C890009130A /* Assets.xcassets */; };
+		500F21C829B79348007E8D3E /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318622AE6BC3009EEB1F /* String+Localized.swift */; };
+		500F21C929B7934E007E8D3E /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */; };
+		500F21CA29B79362007E8D3E /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
+		500F21CB29B79377007E8D3E /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
+		500F21CD29B793B8007E8D3E /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
+		500F21CE29BB5EC0007E8D3E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
+		500F21CF29BB5EC0007E8D3E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
+		500F21D029BB5EF2007E8D3E /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
+		500F21D329BB6037007E8D3E /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
 		5014D31129B152780045718A /* View+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5014D31029B152780045718A /* View+Async.swift */; };
+		501B1A1329BB6482008AACAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
+		501B1A1429BB8B5B008AACAA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
+		501B1A2929BB91F4008AACAA /* DispatchMainPublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B8629B3884B0011964C /* DispatchMainPublished.swift */; };
+		501B1A2A29BBA5E4008AACAA /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
+		501B1A2C29BBA6CC008AACAA /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3D525B78378005B9322 /* Color+Named.swift */; };
 		501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E128E61723004103B1 /* ScheduleHistoryView.swift */; };
 		501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E628E633D8004103B1 /* PremiumViewModel.swift */; };
 		502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */; };
 		5031A38725B5CF1F005B9322 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A38625B5CF1F005B9322 /* Springboard.swift */; };
-		5031A3A025B71C5E005B9322 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A39F25B71C5E005B9322 /* Image+Named.swift */; };
 		5031A3AD25B77A4A005B9322 /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
 		5031A3BD25B77B88005B9322 /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
-		5031A3C525B77CEC005B9322 /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
-		5031A3CD25B77CF1005B9322 /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
-		5031A3D625B78378005B9322 /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3D525B78378005B9322 /* Color+Named.swift */; };
 		5031A3E625B89ED6005B9322 /* LaunchScreen_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5031A3E525B89ED6005B9322 /* LaunchScreen_iPad.storyboard */; };
 		503A0D0828E5C7C2001E912F /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503A0D0728E5C7C2001E912F /* PremiumView.swift */; };
 		503A0D0A28E5F8F6001E912F /* PremiumItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503A0D0928E5F8F6001E912F /* PremiumItem.swift */; };
@@ -34,13 +57,10 @@
 		505BB41D270DB0AA00F556C5 /* GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */; };
 		505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41F270DC72F00F556C5 /* GradeRow.swift */; };
 		505BB422270DC76200F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
-		505BB423270DCA4900F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
-		505BB424270DCA4B00F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
 		5067A43628DCA35400FFF92D /* LectureWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067A43528DCA35400FFF92D /* LectureWeek.swift */; };
 		50851BCD26AF0CF60006F96C /* String+FormUrlEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
-		50B22B3A25AFA43600A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22B3925AFA43600A71D14 /* Notification+Name.swift */; };
 		50BADAD625DD61FE00E8614C /* UserDefaults+ObjectSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BADAD525DD61FE00E8614C /* UserDefaults+ObjectSaving.swift */; };
 		50BB499326A328A500BFE87B /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB498E26A328A400BFE87B /* APIRequest.swift */; };
 		50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB498F26A328A400BFE87B /* HTTPMethod.swift */; };
@@ -52,7 +72,6 @@
 		50BB49A426A5F3D600BFE87B /* SignInParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A326A5F3D600BFE87B /* SignInParameters.swift */; };
 		50BB49A626A600F300BFE87B /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A526A600F300BFE87B /* Requestable.swift */; };
 		50BB49A826A6014400BFE87B /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A726A6014400BFE87B /* Routable.swift */; };
-		50C2C85E29B516F1000F925C /* CoreDataLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */; };
 		50D1AC8629B0036100A1BD4E /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */; };
 		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
 		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
@@ -68,7 +87,6 @@
 		571045FF2538769B0031B0A5 /* LectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045FE2538769B0031B0A5 /* LectureView.swift */; };
 		572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */; };
 		572E7F01234CACF10061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
-		572E7F03234CAD160061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		57506BD922B910C80056A099 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* RootViewModel.swift */; };
 		575218E8252DFEBB007FA0A5 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */; };
 		575218F0252E109F007FA0A5 /* View+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218EF252E109F007FA0A5 /* View+PullToRefresh.swift */; };
@@ -76,8 +94,6 @@
 		57561BC92535AF4600DBC3D3 /* NoNextLecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BB12535AE2600DBC3D3 /* NoNextLecturesView.swift */; };
 		57561BDA2535B15100DBC3D3 /* SmallNextLectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BD12535B14D00DBC3D3 /* SmallNextLectureView.swift */; };
 		57561BE32535B1EE00DBC3D3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
-		57561BEB2535B21800DBC3D3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
-		57561BF32535B27C00DBC3D3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
 		57561C042535B54500DBC3D3 /* NextLectureWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BFB2535B50700DBC3D3 /* NextLectureWidgetEntryView.swift */; };
 		57561C232535B58700DBC3D3 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C132535B56E00DBC3D3 /* Provider.swift */; };
 		57561C3B2535B5B300DBC3D3 /* LectureEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561C2B2535B5A000DBC3D3 /* LectureEntry.swift */; };
@@ -88,7 +104,6 @@
 		576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B970123ABC66800CA17CF /* StudentInfoRowViewModel.swift */; };
 		576B970423ABC69300CA17CF /* StudentInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B970323ABC69300CA17CF /* StudentInfoRow.swift */; };
 		5773656F22C2349D00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
-		5773657022C234BA00C3C9AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
 		5773BE1423ACE45400264FC7 /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5773BE1323ACE45400264FC7 /* URLImage.swift */; };
 		5773BE1623ACEC8F00264FC7 /* URLImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5773BE1523ACEC8F00264FC7 /* URLImageDownloader.swift */; };
 		57791D6323C5EA4700F91D7F /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57791D6223C5EA4700F91D7F /* Games.swift */; };
@@ -97,29 +112,10 @@
 		57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */; };
 		577DDF1823C72BA500D841BB /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF1723C72BA500D841BB /* Student.swift */; };
 		577DDF1F23C7614D00D841BB /* UIImage+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDF1E23C7614D00D841BB /* UIImage+Named.swift */; };
-		578A72E122BA4C870009130A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578A72DF22BA4C870009130A /* Interface.storyboard */; };
-		578A72E322BA4C890009130A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578A72E222BA4C890009130A /* Assets.xcassets */; };
-		578A72EA22BA4C890009130A /* Watch Lectures Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 578A72E922BA4C890009130A /* Watch Lectures Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		578A72EF22BA4C890009130A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A72EE22BA4C890009130A /* ContentView.swift */; };
-		578A72F122BA4C890009130A /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A72F022BA4C890009130A /* HostingController.swift */; };
-		578A72F322BA4C890009130A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A72F222BA4C890009130A /* ExtensionDelegate.swift */; };
-		578A72F522BA4C890009130A /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A72F422BA4C890009130A /* ComplicationController.swift */; };
-		578A72F722BA4C890009130A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578A72F622BA4C890009130A /* Assets.xcassets */; };
-		578A72FA22BA4C890009130A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578A72F922BA4C890009130A /* Preview Assets.xcassets */; };
-		578A72FE22BA4C890009130A /* Watch Lectures.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 578A72DD22BA4C870009130A /* Watch Lectures.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		578A730A22BA4FB90009130A /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A730922BA4FB90009130A /* LectureRow.swift */; };
-		578A730E22BA50170009130A /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* Lecture.swift */; };
-		578A730F22BA50460009130A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
-		578F91E122BA5A3E00C1FC53 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F91E022BA5A3E00C1FC53 /* ContentViewModel.swift */; };
-		57A4EF2822BA565C00C08CE7 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A4EF2722BA565C00C08CE7 /* DayHeader.swift */; };
-		57A4EF2A22BA568200C08CE7 /* LectureDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83422AFEE47005BED89 /* LectureDay.swift */; };
-		57A4EF2C22BA568C00C08CE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
-		57A4EF2D22BA56A200C08CE7 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318622AE6BC3009EEB1F /* String+Localized.swift */; };
-		57A4EF2E22BA56A500C08CE7 /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */; };
 		57A6BEA82530904700E9B26C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A6BEA72530904700E9B26C /* WidgetKit.framework */; };
 		57A6BEAA2530904700E9B26C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A6BEA92530904700E9B26C /* SwiftUI.framework */; };
 		57A6BEAF2530904800E9B26C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57A6BEAE2530904800E9B26C /* Assets.xcassets */; };
-		57A6BEB32530904800E9B26C /* ScheduleWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 57A6BEA62530904700E9B26C /* ScheduleWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		57A6BEB32530904800E9B26C /* ScheduleWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 57A6BEA62530904700E9B26C /* ScheduleWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		57A6BEC02530908200E9B26C /* NextLectureWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6BEBF2530908200E9B26C /* NextLectureWidget.swift */; };
 		57A6BEED25309F0300E9B26C /* CoreDataLecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD31B722AE6ECF009EEB1F /* CoreDataLecture.swift */; };
 		57A6BF0525309F6100E9B26C /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B96FD23ABBFFF00CA17CF /* Image+Named.swift */; };
@@ -154,19 +150,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		578A72EB22BA4C890009130A /* PBXContainerItemProxy */ = {
+		500F21AC29B78F44007E8D3E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 57AD314522AE6B50009EEB1F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 578A72E822BA4C890009130A;
-			remoteInfo = "Watch Lectures Extension";
-		};
-		578A72FC22BA4C890009130A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 57AD314522AE6B50009EEB1F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 578A72DC22BA4C870009130A;
-			remoteInfo = "Watch Lectures";
+			remoteGlobalIDString = 500F218A29B78F43007E8D3E;
+			remoteInfo = "WSEIScheduleWatch Watch App";
 		};
 		57A6BEB12530904800E9B26C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -192,15 +181,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		578A730222BA4C890009130A /* Embed App Extensions */ = {
+		501B1A2829BB8BAB008AACAA /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				578A72EA22BA4C890009130A /* Watch Lectures Extension.appex in Embed App Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		578A730622BA4C890009130A /* Embed Watch Content */ = {
@@ -209,20 +197,20 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				578A72FE22BA4C890009130A /* Watch Lectures.app in Embed Watch Content */,
+				500F21AE29B78F44007E8D3E /* WSEIScheduleWatch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		57DDE76422B79B3500924367 /* Embed App Extensions */ = {
+		57DDE76422B79B3500924367 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				57A6BEB32530904800E9B26C /* ScheduleWidgetExtension.appex in Embed App Extensions */,
+				57A6BEB32530904800E9B26C /* ScheduleWidgetExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -230,13 +218,15 @@
 /* Begin PBXFileReference section */
 		500F218329B61694007E8D3E /* ScrollToTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopView.swift; sourceTree = "<group>"; };
 		500F218529B6196E007E8D3E /* View+ScrollToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScrollToTop.swift"; sourceTree = "<group>"; };
+		500F218B29B78F43007E8D3E /* WSEIScheduleWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSEIScheduleWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		500F218D29B78F43007E8D3E /* WSEIScheduleWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSEIScheduleWatch.swift; sourceTree = "<group>"; };
+		500F21D129BB6008007E8D3E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5014D31029B152780045718A /* View+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Async.swift"; sourceTree = "<group>"; };
 		501B82E128E61723004103B1 /* ScheduleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleHistoryView.swift; path = WSEISchedule/Views/Schedule/ScheduleHistory/ScheduleHistoryView.swift; sourceTree = SOURCE_ROOT; };
 		501B82E628E633D8004103B1 /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
 		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
 		502FE9E425BA14CD0050FEBA /* generate_screenshots.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_screenshots.sh; sourceTree = "<group>"; };
 		5031A38625B5CF1F005B9322 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
-		5031A39F25B71C5E005B9322 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HeightReader.swift"; sourceTree = "<group>"; };
 		5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableRowHeight.swift; sourceTree = "<group>"; };
 		5031A3D525B78378005B9322 /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
@@ -307,22 +297,11 @@
 		57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportDeveloperProduct.swift; sourceTree = "<group>"; };
 		577DDF1723C72BA500D841BB /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		577DDF1E23C7614D00D841BB /* UIImage+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Named.swift"; sourceTree = "<group>"; };
-		578A72DD22BA4C870009130A /* Watch Lectures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Lectures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		578A72E022BA4C870009130A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		578A72E222BA4C890009130A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		578A72E422BA4C890009130A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		578A72E922BA4C890009130A /* Watch Lectures Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Lectures Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578A72EE22BA4C890009130A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		578A72F022BA4C890009130A /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
-		578A72F222BA4C890009130A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		578A72F422BA4C890009130A /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		578A72F622BA4C890009130A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		578A72F922BA4C890009130A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		578A72FB22BA4C890009130A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		578A730922BA4FB90009130A /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
 		578F91E022BA5A3E00C1FC53 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
-		578F91E422BA660600C1FC53 /* Watch Lectures Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Lectures Extension.entitlements"; sourceTree = "<group>"; };
-		578F91E522BA674600C1FC53 /* Watch Lectures.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Lectures.entitlements"; sourceTree = "<group>"; };
 		57A4EF2722BA565C00C08CE7 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
 		57A6BEA62530904700E9B26C /* ScheduleWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScheduleWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A6BEA72530904700E9B26C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -363,7 +342,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		578A72E622BA4C890009130A /* Frameworks */ = {
+		500F218829B78F43007E8D3E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -405,6 +384,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		500F218C29B78F43007E8D3E /* WSEIScheduleWatch */ = {
+			isa = PBXGroup;
+			children = (
+				57A4EF2922BA566000C08CE7 /* Views */,
+				50B22B3825AFA41900A71D14 /* Extensions */,
+				500F218D29B78F43007E8D3E /* WSEIScheduleWatch.swift */,
+				578A72F422BA4C890009130A /* ComplicationController.swift */,
+				578A72E222BA4C890009130A /* Assets.xcassets */,
+				500F21D129BB6008007E8D3E /* Info.plist */,
+			);
+			path = WSEIScheduleWatch;
+			sourceTree = "<group>";
+		};
 		501B82E028E6170B004103B1 /* ScheduleHistory */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,7 +467,6 @@
 			isa = PBXGroup;
 			children = (
 				50B22B3925AFA43600A71D14 /* Notification+Name.swift */,
-				5031A39F25B71C5E005B9322 /* Image+Named.swift */,
 				5031A3D525B78378005B9322 /* Color+Named.swift */,
 			);
 			path = Extensions;
@@ -588,41 +579,6 @@
 			path = Lecture;
 			sourceTree = "<group>";
 		};
-		578A72DE22BA4C870009130A /* Watch Lectures */ = {
-			isa = PBXGroup;
-			children = (
-				578F91E522BA674600C1FC53 /* Watch Lectures.entitlements */,
-				578A72DF22BA4C870009130A /* Interface.storyboard */,
-				578A72E222BA4C890009130A /* Assets.xcassets */,
-				578A72E422BA4C890009130A /* Info.plist */,
-			);
-			path = "Watch Lectures";
-			sourceTree = "<group>";
-		};
-		578A72ED22BA4C890009130A /* Watch Lectures Extension */ = {
-			isa = PBXGroup;
-			children = (
-				578F91E422BA660600C1FC53 /* Watch Lectures Extension.entitlements */,
-				50B22B3825AFA41900A71D14 /* Extensions */,
-				57A4EF2922BA566000C08CE7 /* Views */,
-				578A72F022BA4C890009130A /* HostingController.swift */,
-				578A72F222BA4C890009130A /* ExtensionDelegate.swift */,
-				578A72F422BA4C890009130A /* ComplicationController.swift */,
-				578A72F622BA4C890009130A /* Assets.xcassets */,
-				578A72FB22BA4C890009130A /* Info.plist */,
-				578A72F822BA4C890009130A /* Preview Content */,
-			);
-			path = "Watch Lectures Extension";
-			sourceTree = "<group>";
-		};
-		578A72F822BA4C890009130A /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				578A72F922BA4C890009130A /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		578B99EC22D5D81F0031126D /* Rows */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,8 +623,7 @@
 				57AD314F22AE6B50009EEB1F /* WSEISchedule */,
 				57AD316622AE6B51009EEB1F /* WSEIScheduleTests */,
 				57AD317122AE6B51009EEB1F /* WSEIScheduleUITests */,
-				578A72DE22BA4C870009130A /* Watch Lectures */,
-				578A72ED22BA4C890009130A /* Watch Lectures Extension */,
+				500F218C29B78F43007E8D3E /* WSEIScheduleWatch */,
 				57A6BEAB2530904700E9B26C /* ScheduleWidget */,
 				57DDE75722B79B3500924367 /* Frameworks */,
 				57AD314E22AE6B50009EEB1F /* Products */,
@@ -681,9 +636,8 @@
 				57AD314D22AE6B50009EEB1F /* WSEISchedule.app */,
 				57AD316322AE6B51009EEB1F /* WSEIScheduleTests.xctest */,
 				57AD316E22AE6B51009EEB1F /* WSEIScheduleUITests.xctest */,
-				578A72DD22BA4C870009130A /* Watch Lectures.app */,
-				578A72E922BA4C890009130A /* Watch Lectures Extension.appex */,
 				57A6BEA62530904700E9B26C /* ScheduleWidgetExtension.appex */,
+				500F218B29B78F43007E8D3E /* WSEIScheduleWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -857,39 +811,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		578A72DC22BA4C870009130A /* Watch Lectures */ = {
+		500F218A29B78F43007E8D3E /* WSEIScheduleWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 578A730322BA4C890009130A /* Build configuration list for PBXNativeTarget "Watch Lectures" */;
+			buildConfigurationList = 500F21AF29B78F44007E8D3E /* Build configuration list for PBXNativeTarget "WSEIScheduleWatch" */;
 			buildPhases = (
-				578A72DB22BA4C870009130A /* Resources */,
-				578A730222BA4C890009130A /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				578A72EC22BA4C890009130A /* PBXTargetDependency */,
-			);
-			name = "Watch Lectures";
-			productName = "Watch Lectures";
-			productReference = 578A72DD22BA4C870009130A /* Watch Lectures.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		578A72E822BA4C890009130A /* Watch Lectures Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 578A72FF22BA4C890009130A /* Build configuration list for PBXNativeTarget "Watch Lectures Extension" */;
-			buildPhases = (
-				578A72E522BA4C890009130A /* Sources */,
-				578A72E622BA4C890009130A /* Frameworks */,
-				578A72E722BA4C890009130A /* Resources */,
+				500F218729B78F43007E8D3E /* Sources */,
+				500F218829B78F43007E8D3E /* Frameworks */,
+				500F218929B78F43007E8D3E /* Resources */,
+				501B1A2829BB8BAB008AACAA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Watch Lectures Extension";
-			productName = "Watch Lectures Extension";
-			productReference = 578A72E922BA4C890009130A /* Watch Lectures Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			name = WSEIScheduleWatch;
+			productName = "WSEIScheduleWatch Watch App";
+			productReference = 500F218B29B78F43007E8D3E /* WSEIScheduleWatch.app */;
+			productType = "com.apple.product-type.application";
 		};
 		57A6BEA52530904700E9B26C /* ScheduleWidgetExtension */ = {
 			isa = PBXNativeTarget;
@@ -915,14 +853,14 @@
 				57AD314922AE6B50009EEB1F /* Sources */,
 				57AD314A22AE6B50009EEB1F /* Frameworks */,
 				57AD314B22AE6B50009EEB1F /* Resources */,
-				57DDE76422B79B3500924367 /* Embed App Extensions */,
+				57DDE76422B79B3500924367 /* Embed Foundation Extensions */,
 				578A730622BA4C890009130A /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				578A72FD22BA4C890009130A /* PBXTargetDependency */,
 				57A6BEB22530904800E9B26C /* PBXTargetDependency */,
+				500F21AD29B78F44007E8D3E /* PBXTargetDependency */,
 			);
 			name = WSEISchedule;
 			packageProductDependencies = (
@@ -974,15 +912,13 @@
 		57AD314522AE6B50009EEB1F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Infinity Pi Ltd.";
 				TargetAttributes = {
-					578A72DC22BA4C870009130A = {
-						CreatedOnToolsVersion = 11.0;
-					};
-					578A72E822BA4C890009130A = {
-						CreatedOnToolsVersion = 11.0;
+					500F218A29B78F43007E8D3E = {
+						CreatedOnToolsVersion = 14.3;
 					};
 					57A6BEA52530904700E9B26C = {
 						CreatedOnToolsVersion = 12.2;
@@ -1021,31 +957,20 @@
 				57AD314C22AE6B50009EEB1F /* WSEISchedule */,
 				57AD316222AE6B51009EEB1F /* WSEIScheduleTests */,
 				57AD316D22AE6B51009EEB1F /* WSEIScheduleUITests */,
-				578A72DC22BA4C870009130A /* Watch Lectures */,
-				578A72E822BA4C890009130A /* Watch Lectures Extension */,
+				500F218A29B78F43007E8D3E /* WSEIScheduleWatch */,
 				57A6BEA52530904700E9B26C /* ScheduleWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		578A72DB22BA4C870009130A /* Resources */ = {
+		500F218929B78F43007E8D3E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				578A72E322BA4C890009130A /* Assets.xcassets in Resources */,
-				578A72E122BA4C870009130A /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		578A72E722BA4C890009130A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				578A72FA22BA4C890009130A /* Preview Assets.xcassets in Resources */,
-				5773657022C234BA00C3C9AC /* Colors.xcassets in Resources */,
-				57A4EF2C22BA568C00C08CE7 /* Localizable.strings in Resources */,
-				578A72F722BA4C890009130A /* Assets.xcassets in Resources */,
+				501B1A1429BB8B5B008AACAA /* Colors.xcassets in Resources */,
+				500F21C729B79304007E8D3E /* Assets.xcassets in Resources */,
+				501B1A1329BB6482008AACAA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,31 +1014,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		578A72E522BA4C890009130A /* Sources */ = {
+		500F218729B78F43007E8D3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57A4EF2E22BA56A500C08CE7 /* RawRepresentable+String.swift in Sources */,
-				578A72F122BA4C890009130A /* HostingController.swift in Sources */,
-				578A72F522BA4C890009130A /* ComplicationController.swift in Sources */,
-				57561BF32535B27C00DBC3D3 /* MockData.swift in Sources */,
-				50B22B3A25AFA43600A71D14 /* Notification+Name.swift in Sources */,
-				5031A3C525B77CEC005B9322 /* View+HeightReader.swift in Sources */,
-				578A730F22BA50460009130A /* Date+Extensions.swift in Sources */,
-				5031A3D625B78378005B9322 /* Color+Named.swift in Sources */,
-				50C2C85E29B516F1000F925C /* CoreDataLecture.swift in Sources */,
-				57A4EF2D22BA56A200C08CE7 /* String+Localized.swift in Sources */,
-				578A730A22BA4FB90009130A /* LectureRow.swift in Sources */,
-				578F91E122BA5A3E00C1FC53 /* ContentViewModel.swift in Sources */,
-				57A4EF2822BA565C00C08CE7 /* DayHeader.swift in Sources */,
-				578A730E22BA50170009130A /* Lecture.swift in Sources */,
-				5031A3A025B71C5E005B9322 /* Image+Named.swift in Sources */,
-				57A4EF2A22BA568200C08CE7 /* LectureDay.swift in Sources */,
-				572E7F03234CAD160061A835 /* Translation.swift in Sources */,
-				578A72EF22BA4C890009130A /* ContentView.swift in Sources */,
-				505BB423270DCA4900F556C5 /* Grade.swift in Sources */,
-				578A72F322BA4C890009130A /* ExtensionDelegate.swift in Sources */,
-				5031A3CD25B77CF1005B9322 /* AnimatableRowHeight.swift in Sources */,
+				500F21C929B7934E007E8D3E /* RawRepresentable+String.swift in Sources */,
+				500F21C329B792A0007E8D3E /* Lecture.swift in Sources */,
+				501B1A2929BB91F4008AACAA /* DispatchMainPublished.swift in Sources */,
+				500F21B829B790CB007E8D3E /* ContentView.swift in Sources */,
+				500F218E29B78F43007E8D3E /* WSEIScheduleWatch.swift in Sources */,
+				500F21C229B79289007E8D3E /* Translation.swift in Sources */,
+				500F21C029B79267007E8D3E /* ComplicationController.swift in Sources */,
+				501B1A2A29BBA5E4008AACAA /* Image+Named.swift in Sources */,
+				500F21B929B790CF007E8D3E /* ContentViewModel.swift in Sources */,
+				501B1A2C29BBA6CC008AACAA /* Color+Named.swift in Sources */,
+				500F21CB29B79377007E8D3E /* View+HeightReader.swift in Sources */,
+				500F21CF29BB5EC0007E8D3E /* MockData.swift in Sources */,
+				500F21CA29B79362007E8D3E /* Date+Extensions.swift in Sources */,
+				500F21D029BB5EF2007E8D3E /* Grade.swift in Sources */,
+				500F21C429B792A3007E8D3E /* LectureDay.swift in Sources */,
+				500F21C829B79348007E8D3E /* String+Localized.swift in Sources */,
+				500F21BB29B790D5007E8D3E /* DayHeader.swift in Sources */,
+				500F21C629B792AB007E8D3E /* CoreDataLecture.swift in Sources */,
+				500F21BA29B790D2007E8D3E /* LectureRow.swift in Sources */,
+				500F21BC29B790D9007E8D3E /* Notification+Name.swift in Sources */,
+				500F21CD29B793B8007E8D3E /* AnimatableRowHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1132,17 +1057,17 @@
 				57FCB7D12538A48700509C3C /* NoLecturesTodayView.swift in Sources */,
 				571045E425385BCA0031B0A5 /* ScheduleWidgets.swift in Sources */,
 				57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */,
-				505BB424270DCA4B00F556C5 /* Grade.swift in Sources */,
 				5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */,
 				57A6BF2D2530A32800E9B26C /* Translation.swift in Sources */,
+				500F21CE29BB5EC0007E8D3E /* MockData.swift in Sources */,
 				57A6BF1525309F9200E9B26C /* Lecture.swift in Sources */,
 				57A6BF1D2530A13A00E9B26C /* Color+Named.swift in Sources */,
 				57A6BEC02530908200E9B26C /* NextLectureWidget.swift in Sources */,
 				57561BDA2535B15100DBC3D3 /* SmallNextLectureView.swift in Sources */,
+				500F21D329BB6037007E8D3E /* Grade.swift in Sources */,
 				57A6BEED25309F0300E9B26C /* CoreDataLecture.swift in Sources */,
 				57A6BF0525309F6100E9B26C /* Image+Named.swift in Sources */,
 				571045FF2538769B0031B0A5 /* LectureView.swift in Sources */,
-				57561BEB2535B21800DBC3D3 /* MockData.swift in Sources */,
 				57A6BF452530A35600E9B26C /* String+Localized.swift in Sources */,
 				57A6BF0D25309F6E00E9B26C /* Date+Extensions.swift in Sources */,
 				57561C3B2535B5B300DBC3D3 /* LectureEntry.swift in Sources */,
@@ -1249,16 +1174,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		578A72EC22BA4C890009130A /* PBXTargetDependency */ = {
+		500F21AD29B78F44007E8D3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 578A72E822BA4C890009130A /* Watch Lectures Extension */;
-			targetProxy = 578A72EB22BA4C890009130A /* PBXContainerItemProxy */;
-		};
-		578A72FD22BA4C890009130A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 578A72DC22BA4C870009130A /* Watch Lectures */;
-			targetProxy = 578A72FC22BA4C890009130A /* PBXContainerItemProxy */;
+			target = 500F218A29B78F43007E8D3E /* WSEIScheduleWatch */;
+			targetProxy = 500F21AC29B78F44007E8D3E /* PBXContainerItemProxy */;
 		};
 		57A6BEB22530904800E9B26C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1278,14 +1197,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		578A72DF22BA4C870009130A /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				578A72E022BA4C870009130A /* Base */,
-			);
-			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
 		57AD315B22AE6B51009EEB1F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1306,98 +1217,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		578A730022BA4C890009130A /* Debug */ = {
+		500F21B029B78F44007E8D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 30100;
-				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Watch Lectures Extension/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WSEIScheduleWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "WSEI Schedule";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.InfinityPi.WSEI-Schedule";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 3.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
-		578A730122BA4C890009130A /* Release */ = {
+		500F21B129B78F44007E8D3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Watch Lectures Extension/Watch Lectures Extension.entitlements";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 30100;
-				DEVELOPMENT_ASSET_PATHS = "\"Watch Lectures Extension\"/Preview\\ Content";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Watch Lectures Extension/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WSEIScheduleWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "WSEI Schedule";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.InfinityPi.WSEI-Schedule";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 3.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Release;
-		};
-		578A730422BA4C890009130A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30100;
-				DEVELOPMENT_TEAM = 5S8XF46499;
-				IBSC_MODULE = Watch_Lectures_Extension;
-				INFOPLIST_FILE = "Watch Lectures/Info.plist";
-				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Debug;
-		};
-		578A730522BA4C890009130A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Watch Lectures/Watch Lectures.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30100;
-				DEVELOPMENT_TEAM = 5S8XF46499;
-				IBSC_MODULE = Watch_Lectures_Extension;
-				INFOPLIST_FILE = "Watch Lectures/Info.plist";
-				MARKETING_VERSION = 3.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -1518,6 +1399,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -1574,6 +1456,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -1718,20 +1601,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		578A72FF22BA4C890009130A /* Build configuration list for PBXNativeTarget "Watch Lectures Extension" */ = {
+		500F21AF29B78F44007E8D3E /* Build configuration list for PBXNativeTarget "WSEIScheduleWatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				578A730022BA4C890009130A /* Debug */,
-				578A730122BA4C890009130A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		578A730322BA4C890009130A /* Build configuration list for PBXNativeTarget "Watch Lectures" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				578A730422BA4C890009130A /* Debug */,
-				578A730522BA4C890009130A /* Release */,
+				500F21B029B78F44007E8D3E /* Debug */,
+				500F21B129B78F44007E8D3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

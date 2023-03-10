@@ -150,8 +150,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
     
-    private func generateLectureDays(from unsortedLectures: [CoreDataLecture]?) {
-        let lectures = unsortedLectures?.compactMap(Lecture.init).sorted { $0.fromDate < $1.fromDate } ?? []
+    private func generateLectureDays(from unsortedLectures: [CoreDataLecture]) {
+        let lectures = unsortedLectures.compactMap(Lecture.init).sorted { $0.fromDate < $1.fromDate }
 
         let nearestLectureIndex = lectures.firstIndex(where: { $0.toDate > Date() }) ?? lectures.endIndex
 
