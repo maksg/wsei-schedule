@@ -30,6 +30,7 @@ class WebAuthenticationSession: NSObject {
     private let secureImageView: UIImageView = UIImageView(image: .secure)
     private let titleLabel: UILabel = UILabel()
 
+    private let signInSuccessUrl: URL = URL(string: "https://dziekanat.wsei.edu.pl/")!
     private let url: URL
     private let completionHandler: WebAuthenticationSession.CompletionHandler
 
@@ -213,6 +214,11 @@ extension WebAuthenticationSession: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         timer?.invalidate()
+        guard webView.url == signInSuccessUrl else { return }
+        webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { [weak self] cookies in
+            self?.completionHandler(.success(cookies))
+            self?.navigationController.dismiss(animated: true)
+        }
     }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
@@ -239,15 +245,9 @@ extension WebAuthenticationSession: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         updateNavigationItems()
 
-        if webView.url == URL(string: "https://dziekanat.wsei.edu.pl/") {
-            webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { [weak self] cookies in
-                self?.completionHandler(.success(cookies))
-                self?.navigationController.dismiss(animated: true)
-            }
-        } else if !isPresented {
-            timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
-                self?.present()
-            }
+        guard !isPresented else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
+            self?.present()
         }
     }
 
