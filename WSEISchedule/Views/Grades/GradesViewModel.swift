@@ -111,6 +111,7 @@ final class GradesViewModel: NSObject, ObservableObject {
 extension GradesViewModel: SignInable {
 
     func onSignIn() {
+        resetErrors()
         Task {
             await fetchGradeSemesters()
         }

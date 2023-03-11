@@ -9,6 +9,7 @@
 import Foundation
 
 extension UserDefaults {
+
     func setObject<Object>(_ object: Object, forKey key: String) where Object: Encodable {
         guard let data = try? JSONEncoder().encode(object) else { return }
         set(data, forKey: key)
@@ -18,4 +19,5 @@ extension UserDefaults {
         guard let data = self.data(forKey: key) else { return nil }
         return try? JSONDecoder().decode(Object.self, from: data)
     }
+
 }

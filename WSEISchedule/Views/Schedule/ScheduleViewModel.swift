@@ -12,6 +12,7 @@ import CoreData
 import WatchConnectivity
 import WidgetKit
 import SwiftSoup
+import StoreKit
 
 final class ScheduleViewModel: NSObject, ObservableObject {
     
@@ -119,9 +120,25 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             WidgetCenter.shared.reloadAllTimelines()
 
             resetErrors()
+
+            DispatchQueue.main.async { [weak self] in
+                self?.requestReviewIfAppropriate()
+            }
         } catch {
             checkIfIsSignedIn(html: html, error: error)
         }
+    }
+
+    private func requestReviewIfAppropriate() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.lectureFetchCount += 1
+        let appVersion = Bundle.main.appVersion
+
+        guard appVersion != userDefaults.lastVersionPromptedForReview && userDefaults.lectureFetchCount > 10 else { return }
+        userDefaults.lastVersionPromptedForReview = appVersion
+
+        guard let scene = UIApplication.shared.foregroundActiveScene else { return }
+        SKStoreReviewController.requestReview(in: scene)
     }
     
     func activateWatchSession() {
@@ -184,6 +201,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 extension ScheduleViewModel: SignInable {
 
     func onSignIn() {
+        resetErrors()
         Task {
             await fetchSchedule()
         }

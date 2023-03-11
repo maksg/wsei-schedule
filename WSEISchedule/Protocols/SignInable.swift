@@ -20,7 +20,7 @@ protocol SignInable: AnyObject, WebAuthenticationPresentationContextProviding {
 extension SignInable {
 
     func presentationAnchor(for session: WebAuthenticationSession) -> WebAuthenticationSession.PresentationAnchor? {
-        return UIApplication.shared.windows.first
+        return UIApplication.shared.foregroundActiveScene?.windows.first(where: \.isKeyWindow)
     }
 
     func startSigningIn() {

@@ -1,5 +1,5 @@
 //
-//  UserDefaults+Student.swift
+//  UserDefaults+Keys.swift
 //  WSEISchedule
 //
 //  Created by Maksymilian Galas on 08/10/2019.
@@ -15,6 +15,8 @@ extension UserDefaults {
         case premium
         case cookies
         case gradeSemesters
+        case lectureFetchCount
+        case lastVersionPromptedForReview
     }
 
     // MARK: - Properties
@@ -59,12 +61,32 @@ extension UserDefaults {
         }
     }
 
+    var lectureFetchCount: Int {
+        get {
+            integer(forKey: Key.lectureFetchCount.rawValue)
+        }
+        set {
+            set(newValue, forKey: Key.lectureFetchCount.rawValue)
+        }
+    }
+
+    var lastVersionPromptedForReview: String? {
+        get {
+            string(forKey: Key.lastVersionPromptedForReview.rawValue)
+        }
+        set {
+            set(newValue, forKey: Key.lastVersionPromptedForReview.rawValue)
+        }
+    }
+
     // MARK: - Methods
     
     func signOut() {
         removeObject(forKey: .cookies)
         removeObject(forKey: .student)
         removeObject(forKey: .gradeSemesters)
+        removeObject(forKey: .lectureFetchCount)
+        removeObject(forKey: .lastVersionPromptedForReview)
     }
 
     private func removeObject(forKey key: Key) {

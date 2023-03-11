@@ -10,7 +10,7 @@
 		500F218429B61694007E8D3E /* ScrollToTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500F218329B61694007E8D3E /* ScrollToTopView.swift */; };
 		500F218629B6196E007E8D3E /* View+ScrollToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500F218529B6196E007E8D3E /* View+ScrollToTop.swift */; };
 		500F218E29B78F43007E8D3E /* WSEIScheduleWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500F218D29B78F43007E8D3E /* WSEIScheduleWatch.swift */; };
-		500F21AE29B78F44007E8D3E /* WSEIScheduleWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 500F218B29B78F43007E8D3E /* WSEIScheduleWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		500F21AE29B78F44007E8D3E /* WSEIScheduleWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 500F218B29B78F43007E8D3E /* WSEIScheduleWatch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		500F21B829B790CB007E8D3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A72EE22BA4C890009130A /* ContentView.swift */; };
 		500F21B929B790CF007E8D3E /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F91E022BA5A3E00C1FC53 /* ContentViewModel.swift */; };
 		500F21BA29B790D2007E8D3E /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A730922BA4FB90009130A /* LectureRow.swift */; };
@@ -41,6 +41,8 @@
 		501B1A3129BBBC8C008AACAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501B1A3329BBBC8C008AACAA /* InfoPlist.strings */; };
 		501B1A3529BBBCED008AACAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501B1A3329BBBC8C008AACAA /* InfoPlist.strings */; };
 		501B1A3629BBBD68008AACAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501B1A3329BBBC8C008AACAA /* InfoPlist.strings */; };
+		501B1A3829BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B1A3729BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift */; };
+		501B1A3A29BBF52C008AACAA /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B1A3929BBF52C008AACAA /* Bundle+AppVersion.swift */; };
 		501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E128E61723004103B1 /* ScheduleHistoryView.swift */; };
 		501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E628E633D8004103B1 /* PremiumViewModel.swift */; };
 		502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */; };
@@ -89,7 +91,7 @@
 		571045ED25385BF80031B0A5 /* NextTwoLecturesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045EC25385BF80031B0A5 /* NextTwoLecturesWidget.swift */; };
 		571045F625385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045F525385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift */; };
 		571045FF2538769B0031B0A5 /* LectureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571045FE2538769B0031B0A5 /* LectureView.swift */; };
-		572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */; };
+		572E7EF2234CA64A0061A835 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EF1234CA64A0061A835 /* UserDefaults+Keys.swift */; };
 		572E7F01234CACF10061A835 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		57506BD922B910C80056A099 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57506BD822B910C80056A099 /* RootViewModel.swift */; };
 		575218E8252DFEBB007FA0A5 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */; };
@@ -227,6 +229,8 @@
 		501B1A2D29BBACB6008AACAA /* WSEISchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSEISchedule.swift; sourceTree = "<group>"; };
 		501B1A3229BBBC8C008AACAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		501B1A3429BBBC8E008AACAA /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		501B1A3729BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+ForegroundActiveScene.swift"; sourceTree = "<group>"; };
+		501B1A3929BBF52C008AACAA /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
 		501B82E128E61723004103B1 /* ScheduleHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleHistoryView.swift; path = WSEISchedule/Views/Schedule/ScheduleHistory/ScheduleHistoryView.swift; sourceTree = SOURCE_ROOT; };
 		501B82E628E633D8004103B1 /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
 		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
@@ -276,7 +280,7 @@
 		571045EC25385BF80031B0A5 /* NextTwoLecturesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTwoLecturesWidget.swift; sourceTree = "<group>"; };
 		571045F525385C1F0031B0A5 /* NextTwoLecturesWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTwoLecturesWidgetEntryView.swift; sourceTree = "<group>"; };
 		571045FE2538769B0031B0A5 /* LectureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureView.swift; sourceTree = "<group>"; };
-		572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Student.swift"; sourceTree = "<group>"; };
+		572E7EF1234CA64A0061A835 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
 		572E7F00234CACF10061A835 /* Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		57506BD822B910C80056A099 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		575218E7252DFEBB007FA0A5 /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
@@ -478,7 +482,7 @@
 		50BADADE25DD620500E8614C /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
-				572E7EF1234CA64A0061A835 /* UserDefaults+Student.swift */,
+				572E7EF1234CA64A0061A835 /* UserDefaults+Keys.swift */,
 				50BADAD525DD61FE00E8614C /* UserDefaults+ObjectSaving.swift */,
 			);
 			path = UserDefaults;
@@ -721,6 +725,8 @@
 				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
 				50493B8129B362560011964C /* Dictionary+KeyFromText.swift */,
+				501B1A3729BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift */,
+				501B1A3929BBF52C008AACAA /* Bundle+AppVersion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1122,12 +1128,13 @@
 				570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */,
 				5031A3BD25B77B88005B9322 /* AnimatableRowHeight.swift in Sources */,
 				50BB499526A328A500BFE87B /* Route.swift in Sources */,
+				501B1A3A29BBF52C008AACAA /* Bundle+AppVersion.swift in Sources */,
 				504AD2C828E234800071F57B /* Keychain.swift in Sources */,
 				57AD31B622AE6E20009EEB1F /* Lectures.xcdatamodeld in Sources */,
 				505BB41B270DB0A000F556C5 /* GradesView.swift in Sources */,
 				503BCA9626A82E2400FD8091 /* ScheduleParameters.swift in Sources */,
 				50BB499626A328A500BFE87B /* Endpoint.swift in Sources */,
-				572E7EF2234CA64A0061A835 /* UserDefaults+Student.swift in Sources */,
+				572E7EF2234CA64A0061A835 /* UserDefaults+Keys.swift in Sources */,
 				5755866B25308B2D00E0F752 /* Line.swift in Sources */,
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
 				501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */,
@@ -1136,6 +1143,7 @@
 				576B970423ABC69300CA17CF /* StudentInfoRow.swift in Sources */,
 				57506BD922B910C80056A099 /* RootViewModel.swift in Sources */,
 				57AD31B922AE6ECF009EEB1F /* CoreDataLecture.swift in Sources */,
+				501B1A3829BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift in Sources */,
 				57DDE76B22B7B26500924367 /* NSSharedPersistentContainer.swift in Sources */,
 				57561BE32535B1EE00DBC3D3 /* MockData.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
@@ -1181,6 +1189,7 @@
 /* Begin PBXTargetDependency section */
 		500F21AD29B78F44007E8D3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 500F218A29B78F43007E8D3E /* WSEIScheduleWatch */;
 			targetProxy = 500F21AC29B78F44007E8D3E /* PBXContainerItemProxy */;
 		};
@@ -1477,7 +1486,6 @@
 		57AD317822AE6B51009EEB1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1492,6 +1500,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1505,7 +1514,6 @@
 		57AD317922AE6B51009EEB1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1520,6 +1528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";

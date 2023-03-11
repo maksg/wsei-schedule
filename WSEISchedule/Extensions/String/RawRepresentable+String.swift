@@ -11,7 +11,7 @@ import Foundation
 extension RawRepresentable where RawValue == String {
     
     var localized: String {
-        return rawValue.localized
+        rawValue.localized
     }
     
 }
