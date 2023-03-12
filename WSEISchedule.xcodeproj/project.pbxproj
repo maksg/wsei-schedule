@@ -67,6 +67,7 @@
 		505BB422270DC76200F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
 		5067A43628DCA35400FFF92D /* LectureWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067A43528DCA35400FFF92D /* LectureWeek.swift */; };
 		50851BCD26AF0CF60006F96C /* String+FormUrlEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */; };
+		5087932529BE609300833E53 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
 		50BADAD625DD61FE00E8614C /* UserDefaults+ObjectSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BADAD525DD61FE00E8614C /* UserDefaults+ObjectSaving.swift */; };
@@ -131,7 +132,6 @@
 		57A6BF1525309F9200E9B26C /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83822AFF5DA005BED89 /* Lecture.swift */; };
 		57A6BF1D2530A13A00E9B26C /* Color+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57674F52234DBCF000684C2A /* Color+Named.swift */; };
 		57A6BF252530A17C00E9B26C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5773656E22C2349D00C3C9AC /* Colors.xcassets */; };
-		57A6BF2D2530A32800E9B26C /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
 		57A6BF352530A32C00E9B26C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57AD31B222AE6C01009EEB1F /* Localizable.strings */; };
 		57A6BF3D2530A35200E9B26C /* RawRepresentable+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318922AE6BC3009EEB1F /* RawRepresentable+String.swift */; };
 		57A6BF452530A35600E9B26C /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD318622AE6BC3009EEB1F /* String+Localized.swift */; };
@@ -258,6 +258,7 @@
 		505BB421270DC76200F556C5 /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		5067A43528DCA35400FFF92D /* LectureWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureWeek.swift; sourceTree = "<group>"; };
 		50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+FormUrlEncoded.swift"; sourceTree = "<group>"; };
+		5087932629BE630800833E53 /* gentranslations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gentranslations.swift; sourceTree = "<group>"; };
 		50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		50B22B3925AFA43600A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
@@ -630,6 +631,7 @@
 		57AD314422AE6B50009EEB1F = {
 			isa = PBXGroup;
 			children = (
+				5087932629BE630800833E53 /* gentranslations.swift */,
 				502FE9E425BA14CD0050FEBA /* generate_screenshots.sh */,
 				57A6BEB42530904900E9B26C /* ScheduleWidgetExtension.entitlements */,
 				57AD314F22AE6B50009EEB1F /* WSEISchedule */,
@@ -865,6 +867,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57AD317722AE6B51009EEB1F /* Build configuration list for PBXNativeTarget "WSEISchedule" */;
 			buildPhases = (
+				5087932429BE5D1800833E53 /* Generate Translations */,
 				57AD314922AE6B50009EEB1F /* Sources */,
 				57AD314A22AE6B50009EEB1F /* Frameworks */,
 				57AD314B22AE6B50009EEB1F /* Resources */,
@@ -1031,6 +1034,30 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5087932429BE5D1800833E53 /* Generate Translations */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/gentranslations.swift",
+				"$(SRCROOT)/WSEISchedule/Resources/en.lproj/Localizable.strings",
+			);
+			name = "Generate Translations";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_INPUT_FILE_1}\" > \"${SRCROOT}/WSEISchedule/Models/Translation.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		500F218729B78F43007E8D3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1073,10 +1100,10 @@
 				571045CD253859A00031B0A5 /* LargeNextTwoLecturesView.swift in Sources */,
 				57561C232535B58700DBC3D3 /* Provider.swift in Sources */,
 				57FCB7D12538A48700509C3C /* NoLecturesTodayView.swift in Sources */,
+				5087932529BE609300833E53 /* Translation.swift in Sources */,
 				571045E425385BCA0031B0A5 /* ScheduleWidgets.swift in Sources */,
 				57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */,
 				5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */,
-				57A6BF2D2530A32800E9B26C /* Translation.swift in Sources */,
 				500F21CE29BB5EC0007E8D3E /* MockData.swift in Sources */,
 				57A6BF1525309F9200E9B26C /* Lecture.swift in Sources */,
 				57A6BF1D2530A13A00E9B26C /* Color+Named.swift in Sources */,
