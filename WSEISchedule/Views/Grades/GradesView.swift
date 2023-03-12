@@ -12,6 +12,8 @@ struct GradesView: View {
 
     // MARK: - Properties
 
+    @Environment(\.scenePhase) private var scenePhase: ScenePhase
+
     @AppStorage(UserDefaults.Key.premium.rawValue) private var isPremium: Bool = false
     @ObservedObject var viewModel: GradesViewModel
 
@@ -47,48 +49,50 @@ struct GradesView: View {
                         .listRowBackground(Color.red)
                 }
 
+                if viewModel.isRefreshingAll {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                        .id(UUID())
+                }
+
                 if viewModel.gradeSemesters.isEmpty {
-                    if viewModel.isRefreshingAll {
-                        ProgressView()
-                            .frame(maxWidth: .infinity)
-                            .id(UUID())
-                    } else {
-                        Text(Translation.Grades.noGrades.localized)
-                    }
+                    Text(Translation.Grades.noGrades.localized)
                 } else {
-                    ForEach(viewModel.gradeSemesters) { semester in
-                        DisclosureGroup(isExpanded: isExpanded(key: semester.id)) {
-                            if semester.grades.isEmpty {
-                                if isRefreshing(key: semester.id) {
-                                    ProgressView()
-                                        .frame(maxWidth: .infinity)
-                                        .id(UUID())
+                    Section {
+                        ForEach(viewModel.gradeSemesters) { semester in
+                            DisclosureGroup(isExpanded: isExpanded(key: semester.id)) {
+                                if semester.grades.isEmpty {
+                                    if isRefreshing(key: semester.id) {
+                                        ProgressView()
+                                            .frame(maxWidth: .infinity)
+                                            .id(UUID())
+                                    } else {
+                                        Text(Translation.Grades.noGrades.localized)
+                                    }
                                 } else {
-                                    Text(Translation.Grades.noGrades.localized)
+                                    ForEach(semester.grades, content: GradeRow.init)
                                 }
-                            } else {
-                                ForEach(semester.grades, content: GradeRow.init)
+                            } label: {
+                                HStack {
+                                    Text(semester.name)
+                                        .foregroundColor(.main)
+                                    Spacer()
+                                    Text(semester.status.title)
+                                        .foregroundColor(semester.status.color)
+                                }
+                                .font(.headline)
                             }
-                        } label: {
-                            HStack {
-                                Text(semester.name)
-                                    .foregroundColor(.main)
-                                Spacer()
-                                Text(semester.status.title)
-                                    .foregroundColor(semester.status.color)
-                            }
-                            .font(.headline)
                         }
                     }
                 }
             }
             .listStyle(.insetGrouped)
-            .pullToRefresh(onRefresh: reload)
+            .pullToRefresh(onRefresh: pullToRefresh)
             .navigationTitle(Tab.grades.title)
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
             .onAppear(perform: reload)
-            .onWillEnterForeground(perform: onWillEnterForeground)
+            .onChange(of: scenePhase, perform: onScenePhaseChange)
         } else {
             PremiumView()
         }
@@ -96,12 +100,17 @@ struct GradesView: View {
 
     // MARK: - Methods
 
-    private func onWillEnterForeground() async {
+    private func onScenePhaseChange(_ scenePhase: ScenePhase) async {
+        guard scenePhase == .active else { return }
         await reload()
     }
 
     private func reload() async {
         await viewModel.fetchGradeSemesters()
+    }
+
+    private func pullToRefresh() async {
+        await viewModel.fetchGradeSemesters(showRefreshControl: false)
     }
 
 }

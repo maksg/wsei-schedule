@@ -58,9 +58,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     // MARK: - Methods
 
     func loadStudentInfo() async {
-        guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
-            return
-        }
+        guard isSignedIn else { return }
 
         if studentInfoRowViewModel.name.isEmpty {
             isRefreshing = true
@@ -75,6 +73,11 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
 
     private func readStudentInfo(fromHtml html: String) {
+        guard isSignedIn else {
+            isRefreshing = false
+            return
+        }
+        
         do {
             student = try htmlReader.readStudentInfo(fromHtml: html)
             resetErrors()
@@ -105,10 +108,9 @@ final class SettingsViewModel: NSObject, ObservableObject {
     }
     
     func signOut() {
-        UserDefaults.standard.signOut()
-
-        deleteAllLectures()
         apiRequest.clearCache()
+        UserDefaults.standard.signOut()
+        deleteAllLectures()
         setupStudentInfoRow()
 
         WidgetCenter.shared.reloadAllTimelines()

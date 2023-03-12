@@ -12,8 +12,9 @@ struct ContentView: View {
 
     // MARK: - Properties
 
-    @ObservedObject var viewModel: ContentViewModel
     @Environment(\.scenePhase) private var scenePhase: ScenePhase
+
+    @ObservedObject var viewModel: ContentViewModel
 
     // MARK: - Views
     
@@ -35,12 +36,8 @@ struct ContentView: View {
     // MARK: - Methods
 
     private func onScenePhaseChange(_ scenePhase: ScenePhase) {
-        switch scenePhase {
-        case .active:
-            viewModel.reloadLectures()
-        default:
-            break
-        }
+        guard scenePhase == .active else { return }
+        viewModel.reloadLectures()
     }
     
 }

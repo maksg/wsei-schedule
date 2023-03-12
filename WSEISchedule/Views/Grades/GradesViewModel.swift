@@ -48,12 +48,9 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     // MARK: - Methods
 
-    func fetchGradeSemesters() async {
-        guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
-            return
-        }
-
-        isRefreshingAll = true
+    func fetchGradeSemesters(showRefreshControl: Bool = true) async {
+        guard isSignedIn else { return }
+        isRefreshingAll = showRefreshControl
 
         do {
             let html = try await apiRequest.getGradeSemesterHtml().make()
@@ -66,6 +63,12 @@ final class GradesViewModel: NSObject, ObservableObject {
     private func readGradeSemesters(fromHtml html: String) {
         do {
             let gradeSemesters = try htmlReader.readGradeSemesters(fromHtml: html)
+
+            guard isSignedIn else {
+                isRefreshingAll = false
+                return
+            }
+            
             UserDefaults.standard.gradeSemesters = gradeSemesters
 
             if let currentSemesterId = gradeSemesters.first?.id {

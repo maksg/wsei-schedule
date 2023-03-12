@@ -16,7 +16,7 @@ final class Keychain {
             kSecClass: kSecClassGenericPassword,
             kSecReturnAttributes: true,
             kSecReturnData: true
-        ] as CFDictionary
+        ] as [CFString: Any] as CFDictionary
 
         SecItemDelete(query)
     }

@@ -394,8 +394,8 @@
 		500F218C29B78F43007E8D3E /* WSEIScheduleWatch */ = {
 			isa = PBXGroup;
 			children = (
-				57A4EF2922BA566000C08CE7 /* Views */,
 				50B22B3825AFA41900A71D14 /* Extensions */,
+				57A4EF2922BA566000C08CE7 /* Views */,
 				500F218D29B78F43007E8D3E /* WSEIScheduleWatch.swift */,
 				578A72F422BA4C890009130A /* ComplicationController.swift */,
 				578A72E222BA4C890009130A /* Assets.xcassets */,

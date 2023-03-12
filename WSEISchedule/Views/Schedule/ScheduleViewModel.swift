@@ -80,17 +80,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         firstLectureId == lecture.id
     }
     
-    func reloadLectures() async {
+    func reload() async {
         fetchLectures(from: persistentContainer.viewContext)
         await fetchSchedule()
     }
 
-    private func fetchSchedule() async {
-        guard HTTPCookieStorage.shared.cookies?.isEmpty == false else {
-            return
-        }
-
-        isRefreshing = true
+    func fetchSchedule(showRefreshControl: Bool = true) async {
+        guard isSignedIn else { return }
+        isRefreshing = showRefreshControl
 
         let fromDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
         let toDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
@@ -107,6 +104,12 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     private func readLectures(fromHtml html: String) {
         do {
             let lectureDictionaries = try htmlReader.readLectures(fromHtml: html)
+
+            guard isSignedIn else {
+                isRefreshing = false
+                return
+            }
+            
             let context = persistentContainer.viewContext
             deleteLectures(from: context)
 

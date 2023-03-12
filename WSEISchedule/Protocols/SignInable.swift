@@ -10,14 +10,15 @@ import UIKit
 
 protocol SignInable: AnyObject, WebAuthenticationPresentationContextProviding {
     var isSigningIn: Bool { get set }
-    func startSigningIn()
-    func startSigningIn(silently: Bool)
     func onSignIn()
-    func onError(_ error: Error)
     func showErrorMessage(_ errorMessage: String)
 }
 
 extension SignInable {
+
+    var isSignedIn: Bool {
+        HTTPCookieStorage.shared.cookies?.isEmpty == false
+    }
 
     func presentationAnchor(for session: WebAuthenticationSession) -> WebAuthenticationSession.PresentationAnchor? {
         return UIApplication.shared.foregroundActiveScene?.windows.first(where: \.isKeyWindow)

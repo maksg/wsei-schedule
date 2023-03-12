@@ -11,6 +11,8 @@ import SwiftUI
 struct ScheduleView: View {
 
     // MARK: - Properties
+    
+    @Environment(\.scenePhase) private var scenePhase: ScenePhase
 
     @ObservedObject var viewModel: ScheduleViewModel
     @State private var isScheduleHistoryActive: Bool = false
@@ -29,14 +31,14 @@ struct ScheduleView: View {
                     .listRowBackground(Color.red)
             }
 
+            if viewModel.isRefreshing {
+                ProgressView()
+                    .frame(maxWidth: .infinity)
+                    .id(UUID())
+            }
+
             if viewModel.lectureWeeks.isEmpty {
-                if viewModel.isRefreshing {
-                    ProgressView()
-                        .frame(maxWidth: .infinity)
-                        .id(UUID())
-                } else {
-                    Text(Translation.Schedule.noLectures.localized)
-                }
+                Text(Translation.Schedule.noLectures.localized)
             } else {
                 ForEach(viewModel.lectureWeeks) { lectureWeek in
                     Section {
@@ -51,7 +53,7 @@ struct ScheduleView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .pullToRefresh(onRefresh: reload)
+        .pullToRefresh(onRefresh: pullToRefresh)
         .navigationTitle(Tab.schedule.title)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -65,17 +67,22 @@ struct ScheduleView: View {
         .accessibility(identifier: "ScheduleList")
         .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         .onAppear(perform: reload)
-        .onWillEnterForeground(perform: onWillEnterForeground)
+        .onChange(of: scenePhase, perform: onScenePhaseChange)
     }
 
     // MARK: - Methods
 
-    private func onWillEnterForeground() async {
+    private func onScenePhaseChange(_ scenePhase: ScenePhase) async {
+        guard scenePhase == .active else { return }
         await reload()
     }
 
     private func reload() async {
-        await viewModel.reloadLectures()
+        await viewModel.reload()
+    }
+
+    private func pullToRefresh() async {
+        await viewModel.fetchSchedule(showRefreshControl: false)
     }
     
 }

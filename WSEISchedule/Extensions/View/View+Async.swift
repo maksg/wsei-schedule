@@ -19,10 +19,10 @@ extension View {
         }
     }
 
-    func onWillEnterForeground(perform action: @escaping () async -> Void) -> some View {
-        onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+    func onChange<V>(of value: V, perform action: @escaping (_ newValue: V) async -> Void) -> some View where V: Equatable {
+        onChange(of: value) { newValue in
             Task {
-                await action()
+                await action(newValue)
             }
         }
     }
