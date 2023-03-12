@@ -8,6 +8,10 @@
 
 "wsei_schedule" = "WSEI Schedule";
 
+// Menu Bar
+
+"menu_bar.refresh" = "Refresh";
+
 // Sign In
 
 "sign_in.sign_in" = "Sign In";

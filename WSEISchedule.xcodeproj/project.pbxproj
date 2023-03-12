@@ -59,6 +59,8 @@
 		504A723126A99FCF002EA50C /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A723026A99FCF002EA50C /* SignInable.swift */; };
 		504AD2C828E234800071F57B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AD2C728E234800071F57B /* Keychain.swift */; };
 		504AD2C928E239190071F57B /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
+		5057728729BE50760031FA2B /* View+KeyboardShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057728629BE50760031FA2B /* View+KeyboardShortcut.swift */; };
+		5057728929BE50EA0031FA2B /* Button+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057728829BE50EA0031FA2B /* Button+Async.swift */; };
 		505BB41B270DB0A000F556C5 /* GradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41A270DB0A000F556C5 /* GradesView.swift */; };
 		505BB41D270DB0AA00F556C5 /* GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */; };
 		505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41F270DC72F00F556C5 /* GradeRow.swift */; };
@@ -248,6 +250,8 @@
 		50493B8629B3884B0011964C /* DispatchMainPublished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchMainPublished.swift; sourceTree = "<group>"; };
 		504A723026A99FCF002EA50C /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
 		504AD2C728E234800071F57B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		5057728629BE50760031FA2B /* View+KeyboardShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+KeyboardShortcut.swift"; sourceTree = "<group>"; };
+		5057728829BE50EA0031FA2B /* Button+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Async.swift"; sourceTree = "<group>"; };
 		505BB41A270DB0A000F556C5 /* GradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesView.swift; sourceTree = "<group>"; };
 		505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewModel.swift; sourceTree = "<group>"; };
 		505BB41F270DC72F00F556C5 /* GradeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRow.swift; sourceTree = "<group>"; };
@@ -419,6 +423,7 @@
 				5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */,
 				5014D31029B152780045718A /* View+Async.swift */,
 				500F218529B6196E007E8D3E /* View+ScrollToTop.swift */,
+				5057728629BE50760031FA2B /* View+KeyboardShortcut.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 				50493B8129B362560011964C /* Dictionary+KeyFromText.swift */,
 				501B1A3729BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift */,
 				501B1A3929BBF52C008AACAA /* Bundle+AppVersion.swift */,
+				5057728829BE50EA0031FA2B /* Button+Async.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1098,6 +1104,7 @@
 				57791D6723C6191900F91D7F /* SKProduct+LocalizedPrice.swift in Sources */,
 				503A0D0A28E5F8F6001E912F /* PremiumItem.swift in Sources */,
 				57791D6B23C6354400F91D7F /* SupportDeveloperProduct.swift in Sources */,
+				5057728929BE50EA0031FA2B /* Button+Async.swift in Sources */,
 				50BB49A626A600F300BFE87B /* Requestable.swift in Sources */,
 				505BB422270DC76200F556C5 /* Grade.swift in Sources */,
 				57AD31A622AE6BC3009EEB1F /* ScheduleView.swift in Sources */,
@@ -1123,6 +1130,7 @@
 				505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */,
 				50493B8029B362240011964C /* GradeSemester.swift in Sources */,
 				50BB499326A328A500BFE87B /* APIRequest.swift in Sources */,
+				5057728729BE50760031FA2B /* View+KeyboardShortcut.swift in Sources */,
 				57791D6323C5EA4700F91D7F /* Games.swift in Sources */,
 				50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */,
 				570C5AC92345EAC7005EBC4D /* SignInView.swift in Sources */,
@@ -1507,7 +1515,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1535,7 +1543,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

@@ -11,6 +11,9 @@ import SwiftUI
 extension View {
 
     func pullToRefresh(onRefresh: @escaping () async -> Void) -> some View {
+        #if targetEnvironment(macCatalyst)
+        return self
+        #else
         if #available(iOS 15.0, *) {
             return refreshable {
                 await onRefresh()
@@ -21,6 +24,7 @@ extension View {
                 PullToRefreshView(onRefresh: onRefresh).frame(height: 0)
             }
         }
+        #endif
     }
 
 }

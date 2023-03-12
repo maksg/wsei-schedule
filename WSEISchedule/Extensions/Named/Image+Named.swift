@@ -11,6 +11,8 @@ import SwiftUI
 extension Image {
     static var logo: Image { Image("logo") }
 
+    static var refresh: Image { Image(systemName: "arrow.clockwise") }
+
     static var schedule: Image { Image(systemName: "calendar") }
     static var scheduleHistory: Image { Image(systemName: "clock.arrow.circlepath") }
     static var grades: Image { Image(systemName: "rosette") }

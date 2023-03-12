@@ -81,9 +81,7 @@ class WebAuthenticationSession: NSObject {
 
         viewController.edgesForExtendedLayout = []
         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: dismiss))
-        viewController.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(systemItem: .refresh, primaryAction: UIAction(handler: reload))
-        ]
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .refresh, primaryAction: UIAction(handler: reload))
 
         updateNavigationItems()
         backButton.primaryAction = UIAction(image: .back, handler: goBack)

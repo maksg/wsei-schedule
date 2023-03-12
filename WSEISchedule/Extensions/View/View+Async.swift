@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Combine
 
 extension View {
 
@@ -23,6 +22,14 @@ extension View {
         onChange(of: value) { newValue in
             Task {
                 await action(newValue)
+            }
+        }
+    }
+
+    func onKeyboardShortcut(_ key: KeyEquivalent, modifiers: EventModifiers = .command, perform action: @escaping () async -> Void) -> some View {
+        onKeyboardShortcut(key, modifiers: modifiers) {
+            Task {
+                await action()
             }
         }
     }

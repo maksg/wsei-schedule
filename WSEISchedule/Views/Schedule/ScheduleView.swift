@@ -56,6 +56,15 @@ struct ScheduleView: View {
         .pullToRefresh(onRefresh: pullToRefresh)
         .navigationTitle(Tab.schedule.title)
         .toolbar {
+            #if targetEnvironment(macCatalyst)
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    await reload()
+                } label: {
+                    Image.refresh
+                }
+            }
+            #endif
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink {
                     ScheduleHistoryView(lectureWeeks: viewModel.previousLectureWeeks)
@@ -68,6 +77,7 @@ struct ScheduleView: View {
         .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
         .onAppear(perform: reload)
         .onChange(of: scenePhase, perform: onScenePhaseChange)
+        .onKeyboardShortcut("r", modifiers: .command, perform: reload)
     }
 
     // MARK: - Methods

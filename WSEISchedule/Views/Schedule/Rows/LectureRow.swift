@@ -79,7 +79,7 @@ struct LectureRow: View {
 
                 Line()
                     .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
-                    .foregroundColor(.tertiary)
+                    .foregroundColor(.quaternary)
                     .frame(height: 1)
 
                 VStack(alignment: .leading, spacing: 8) {

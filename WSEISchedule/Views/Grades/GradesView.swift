@@ -89,10 +89,22 @@ struct GradesView: View {
             .listStyle(.insetGrouped)
             .pullToRefresh(onRefresh: pullToRefresh)
             .navigationTitle(Tab.grades.title)
+            #if targetEnvironment(macCatalyst)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        await reload()
+                    } label: {
+                        Image.refresh
+                    }
+                }
+            }
+            #endif
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
             .onAppear(perform: reload)
             .onChange(of: scenePhase, perform: onScenePhaseChange)
+            .onKeyboardShortcut("r", modifiers: .command, perform: reload)
         } else {
             PremiumView()
         }

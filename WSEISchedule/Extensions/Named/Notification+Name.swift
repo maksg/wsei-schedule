@@ -10,4 +10,5 @@ import Foundation
 
 extension Notification.Name {
     static let deleteAllLectures = Notification.Name(rawValue: "DeleteAllLectures")
+    static let keyboardShortcut = Notification.Name(rawValue: "KeyboardShortcut")
 }

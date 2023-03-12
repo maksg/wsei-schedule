@@ -127,10 +127,22 @@ struct RootView: View {
     var body: some View {
         if viewModel.isSignedIn {
             content
+                .onKeyboardShortcut("1", perform: showSchedule)
+                .onKeyboardShortcut("2", perform: showGrades)
         } else {
             SignInView(viewModel: viewModel.signInViewModel)
                 .transition(.move(edge: .bottom))
         }
+    }
+
+    // MARK: - Methods
+
+    private func showSchedule() {
+        viewModel.selectedListItem = .schedule
+    }
+
+    private func showGrades() {
+        viewModel.selectedListItem = .grades
     }
 
 }

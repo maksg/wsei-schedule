@@ -8,6 +8,10 @@
 
 "wsei_schedule" = "Harmonogram";
 
+// Menu Bar
+
+"menu_bar.refresh" = "Odśwież";
+
 // Sign In
 
 "sign_in.sign_in" = "Zaloguj się";

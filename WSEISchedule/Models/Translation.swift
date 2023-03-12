@@ -4,6 +4,10 @@
 
 enum Translation: String {
 
+    enum MenuBar: String {
+        case refresh = "menu_bar.refresh"
+    }
+
     enum SignIn: String {
         case signIn = "sign_in.sign_in"
         case signOut = "sign_in.sign_out"

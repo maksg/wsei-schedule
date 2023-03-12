@@ -14,5 +14,26 @@ struct WSEISchedule: App {
         WindowGroup {
             RootView(viewModel: RootViewModel())
         }
+        .commands {
+            CommandGroup(replacing: .systemServices, addition: {})
+            CommandGroup(replacing: .textFormatting, addition: {})
+            CommandGroup(replacing: .saveItem, addition: {})
+            CommandGroup(replacing: .importExport, addition: {})
+            CommandGroup(replacing: .printItem, addition: {})
+            CommandGroup(replacing: .newItem) {
+                Button(Translation.MenuBar.refresh.localized) {
+                    NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("r"))
+                }.keyboardShortcut("r")
+            }
+            CommandGroup(replacing: .toolbar) {
+                Button(Translation.Schedule.title.localized) {
+                    NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("1"))
+                }.keyboardShortcut("1")
+
+                Button(Translation.Grades.title.localized) {
+                    NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("2"))
+                }.keyboardShortcut("2")
+            }
+        }
     }
 }
