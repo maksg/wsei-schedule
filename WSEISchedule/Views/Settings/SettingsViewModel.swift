@@ -28,7 +28,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     @DispatchMainPublished var studentInfoRowViewModel: StudentInfoRowViewModel = StudentInfoRowViewModel(student: Student())
     @DispatchMainPublished var supportDeveloperProducts: [SupportDeveloperProduct] = []
     @DispatchMainPublished var showThankYouAlert: Bool = false
-    @DispatchMainPublished var isRefreshing: Bool = true
+    @DispatchMainPublished var isRefreshing: Bool = false
 
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSSharedPersistentContainer(name: "Lectures")
@@ -41,12 +41,12 @@ final class SettingsViewModel: NSObject, ObservableObject {
 
     var isSigningIn: Bool = false
 
-    let apiRequest: APIRequest
+    let apiRequest: APIRequestable
     let htmlReader: HTMLReader
 
     // MARK: - Initialization
 
-    init(apiRequest: APIRequest, htmlReader: HTMLReader) {
+    init(apiRequest: APIRequestable, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
         self.htmlReader = htmlReader
         super.init()
@@ -58,7 +58,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
     // MARK: - Methods
 
     func loadStudentInfo() async {
-        guard isSignedIn else { return }
+        guard isSignedIn && !isRefreshing else { return }
 
         if studentInfoRowViewModel.name.isEmpty {
             isRefreshing = true

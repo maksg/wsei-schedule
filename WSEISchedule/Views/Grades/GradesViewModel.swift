@@ -13,7 +13,7 @@ final class GradesViewModel: NSObject, ObservableObject {
     // MARK: - Properties
 
     @DispatchMainPublished var errorMessage: String = ""
-    @DispatchMainPublished var isRefreshingAll: Bool = true
+    @DispatchMainPublished var isRefreshingAll: Bool = false
     @DispatchMainPublished var isRefreshing: Set<String> = []
     @DispatchMainPublished var isExpanded: Set<String> = [] {
         didSet {
@@ -31,12 +31,12 @@ final class GradesViewModel: NSObject, ObservableObject {
 
     var isSigningIn: Bool = false
 
-    let apiRequest: APIRequest
+    let apiRequest: APIRequestable
     let htmlReader: HTMLReader
 
     // MARK: - Initialization
 
-    init(apiRequest: APIRequest, htmlReader: HTMLReader) {
+    init(apiRequest: APIRequestable, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
         self.htmlReader = htmlReader
         super.init()
@@ -49,11 +49,11 @@ final class GradesViewModel: NSObject, ObservableObject {
     // MARK: - Methods
 
     func fetchGradeSemesters(showRefreshControl: Bool = true) async {
-        guard isSignedIn else { return }
+        guard isSignedIn && !isRefreshingAll else { return }
         isRefreshingAll = showRefreshControl
 
         do {
-            let html = try await apiRequest.getGradeSemesterHtml().make()
+            let html = try await apiRequest.getGradeSemestersHtml().make()
             readGradeSemesters(fromHtml: html)
         } catch {
             onError(error)

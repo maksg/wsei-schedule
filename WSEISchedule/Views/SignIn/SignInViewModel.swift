@@ -18,7 +18,18 @@ final class SignInViewModel: NSObject, ObservableObject {
     // MARK: - Methods
 
     func signIn() {
+        #if MOCK
+        let cookie = HTTPCookie(properties: [
+            .name: "ASP.NET_SessionId",
+            .value: "mock",
+            .domain: "dziekanat.wsei.edu.pl",
+            .path: "/"
+        ])!
+        UserDefaults.standard.cookies = [cookie]
+        onSignIn()
+        #else
         startSigningIn(silently: false)
+        #endif
     }
     
 }

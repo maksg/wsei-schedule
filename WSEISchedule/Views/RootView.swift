@@ -13,6 +13,8 @@ struct RootView: View {
     // MARK: - Properties
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.scenePhase) private var scenePhase: ScenePhase
+
     @ObservedObject var viewModel: RootViewModel
 
     // MARK: - Views
@@ -127,6 +129,7 @@ struct RootView: View {
     var body: some View {
         if viewModel.isSignedIn {
             content
+                .onChange(of: scenePhase, perform: onScenePhaseChange)
                 .onKeyboardShortcut("1", perform: showSchedule)
                 .onKeyboardShortcut("2", perform: showGrades)
         } else {
@@ -136,6 +139,11 @@ struct RootView: View {
     }
 
     // MARK: - Methods
+
+    private func onScenePhaseChange(_ scenePhase: ScenePhase) {
+        guard scenePhase == .active else { return }
+        viewModel.reloadData()
+    }
 
     private func showSchedule() {
         viewModel.selectedListItem = .schedule

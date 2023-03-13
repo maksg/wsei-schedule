@@ -12,8 +12,8 @@ final class RootViewModel: ObservableObject {
 
     // MARK: - Properties
 
-    let apiRequest = APIRequest()
-    let htmlReader = HTMLReader()
+    let apiRequest: APIRequestable
+    let htmlReader: HTMLReader = HTMLReader()
 
     let signInViewModel: SignInViewModel
     let scheduleViewModel: ScheduleViewModel
@@ -54,6 +54,14 @@ final class RootViewModel: ObservableObject {
     // MARK: - Initialization
     
     init() {
+        #if MOCK
+        apiRequest = APIRequestMock()
+        #elseif DEV
+        apiRequest = APIRequest(debug: true)
+        #else
+        apiRequest = APIRequest()
+        #endif
+
         signInViewModel = SignInViewModel()
         scheduleViewModel = ScheduleViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
         gradesViewModel = GradesViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
@@ -67,12 +75,27 @@ final class RootViewModel: ObservableObject {
 
         signInViewModel.finishSignIn = { [weak self] in
             self?.checkSignInStatus()
+            self?.reloadData()
         }
     }
 
     // MARK: - Methods
+
+    func reloadData() {
+        guard isSignedIn else { return }
+
+        Task {
+            await scheduleViewModel.reload()
+        }
+        Task {
+            await gradesViewModel.fetchGradeSemesters()
+        }
+        Task {
+            await settingsViewModel.loadStudentInfo()
+        }
+    }
     
-    func checkSignInStatus() {
+    private func checkSignInStatus() {
         withAnimation {
             isSignedIn = !cookies.isEmpty
         }

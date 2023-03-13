@@ -27,8 +27,6 @@
 		500F21CA29B79362007E8D3E /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83222AFE361005BED89 /* Date+Extensions.swift */; };
 		500F21CB29B79377007E8D3E /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
 		500F21CD29B793B8007E8D3E /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
-		500F21CE29BB5EC0007E8D3E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
-		500F21CF29BB5EC0007E8D3E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
 		500F21D029BB5EF2007E8D3E /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
 		500F21D329BB6037007E8D3E /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
 		5014D31129B152780045718A /* View+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5014D31029B152780045718A /* View+Async.swift */; };
@@ -65,11 +63,20 @@
 		505BB41D270DB0AA00F556C5 /* GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */; };
 		505BB420270DC72F00F556C5 /* GradeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB41F270DC72F00F556C5 /* GradeRow.swift */; };
 		505BB422270DC76200F556C5 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505BB421270DC76200F556C5 /* Grade.swift */; };
+		5065F89529BEA85E00E7AA77 /* GradeSemesters.html in Resources */ = {isa = PBXBuildFile; fileRef = 5065F89429BEA85E00E7AA77 /* GradeSemesters.html */; };
+		5065F89729BEA86700E7AA77 /* Grades.html in Resources */ = {isa = PBXBuildFile; fileRef = 5065F89629BEA86700E7AA77 /* Grades.html */; };
+		5065F89929BEA87000E7AA77 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 5065F89829BEA87000E7AA77 /* Main.html */; };
 		5067A43628DCA35400FFF92D /* LectureWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067A43528DCA35400FFF92D /* LectureWeek.swift */; };
 		50851BCD26AF0CF60006F96C /* String+FormUrlEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */; };
 		5087932529BE609300833E53 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
+		5087932929BE9B8200833E53 /* RequestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087932829BE9B8200833E53 /* RequestMock.swift */; };
+		5087932B29BE9C4900833E53 /* APIRequestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087932A29BE9C4900833E53 /* APIRequestMock.swift */; };
+		5087932D29BE9C9500833E53 /* APIRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087932C29BE9C9500833E53 /* APIRequestable.swift */; };
+		5087932E29BE9E7B00833E53 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
+		5087933129BEA6CD00833E53 /* Schedule.html in Resources */ = {isa = PBXBuildFile; fileRef = 5087933029BEA6CD00833E53 /* Schedule.html */; };
 		50AD4A4B23C64F0E00C7DB3B /* GameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */; };
 		50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */; };
+		50B9863129BF61690066C831 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
 		50BADAD625DD61FE00E8614C /* UserDefaults+ObjectSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BADAD525DD61FE00E8614C /* UserDefaults+ObjectSaving.swift */; };
 		50BB499326A328A500BFE87B /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB498E26A328A400BFE87B /* APIRequest.swift */; };
 		50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB498F26A328A400BFE87B /* HTTPMethod.swift */; };
@@ -78,7 +85,6 @@
 		50BB499726A328A500BFE87B /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB499226A328A500BFE87B /* Request.swift */; };
 		50BB499A26A351AE00BFE87B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 50BB499926A351AE00BFE87B /* SwiftSoup */; };
 		50BB49A126A5EEDC00BFE87B /* HTMLReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */; };
-		50BB49A426A5F3D600BFE87B /* SignInParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A326A5F3D600BFE87B /* SignInParameters.swift */; };
 		50BB49A626A600F300BFE87B /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A526A600F300BFE87B /* Requestable.swift */; };
 		50BB49A826A6014400BFE87B /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A726A6014400BFE87B /* Routable.swift */; };
 		50D1AC8629B0036100A1BD4E /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */; };
@@ -256,9 +262,16 @@
 		505BB41C270DB0AA00F556C5 /* GradesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewModel.swift; sourceTree = "<group>"; };
 		505BB41F270DC72F00F556C5 /* GradeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRow.swift; sourceTree = "<group>"; };
 		505BB421270DC76200F556C5 /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
+		5065F89429BEA85E00E7AA77 /* GradeSemesters.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = GradeSemesters.html; sourceTree = "<group>"; };
+		5065F89629BEA86700E7AA77 /* Grades.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Grades.html; sourceTree = "<group>"; };
+		5065F89829BEA87000E7AA77 /* Main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Main.html; sourceTree = "<group>"; };
 		5067A43528DCA35400FFF92D /* LectureWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureWeek.swift; sourceTree = "<group>"; };
 		50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+FormUrlEncoded.swift"; sourceTree = "<group>"; };
 		5087932629BE630800833E53 /* gentranslations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gentranslations.swift; sourceTree = "<group>"; };
+		5087932829BE9B8200833E53 /* RequestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMock.swift; sourceTree = "<group>"; };
+		5087932A29BE9C4900833E53 /* APIRequestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestMock.swift; sourceTree = "<group>"; };
+		5087932C29BE9C9500833E53 /* APIRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestable.swift; sourceTree = "<group>"; };
+		5087933029BEA6CD00833E53 /* Schedule.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Schedule.html; sourceTree = "<group>"; };
 		50AD4A4A23C64F0E00C7DB3B /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		50B22AFE25AF9A5200A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		50B22B3925AFA43600A71D14 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
@@ -269,7 +282,6 @@
 		50BB499126A328A500BFE87B /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		50BB499226A328A500BFE87B /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLReader.swift; sourceTree = "<group>"; };
-		50BB49A326A5F3D600BFE87B /* SignInParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInParameters.swift; sourceTree = "<group>"; };
 		50BB49A526A600F300BFE87B /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		50BB49A726A6014400BFE87B /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
@@ -476,6 +488,27 @@
 			path = String;
 			sourceTree = "<group>";
 		};
+		5087932729BE9B2D00833E53 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				5087932829BE9B8200833E53 /* RequestMock.swift */,
+				5087932A29BE9C4900833E53 /* APIRequestMock.swift */,
+				57561BE22535B1EE00DBC3D3 /* MockData.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		5087932F29BEA6A100833E53 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				5065F89829BEA87000E7AA77 /* Main.html */,
+				5087933029BEA6CD00833E53 /* Schedule.html */,
+				5065F89429BEA85E00E7AA77 /* GradeSemesters.html */,
+				5065F89629BEA86700E7AA77 /* Grades.html */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		50B22B3825AFA41900A71D14 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,7 +554,6 @@
 		50BB49A226A5F3C400BFE87B /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
-				50BB49A326A5F3D600BFE87B /* SignInParameters.swift */,
 				503BCA9526A82E2400FD8091 /* ScheduleParameters.swift */,
 			);
 			path = Parameters;
@@ -663,6 +695,7 @@
 				501B1A2D29BBACB6008AACAA /* WSEISchedule.swift */,
 				57AD318422AE6BC3009EEB1F /* Extensions */,
 				50BB498D26A3275C00BFE87B /* API */,
+				5087932729BE9B2D00833E53 /* Mocks */,
 				50BB499D26A4C86200BFE87B /* Utilities */,
 				57AD318022AE6BC3009EEB1F /* Models */,
 				57AD319522AE6BC3009EEB1F /* Protocols */,
@@ -716,7 +749,6 @@
 				50493B7F29B362240011964C /* GradeSemester.swift */,
 				57791D6A23C6354400F91D7F /* SupportDeveloperProduct.swift */,
 				577DDF1723C72BA500D841BB /* Student.swift */,
-				57561BE22535B1EE00DBC3D3 /* MockData.swift */,
 				50BB49A226A5F3C400BFE87B /* Parameters */,
 			);
 			path = Models;
@@ -778,8 +810,9 @@
 		57AD319522AE6BC3009EEB1F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				50BB49A526A600F300BFE87B /* Requestable.swift */,
 				50BB49A726A6014400BFE87B /* Routable.swift */,
+				50BB49A526A600F300BFE87B /* Requestable.swift */,
+				5087932C29BE9C9500833E53 /* APIRequestable.swift */,
 				504A723026A99FCF002EA50C /* SignInable.swift */,
 			);
 			path = Protocols;
@@ -788,6 +821,7 @@
 		57AD31AC22AE6BD0009EEB1F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5087932F29BEA6A100833E53 /* Mocks */,
 				57AD315622AE6B51009EEB1F /* Assets.xcassets */,
 				5773656E22C2349D00C3C9AC /* Colors.xcassets */,
 				57AD315B22AE6B51009EEB1F /* LaunchScreen.storyboard */,
@@ -1009,10 +1043,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5773656F22C2349D00C3C9AC /* Colors.xcassets in Resources */,
+				5065F89929BEA87000E7AA77 /* Main.html in Resources */,
 				501B1A3129BBBC8C008AACAA /* InfoPlist.strings in Resources */,
 				57AD315D22AE6B51009EEB1F /* LaunchScreen.storyboard in Resources */,
 				57AD31B022AE6C01009EEB1F /* Localizable.strings in Resources */,
+				5065F89729BEA86700E7AA77 /* Grades.html in Resources */,
+				5065F89529BEA85E00E7AA77 /* GradeSemesters.html in Resources */,
 				57AD315A22AE6B51009EEB1F /* Preview Assets.xcassets in Resources */,
+				5087933129BEA6CD00833E53 /* Schedule.html in Resources */,
 				57AD315722AE6B51009EEB1F /* Assets.xcassets in Resources */,
 				5031A3E625B89ED6005B9322 /* LaunchScreen_iPad.storyboard in Resources */,
 			);
@@ -1074,7 +1112,6 @@
 				500F21B929B790CF007E8D3E /* ContentViewModel.swift in Sources */,
 				501B1A2C29BBA6CC008AACAA /* Color+Named.swift in Sources */,
 				500F21CB29B79377007E8D3E /* View+HeightReader.swift in Sources */,
-				500F21CF29BB5EC0007E8D3E /* MockData.swift in Sources */,
 				500F21CA29B79362007E8D3E /* Date+Extensions.swift in Sources */,
 				500F21D029BB5EF2007E8D3E /* Grade.swift in Sources */,
 				500F21C429B792A3007E8D3E /* LectureDay.swift in Sources */,
@@ -1083,6 +1120,7 @@
 				500F21C629B792AB007E8D3E /* CoreDataLecture.swift in Sources */,
 				500F21BA29B790D2007E8D3E /* LectureRow.swift in Sources */,
 				500F21BC29B790D9007E8D3E /* Notification+Name.swift in Sources */,
+				50B9863129BF61690066C831 /* MockData.swift in Sources */,
 				500F21CD29B793B8007E8D3E /* AnimatableRowHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1104,8 +1142,8 @@
 				571045E425385BCA0031B0A5 /* ScheduleWidgets.swift in Sources */,
 				57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */,
 				5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */,
-				500F21CE29BB5EC0007E8D3E /* MockData.swift in Sources */,
 				57A6BF1525309F9200E9B26C /* Lecture.swift in Sources */,
+				5087932E29BE9E7B00833E53 /* MockData.swift in Sources */,
 				57A6BF1D2530A13A00E9B26C /* Color+Named.swift in Sources */,
 				57A6BEC02530908200E9B26C /* NextLectureWidget.swift in Sources */,
 				57561BDA2535B15100DBC3D3 /* SmallNextLectureView.swift in Sources */,
@@ -1175,6 +1213,7 @@
 				501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */,
 				50851BCD26AF0CF60006F96C /* String+FormUrlEncoded.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
+				5087932D29BE9C9500833E53 /* APIRequestable.swift in Sources */,
 				576B970423ABC69300CA17CF /* StudentInfoRow.swift in Sources */,
 				57506BD922B910C80056A099 /* RootViewModel.swift in Sources */,
 				57AD31B922AE6ECF009EEB1F /* CoreDataLecture.swift in Sources */,
@@ -1183,6 +1222,7 @@
 				57561BE32535B1EE00DBC3D3 /* MockData.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
 				50493B8729B3884B0011964C /* DispatchMainPublished.swift in Sources */,
+				5087932929BE9B8200833E53 /* RequestMock.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* RootView.swift in Sources */,
 				50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */,
 				50493B8229B362560011964C /* Dictionary+KeyFromText.swift in Sources */,
@@ -1191,12 +1231,12 @@
 				5773BE1423ACE45400264FC7 /* URLImage.swift in Sources */,
 				576B970223ABC66800CA17CF /* StudentInfoRowViewModel.swift in Sources */,
 				57AD31A322AE6BC3009EEB1F /* SettingsView.swift in Sources */,
+				5087932B29BE9C4900833E53 /* APIRequestMock.swift in Sources */,
 				575218E8252DFEBB007FA0A5 /* PullToRefreshView.swift in Sources */,
 				5014D31129B152780045718A /* View+Async.swift in Sources */,
 				57AD31A522AE6BC3009EEB1F /* ScheduleViewModel.swift in Sources */,
 				50B22AFF25AF9A5200A71D14 /* Notification+Name.swift in Sources */,
 				5701F83122AFE084005BED89 /* DayHeader.swift in Sources */,
-				50BB49A426A5F3D600BFE87B /* SignInParameters.swift in Sources */,
 				50BB499726A328A500BFE87B /* Request.swift in Sources */,
 				57AD31A422AE6BC3009EEB1F /* SettingsViewModel.swift in Sources */,
 			);
@@ -1343,6 +1383,201 @@
 			};
 			name = Release;
 		};
+		50B9863229BF61E60066C831 /* Debug Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DMOCK";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = "Debug Mock";
+		};
+		50B9863329BF61E60066C831 /* Debug Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 30100;
+				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content WSEISchedule/Resources/Mocks";
+				DEVELOPMENT_TEAM = 5S8XF46499;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = WSEISchedule/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 3.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_UIKITFORMAC = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
+			};
+			name = "Debug Mock";
+		};
+		50B9863429BF61E60066C831 /* Debug Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5S8XF46499;
+				INFOPLIST_FILE = WSEIScheduleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSEISchedule.app/WSEISchedule";
+			};
+			name = "Debug Mock";
+		};
+		50B9863529BF61E60066C831 /* Debug Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5S8XF46499;
+				INFOPLIST_FILE = WSEIScheduleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WSEISchedule;
+			};
+			name = "Debug Mock";
+		};
+		50B9863629BF61E60066C831 /* Debug Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 30100;
+				DEVELOPMENT_TEAM = 5S8XF46499;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WSEIScheduleWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "WSEI Schedule";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.InfinityPi.WSEI-Schedule";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = "Debug Mock";
+		};
+		50B9863729BF61E60066C831 /* Debug Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ScheduleWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 30100;
+				DEVELOPMENT_TEAM = 5S8XF46499;
+				INFOPLIST_FILE = ScheduleWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.ScheduleWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug Mock";
+		};
 		57A6BEB52530904900E9B26C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1454,6 +1689,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEV";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1525,7 +1761,7 @@
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 30100;
-				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content WSEISchedule/Resources/Mocks";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WSEISchedule/Info.plist;
@@ -1553,7 +1789,7 @@
 				CODE_SIGN_ENTITLEMENTS = WSEISchedule/WSEISchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 30100;
-				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "WSEISchedule/Preview\\ Content WSEISchedule/Resources/Mocks";
 				DEVELOPMENT_TEAM = 5S8XF46499;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WSEISchedule/Info.plist;
@@ -1663,6 +1899,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				500F21B029B78F44007E8D3E /* Debug */,
+				50B9863629BF61E60066C831 /* Debug Mock */,
 				500F21B129B78F44007E8D3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1672,6 +1909,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57A6BEB52530904900E9B26C /* Debug */,
+				50B9863729BF61E60066C831 /* Debug Mock */,
 				57A6BEB62530904900E9B26C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1681,6 +1919,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57AD317522AE6B51009EEB1F /* Debug */,
+				50B9863229BF61E60066C831 /* Debug Mock */,
 				57AD317622AE6B51009EEB1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1690,6 +1929,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57AD317822AE6B51009EEB1F /* Debug */,
+				50B9863329BF61E60066C831 /* Debug Mock */,
 				57AD317922AE6B51009EEB1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1699,6 +1939,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57AD317B22AE6B51009EEB1F /* Debug */,
+				50B9863429BF61E60066C831 /* Debug Mock */,
 				57AD317C22AE6B51009EEB1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1708,6 +1949,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57AD317E22AE6B51009EEB1F /* Debug */,
+				50B9863529BF61E60066C831 /* Debug Mock */,
 				57AD317F22AE6B51009EEB1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

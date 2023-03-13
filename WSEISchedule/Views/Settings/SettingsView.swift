@@ -80,7 +80,6 @@ struct SettingsViewContent: View {
                 .accessibility(identifier: "SignOutButton")
             }
         }
-        .onAppear(perform: loadStudentInfo)
         .alert(isPresented: $viewModel.showThankYouAlert) {
             Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
                   message: Text(Translation.Settings.ThankYouAlert.message.localized),
@@ -89,10 +88,6 @@ struct SettingsViewContent: View {
     }
 
     // MARK: - Methods
-
-    private func loadStudentInfo() async {
-        await viewModel.loadStudentInfo()
-    }
 
     private func signOut() {
         viewModel.signOut()
@@ -107,6 +102,6 @@ struct SettingsViewContent: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel(apiRequest: APIRequest(), htmlReader: HTMLReader()), isSignedIn: .constant(true))
+        SettingsView(viewModel: SettingsViewModel(apiRequest: APIRequestMock(), htmlReader: HTMLReader()), isSignedIn: .constant(true))
     }
 }

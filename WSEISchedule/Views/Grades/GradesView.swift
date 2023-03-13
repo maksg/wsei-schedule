@@ -12,8 +12,6 @@ struct GradesView: View {
 
     // MARK: - Properties
 
-    @Environment(\.scenePhase) private var scenePhase: ScenePhase
-
     @AppStorage(UserDefaults.Key.premium.rawValue) private var isPremium: Bool = false
     @ObservedObject var viewModel: GradesViewModel
 
@@ -102,8 +100,6 @@ struct GradesView: View {
             #endif
             .accessibility(identifier: "GradesList")
             .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
-            .onAppear(perform: reload)
-            .onChange(of: scenePhase, perform: onScenePhaseChange)
             .onKeyboardShortcut("r", modifiers: .command, perform: reload)
         } else {
             PremiumView()
@@ -111,11 +107,6 @@ struct GradesView: View {
     }
 
     // MARK: - Methods
-
-    private func onScenePhaseChange(_ scenePhase: ScenePhase) async {
-        guard scenePhase == .active else { return }
-        await reload()
-    }
 
     private func reload() async {
         await viewModel.fetchGradeSemesters()
@@ -131,6 +122,6 @@ struct GradesView: View {
 
 struct GradesView_Previews: PreviewProvider {
     static var previews: some View {
-        GradesView(viewModel: GradesViewModel(apiRequest: APIRequest(), htmlReader: HTMLReader()))
+        GradesView(viewModel: GradesViewModel(apiRequest: APIRequestMock(), htmlReader: HTMLReader()))
     }
 }

@@ -18,14 +18,6 @@ extension View {
         }
     }
 
-    func onChange<V>(of value: V, perform action: @escaping (_ newValue: V) async -> Void) -> some View where V: Equatable {
-        onChange(of: value) { newValue in
-            Task {
-                await action(newValue)
-            }
-        }
-    }
-
     func onKeyboardShortcut(_ key: KeyEquivalent, modifiers: EventModifiers = .command, perform action: @escaping () async -> Void) -> some View {
         onKeyboardShortcut(key, modifiers: modifiers) {
             Task {

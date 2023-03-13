@@ -11,8 +11,6 @@ import SwiftUI
 struct ScheduleView: View {
 
     // MARK: - Properties
-    
-    @Environment(\.scenePhase) private var scenePhase: ScenePhase
 
     @ObservedObject var viewModel: ScheduleViewModel
     @State private var isScheduleHistoryActive: Bool = false
@@ -75,17 +73,10 @@ struct ScheduleView: View {
         }
         .accessibility(identifier: "ScheduleList")
         .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
-        .onAppear(perform: reload)
-        .onChange(of: scenePhase, perform: onScenePhaseChange)
         .onKeyboardShortcut("r", modifiers: .command, perform: reload)
     }
 
     // MARK: - Methods
-
-    private func onScenePhaseChange(_ scenePhase: ScenePhase) async {
-        guard scenePhase == .active else { return }
-        await reload()
-    }
 
     private func reload() async {
         await viewModel.reload()
@@ -101,6 +92,6 @@ struct ScheduleView: View {
 
 struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleView(viewModel: ScheduleViewModel(apiRequest: APIRequest(), htmlReader: HTMLReader()))
+        ScheduleView(viewModel: ScheduleViewModel(apiRequest: APIRequestMock(), htmlReader: HTMLReader()))
     }
 }

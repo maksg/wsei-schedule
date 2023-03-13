@@ -6,29 +6,37 @@
 //  Copyright © 2021 Infinity Pi Ltd. All rights reserved.
 //
 
-import Foundation
-import SwiftSoup
-import UIKit
 import WebKit
 
-final class APIRequest {
+final class APIRequest: APIRequestable {
+
+    // MARK: - Properties
 
     private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
+    private let debug: Bool
+
+    // MARK: - Initialization
+
+    init(debug: Bool = false) {
+        self.debug = debug
+    }
+
+    // MARK: - Methods
 
     func getMainHtml() -> Requestable {
-        Request(url: url, endpoint: Endpoint.getMainHtml)
+        Request(url: url, endpoint: Endpoint.getMainHtml, debug: debug)
     }
 
     func getScheduleHtml(parameters: ScheduleParameters) -> Requestable {
-        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters))
+        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters), debug: debug)
     }
 
-    func getGradeSemesterHtml() -> Requestable {
-        Request(url: url, endpoint: Endpoint.getGradeSemestersHtml)
+    func getGradeSemestersHtml() -> Requestable {
+        Request(url: url, endpoint: Endpoint.getGradeSemestersHtml, debug: debug)
     }
 
     func getGradesHtml(semesterId: String) -> Requestable {
-        Request(url: url, endpoint: Endpoint.getGradesHtml(semesterId: semesterId))
+        Request(url: url, endpoint: Endpoint.getGradesHtml(semesterId: semesterId), debug: debug)
     }
 
     func clearCache() {

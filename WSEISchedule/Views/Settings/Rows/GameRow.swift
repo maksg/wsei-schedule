@@ -24,6 +24,7 @@ struct GameRow: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(8)
+                    .padding(2)
                 Text(game.name)
                     .foregroundColor(.main)
             }
