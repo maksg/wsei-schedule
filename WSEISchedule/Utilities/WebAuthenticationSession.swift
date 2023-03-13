@@ -24,7 +24,8 @@ protocol WebAuthenticationPresentationContextProviding: NSObjectProtocol {
 }
 
 class WebAuthenticationSession: NSObject {
-    typealias CompletionHandler = (Result<[HTTPCookie], Error>) -> Void
+    typealias Success = ([HTTPCookie]) -> Void
+    typealias Failure = (Error) -> Void
     typealias PresentationAnchor = UIWindow
 
     // MARK: - Properties
@@ -42,7 +43,8 @@ class WebAuthenticationSession: NSObject {
 
     private let signInSuccessUrl: URL = URL(string: "https://dziekanat.wsei.edu.pl/")!
     private let url: URL
-    private let completionHandler: WebAuthenticationSession.CompletionHandler
+    var onSuccess: WebAuthenticationSession.Success?
+    var onFailure: WebAuthenticationSession.Failure?
 
     private var timer: Timer?
     private var isPresented: Bool = false
@@ -50,18 +52,21 @@ class WebAuthenticationSession: NSObject {
 
     // MARK: - Initialization
 
-    init(url: URL, completionHandler: @escaping WebAuthenticationSession.CompletionHandler) {
+    init(url: URL) {
         self.url = url
-        self.completionHandler = completionHandler
+
+        super.init()
+
+        setupViewController()
     }
 
     // MARK: - Methods
 
     func start(silently: Bool = true) {
-        setupViewController()
-
         let request = URLRequest(url: url)
-        webView.load(request)
+        DispatchQueue.main.async { [weak webView] in
+            webView?.load(request)
+        }
 
         if !silently {
             present()
@@ -157,13 +162,14 @@ class WebAuthenticationSession: NSObject {
     }
 
     private func present() {
+        guard !isPresented else { return }
         let presentationAnchor = presentationContextProvider?.presentationAnchor(for: self)
         var topController = presentationAnchor?.rootViewController
         while let presentedViewController = topController?.presentedViewController {
             topController = presentedViewController
         }
 
-        guard let topController, !isPresented else { return }
+        guard let topController else { return }
         isPresented = true
         navigationController.transitioningDelegate = self
         topController.present(navigationController, animated: true)
@@ -222,7 +228,8 @@ class WebAuthenticationSession: NSObject {
 extension WebAuthenticationSession: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        completionHandler(.failure(WebAuthenticationSessionError.cancelled))
+        onFailure?(WebAuthenticationSessionError.cancelled)
+        isPresented = false
         return nil
     }
 
@@ -236,7 +243,7 @@ extension WebAuthenticationSession: WKNavigationDelegate {
         timer?.invalidate()
         guard webView.url == signInSuccessUrl else { return }
         webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { [weak self] cookies in
-            self?.completionHandler(.success(cookies))
+            self?.onSuccess?(cookies)
             self?.navigationController.dismiss(animated: true)
         }
     }
@@ -251,7 +258,7 @@ extension WebAuthenticationSession: WKNavigationDelegate {
 
     private func retry(error: Error) {
         guard !didRetry else {
-            completionHandler(.failure(error))
+            onFailure?(error)
             navigationController.dismiss(animated: true)
             return
         }

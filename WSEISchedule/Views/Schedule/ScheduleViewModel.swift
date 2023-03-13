@@ -18,7 +18,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     // MARK: - Properties
 
-    @DispatchMainPublished var errorMessage: String = ""
+    @DispatchMainPublished var error: Error?
     @DispatchMainPublished var isRefreshing: Bool = false
     
     private lazy var persistentContainer: NSPersistentContainer = {
@@ -45,7 +45,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     var previousLectureWeeks: [LectureWeek] = []
     var firstLectureId: String?
 
-    var isSigningIn: Bool = false
+    var checkIfIsSignedIn: ((Error) -> Void)?
 
     let apiRequest: APIRequestable
     let htmlReader: HTMLReader
@@ -97,7 +97,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
             let html = try await apiRequest.getScheduleHtml(parameters: parameters).make()
             readLectures(fromHtml: html)
         } catch {
-            onError(error)
+            showError(error)
         }
     }
 
@@ -122,13 +122,13 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
             WidgetCenter.shared.reloadAllTimelines()
 
-            resetErrors()
+            showError(nil)
 
             DispatchQueue.main.async { [weak self] in
                 self?.requestReviewIfAppropriate()
             }
         } catch {
-            checkIfIsSignedIn(html: html, error: error)
+            checkIfIsSignedIn?(error)
         }
     }
 
@@ -157,8 +157,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         do {
             lectures = try context.fetch(fetchRequest)
             generateLectureDays(from: lectures)
-        } catch let error as NSError {
-            print(error.debugDescription)
+        } catch {
+            print(error)
         }
     }
     
@@ -203,27 +203,11 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
 extension ScheduleViewModel: SignInable {
 
-    func onSignIn() {
-        resetErrors()
-        Task {
-            await fetchSchedule()
-        }
-    }
-
-    private func checkIfIsSignedIn(html: String, error: Error) {
-        let isSignedIn = htmlReader.isSignedIn(fromHtml: html)
-        if isSignedIn {
-            onError(error)
-        } else {
-            startSigningIn()
-        }
-    }
-
-    func showErrorMessage(_ errorMessage: String) {
-        self.errorMessage = errorMessage
+    func showError(_ error: Error?) {
+        self.error = error
         self.isRefreshing = false
     }
-
+    
 }
 
 extension ScheduleViewModel: WCSessionDelegate {

@@ -39,8 +39,8 @@ struct GradesView: View {
             List {
                 ScrollToTopView()
 
-                if !viewModel.errorMessage.isEmpty {
-                    Text(viewModel.errorMessage)
+                if let error = viewModel.error {
+                    Text(error.localizedDescription)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.white)

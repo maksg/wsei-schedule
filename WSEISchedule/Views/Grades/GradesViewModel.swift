@@ -8,11 +8,11 @@
 
 import Foundation
 
-final class GradesViewModel: NSObject, ObservableObject {
+final class GradesViewModel: ObservableObject {
 
     // MARK: - Properties
 
-    @DispatchMainPublished var errorMessage: String = ""
+    @DispatchMainPublished var error: Error?
     @DispatchMainPublished var isRefreshingAll: Bool = false
     @DispatchMainPublished var isRefreshing: Set<String> = []
     @DispatchMainPublished var isExpanded: Set<String> = [] {
@@ -29,7 +29,7 @@ final class GradesViewModel: NSObject, ObservableObject {
     }
     @DispatchMainPublished var gradeSemesters: [GradeSemester] = UserDefaults.standard.gradeSemesters
 
-    var isSigningIn: Bool = false
+    var checkIfIsSignedIn: ((Error) -> Void)?
 
     let apiRequest: APIRequestable
     let htmlReader: HTMLReader
@@ -39,7 +39,6 @@ final class GradesViewModel: NSObject, ObservableObject {
     init(apiRequest: APIRequestable, htmlReader: HTMLReader) {
         self.apiRequest = apiRequest
         self.htmlReader = htmlReader
-        super.init()
 
         if let id = gradeSemesters.first?.id {
             self.isExpanded = [id]
@@ -56,7 +55,7 @@ final class GradesViewModel: NSObject, ObservableObject {
             let html = try await apiRequest.getGradeSemestersHtml().make()
             readGradeSemesters(fromHtml: html)
         } catch {
-            onError(error)
+            showError(error)
         }
     }
 
@@ -76,9 +75,9 @@ final class GradesViewModel: NSObject, ObservableObject {
             }
             self.gradeSemesters = gradeSemesters
 
-            resetErrors()
+            showError(nil)
         } catch {
-            checkIfIsSignedIn(html: html, error: error)
+            checkIfIsSignedIn?(error)
         }
     }
 
@@ -89,7 +88,7 @@ final class GradesViewModel: NSObject, ObservableObject {
             let html = try await apiRequest.getGradesHtml(semesterId: semesterId).make()
             readGrades(fromHtml: html, semesterId: semesterId)
         } catch {
-            onError(error)
+            showError(error)
             isRefreshing.remove(semesterId)
         }
     }
@@ -101,10 +100,10 @@ final class GradesViewModel: NSObject, ObservableObject {
             guard let index = gradeSemesters.firstIndex(where: { $0.id == semesterId }) else { return }
             gradeSemesters[index].grades = grades
             isRefreshing.remove(semesterId)
-            
-            resetErrors()
+
+            showError(nil)
         } catch {
-            onError(error)
+            showError(error)
             isRefreshing.remove(semesterId)
         }
     }
@@ -113,24 +112,8 @@ final class GradesViewModel: NSObject, ObservableObject {
 
 extension GradesViewModel: SignInable {
 
-    func onSignIn() {
-        resetErrors()
-        Task {
-            await fetchGradeSemesters()
-        }
-    }
-
-    private func checkIfIsSignedIn(html: String, error: Error) {
-        let isSignedIn = htmlReader.isSignedIn(fromHtml: html)
-        if isSignedIn {
-            onError(error)
-        } else {
-            startSigningIn()
-        }
-    }
-
-    func showErrorMessage(_ errorMessage: String) {
-        self.errorMessage = errorMessage
+    func showError(_ error: Error?) {
+        self.error = error
         self.isRefreshingAll = false
     }
 

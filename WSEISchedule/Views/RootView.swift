@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct RootView: View {
 
@@ -129,7 +130,7 @@ struct RootView: View {
     var body: some View {
         if viewModel.isSignedIn {
             content
-                .onChange(of: scenePhase, perform: onScenePhaseChange)
+                .onReceive(Just(scenePhase), perform: onScenePhaseChange)
                 .onKeyboardShortcut("1", perform: showSchedule)
                 .onKeyboardShortcut("2", perform: showGrades)
         } else {

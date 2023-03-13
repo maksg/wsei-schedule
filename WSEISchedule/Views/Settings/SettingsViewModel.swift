@@ -39,7 +39,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
         return container
     }()
 
-    var isSigningIn: Bool = false
+    var checkIfIsSignedIn: ((Error) -> Void)?
 
     let apiRequest: APIRequestable
     let htmlReader: HTMLReader
@@ -68,7 +68,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
             let html = try await apiRequest.getMainHtml().make()
             readStudentInfo(fromHtml: html)
         } catch {
-            onError(error)
+            showError(error)
         }
     }
 
@@ -80,9 +80,9 @@ final class SettingsViewModel: NSObject, ObservableObject {
         
         do {
             student = try htmlReader.readStudentInfo(fromHtml: html)
-            resetErrors()
+            showError(nil)
         } catch {
-            onError(error)
+            checkIfIsSignedIn?(error)
         }
 
         setupStudentInfoRow()
@@ -124,14 +124,9 @@ final class SettingsViewModel: NSObject, ObservableObject {
 
 extension SettingsViewModel: SignInable {
 
-    func onSignIn() {
-        Task {
-            await loadStudentInfo()
-        }
-    }
-
-    func showErrorMessage(_ errorMessage: String) {
-        print(errorMessage)
+    func showError(_ error: Error?) {
+        print(error?.localizedDescription ?? "")
+        self.isRefreshing = false
     }
 
 }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-final class RootViewModel: ObservableObject {
+final class RootViewModel: NSObject, ObservableObject {
 
     // MARK: - Properties
 
@@ -19,6 +19,8 @@ final class RootViewModel: ObservableObject {
     let scheduleViewModel: ScheduleViewModel
     let gradesViewModel: GradesViewModel
     let settingsViewModel: SettingsViewModel
+
+    private let authSession: WebAuthenticationSession
 
     @Published var selectedTab: Tab = .schedule {
         didSet {
@@ -48,12 +50,12 @@ final class RootViewModel: ObservableObject {
     var cookies: [HTTPCookie] {
         UserDefaults.standard.cookies
     }
-    
+
     @Published var isSignedIn: Bool = false
 
     // MARK: - Initialization
     
-    init() {
+    override init() {
         #if MOCK
         apiRequest = APIRequestMock()
         #elseif DEV
@@ -67,16 +69,25 @@ final class RootViewModel: ObservableObject {
         gradesViewModel = GradesViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
         settingsViewModel = SettingsViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
 
+        let url = URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
+        authSession = WebAuthenticationSession(url: url)
+
+        super.init()
+
+        authSession.onSuccess = { [weak self] cookies in self?.onSignIn(cookies: cookies) }
+        authSession.onFailure = { [weak self] error in self?.onError(error) }
+        authSession.presentationContextProvider = self
+
         // TODO: Remove once everyone migrates
         Keychain.clean()
 
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
         isSignedIn = !cookies.isEmpty
 
-        signInViewModel.finishSignIn = { [weak self] in
-            self?.checkSignInStatus()
-            self?.reloadData()
-        }
+        signInViewModel.startSigningIn = { [weak self] in self?.startSigningIn(silently: false) }
+        scheduleViewModel.checkIfIsSignedIn = { [weak self] error in self?.checkIfIsSignedIn(error: error) }
+        gradesViewModel.checkIfIsSignedIn = { [weak self] error in self?.checkIfIsSignedIn(error: error) }
+        settingsViewModel.checkIfIsSignedIn = { [weak self] error in self?.checkIfIsSignedIn(error: error) }
     }
 
     // MARK: - Methods
@@ -95,9 +106,57 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    private func checkSignInStatus() {
+    private func updateSignInStatus() {
         withAnimation {
             isSignedIn = !cookies.isEmpty
         }
     }
+}
+
+extension RootViewModel: WebAuthenticationPresentationContextProviding {
+
+    func onSignIn(cookies: [HTTPCookie]) {
+        cookies.forEach(HTTPCookieStorage.shared.setCookie)
+        UserDefaults.standard.cookies = cookies
+
+        onError(nil)
+        updateSignInStatus()
+        reloadData()
+    }
+
+    private func checkIfIsSignedIn(error: Error) {
+        Task {
+            await checkIfIsSignedIn(error: error)
+        }
+    }
+
+    private func checkIfIsSignedIn(error: Error) async {
+        do {
+            let mainHtml = try await apiRequest.getMainHtml().make()
+            let isSignedIn = htmlReader.isSignedIn(fromHtml: mainHtml)
+            if isSignedIn {
+                onError(error)
+            } else {
+                startSigningIn()
+            }
+        } catch {
+            onError(error)
+        }
+    }
+
+    func onError(_ error: Error?) {
+        guard error as? WebAuthenticationSessionError != .cancelled else { return }
+        scheduleViewModel.showError(error)
+        gradesViewModel.showError(error)
+        settingsViewModel.showError(error)
+    }
+
+    func presentationAnchor(for session: WebAuthenticationSession) -> WebAuthenticationSession.PresentationAnchor? {
+        return UIApplication.shared.foregroundActiveScene?.windows.first(where: \.isKeyWindow)
+    }
+
+    func startSigningIn(silently: Bool = true) {
+        authSession.start(silently: silently)
+    }
+
 }

@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class SignInViewModel: NSObject, ObservableObject {
+final class SignInViewModel: ObservableObject {
 
     // MARK: - Properties
 
     var isSigningIn: Bool = false
-    var finishSignIn: (() -> Void)?
+    var startSigningIn: (() -> Void)?
 
     // MARK: - Methods
 
@@ -28,21 +28,8 @@ final class SignInViewModel: NSObject, ObservableObject {
         UserDefaults.standard.cookies = [cookie]
         onSignIn()
         #else
-        startSigningIn(silently: false)
+        startSigningIn?()
         #endif
     }
     
-}
-
-extension SignInViewModel: SignInable {
-
-    func onSignIn() {
-        resetErrors()
-        finishSignIn?()
-    }
-    
-    func showErrorMessage(_ errorMessage: String) {
-        print(errorMessage)
-    }
-
 }
