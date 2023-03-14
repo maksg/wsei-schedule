@@ -15,14 +15,13 @@ class WSEIScheduleUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
+        app.launchArguments.append(ProcessInfo.testsKey)
 
+        #if !targetEnvironment(macCatalyst)
         if UIDevice.current.userInterfaceIdiom == .pad {
             XCUIDevice.shared.orientation = .landscapeLeft
         }
-    }
-
-    override func tearDownWithError() throws {
-        Springboard.deleteMyApp()
+        #endif
     }
 
     func testMakeScreenshots() {
@@ -30,34 +29,42 @@ class WSEIScheduleUITests: XCTestCase {
 
         takeScreenshot(named: "SignIn")
 
-        let loginTextField = app.textFields["LoginTextField"]
-        loginTextField.tap()
-        loginTextField.typeText("maksymiliangalas")
+        let signInButton = app.buttons["SignInButton"]
+        signInButton.tap()
+        XCTAssert(signInButton.waitForNonExistence(timeout: 10))
 
-        let passwordSecureField = app.secureTextFields["PasswordSecureField"]
-        passwordSecureField.tap()
-        passwordSecureField.typeText("xeztad-zuhwob-9Zedki")
+        var progressIndicator = app.activityIndicators.firstMatch
+        XCTAssert(progressIndicator.waitForNonExistence(timeout: 10))
 
-        app.buttons["SignInButton"].tap()
-
-        let firstCell = app.collectionViews["ScheduleList"].cells.element(boundBy: 1)
-        XCTAssert(firstCell.waitForExistence(timeout: 20))
-        firstCell.tap()
-
-        app.navigationBars.firstMatch.tap()
+        let historyButton = app.buttons["ScheduleHistory"]
+        XCTAssert(historyButton.waitForExistence(timeout: 10))
 
         takeScreenshot(named: "Schedule")
+
+        historyButton.tap()
+
+        sleep(1)
+
+        takeScreenshot(named: "ScheduleHistory")
 
         let tabBar = app.tabBars.firstMatch
         if tabBar.exists {
             tabBar.buttons.element(boundBy: 1).tap()
+
+            progressIndicator = app.activityIndicators.firstMatch
+            XCTAssert(progressIndicator.waitForNonExistence(timeout: 10))
+
             takeScreenshot(named: "Grades")
 
             tabBar.buttons.element(boundBy: 2).tap()
             takeScreenshot(named: "Settings")
         } else {
-            let collectionView = app.collectionViews.firstMatch
+            let collectionView = app.collectionViews["Sidebar"]
             collectionView.buttons.element(boundBy: 1).tap()
+
+            progressIndicator = app.activityIndicators.firstMatch
+            XCTAssert(progressIndicator.waitForNonExistence(timeout: 10))
+
             takeScreenshot(named: "Grades")
         }
 
@@ -72,9 +79,14 @@ class WSEIScheduleUITests: XCTestCase {
         // and give it a name consisting of the "named"
         // parameter and the device name, so we can find
         // it later.
+        #if targetEnvironment(macCatalyst)
+        let device = "Mac"
+        #else
+        let device = UIDevice.current.name
+        #endif
         let screenshotAttachment = XCTAttachment(
             uniformTypeIdentifier: "public.png",
-            name: "Screenshot-\(UIDevice.current.name)-\(name).png",
+            name: "Screenshot-\(device)-\(name).png",
             payload: fullScreenshot.pngRepresentation,
             userInfo: nil
         )
@@ -86,6 +98,26 @@ class WSEIScheduleUITests: XCTestCase {
         // Add the attachment to the test log,
         // so we can retrieve it later
         add(screenshotAttachment)
+    }
+
+}
+
+extension XCUIElement {
+
+    /**
+     * Waits the specified amount of time for the element’s `exists` property to become `false`.
+     *
+     * - Parameter timeout: The amount of time to wait.
+     * - Returns: `false` if the timeout expires without the element coming out of existence.
+     */
+    func waitForNonExistence(timeout: TimeInterval) -> Bool {
+        let timeStart = Date().timeIntervalSince1970
+
+        while Date().timeIntervalSince1970 <= (timeStart + timeout) {
+            if !exists { return true }
+        }
+
+        return false
     }
 
 }

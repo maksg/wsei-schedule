@@ -44,7 +44,6 @@
 		501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E128E61723004103B1 /* ScheduleHistoryView.swift */; };
 		501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B82E628E633D8004103B1 /* PremiumViewModel.swift */; };
 		502FE9DC25B9FABC0050FEBA /* String+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */; };
-		5031A38725B5CF1F005B9322 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A38625B5CF1F005B9322 /* Springboard.swift */; };
 		5031A3AD25B77A4A005B9322 /* View+HeightReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */; };
 		5031A3BD25B77B88005B9322 /* AnimatableRowHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */; };
 		5031A3E625B89ED6005B9322 /* LaunchScreen_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5031A3E525B89ED6005B9322 /* LaunchScreen_iPad.storyboard */; };
@@ -54,6 +53,9 @@
 		50493B8029B362240011964C /* GradeSemester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B7F29B362240011964C /* GradeSemester.swift */; };
 		50493B8229B362560011964C /* Dictionary+KeyFromText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B8129B362560011964C /* Dictionary+KeyFromText.swift */; };
 		50493B8729B3884B0011964C /* DispatchMainPublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50493B8629B3884B0011964C /* DispatchMainPublished.swift */; };
+		5049ACC729C106C000F68B21 /* ProcessInfo+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5049ACC629C106C000F68B21 /* ProcessInfo+Tests.swift */; };
+		5049ACC829C106FA00F68B21 /* ProcessInfo+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5049ACC629C106C000F68B21 /* ProcessInfo+Tests.swift */; };
+		5049ACC929C106FB00F68B21 /* ProcessInfo+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5049ACC629C106C000F68B21 /* ProcessInfo+Tests.swift */; };
 		504A723126A99FCF002EA50C /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504A723026A99FCF002EA50C /* SignInable.swift */; };
 		504AD2C828E234800071F57B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AD2C728E234800071F57B /* Keychain.swift */; };
 		504AD2C928E239190071F57B /* NSSharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE76A22B7B26500924367 /* NSSharedPersistentContainer.swift */; };
@@ -243,7 +245,6 @@
 		501B82E628E633D8004103B1 /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
 		502FE9DB25B9FABC0050FEBA /* String+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIImage.swift"; sourceTree = "<group>"; };
 		502FE9E425BA14CD0050FEBA /* generate_screenshots.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_screenshots.sh; sourceTree = "<group>"; };
-		5031A38625B5CF1F005B9322 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		5031A3AC25B77A4A005B9322 /* View+HeightReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HeightReader.swift"; sourceTree = "<group>"; };
 		5031A3BC25B77B88005B9322 /* AnimatableRowHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableRowHeight.swift; sourceTree = "<group>"; };
 		5031A3D525B78378005B9322 /* Color+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Named.swift"; sourceTree = "<group>"; };
@@ -254,6 +255,7 @@
 		50493B7F29B362240011964C /* GradeSemester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSemester.swift; sourceTree = "<group>"; };
 		50493B8129B362560011964C /* Dictionary+KeyFromText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+KeyFromText.swift"; sourceTree = "<group>"; };
 		50493B8629B3884B0011964C /* DispatchMainPublished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchMainPublished.swift; sourceTree = "<group>"; };
+		5049ACC629C106C000F68B21 /* ProcessInfo+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProcessInfo+Tests.swift"; sourceTree = "<group>"; };
 		504A723026A99FCF002EA50C /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
 		504AD2C728E234800071F57B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		5057728629BE50760031FA2B /* View+KeyboardShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+KeyboardShortcut.swift"; sourceTree = "<group>"; };
@@ -731,7 +733,6 @@
 		57AD317122AE6B51009EEB1F /* WSEIScheduleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				5031A38625B5CF1F005B9322 /* Springboard.swift */,
 				57AD317222AE6B51009EEB1F /* WSEIScheduleUITests.swift */,
 				57AD317422AE6B51009EEB1F /* Info.plist */,
 			);
@@ -767,6 +768,7 @@
 				501B1A3729BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift */,
 				501B1A3929BBF52C008AACAA /* Bundle+AppVersion.swift */,
 				5057728829BE50EA0031FA2B /* Button+Async.swift */,
+				5049ACC629C106C000F68B21 /* ProcessInfo+Tests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1162,6 +1164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				500F218429B61694007E8D3E /* ScrollToTopView.swift in Sources */,
+				5049ACC729C106C000F68B21 /* ProcessInfo+Tests.swift in Sources */,
 				501B82E228E61723004103B1 /* ScheduleHistoryView.swift in Sources */,
 				5773BE1623ACEC8F00264FC7 /* URLImageDownloader.swift in Sources */,
 				57AD31A022AE6BC3009EEB1F /* RawRepresentable+String.swift in Sources */,
@@ -1247,6 +1250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57AD316822AE6B51009EEB1F /* WSEIScheduleTests.swift in Sources */,
+				5049ACC829C106FA00F68B21 /* ProcessInfo+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,7 +1259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57AD317322AE6B51009EEB1F /* WSEIScheduleUITests.swift in Sources */,
-				5031A38725B5CF1F005B9322 /* Springboard.swift in Sources */,
+				5049ACC929C106FB00F68B21 /* ProcessInfo+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1488,10 +1492,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSEISchedule.app/WSEISchedule";
 			};
 			name = "Debug Mock";
@@ -1508,10 +1513,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				TEST_TARGET_NAME = WSEISchedule;
 			};
 			name = "Debug Mock";
@@ -1567,6 +1573,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.ScheduleWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1574,7 +1581,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = "Debug Mock";
 		};
@@ -1595,6 +1602,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.ScheduleWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1602,7 +1610,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1623,13 +1631,14 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.InfinityPi.WSEI-Schedule.ScheduleWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -1823,10 +1832,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSEISchedule.app/WSEISchedule";
 			};
 			name = Debug;
@@ -1844,10 +1854,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSEISchedule.app/WSEISchedule";
 			};
 			name = Release;
@@ -1864,10 +1875,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				TEST_TARGET_NAME = WSEISchedule;
 			};
 			name = Debug;
@@ -1884,10 +1896,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinityPi.WSEIScheduleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				TEST_TARGET_NAME = WSEISchedule;
 			};
 			name = Release;

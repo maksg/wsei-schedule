@@ -81,6 +81,12 @@ final class RootViewModel: NSObject, ObservableObject {
         // TODO: Remove once everyone migrates
         Keychain.clean()
 
+        if ProcessInfo.processInfo.isTesting {
+            UserDefaults.standard.signOut()
+            UserDefaults.standard.premium = true
+            UIView.setAnimationsEnabled(false)
+        }
+
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
         isSignedIn = !cookies.isEmpty
 
@@ -156,7 +162,17 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
     }
 
     func startSigningIn(silently: Bool = true) {
+        #if MOCK
+        let cookie = HTTPCookie(properties: [
+            .name: "ASP.NET_SessionId",
+            .value: "mock",
+            .domain: "dziekanat.wsei.edu.pl",
+            .path: "/"
+        ])!
+        onSignIn(cookies: [cookie])
+        #else
         authSession.start(silently: silently)
+        #endif
     }
 
 }

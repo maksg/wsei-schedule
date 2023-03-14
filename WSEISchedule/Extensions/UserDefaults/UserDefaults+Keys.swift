@@ -41,7 +41,7 @@ extension UserDefaults {
 
     var cookies: [HTTPCookie] {
         get {
-            guard let data = UserDefaults.standard.object(forKey: Key.cookies.rawValue) as? Data else { return [] }
+            guard let data = object(forKey: Key.cookies.rawValue) as? Data else { return [] }
             guard let unarchiver = try? NSKeyedUnarchiver(forReadingFrom: data) else { return [] }
             unarchiver.requiresSecureCoding = false
             return unarchiver.decodeObject(of: NSArray.self, forKey: NSKeyedArchiveRootObjectKey) as? [HTTPCookie] ?? []

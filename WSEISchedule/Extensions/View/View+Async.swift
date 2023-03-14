@@ -10,14 +10,6 @@ import SwiftUI
 
 extension View {
 
-    func onAppear(perform action: @escaping () async -> Void) -> some View {
-        onAppear {
-            Task {
-                await action()
-            }
-        }
-    }
-
     func onKeyboardShortcut(_ key: KeyEquivalent, modifiers: EventModifiers = .command, perform action: @escaping () async -> Void) -> some View {
         onKeyboardShortcut(key, modifiers: modifiers) {
             Task {

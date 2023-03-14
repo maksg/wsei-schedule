@@ -64,16 +64,27 @@ struct ScheduleView: View {
             }
             #endif
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    ScheduleHistoryView(lectureWeeks: viewModel.previousLectureWeeks)
-                } label: {
-                    Image.scheduleHistory
+                if #available(iOS 16.0, *) {
+                    NavigationLink(value: "ScheduleHistory") {
+                        Image.scheduleHistory
+                    }
+                    .navigationDestination(for: String.self) { _ in
+                        ScheduleHistoryView(lectureWeeks: viewModel.previousLectureWeeks)
+                    }
+                    .accessibilityIdentifier("ScheduleHistory")
+                } else {
+                    NavigationLink {
+                        ScheduleHistoryView(lectureWeeks: viewModel.previousLectureWeeks)
+                    } label: {
+                        Image.scheduleHistory
+                    }
+                    .accessibilityIdentifier("ScheduleHistory")
                 }
             }
         }
-        .accessibility(identifier: "ScheduleList")
-        .accessibility(hint: Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
-        .onKeyboardShortcut("r", modifiers: .command, perform: reload)
+        .accessibilityIdentifier("ScheduleList")
+        .accessibilityHint(Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
+        .onKeyboardShortcut("r", perform: reload)
     }
 
     // MARK: - Methods

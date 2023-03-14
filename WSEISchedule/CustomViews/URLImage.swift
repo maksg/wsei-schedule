@@ -10,14 +10,21 @@ import SwiftUI
 import Combine
 
 struct URLImage: View {
+
+    // MARK: - Properties
+    
     var placeholder: UIImage?
     
     @ObservedObject private var imageDownloader: URLImageDownloader
+
+    // MARK: - Initialization
     
     init(url: URL?, placeholder: UIImage?, customCacheRequest: URLRequest? = nil) {
         self.imageDownloader = URLImageDownloader(url: url, customCacheRequest: customCacheRequest)
         self.placeholder = placeholder ?? UIImage()
     }
+
+    // MARK: - Views
     
     var body: some View {
         Group {

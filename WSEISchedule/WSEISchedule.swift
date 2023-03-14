@@ -10,9 +10,14 @@ import SwiftUI
 
 @main
 struct WSEISchedule: App {
+    @AppStorage(UserDefaults.Key.cookies.rawValue) private var cookies: Data?
+    private var isSignedIn: Bool { cookies != nil }
+
+    private let viewModel: RootViewModel = RootViewModel()
+
     var body: some Scene {
         WindowGroup {
-            RootView(viewModel: RootViewModel())
+            RootView(viewModel: viewModel)
         }
         .commands {
             CommandGroup(replacing: .systemServices, addition: {})
@@ -24,17 +29,23 @@ struct WSEISchedule: App {
             CommandGroup(replacing: .newItem) {
                 Button(Translation.MenuBar.refresh.localized) {
                     NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("r"))
-                }.keyboardShortcut("r")
+                }
+                .keyboardShortcut("r")
+                .disabled(!isSignedIn)
             }
-            
+
             CommandGroup(replacing: .toolbar) {
                 Button(Translation.Schedule.title.localized) {
                     NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("1"))
-                }.keyboardShortcut("1")
+                }
+                .keyboardShortcut("1")
+                .disabled(!isSignedIn)
 
                 Button(Translation.Grades.title.localized) {
                     NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("2"))
-                }.keyboardShortcut("2")
+                }
+                .keyboardShortcut("2")
+                .disabled(!isSignedIn)
             }
         }
     }

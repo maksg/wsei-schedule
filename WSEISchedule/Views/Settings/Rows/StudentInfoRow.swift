@@ -20,18 +20,18 @@ struct StudentInfoRow: View {
         HStack {
             URLImage(url: viewModel.photoUrl, placeholder: .placeholder, customCacheRequest: viewModel.cacheRequest)
                 .cornerRadius(6)
-                .accessibility(hint: Text(Translation.Accessibility.Settings.profilePhoto.localized))
+                .accessibilityHint(Text(Translation.Accessibility.Settings.profilePhoto.localized))
             VStack {
                 Text(viewModel.name)
                     .font(.headline)
-                    .accessibility(hint: Text(Translation.Accessibility.Settings.name.localized))
+                    .accessibilityHint(Text(Translation.Accessibility.Settings.name.localized))
                 Text(viewModel.number)
                     .font(.subheadline)
-                    .accessibility(hint: Text(Translation.Accessibility.Settings.indexNumber.localized))
+                    .accessibilityHint(Text(Translation.Accessibility.Settings.indexNumber.localized))
                 Text(viewModel.courseName)
                     .font(.footnote)
                     .foregroundColor(.secondary)
-                    .accessibility(hint: Text(Translation.Accessibility.Settings.courseName.localized))
+                    .accessibilityHint(Text(Translation.Accessibility.Settings.courseName.localized))
             }
             .frame(maxWidth: .infinity)
             .multilineTextAlignment(.center)

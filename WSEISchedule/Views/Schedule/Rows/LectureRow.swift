@@ -55,22 +55,22 @@ struct LectureRow: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(lecture.subject)
                         .font(.headline)
-                        .accessibility(hint: Text(Translation.Accessibility.Schedule.subject.localized))
+                        .accessibilityHint(Text(Translation.Accessibility.Schedule.subject.localized))
 
                     HStack {
                         Image.time
                             .foregroundColor(.red)
                             .accessibilityElement()
-                            .accessibility(label: Text(Translation.Accessibility.Schedule.time.localized))
+                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.time.localized))
                         Text(time)
-                            .accessibility(label: Text(accessibilityTime))
+                            .accessibilityLabel(Text(accessibilityTime))
 
                         Spacer()
 
                         Image.classroom
                             .foregroundColor(.blue)
                             .accessibilityElement()
-                            .accessibility(label: Text(Translation.Accessibility.Schedule.classroom.localized))
+                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.classroom.localized))
                         Text(lecture.classroom)
                     }
                 }
@@ -87,7 +87,7 @@ struct LectureRow: View {
                         Image.code
                             .foregroundColor(.main)
                             .accessibilityElement()
-                            .accessibility(label: Text(Translation.Accessibility.Schedule.code.localized))
+                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.code.localized))
                         Text(lecture.code)
                     }
 
@@ -95,7 +95,7 @@ struct LectureRow: View {
                         Image.lecturer
                             .foregroundColor(.orange)
                             .accessibilityElement()
-                            .accessibility(label: Text(Translation.Accessibility.Schedule.lecturer.localized))
+                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.lecturer.localized))
                         Text(lecture.lecturer)
                     }
 
@@ -103,7 +103,7 @@ struct LectureRow: View {
                         Image.comments
                             .foregroundColor(.indigo)
                             .accessibilityElement()
-                            .accessibility(label: Text(Translation.Accessibility.Schedule.comments.localized))
+                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.comments.localized))
                         Text(lecture.comments)
                     }
                 }

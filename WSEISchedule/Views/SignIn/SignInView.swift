@@ -51,7 +51,7 @@ struct SignInView: View {
                     .cornerRadius(16)
                     .foregroundColor(.white)
             }
-            .accessibility(identifier: "SignInButton")
+            .accessibilityIdentifier("SignInButton")
         }
         .frame(maxWidth: 500)
         .padding(26)

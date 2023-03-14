@@ -30,10 +30,24 @@ struct RootView: View {
             .scrollToTop(viewModel.$scrollToTop, condition: { viewModel.selectedTab == .grades })
     }
 
+    struct NavigationStackView<Content: View>: View {
+        let content: () -> Content
+
+        var body: some View {
+            if #available(iOS 16.0, *) {
+                return NavigationStack(root: content)
+            } else {
+                return NavigationView(content: content)
+            }
+        }
+    }
+
     @available(iOS 16.0, *)
-    struct NewNavigationSplitView: View {
+    struct NewNavigationSplitView<A: View, B: View>: View {
         @State private var columnVisibility: NavigationSplitViewVisibility = .doubleColumn
         @ObservedObject var viewModel: RootViewModel
+        let scheduleView: A
+        let gradesView: B
 
         var body: some View {
             NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -50,16 +64,13 @@ struct RootView: View {
                 }
                 .listStyle(.insetGrouped)
                 .navigationTitle(Translation.wseiSchedule.localized)
+                .accessibilityIdentifier("Sidebar")
             } detail: {
                 switch viewModel.selectedListItem {
                 case .grades:
-                    NavigationStack {
-                        GradesView(viewModel: viewModel.gradesViewModel)
-                    }
+                    gradesView
                 default:
-                    NavigationStack {
-                        ScheduleView(viewModel: viewModel.scheduleViewModel)
-                    }
+                    scheduleView
                 }
             }
             .navigationSplitViewStyle(.balanced)
@@ -71,19 +82,19 @@ struct RootView: View {
     private var content: some View {
         if horizontalSizeClass == .compact {
             TabView(selection: $viewModel.selectedTab) {
-                NavigationView {
+                NavigationStackView {
                     scheduleView
                 }
                 .tabItem(Tab.schedule.tabItem)
                 .tag(Tab.schedule)
 
-                NavigationView {
+                NavigationStackView {
                     gradesView
                 }
                 .tabItem(Tab.grades.tabItem)
                 .tag(Tab.grades)
 
-                NavigationView {
+                NavigationStackView {
                     SettingsView(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                 }
                 .tabItem(Tab.settings.tabItem)
@@ -92,7 +103,11 @@ struct RootView: View {
             .accentColor(.main)
         } else {
             if #available(iOS 16.0, *) {
-                NewNavigationSplitView(viewModel: viewModel)
+                NewNavigationSplitView(
+                    viewModel: viewModel,
+                    scheduleView: NavigationStack(root: { scheduleView }),
+                    gradesView: NavigationStack(root: { gradesView })
+                )
             } else {
                 NavigationView {
                     List(selection: $viewModel.selectedListItem) {
@@ -130,7 +145,10 @@ struct RootView: View {
     var body: some View {
         if viewModel.isSignedIn {
             content
-                .onReceive(Just(scenePhase), perform: onScenePhaseChange)
+                #if targetEnvironment(macCatalyst)
+                .onAppear(perform: onAppear)
+                #endif
+                .onChange(of: scenePhase, perform: onScenePhaseChange)
                 .onKeyboardShortcut("1", perform: showSchedule)
                 .onKeyboardShortcut("2", perform: showGrades)
         } else {
@@ -140,6 +158,10 @@ struct RootView: View {
     }
 
     // MARK: - Methods
+
+    private func onAppear() {
+        viewModel.reloadData()
+    }
 
     private func onScenePhaseChange(_ scenePhase: ScenePhase) {
         guard scenePhase == .active else { return }

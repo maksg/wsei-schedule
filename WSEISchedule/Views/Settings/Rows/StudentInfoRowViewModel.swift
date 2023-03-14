@@ -28,7 +28,13 @@ final class StudentInfoRowViewModel {
         self.name = name
         self.number = number
         self.courseName = courseName
+
+        #if MOCK
+        self.photoUrl = nil
+        #else
         self.photoUrl = photoUrl
+        #endif
+
         self.cacheRequest = URLRequest(url: URL(string: "http://dziekanat.wsei.edu.pl/photo")!)
     }
     

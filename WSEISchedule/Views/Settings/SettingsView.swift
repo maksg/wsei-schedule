@@ -23,7 +23,7 @@ struct SettingsView: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle(Tab.settings.title)
-        .accessibility(identifier: "SettingsList")
+        .accessibilityIdentifier("SettingsList")
     }
     
 }
@@ -77,7 +77,7 @@ struct SettingsViewContent: View {
                             .foregroundColor(.main)
                     }
                 }
-                .accessibility(identifier: "SignOutButton")
+                .accessibilityIdentifier("SignOutButton")
             }
         }
         .alert(isPresented: $viewModel.showThankYouAlert) {

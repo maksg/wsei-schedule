@@ -137,10 +137,11 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         userDefaults.lectureFetchCount += 1
         let appVersion = Bundle.main.appVersion
 
-        guard appVersion != userDefaults.lastVersionPromptedForReview && userDefaults.lectureFetchCount > 10 else { return }
+        guard
+            appVersion != userDefaults.lastVersionPromptedForReview && userDefaults.lectureFetchCount > 10,
+            let scene = UIApplication.shared.foregroundActiveScene
+        else { return }
         userDefaults.lastVersionPromptedForReview = appVersion
-
-        guard let scene = UIApplication.shared.foregroundActiveScene else { return }
         SKStoreReviewController.requestReview(in: scene)
     }
     

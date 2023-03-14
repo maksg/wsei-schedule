@@ -98,9 +98,9 @@ struct GradesView: View {
                 }
             }
             #endif
-            .accessibility(identifier: "GradesList")
-            .accessibility(hint: Text(Translation.Accessibility.Grades.list.localized))
-            .onKeyboardShortcut("r", modifiers: .command, perform: reload)
+            .accessibilityIdentifier("GradesList")
+            .accessibilityHint(Text(Translation.Accessibility.Grades.list.localized))
+            .onKeyboardShortcut("r", perform: reload)
         } else {
             PremiumView()
         }
