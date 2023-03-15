@@ -63,7 +63,12 @@ final class Request: Requestable {
     // MARK: - Methods
 
     func make() async throws -> String {
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let session = URLSession(configuration: .ephemeral)
+        UserDefaults.standard.cookies.forEach { cookie in
+            session.configuration.httpCookieStorage?.setCookie(cookie)
+        }
+
+        let (data, _) = try await session.data(for: request)
         let responseData = String(data: data, encoding: .utf8) ?? ""
         if debug {
             print(responseData)

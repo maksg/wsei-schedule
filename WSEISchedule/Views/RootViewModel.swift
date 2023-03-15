@@ -114,6 +114,8 @@ final class RootViewModel: NSObject, ObservableObject {
         }
         Task {
             await gradesViewModel.fetchGradeSemesters()
+        }
+        Task {
             await settingsViewModel.loadStudentInfo()
         }
     }
@@ -134,9 +136,7 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
         onError(nil, tab: nil)
         updateSignInStatus()
 
-        DispatchQueue.main.async { [weak self] in
-            self?.reloadData()
-        }
+        reloadData()
     }
 
     private func checkIfIsSignedIn(error: Error, tab: Tab) {

@@ -248,11 +248,6 @@ extension WebAuthenticationSession: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         timer?.invalidate()
-        guard webView.url == signInSuccessUrl else { return }
-        webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { [weak self] cookies in
-            self?.onSuccess?(cookies)
-            self?.navigationController.dismiss(animated: true)
-        }
     }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
@@ -278,6 +273,17 @@ extension WebAuthenticationSession: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         updateNavigationItems()
+
+        if webView.url == signInSuccessUrl {
+            webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { [weak self] cookies in
+                if let sessionIdCookie = cookies.first(where: { $0.name == "ASP.NET_SessionId" }) {
+                    self?.onSuccess?([sessionIdCookie])
+                } else {
+                    self?.onSuccess?(cookies)
+                }
+                self?.navigationController.dismiss(animated: true)
+            }
+        }
 
         guard webView.url != signInSuccessUrl && !isPresented else { return }
         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
