@@ -75,7 +75,7 @@ final class RootViewModel: NSObject, ObservableObject {
         super.init()
 
         authSession.onSuccess = { [weak self] cookies in self?.onSignIn(cookies: cookies) }
-        authSession.onFailure = { [weak self] error in self?.onError(error) }
+        authSession.onFailure = { [weak self] error in self?.onError(error, tab: nil) }
         authSession.presentationContextProvider = self
 
         // TODO: Remove once everyone migrates
@@ -90,10 +90,18 @@ final class RootViewModel: NSObject, ObservableObject {
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
         isSignedIn = !cookies.isEmpty
 
-        signInViewModel.startSigningIn = { [weak self] in self?.startSigningIn(silently: false) }
-        scheduleViewModel.checkIfIsSignedIn = { [weak self] error in self?.checkIfIsSignedIn(error: error) }
-        gradesViewModel.checkIfIsSignedIn = { [weak self] error in self?.checkIfIsSignedIn(error: error) }
-        settingsViewModel.checkIfIsSignedIn = { [weak self] error in self?.checkIfIsSignedIn(error: error) }
+        signInViewModel.startSigningIn = { [weak self] in
+            self?.startSigningIn(silently: false)
+        }
+        scheduleViewModel.checkIfIsSignedIn = { [weak self] error in
+            self?.checkIfIsSignedIn(error: error, tab: .schedule)
+        }
+        gradesViewModel.checkIfIsSignedIn = { [weak self] error in
+            self?.checkIfIsSignedIn(error: error, tab: .grades)
+        }
+        settingsViewModel.checkIfIsSignedIn = { [weak self] error in
+            self?.checkIfIsSignedIn(error: error, tab: .settings)
+        }
     }
 
     // MARK: - Methods
@@ -106,8 +114,6 @@ final class RootViewModel: NSObject, ObservableObject {
         }
         Task {
             await gradesViewModel.fetchGradeSemesters()
-        }
-        Task {
             await settingsViewModel.loadStudentInfo()
         }
     }
@@ -125,36 +131,49 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
         UserDefaults.standard.cookies = cookies
 
-        onError(nil)
+        onError(nil, tab: nil)
         updateSignInStatus()
-        reloadData()
-    }
 
-    private func checkIfIsSignedIn(error: Error) {
-        Task {
-            await checkIfIsSignedIn(error: error)
+        DispatchQueue.main.async { [weak self] in
+            self?.reloadData()
         }
     }
 
-    private func checkIfIsSignedIn(error: Error) async {
+    private func checkIfIsSignedIn(error: Error, tab: Tab) {
+        Task {
+            await checkIfIsSignedIn(error: error, tab: tab)
+        }
+    }
+
+    private func checkIfIsSignedIn(error: Error, tab: Tab) async {
         do {
             let mainHtml = try await apiRequest.getMainHtml().make()
             let isSignedIn = htmlReader.isSignedIn(fromHtml: mainHtml)
             if isSignedIn {
-                onError(error)
+                onError(error, tab: tab)
             } else {
                 startSigningIn()
             }
         } catch {
-            onError(error)
+            onError(error, tab: tab)
         }
     }
 
-    func onError(_ error: Error?) {
+    func onError(_ error: Error?, tab: Tab?) {
         guard error as? WebAuthenticationSessionError != .cancelled else { return }
-        scheduleViewModel.showError(error)
-        gradesViewModel.showError(error)
-        settingsViewModel.showError(error)
+
+        switch tab {
+        case .schedule:
+            scheduleViewModel.showError(error)
+        case .grades:
+            gradesViewModel.showError(error)
+        case .settings:
+            settingsViewModel.showError(error)
+        default:
+            scheduleViewModel.showError(error)
+            gradesViewModel.showError(error)
+            settingsViewModel.showError(error)
+        }
     }
 
     func presentationAnchor(for session: WebAuthenticationSession) -> WebAuthenticationSession.PresentationAnchor? {

@@ -35,11 +35,11 @@ class WebAuthenticationSession: NSObject {
     private let navigationController: UINavigationController = UINavigationController()
     private let viewController: UIViewController = UIViewController()
     private let progressView: UIProgressView = UIProgressView(progressViewStyle: .bar)
-    private let webView: WKWebView = WKWebView()
     private let backButton: UIBarButtonItem = UIBarButtonItem()
     private let forwardButton: UIBarButtonItem = UIBarButtonItem()
     private let secureImageView: UIImageView = UIImageView(image: .secure)
     private let titleLabel: UILabel = UILabel()
+    private var webView: WKWebView!
 
     private let signInSuccessUrl: URL = URL(string: "https://dziekanat.wsei.edu.pl/")!
     private let url: URL
@@ -88,7 +88,6 @@ class WebAuthenticationSession: NSObject {
         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: dismiss))
         viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .refresh, primaryAction: UIAction(handler: reload))
 
-        updateNavigationItems()
         backButton.primaryAction = UIAction(image: .back, handler: goBack)
         forwardButton.primaryAction = UIAction(image: .forward, handler: goForward)
         let fixedSpace = UIBarButtonItem(systemItem: .fixedSpace)
@@ -101,14 +100,16 @@ class WebAuthenticationSession: NSObject {
             UIBarButtonItem(image: .share, primaryAction: UIAction(handler: share))
         ]
 
-        viewController.view.addSubview(webView)
-        setupWebView(parent: viewController.view, delegate: self)
-
         viewController.view.addSubview(progressView)
         setupProgressView(parent: viewController.view)
 
         setupNavigationController()
         navigationController.viewControllers = [viewController]
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.setupWebView(parent: self.viewController.view, delegate: self)
+        }
     }
 
     private func updateNavigationItems() {
@@ -141,6 +142,12 @@ class WebAuthenticationSession: NSObject {
     }
 
     private func setupWebView(parent: UIView, delegate: WKNavigationDelegate) {
+        guard webView == nil else { return }
+        webView = WKWebView()
+        parent.addSubview(webView)
+        parent.bringSubviewToFront(progressView)
+        updateNavigationItems()
+
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.topAnchor.constraint(equalTo: parent.topAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
