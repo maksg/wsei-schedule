@@ -3,25 +3,21 @@
     {
       "filename" : "icon-40.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : "<=145"
     },
     {
       "filename" : "icon-44.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : ">161"
     },
     {
       "filename" : "icon-45.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : ">145"
     },
     {
       "filename" : "icon-50.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : ">183"
     }
   ],

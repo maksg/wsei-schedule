@@ -1,27 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "icon-182.png",
+      "filename" : "icon-185.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : "<=145"
     },
     {
       "filename" : "icon-203.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : ">161"
     },
     {
       "filename" : "icon-203.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : ">145"
     },
     {
-      "filename" : "icon-224.png",
+      "filename" : "icon-223.png",
       "idiom" : "watch",
-      "scale" : "2x",
       "screen-width" : ">183"
     }
   ],
