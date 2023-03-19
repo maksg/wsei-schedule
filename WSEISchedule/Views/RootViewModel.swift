@@ -21,6 +21,7 @@ final class RootViewModel: NSObject, ObservableObject {
     let settingsViewModel: SettingsViewModel
 
     private let authSession: WebAuthenticationSession
+    private var isCheckingSignInStatus: Bool = false
 
     @Published var selectedTab: Tab = .schedule {
         didSet {
@@ -146,6 +147,9 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
     }
 
     private func checkIfIsSignedIn(error: Error, tab: Tab) async {
+        guard !isCheckingSignInStatus else { return }
+        isCheckingSignInStatus = true
+
         do {
             let mainHtml = try await apiRequest.getMainHtml()
             let isSignedIn = htmlReader.isSignedIn(fromHtml: mainHtml)
@@ -157,6 +161,8 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
         } catch {
             onError(error, tab: tab)
         }
+
+        isCheckingSignInStatus = false
     }
 
     func onError(_ error: Error?, tab: Tab?) {

@@ -26,6 +26,10 @@ final class APIRequestMock: APIRequestable {
         return contentsOfFile(name: "Grades")
     }
 
+    func getStudentInfoHtml() async throws -> String {
+        return contentsOfFile(name: "StudentInfo")
+    }
+
     func clearCache() { }
 
     private func contentsOfFile(name: String) -> String {

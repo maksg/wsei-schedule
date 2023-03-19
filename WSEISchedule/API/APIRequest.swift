@@ -41,6 +41,10 @@ final class APIRequest: APIRequestable {
         return try await makeRequest(endpoint: .getGradesHtml(semesterId: semesterId))
     }
 
+    func getStudentInfoHtml() async throws -> String {
+        return try await makeRequest(endpoint: .getStudentInfoHtml)
+    }
+
     private func makeRequest(endpoint: Endpoint) async throws -> String {
         let request = Request(url: url, endpoint: endpoint, debug: debug)
         return try await request.make(session: session)

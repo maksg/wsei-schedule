@@ -65,7 +65,7 @@ final class SettingsViewModel: NSObject, ObservableObject {
         }
 
         do {
-            let html = try await apiRequest.getMainHtml()
+            let html = try await apiRequest.getStudentInfoHtml()
             readStudentInfo(fromHtml: html)
         } catch {
             showError(error)

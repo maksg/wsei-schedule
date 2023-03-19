@@ -13,5 +13,6 @@ protocol APIRequestable {
     func getScheduleHtml(parameters: ScheduleParameters) async throws -> String
     func getGradeSemestersHtml() async throws -> String
     func getGradesHtml(semesterId: String) async throws -> String
+    func getStudentInfoHtml() async throws -> String
     func clearCache()
 }
