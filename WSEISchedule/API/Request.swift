@@ -62,8 +62,7 @@ final class Request: Requestable {
     
     // MARK: - Methods
 
-    func make() async throws -> String {
-        let session = URLSession(configuration: .ephemeral)
+    func make(session: URLSession) async throws -> String {
         UserDefaults.standard.cookies.forEach { cookie in
             session.configuration.httpCookieStorage?.setCookie(cookie)
         }

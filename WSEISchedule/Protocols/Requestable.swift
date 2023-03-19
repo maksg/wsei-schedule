@@ -9,6 +9,6 @@
 import Foundation
 
 protocol Requestable {
-    func make() async throws -> String
+    func make(session: URLSession) async throws -> String
 }
 

@@ -9,9 +9,9 @@
 import Foundation
 
 protocol APIRequestable {
-    func getMainHtml() -> Requestable
-    func getScheduleHtml(parameters: ScheduleParameters) -> Requestable
-    func getGradeSemestersHtml() -> Requestable
-    func getGradesHtml(semesterId: String) -> Requestable
+    func getMainHtml() async throws -> String
+    func getScheduleHtml(parameters: ScheduleParameters) async throws -> String
+    func getGradeSemestersHtml() async throws -> String
+    func getGradesHtml(semesterId: String) async throws -> String
     func clearCache()
 }

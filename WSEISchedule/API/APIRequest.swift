@@ -14,29 +14,36 @@ final class APIRequest: APIRequestable {
 
     private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
     private let debug: Bool
+    private let session: URLSession
 
     // MARK: - Initialization
 
     init(debug: Bool = false) {
         self.debug = debug
+        self.session = URLSession(configuration: .ephemeral)
     }
 
     // MARK: - Methods
 
-    func getMainHtml() -> Requestable {
-        Request(url: url, endpoint: Endpoint.getMainHtml, debug: debug)
+    func getMainHtml() async throws -> String {
+        return try await makeRequest(endpoint: .getMainHtml)
     }
 
-    func getScheduleHtml(parameters: ScheduleParameters) -> Requestable {
-        Request(url: url, endpoint: Endpoint.getScheduleHtml(parameters: parameters), debug: debug)
+    func getScheduleHtml(parameters: ScheduleParameters) async throws -> String {
+        return try await makeRequest(endpoint: .getScheduleHtml(parameters: parameters))
     }
 
-    func getGradeSemestersHtml() -> Requestable {
-        Request(url: url, endpoint: Endpoint.getGradeSemestersHtml, debug: debug)
+    func getGradeSemestersHtml() async throws -> String {
+        return try await makeRequest(endpoint: .getGradeSemestersHtml)
     }
 
-    func getGradesHtml(semesterId: String) -> Requestable {
-        Request(url: url, endpoint: Endpoint.getGradesHtml(semesterId: semesterId), debug: debug)
+    func getGradesHtml(semesterId: String) async throws -> String {
+        return try await makeRequest(endpoint: .getGradesHtml(semesterId: semesterId))
+    }
+
+    private func makeRequest(endpoint: Endpoint) async throws -> String {
+        let request = Request(url: url, endpoint: endpoint, debug: debug)
+        return try await request.make(session: session)
     }
 
     func clearCache() {

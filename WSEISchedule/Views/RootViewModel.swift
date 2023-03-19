@@ -147,7 +147,7 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
 
     private func checkIfIsSignedIn(error: Error, tab: Tab) async {
         do {
-            let mainHtml = try await apiRequest.getMainHtml().make()
+            let mainHtml = try await apiRequest.getMainHtml()
             let isSignedIn = htmlReader.isSignedIn(fromHtml: mainHtml)
             if isSignedIn {
                 onError(error, tab: tab)

@@ -71,7 +71,6 @@
 		5067A43628DCA35400FFF92D /* LectureWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067A43528DCA35400FFF92D /* LectureWeek.swift */; };
 		50851BCD26AF0CF60006F96C /* String+FormUrlEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */; };
 		5087932529BE609300833E53 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7F00234CACF10061A835 /* Translation.swift */; };
-		5087932929BE9B8200833E53 /* RequestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087932829BE9B8200833E53 /* RequestMock.swift */; };
 		5087932B29BE9C4900833E53 /* APIRequestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087932A29BE9C4900833E53 /* APIRequestMock.swift */; };
 		5087932D29BE9C9500833E53 /* APIRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087932C29BE9C9500833E53 /* APIRequestable.swift */; };
 		5087932E29BE9E7B00833E53 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57561BE22535B1EE00DBC3D3 /* MockData.swift */; };
@@ -270,7 +269,6 @@
 		5067A43528DCA35400FFF92D /* LectureWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureWeek.swift; sourceTree = "<group>"; };
 		50851BCC26AF0CF60006F96C /* String+FormUrlEncoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+FormUrlEncoded.swift"; sourceTree = "<group>"; };
 		5087932629BE630800833E53 /* gentranslations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gentranslations.swift; sourceTree = "<group>"; };
-		5087932829BE9B8200833E53 /* RequestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMock.swift; sourceTree = "<group>"; };
 		5087932A29BE9C4900833E53 /* APIRequestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestMock.swift; sourceTree = "<group>"; };
 		5087932C29BE9C9500833E53 /* APIRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestable.swift; sourceTree = "<group>"; };
 		5087933029BEA6CD00833E53 /* Schedule.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Schedule.html; sourceTree = "<group>"; };
@@ -493,7 +491,6 @@
 		5087932729BE9B2D00833E53 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				5087932829BE9B8200833E53 /* RequestMock.swift */,
 				5087932A29BE9C4900833E53 /* APIRequestMock.swift */,
 				57561BE22535B1EE00DBC3D3 /* MockData.swift */,
 			);
@@ -1225,7 +1222,6 @@
 				57561BE32535B1EE00DBC3D3 /* MockData.swift in Sources */,
 				57AD319D22AE6BC3009EEB1F /* String+Localized.swift in Sources */,
 				50493B8729B3884B0011964C /* DispatchMainPublished.swift in Sources */,
-				5087932929BE9B8200833E53 /* RequestMock.swift in Sources */,
 				57AD31A722AE6BC3009EEB1F /* RootView.swift in Sources */,
 				50BB499426A328A500BFE87B /* HTTPMethod.swift in Sources */,
 				50493B8229B362560011964C /* Dictionary+KeyFromText.swift in Sources */,

@@ -52,7 +52,7 @@ final class GradesViewModel: ObservableObject {
         isRefreshingAll = showRefreshControl
 
         do {
-            let html = try await apiRequest.getGradeSemestersHtml().make()
+            let html = try await apiRequest.getGradeSemestersHtml()
             readGradeSemesters(fromHtml: html)
         } catch {
             showError(error)
@@ -85,7 +85,7 @@ final class GradesViewModel: ObservableObject {
         isRefreshing.insert(semesterId)
 
         do {
-            let html = try await apiRequest.getGradesHtml(semesterId: semesterId).make()
+            let html = try await apiRequest.getGradesHtml(semesterId: semesterId)
             readGrades(fromHtml: html, semesterId: semesterId)
         } catch {
             showError(error)

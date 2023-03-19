@@ -9,25 +9,21 @@
 import Foundation
 
 final class APIRequestMock: APIRequestable {
-
-    func getMainHtml() -> Requestable {
-        let response = contentsOfFile(name: "Main")
-        return RequestMock(response: response)
+    
+    func getMainHtml() async throws -> String {
+        return contentsOfFile(name: "Main")
     }
 
-    func getScheduleHtml(parameters: ScheduleParameters) -> Requestable {
-        let response = contentsOfFile(name: "Schedule")
-        return RequestMock(response: response)
+    func getScheduleHtml(parameters: ScheduleParameters) async throws -> String {
+        return contentsOfFile(name: "Schedule")
     }
 
-    func getGradeSemestersHtml() -> Requestable {
-        let response = contentsOfFile(name: "GradeSemesters")
-        return RequestMock(response: response)
+    func getGradeSemestersHtml() async throws -> String {
+        return contentsOfFile(name: "GradeSemesters")
     }
 
-    func getGradesHtml(semesterId: String) -> Requestable {
-        let response = contentsOfFile(name: "Grades")
-        return RequestMock(response: response)
+    func getGradesHtml(semesterId: String) async throws -> String {
+        return contentsOfFile(name: "Grades")
     }
 
     func clearCache() { }

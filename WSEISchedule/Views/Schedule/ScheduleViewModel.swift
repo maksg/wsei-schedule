@@ -94,7 +94,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         let parameters = ScheduleParameters(fromDate: fromDate, toDate: toDate)
 
         do {
-            let html = try await apiRequest.getScheduleHtml(parameters: parameters).make()
+            let html = try await apiRequest.getScheduleHtml(parameters: parameters)
             readLectures(fromHtml: html)
         } catch {
             showError(error)
