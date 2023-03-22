@@ -89,6 +89,7 @@ final class RootViewModel: NSObject, ObservableObject {
         }
 
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
+        apiRequest.setCookies(cookies)
         isSignedIn = !cookies.isEmpty
 
         signInViewModel.startSigningIn = { [weak self] in
@@ -133,6 +134,7 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
     func onSignIn(cookies: [HTTPCookie]) {
         cookies.forEach(HTTPCookieStorage.shared.setCookie)
         UserDefaults.standard.cookies = cookies
+        apiRequest.setCookies(cookies)
 
         onError(nil, tab: nil)
         updateSignInStatus()

@@ -14,5 +14,6 @@ protocol APIRequestable {
     func getGradeSemestersHtml() async throws -> String
     func getGradesHtml(semesterId: String) async throws -> String
     func getStudentInfoHtml() async throws -> String
+    func setCookies(_ cookies: [HTTPCookie])
     func clearCache()
 }

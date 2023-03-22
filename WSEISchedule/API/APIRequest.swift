@@ -14,7 +14,7 @@ final class APIRequest: APIRequestable {
 
     private let url = URL(string: "https://dziekanat.wsei.edu.pl/")!
     private let debug: Bool
-    private let session: URLSession
+    private var session: URLSession
 
     // MARK: - Initialization
 
@@ -50,7 +50,14 @@ final class APIRequest: APIRequestable {
         return try await request.make(session: session)
     }
 
+    func setCookies(_ cookies: [HTTPCookie]) {
+        cookies.forEach { cookie in
+            session.configuration.httpCookieStorage?.setCookie(cookie)
+        }
+    }
+
     func clearCache() {
+        session = URLSession(configuration: .ephemeral)
         HTTPCookieStorage.shared.removeCookies(since: .distantPast)
         URLCache.shared.removeAllCachedResponses()
         WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: .distantPast, completionHandler: {})

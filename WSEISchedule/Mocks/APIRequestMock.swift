@@ -9,6 +9,7 @@
 import Foundation
 
 final class APIRequestMock: APIRequestable {
+
     
     func getMainHtml() async throws -> String {
         return contentsOfFile(name: "Main")
@@ -29,6 +30,8 @@ final class APIRequestMock: APIRequestable {
     func getStudentInfoHtml() async throws -> String {
         return contentsOfFile(name: "StudentInfo")
     }
+
+    func setCookies(_ cookies: [HTTPCookie]) { }
 
     func clearCache() { }
 
