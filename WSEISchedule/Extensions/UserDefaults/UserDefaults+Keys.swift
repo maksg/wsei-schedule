@@ -15,7 +15,7 @@ extension UserDefaults {
         case premium
         case cookies
         case gradeSemesters
-        case lectureFetchCount
+        case lecturesFetchCount
         case lastVersionPromptedForReview
     }
 
@@ -61,12 +61,12 @@ extension UserDefaults {
         }
     }
 
-    var lectureFetchCount: Int {
+    var lecturesFetchCount: Int {
         get {
-            integer(forKey: Key.lectureFetchCount.rawValue)
+            integer(forKey: Key.lecturesFetchCount.rawValue)
         }
         set {
-            set(newValue, forKey: Key.lectureFetchCount.rawValue)
+            set(newValue, forKey: Key.lecturesFetchCount.rawValue)
         }
     }
 
@@ -85,7 +85,7 @@ extension UserDefaults {
         removeObject(forKey: .cookies)
         removeObject(forKey: .student)
         removeObject(forKey: .gradeSemesters)
-        removeObject(forKey: .lectureFetchCount)
+        removeObject(forKey: .lecturesFetchCount)
         removeObject(forKey: .lastVersionPromptedForReview)
     }
 

@@ -81,6 +81,7 @@ final class RootViewModel: NSObject, ObservableObject {
 
         // TODO: Remove once everyone migrates
         Keychain.clean()
+        UserDefaults.standard.removeObject(forKey: "lectureFetchCount")
 
         if ProcessInfo.processInfo.isTesting {
             UserDefaults.standard.signOut()
