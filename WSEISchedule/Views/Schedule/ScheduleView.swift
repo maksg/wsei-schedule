@@ -50,7 +50,6 @@ struct ScheduleView: View {
                 }
             }
         }
-        .id(UUID())
         .listStyle(.insetGrouped)
         .pullToRefresh(onRefresh: pullToRefresh)
         .navigationTitle(Tab.schedule.title)
