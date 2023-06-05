@@ -41,11 +41,11 @@ extension Lecture {
 
 extension Array where Element == Lecture {
     var encoded: Data? {
-        try? PropertyListEncoder.init().encode(self)
+        try? PropertyListEncoder().encode(self)
     }
 
     init?(data: Data) {
-        guard let lecures = try? PropertyListDecoder.init().decode([Lecture].self, from: data) else { return nil }
+        guard let lecures = try? PropertyListDecoder().decode([Lecture].self, from: data) else { return nil }
         self = lecures
     }
 }

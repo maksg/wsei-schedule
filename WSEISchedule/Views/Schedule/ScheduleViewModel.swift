@@ -8,7 +8,6 @@
 
 import Combine
 import SwiftUI
-import CoreData
 import WatchConnectivity
 import WidgetKit
 import SwiftSoup
@@ -20,15 +19,6 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
     @DispatchMainPublished var error: Error?
     @DispatchMainPublished var isRefreshing: Bool = false
-    
-    private lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSSharedPersistentContainer(name: "Lectures")
-        container.loadPersistentStores { _, error in
-            guard let error = error as NSError? else { return }
-            print("Unresolved error \(error), \(error.userInfo)")
-        }
-        return container
-    }()
 
     private var lectures: [CoreDataLecture] = [] {
         didSet {
@@ -49,6 +39,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
     let apiRequest: APIRequestable
     let htmlReader: HTMLReader
+    private let lecturesDataManager: DataManager<CoreDataLecture> = DataManager(persistentContainerName: "Lectures")
 
     private var session: WCSession?
     
@@ -70,9 +61,8 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
 
     private func deleteAllLectures(_: Notification) {
-        let context = persistentContainer.viewContext
-        deleteLectures(from: context)
-        saveLectures(to: context)
+        deleteLectures()
+        saveLectures()
         lectures = []
     }
 
@@ -81,7 +71,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     }
     
     func reload() async {
-        fetchLectures(from: persistentContainer.viewContext)
+        fetchLectures()
         await fetchSchedule()
     }
 
@@ -110,15 +100,14 @@ final class ScheduleViewModel: NSObject, ObservableObject {
                 return
             }
             
-            let context = persistentContainer.viewContext
-            deleteLectures(from: context)
-
-            lectures = lectureDictionaries.map { dictionary in
-                CoreDataLecture(fromDictionary: dictionary, in: context)
+            deleteLectures()
+            lecturesDataManager.applyContext { context in
+                lectures = lectureDictionaries.map { dictionary in
+                    CoreDataLecture(fromDictionary: dictionary, in: context)
+                }
             }
-
             generateLectureDays(from: lectures)
-            saveLectures(to: context)
+            saveLectures()
 
             WidgetCenter.shared.reloadAllTimelines()
 
@@ -151,11 +140,9 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         session?.activate()
     }
     
-    private func fetchLectures(from context: NSManagedObjectContext) {
-        let fetchRequest = CoreDataLecture.fetchRequest()
-
+    private func fetchLectures() {
         do {
-            lectures = try context.fetch(fetchRequest)
+            lectures = try lecturesDataManager.fetch()
             generateLectureDays(from: lectures)
         } catch {
             print(error)
@@ -186,14 +173,17 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         previousLectureWeeks = Array(lectureDays: previousLectureDays)
     }
     
-    private func deleteLectures(from context: NSManagedObjectContext) {
-        lectures.forEach(context.delete)
+    private func deleteLectures() {
+        do {
+            try lecturesDataManager.delete()
+        } catch let error as NSError {
+            print("Unresolved error \(error), \(error.userInfo)")
+        }
     }
     
-    private func saveLectures(to context: NSManagedObjectContext) {
-        guard context.hasChanges else { return }
+    private func saveLectures() {
         do {
-            try context.save()
+            try lecturesDataManager.save()
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")
         }
