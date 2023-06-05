@@ -47,7 +47,6 @@ class WebAuthenticationSession: NSObject {
     var onFailure: WebAuthenticationSession.Failure?
 
     private var timer: Timer?
-    private var isPresented: Bool = false
     private var didRetry: Bool = false
 
     // MARK: - Initialization
@@ -69,7 +68,9 @@ class WebAuthenticationSession: NSObject {
         }
 
         if !silently {
-            present()
+            DispatchQueue.main.async { [weak self] in
+                self?.present()
+            }
         }
     }
 
@@ -169,15 +170,13 @@ class WebAuthenticationSession: NSObject {
     }
 
     private func present() {
-        guard !isPresented else { return }
         let presentationAnchor = presentationContextProvider?.presentationAnchor(for: self)
         var topController = presentationAnchor?.rootViewController
         while let presentedViewController = topController?.presentedViewController {
             topController = presentedViewController
         }
 
-        guard let topController else { return }
-        isPresented = true
+        guard let topController, !navigationController.isModal else { return }
         navigationController.transitioningDelegate = self
         topController.present(navigationController, animated: true)
     }
@@ -236,7 +235,6 @@ extension WebAuthenticationSession: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         onFailure?(WebAuthenticationSessionError.cancelled)
-        isPresented = false
         return nil
     }
 
@@ -283,13 +281,13 @@ extension WebAuthenticationSession: WKNavigationDelegate {
                 }
                 self?.navigationController.dismiss(animated: true)
             }
-        }
-
-        guard webView.url != signInSuccessUrl && !isPresented else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
-            self?.present()
+        } else {
+            timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
+                DispatchQueue.main.async { [weak self] in
+                    self?.present()
+                }
+            }
         }
     }
 
 }
-

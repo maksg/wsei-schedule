@@ -79,8 +79,10 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         guard isSignedIn && !isRefreshing else { return }
         isRefreshing = showRefreshControl
 
-        let fromDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
-        let toDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let fromDate = calendar.date(byAdding: .year, value: -1, to: currentDate)!
+        let toDate = calendar.date(byAdding: .year, value: 1, to: currentDate)!
         let parameters = ScheduleParameters(fromDate: fromDate, toDate: toDate)
 
         do {
@@ -99,7 +101,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
                 isRefreshing = false
                 return
             }
-            
+
             deleteLectures()
             lecturesDataManager.applyContext { context in
                 lectures = lectureDictionaries.map { dictionary in
@@ -135,7 +137,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     
     func activateWatchSession() {
         guard WCSession.isSupported() else { return }
-        session = WCSession.default
+        session = .default
         session?.delegate = self
         session?.activate()
     }
