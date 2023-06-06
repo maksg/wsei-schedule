@@ -13,7 +13,7 @@ struct SettingsView: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: SettingsViewModel
-    @Binding var isSignedIn: Bool
+    @MainActor @Binding var isSignedIn: Bool
 
     // MARK: - Views
     
@@ -91,7 +91,7 @@ struct SettingsViewContent: View {
 
     private func signOut() {
         viewModel.signOut()
-        DispatchQueue.main.async {
+        Task { @MainActor in
             isSignedIn = false
         }
     }

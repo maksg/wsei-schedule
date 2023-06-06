@@ -10,6 +10,7 @@ import UIKit
 
 extension UIApplication {
 
+    @MainActor
     var foregroundActiveScene: UIWindowScene? {
         connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
     }

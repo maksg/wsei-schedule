@@ -115,7 +115,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
 
             showError(nil)
 
-            DispatchQueue.main.async { [weak self] in
+            Task { @MainActor [weak self] in
                 self?.requestReviewIfAppropriate()
             }
         } catch {
@@ -123,6 +123,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         }
     }
 
+    @MainActor
     private func requestReviewIfAppropriate() {
         let appVersion = Bundle.main.appVersion
         let userDefaults = UserDefaults.standard

@@ -61,16 +61,15 @@ class WebAuthenticationSession: NSObject {
 
     // MARK: - Methods
 
+    @MainActor
     func start(silently: Bool = true) {
+        guard !navigationController.isModal else { return }
+
         let request = URLRequest(url: url)
-        DispatchQueue.main.async { [weak webView] in
-            webView?.load(request)
-        }
+        webView.load(request)
 
         if !silently {
-            DispatchQueue.main.async { [weak self] in
-                self?.present()
-            }
+            present()
         }
     }
 
@@ -107,7 +106,7 @@ class WebAuthenticationSession: NSObject {
         setupNavigationController()
         navigationController.viewControllers = [viewController]
 
-        DispatchQueue.main.async { [weak self] in
+        Task { @MainActor [weak self] in
             guard let self else { return }
             self.setupWebView(parent: self.viewController.view, delegate: self)
         }
@@ -142,6 +141,7 @@ class WebAuthenticationSession: NSObject {
         }
     }
 
+    @MainActor
     private func setupWebView(parent: UIView, delegate: WKNavigationDelegate) {
         guard webView == nil else { return }
         webView = WKWebView()
@@ -264,9 +264,12 @@ extension WebAuthenticationSession: WKNavigationDelegate {
         }
 
         didRetry = true
-        WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: .distantPast, completionHandler: {})
-        let request = URLRequest(url: url)
-        webView.load(request)
+
+        Task { @MainActor in
+            await WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: .distantPast)
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -283,9 +286,7 @@ extension WebAuthenticationSession: WKNavigationDelegate {
             }
         } else {
             timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
-                DispatchQueue.main.async { [weak self] in
-                    self?.present()
-                }
+                self?.present()
             }
         }
     }

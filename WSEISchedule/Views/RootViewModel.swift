@@ -94,7 +94,9 @@ final class RootViewModel: NSObject, ObservableObject {
         isSignedIn = !cookies.isEmpty
 
         signInViewModel.startSigningIn = { [weak self] in
-            self?.startSigningIn(silently: false)
+            Task { @MainActor [weak self] in
+                self?.startSigningIn(silently: false)
+            }
         }
         scheduleViewModel.checkIfIsSignedIn = { [weak self] error in
             self?.checkIfIsSignedIn(error: error, tab: .schedule)
@@ -159,7 +161,9 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
             if isSignedIn {
                 onError(error, tab: tab)
             } else {
-                startSigningIn()
+                await MainActor.run {
+                    startSigningIn()
+                }
             }
         } catch {
             onError(error, tab: tab)
@@ -185,10 +189,12 @@ extension RootViewModel: WebAuthenticationPresentationContextProviding {
         }
     }
 
+    @MainActor
     func presentationAnchor(for session: WebAuthenticationSession) -> WebAuthenticationSession.PresentationAnchor? {
         return UIApplication.shared.foregroundActiveScene?.windows.first(where: \.isKeyWindow)
     }
 
+    @MainActor
     func startSigningIn(silently: Bool = true) {
         #if MOCK
         let cookie = HTTPCookie(properties: [
