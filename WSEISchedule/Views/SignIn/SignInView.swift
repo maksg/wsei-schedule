@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SignInView: View {
 
-    // MARK: - Methods
+    // MARK: - Properties
 
     @ObservedObject var viewModel: SignInViewModel
 

@@ -22,17 +22,17 @@ struct GradeSemester: Identifiable, Codable {
     init(id: String, text: String) {
         self.id = id
 
-        let rows = text.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
+        let rows = text.split(separator: "\n").map { $0.trimmingCharacters(in: .whitespaces) }
         var dictionary = [String: String]()
         rows.forEach { row in
             dictionary.addKey(fromText: row)
         }
 
-        order = dictionary["Semestr"] ?? ""
-        name = dictionary["Semestr akademicki"]?
+        order = dictionary["Semester"] ?? ""
+        name = dictionary["University semester"]?
             .replacingOccurrences(of: "letni", with: Translation.Grades.Semester.summer.localized)
             .replacingOccurrences(of: "zimowy", with: Translation.Grades.Semester.winter.localized) ?? ""
-        status = Status(value: dictionary["Stan semestru"] ?? "")
+        status = Status(value: dictionary["State of semester"] ?? "")
     }
 
     enum Status: Codable {

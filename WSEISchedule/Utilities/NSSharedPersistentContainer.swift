@@ -8,8 +8,8 @@
 
 import CoreData
 
-class NSSharedPersistentContainer: NSPersistentContainer {
-    
+class NSSharedPersistentContainer: NSPersistentContainer, @unchecked Sendable {
+
     override open class func defaultDirectoryURL() -> URL {
         var storeURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.InfinityPi.WSEI-Schedule")
         storeURL = storeURL?.appendingPathComponent("Lectures.sqlite")

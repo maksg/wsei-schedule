@@ -132,7 +132,7 @@ final class RootViewModel: NSObject, ObservableObject {
     }
 }
 
-extension RootViewModel: WebAuthenticationPresentationContextProviding {
+extension RootViewModel: @preconcurrency WebAuthenticationPresentationContextProviding {
 
     func onSignIn(cookies: [HTTPCookie]) {
         cookies.forEach(HTTPCookieStorage.shared.setCookie)

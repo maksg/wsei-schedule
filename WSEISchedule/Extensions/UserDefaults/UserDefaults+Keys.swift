@@ -82,14 +82,14 @@ extension UserDefaults {
     // MARK: - Methods
     
     func signOut() {
-        removeObject(forKey: .cookies)
-        removeObject(forKey: .student)
-        removeObject(forKey: .gradeSemesters)
-        removeObject(forKey: .lecturesFetchCount)
-        removeObject(forKey: .lastVersionPromptedForReview)
+        removeObject(for: .cookies)
+        removeObject(for: .student)
+        removeObject(for: .gradeSemesters)
+        removeObject(for: .lecturesFetchCount)
+        removeObject(for: .lastVersionPromptedForReview)
     }
 
-    private func removeObject(forKey key: Key) {
+    private func removeObject(for key: Key) {
         removeObject(forKey: key.rawValue)
     }
     

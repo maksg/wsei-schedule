@@ -21,10 +21,10 @@ struct Grade: Identifiable, Codable {
 
 extension Grade {
     init(fromDictionary dictionary: [String: String]) {
-        let subjectAndLecturer = dictionary["Przedmiot i prowadzący"]?
+        let subjectAndLecturer = dictionary["Subject and lecturer"]?
             .replacingOccurrences(of: "\\n", with: "\n")
             .split(separator: "\n")
-            .map({ $0.trimmingCharacters(in: .whitespaces) }) ?? []
+            .map { $0.trimmingCharacters(in: .whitespaces) } ?? []
 
         if subjectAndLecturer.count >= 2 {
             self.subject = subjectAndLecturer[0]
@@ -34,11 +34,11 @@ extension Grade {
             self.lecturer = ""
         }
 
-        self.lectureForm = dictionary["Forma zajęć:"]?
+        self.lectureForm = dictionary["Form of actovities:"]?
             .replacingOccurrences(of: " \\n ", with: "\n")
             .trimmingCharacters(in: .whitespaces) ?? ""
 
-        self.ects = dictionary["Punkty ECTS"] ?? ""
-        self.value = dictionary["Ocena"] ?? ""
+        self.ects = dictionary["ECTS points"] ?? ""
+        self.value = dictionary["Grade"] ?? ""
     }
 }

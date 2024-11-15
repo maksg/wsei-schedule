@@ -89,6 +89,11 @@ enum Translation: String {
    }
 
    enum Schedule: String {
+
+      enum Lecture: String {
+         case noComments = "schedule.lecture.no_comments"
+      }
+
       case noLectures = "schedule.no_lectures"
       case title = "schedule.title"
    }

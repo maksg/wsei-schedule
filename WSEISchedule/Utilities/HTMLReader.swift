@@ -36,7 +36,7 @@ final class HTMLReader {
 
         let photoUrl = URL(string: "https://dziekanat.wsei.edu.pl\(photoSource)")!
 
-        try infoElement.select("br").append("\\n")
+        try infoElement.select("p").append("\\n")
         let info = try infoElement.text().replacingOccurrences(of: "\\n", with: "\n")
         let infoLines = info.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
 

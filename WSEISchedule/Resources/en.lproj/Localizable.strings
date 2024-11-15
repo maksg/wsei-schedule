@@ -23,6 +23,7 @@
 
 "schedule.title" = "Schedule";
 "schedule.no_lectures" = "No lectures";
+"schedule.lecture.no_comments" = "Lack";
 
 // Schedule History
 
