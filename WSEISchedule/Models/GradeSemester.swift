@@ -28,11 +28,15 @@ struct GradeSemester: Identifiable, Codable {
             dictionary.addKey(fromText: row)
         }
 
-        order = dictionary["Semester"] ?? ""
-        name = dictionary["University semester"]?
-            .replacingOccurrences(of: "letni", with: Translation.Grades.Semester.summer.localized)
-            .replacingOccurrences(of: "zimowy", with: Translation.Grades.Semester.winter.localized) ?? ""
-        status = Status(value: dictionary["State of semester"] ?? "")
+        order = dictionary["Semester", "Semestr"] ?? ""
+        let summer = Translation.Grades.Semester.summer.localized
+        let winter = Translation.Grades.Semester.winter.localized
+        name = dictionary["University semester", "Semestr akademicki"]?
+            .replacingOccurrences(of: "letni", with: summer)
+            .replacingOccurrences(of: "summer", with: summer)
+            .replacingOccurrences(of: "zimowy", with: winter)
+            .replacingOccurrences(of: "winter", with: winter) ?? ""
+        status = Status(value: dictionary["State of semester", "Stan semestru"] ?? "")
     }
 
     enum Status: Codable {
@@ -43,11 +47,11 @@ struct GradeSemester: Identifiable, Codable {
 
         init(value: String) {
             switch value.lowercased() {
-            case "zaliczony":
+            case "zaliczony", "passed":
                 self = .passed
-            case "w trakcie nauki":
+            case "w trakcie nauki", "in progress":
                 self = .inProgress
-            case "niezaliczony":
+            case "niezaliczony", "not passed":
                 self = .notPassed
             default:
                 self = .other(value: value)

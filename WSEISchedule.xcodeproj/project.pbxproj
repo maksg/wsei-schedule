@@ -91,6 +91,9 @@
 		50BB49A126A5EEDC00BFE87B /* HTMLReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */; };
 		50BB49A626A600F300BFE87B /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A526A600F300BFE87B /* Requestable.swift */; };
 		50BB49A826A6014400BFE87B /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB49A726A6014400BFE87B /* Routable.swift */; };
+		50C1FDD02D00EE9200FE984E /* Dictionary+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1FDCF2D00EE7F00FE984E /* Dictionary+Sequence.swift */; };
+		50C1FDD12D00EF2300FE984E /* Dictionary+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1FDCF2D00EE7F00FE984E /* Dictionary+Sequence.swift */; };
+		50C1FDD22D00EF2300FE984E /* Dictionary+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1FDCF2D00EE7F00FE984E /* Dictionary+Sequence.swift */; };
 		50D1AC8629B0036100A1BD4E /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */; };
 		5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F82D22AFD23A005BED89 /* LectureRow.swift */; };
 		5701F83122AFE084005BED89 /* DayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701F83022AFE084005BED89 /* DayHeader.swift */; };
@@ -290,6 +293,7 @@
 		50BB49A026A5EEDB00BFE87B /* HTMLReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLReader.swift; sourceTree = "<group>"; };
 		50BB49A526A600F300BFE87B /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		50BB49A726A6014400BFE87B /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		50C1FDCF2D00EE7F00FE984E /* Dictionary+Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Sequence.swift"; sourceTree = "<group>"; };
 		50D1AC8529B0036100A1BD4E /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
 		5701F82D22AFD23A005BED89 /* LectureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureRow.swift; sourceTree = "<group>"; };
 		5701F83022AFE084005BED89 /* DayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeader.swift; sourceTree = "<group>"; };
@@ -566,6 +570,15 @@
 			path = Parameters;
 			sourceTree = "<group>";
 		};
+		50C1FDCE2D00EE4200FE984E /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				50C1FDCF2D00EE7F00FE984E /* Dictionary+Sequence.swift */,
+				50493B8129B362560011964C /* Dictionary+KeyFromText.swift */,
+			);
+			path = Dictionary;
+			sourceTree = "<group>";
+		};
 		5701F82F22AFE041005BED89 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,13 +776,13 @@
 		57AD318422AE6BC3009EEB1F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				50C1FDCE2D00EE4200FE984E /* Dictionary */,
 				50851BCB26AF0CC40006F96C /* String */,
 				50BADADE25DD620500E8614C /* UserDefaults */,
 				5031A3AB25B77A21005B9322 /* View */,
 				576B96FA23ABBCA300CA17CF /* Named */,
 				5701F83222AFE361005BED89 /* Date+Extensions.swift */,
 				57791D6623C6191900F91D7F /* SKProduct+LocalizedPrice.swift */,
-				50493B8129B362560011964C /* Dictionary+KeyFromText.swift */,
 				501B1A3729BBF078008AACAA /* UIApplication+ForegroundActiveScene.swift */,
 				501B1A3929BBF52C008AACAA /* Bundle+AppVersion.swift */,
 				5057728829BE50EA0031FA2B /* Button+Async.swift */,
@@ -1114,6 +1127,7 @@
 				500F21C329B792A0007E8D3E /* Lecture.swift in Sources */,
 				501B1A2929BB91F4008AACAA /* DispatchMainPublished.swift in Sources */,
 				500F21B829B790CB007E8D3E /* ContentView.swift in Sources */,
+				50C1FDD12D00EF2300FE984E /* Dictionary+Sequence.swift in Sources */,
 				500F218E29B78F43007E8D3E /* WSEIScheduleWatch.swift in Sources */,
 				500F21C229B79289007E8D3E /* Translation.swift in Sources */,
 				500F21C029B79267007E8D3E /* ComplicationController.swift in Sources */,
@@ -1152,6 +1166,7 @@
 				57561C4C2535C58100DBC3D3 /* MediumNextLectureView.swift in Sources */,
 				5769E21B2534A82C00D4391A /* Lectures.xcdatamodeld in Sources */,
 				57A6BF1525309F9200E9B26C /* Lecture.swift in Sources */,
+				50C1FDD22D00EF2300FE984E /* Dictionary+Sequence.swift in Sources */,
 				5087932E29BE9E7B00833E53 /* MockData.swift in Sources */,
 				57A6BF1D2530A13A00E9B26C /* Color+Named.swift in Sources */,
 				57A6BEC02530908200E9B26C /* NextLectureWidget.swift in Sources */,
@@ -1223,6 +1238,7 @@
 				5755866B25308B2D00E0F752 /* Line.swift in Sources */,
 				5701F82E22AFD23A005BED89 /* LectureRow.swift in Sources */,
 				501B82E728E633D8004103B1 /* PremiumViewModel.swift in Sources */,
+				50C1FDD02D00EE9200FE984E /* Dictionary+Sequence.swift in Sources */,
 				50851BCD26AF0CF60006F96C /* String+FormUrlEncoded.swift in Sources */,
 				5701F83522AFEE47005BED89 /* LectureDay.swift in Sources */,
 				5087932D29BE9C9500833E53 /* APIRequestable.swift in Sources */,
