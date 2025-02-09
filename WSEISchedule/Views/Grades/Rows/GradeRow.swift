@@ -31,12 +31,14 @@ struct GradeRow: View {
                     Text(grade.lectureForm)
                 }
 
-                HStack(alignment: .top) {
-                    Image.lecturer
-                        .foregroundColor(.orange)
-                        .accessibilityElement()
-                        .accessibilityLabel(Text(Translation.Accessibility.Grades.lecturer.localized))
-                    Text(grade.lecturer)
+                if !grade.lecturer.isEmpty {
+                    HStack(alignment: .top) {
+                        Image.lecturer
+                            .foregroundColor(.orange)
+                            .accessibilityElement()
+                            .accessibilityLabel(Text(Translation.Accessibility.Grades.lecturer.localized))
+                        Text(grade.lecturer)
+                    }
                 }
             }
             .font(.footnote)
