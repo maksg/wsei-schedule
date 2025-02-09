@@ -42,10 +42,9 @@ final class CoreDataLecture: NSManagedObject {
         self.classroom = dictionary["Room", "Sala"]
         self.lecturer = dictionary["Lecturer", "Prowadzący"]
         self.code = dictionary["Group", "Grupy"]
-        let noComments = Translation.Schedule.Lecture.noComments.localized
         self.comments = dictionary["Comments", "Uwagi"]?
-            .replacingOccurrences(of: "Lack", with: noComments)
-            .replacingOccurrences(of: "Brak", with: noComments) ?? noComments
+            .replacingOccurrences(of: "Lack", with: "")
+            .replacingOccurrences(of: "Brak", with: "") ?? ""
     }
 
 }

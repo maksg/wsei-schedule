@@ -99,12 +99,14 @@ struct LectureRow: View {
                         Text(lecture.lecturer)
                     }
 
-                    HStack(alignment: .top) {
-                        Image.comments
-                            .foregroundColor(.indigo)
-                            .accessibilityElement()
-                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.comments.localized))
-                        Text(lecture.comments)
+                    if !lecture.comments.isEmpty {
+                        HStack(alignment: .top) {
+                            Image.comments
+                                .foregroundColor(.indigo)
+                                .accessibilityElement()
+                                .accessibilityLabel(Text(Translation.Accessibility.Schedule.comments.localized))
+                            Text(lecture.comments)
+                        }
                     }
                 }
                 .fixedSize(horizontal: false, vertical: true)
