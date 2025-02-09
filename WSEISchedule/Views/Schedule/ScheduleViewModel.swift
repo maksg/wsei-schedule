@@ -97,7 +97,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
         do {
             let lectureDictionaries = try htmlReader.readLectures(fromHtml: html)
 
-            guard isSignedIn else {
+            guard isSignedIn, !lectureDictionaries.isEmpty else {
                 isRefreshing = false
                 return
             }
