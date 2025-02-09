@@ -70,7 +70,7 @@ final class RootViewModel: NSObject, ObservableObject {
         gradesViewModel = GradesViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
         settingsViewModel = SettingsViewModel(apiRequest: apiRequest, htmlReader: htmlReader)
 
-        let url = URL(string: "https://dziekanat.wsei.edu.pl/Konto/LogowanieStudenta")!
+        let url = URL(string: "https://dziekanat.wsei.edu.pl/Logowanie")!
         authSession = WebAuthenticationSession(url: url)
 
         super.init()
