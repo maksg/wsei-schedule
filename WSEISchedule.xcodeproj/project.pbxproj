@@ -2000,7 +2000,7 @@
 			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
 			requirement = {
 				kind = exactVersion;
-				version = 2.7.6;
+				version = 2.7.7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
