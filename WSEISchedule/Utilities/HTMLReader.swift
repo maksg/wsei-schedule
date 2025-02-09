@@ -98,16 +98,16 @@ final class HTMLReader {
             let table = try doc.select("table").first()
         else { throw HTMLReaderError.invalidHtml }
 
-        let headers = try table.select("thead th").map({ try $0.text() })
+        let headers = try table.select("thead th").map { try $0.text() }
         let rows = try table.select("tbody tr")
 
-        return try rows.map({ row in
+        return try rows.map { row in
             let elements = try row.select("td")
             try elements.select("br").append("\\n")
             let texts = try elements.map({ try $0.text() })
             let dictionary = zipTableData(headers: headers, texts: texts)
             return Grade(fromDictionary: dictionary)
-        }).filter({ !$0.value.isEmpty || !$0.ects.isEmpty })
+        }
     }
 
     func readGradeSemesters(fromHtml html: String) throws -> [GradeSemester] {
