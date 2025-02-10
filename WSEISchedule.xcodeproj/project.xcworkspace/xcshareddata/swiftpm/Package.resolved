@@ -1,5 +1,5 @@
 {
-  "originHash" : "2b6d335272326468abc2114223e2ce9f2cf9645d68fa4e525733ecbf43f90359",
+  "originHash" : "4ca2a50ec4f51fb164f3b6d59153052626585b8a75fb9c5309890f1f2701db5e",
   "pins" : [
     {
       "identity" : "swiftsoup",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "6b4930da67b462d3f200472c902dd016d37a554d",
         "version" : "2.7.7"
+      }
+    },
+    {
+      "identity" : "xcstrings-tool-plugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/liamnichols/xcstrings-tool-plugin",
+      "state" : {
+        "revision" : "448890f1c47c0d70b6e539341f623c33bd1385af",
+        "version" : "1.0.0"
       }
     }
   ],

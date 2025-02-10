@@ -29,8 +29,8 @@ struct GradeSemester: Identifiable, Codable {
         }
 
         order = dictionary["Semester", "Semestr"] ?? ""
-        let summer = Translation.Grades.Semester.summer.localized
-        let winter = Translation.Grades.Semester.winter.localized
+        let summer = String.grades(.semesterSummer)
+        let winter = String.grades(.semesterWinter)
         name = dictionary["University semester", "Semestr akademicki"]?
             .replacingOccurrences(of: "letni", with: summer)
             .replacingOccurrences(of: "summer", with: summer)
@@ -61,11 +61,11 @@ struct GradeSemester: Identifiable, Codable {
         var title: String {
             switch self {
             case .passed:
-                return Translation.Grades.Semester.Status.passed.localized
+                return .grades(.semesterStatusPassed)
             case .inProgress:
-                return Translation.Grades.Semester.Status.inProgress.localized
+                return .grades(.semesterStatusInProgress)
             case .notPassed:
-                return Translation.Grades.Semester.Status.notPassed.localized
+                return .grades(.semesterStatusNotPassed)
             case .other(let value):
                 return value
             }

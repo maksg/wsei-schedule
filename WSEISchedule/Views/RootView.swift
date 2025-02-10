@@ -63,7 +63,7 @@ struct RootView: View {
                     SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                 }
                 .listStyle(.insetGrouped)
-                .navigationTitle(Translation.wseiSchedule.localized)
+                .navigationTitle(.other(.wseiSchedule))
                 .accessibilityIdentifier("Sidebar")
             } detail: {
                 switch viewModel.selectedListItem {
@@ -128,7 +128,7 @@ struct RootView: View {
                         SettingsViewContent(viewModel: viewModel.settingsViewModel, isSignedIn: $viewModel.isSignedIn)
                     }
                     .listStyle(.insetGrouped)
-                    .navigationTitle(Translation.wseiSchedule.localized)
+                    .navigationTitle(.other(.wseiSchedule))
 
                     switch viewModel.selectedListItem {
                     case .grades:

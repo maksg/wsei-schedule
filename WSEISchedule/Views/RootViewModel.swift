@@ -89,7 +89,9 @@ final class RootViewModel: NSObject, ObservableObject {
             UIView.setAnimationsEnabled(false)
         }
 
-        cookies.forEach(HTTPCookieStorage.shared.setCookie)
+        Task(priority: .background) { [weak self] in
+            self?.cookies.forEach(HTTPCookieStorage.shared.setCookie)
+        }
         apiRequest.setCookies(cookies)
         isSignedIn = !cookies.isEmpty
 

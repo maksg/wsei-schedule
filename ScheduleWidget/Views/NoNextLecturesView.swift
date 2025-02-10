@@ -17,7 +17,7 @@ struct NoNextLecturesView: View {
             Spacer()
             Text("🏖")
                 .font(.largeTitle)
-            Text(Translation.Widget.noNextLectures.localized)
+            Text(.widget(.noNextLectures))
             Spacer()
         }
     }

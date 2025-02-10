@@ -17,7 +17,7 @@ struct NoLecturesTodayView: View {
             Spacer()
             Text("😎")
                 .font(.largeTitle)
-            Text(Translation.Widget.noLecturesToday.localized)
+            Text(.widget(.noLecturesToday))
             Spacer()
         }
     }

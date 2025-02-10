@@ -27,7 +27,7 @@ struct WSEISchedule: App {
             CommandGroup(replacing: .printItem, addition: {})
 
             CommandGroup(replacing: .newItem) {
-                Button(Translation.MenuBar.refresh.localized) {
+                Button(.other(.menuBarRefresh)) {
                     NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("r"))
                 }
                 .keyboardShortcut("r")
@@ -35,13 +35,13 @@ struct WSEISchedule: App {
             }
 
             CommandGroup(replacing: .toolbar) {
-                Button(Translation.Schedule.title.localized) {
+                Button(.schedule(.title)) {
                     NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("1"))
                 }
                 .keyboardShortcut("1")
                 .disabled(!isSignedIn)
 
-                Button(Translation.Grades.title.localized) {
+                Button(.grades(.title)) {
                     NotificationCenter.default.post(name: .keyboardShortcut, object: KeyboardShortcut("2"))
                 }
                 .keyboardShortcut("2")

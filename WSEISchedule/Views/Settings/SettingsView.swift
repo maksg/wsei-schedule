@@ -50,7 +50,7 @@ struct SettingsViewContent: View {
             }
             .frame(height: 80)
 
-            Section(header: Text(Translation.Settings.Support.header.localized.uppercased())) {
+            Section(header: Text(String.settings(.supportHeader).uppercased())) {
                 ForEach(viewModel.supportDeveloperProducts, id: \.title) { product in
                     Button(action: {
                         viewModel.buy(product.product)
@@ -64,7 +64,7 @@ struct SettingsViewContent: View {
                 }
             }
 
-            Section(header: Text(Translation.Settings.Games.header.localized.uppercased())) {
+            Section(header: Text(String.settings(.gamesHeader).uppercased())) {
                 ForEach(Games.allCases, content: GameRow.init)
             }
 
@@ -73,7 +73,7 @@ struct SettingsViewContent: View {
                     HStack {
                         Image.signOut
                             .foregroundColor(.red)
-                        Text(Translation.SignIn.signOut.localized)
+                        Text(.signIn(.signOut))
                             .foregroundColor(.main)
                     }
                 }
@@ -81,9 +81,11 @@ struct SettingsViewContent: View {
             }
         }
         .alert(isPresented: $viewModel.showThankYouAlert) {
-            Alert(title: Text(Translation.Settings.ThankYouAlert.title.localized),
-                  message: Text(Translation.Settings.ThankYouAlert.message.localized),
-                  dismissButton: .default(Text(Translation.Settings.ThankYouAlert.dismiss.localized)))
+            Alert(
+                title: Text(.settings(.thankYouAlertTitle)),
+                message: Text(.settings(.thankYouAlertMessage)),
+                dismissButton: .default(Text(.settings(.thankYouAlertDismiss)))
+            )
         }
     }
 

@@ -21,13 +21,13 @@ struct GradeRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(grade.subject)
                     .font(.headline)
-                    .accessibilityHint(Text(Translation.Accessibility.Grades.subject.localized))
+                    .accessibilityHint(Text(.accessibility(.gradesSubject)))
 
                 HStack(alignment: .top) {
                     Image.code
                         .foregroundColor(.main)
                         .accessibilityElement()
-                        .accessibilityLabel(Text(Translation.Accessibility.Grades.lectureForm.localized))
+                        .accessibilityLabel(Text(.accessibility(.gradesLectureForm)))
                     Text(grade.lectureForm)
                 }
 
@@ -36,7 +36,7 @@ struct GradeRow: View {
                         Image.lecturer
                             .foregroundColor(.orange)
                             .accessibilityElement()
-                            .accessibilityLabel(Text(Translation.Accessibility.Grades.lecturer.localized))
+                            .accessibilityLabel(Text(.accessibility(.gradesLecturer)))
                         Text(grade.lecturer)
                     }
                 }
@@ -50,14 +50,14 @@ struct GradeRow: View {
                     Text(grade.value)
                         .font(.headline)
                         .foregroundColor(grade.value == "2" ? .red : .main)
-                        .accessibilityHint(Text(Translation.Accessibility.Grades.grade.localized))
+                        .accessibilityHint(Text(.accessibility(.gradesGrade)))
                 }
                 
                 if !grade.ects.isEmpty {
                     Text("ECTS: \(grade.ects)")
                         .font(.footnote)
                         .fontWeight(.medium)
-                        .accessibilityHint(Text(Translation.Accessibility.Grades.ects.localized))
+                        .accessibilityHint(Text(.accessibility(.gradesEcts)))
                 }
             }
             .frame(width: 60)

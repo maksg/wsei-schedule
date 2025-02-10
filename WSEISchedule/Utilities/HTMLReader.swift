@@ -15,7 +15,7 @@ enum HTMLReaderError: Error {
 
 extension HTMLReaderError: LocalizedError {
     public var errorDescription: String? {
-        return Translation.Error.unknown.localized
+        return .other(.errorUnknown)
     }
 }
 

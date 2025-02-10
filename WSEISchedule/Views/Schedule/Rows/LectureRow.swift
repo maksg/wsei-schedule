@@ -33,7 +33,7 @@ struct LectureRow: View {
     }
 
     private var accessibilityTime: String {
-        "\(lecture.fromDate.voiceOverHour) \(Translation.Accessibility.Schedule.to.localized) \(lecture.toDate.voiceOverHour)"
+        "\(lecture.fromDate.voiceOverHour) \(String.accessibility(.scheduleTo)) \(lecture.toDate.voiceOverHour)"
     }
 
     // MARK: - Initialization
@@ -55,13 +55,13 @@ struct LectureRow: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(lecture.subject)
                         .font(.headline)
-                        .accessibilityHint(Text(Translation.Accessibility.Schedule.subject.localized))
+                        .accessibilityHint(Text(.accessibility(.scheduleSubject)))
 
                     HStack {
                         Image.time
                             .foregroundColor(.red)
                             .accessibilityElement()
-                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.time.localized))
+                            .accessibilityLabel(Text(.accessibility(.scheduleTime)))
                         Text(time)
                             .accessibilityLabel(Text(accessibilityTime))
 
@@ -70,7 +70,7 @@ struct LectureRow: View {
                         Image.classroom
                             .foregroundColor(.blue)
                             .accessibilityElement()
-                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.classroom.localized))
+                            .accessibilityLabel(Text(.accessibility(.scheduleClassroom)))
                         Text(lecture.classroom)
                     }
                 }
@@ -87,7 +87,7 @@ struct LectureRow: View {
                         Image.code
                             .foregroundColor(.main)
                             .accessibilityElement()
-                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.code.localized))
+                            .accessibilityLabel(Text(.accessibility(.scheduleCode)))
                         Text(lecture.code)
                     }
 
@@ -95,7 +95,7 @@ struct LectureRow: View {
                         Image.lecturer
                             .foregroundColor(.orange)
                             .accessibilityElement()
-                            .accessibilityLabel(Text(Translation.Accessibility.Schedule.lecturer.localized))
+                            .accessibilityLabel(Text(.accessibility(.scheduleLecturer)))
                         Text(lecture.lecturer)
                     }
 
@@ -104,7 +104,7 @@ struct LectureRow: View {
                             Image.comments
                                 .foregroundColor(.indigo)
                                 .accessibilityElement()
-                                .accessibilityLabel(Text(Translation.Accessibility.Schedule.comments.localized))
+                                .accessibilityLabel(Text(.accessibility(.scheduleComments)))
                             Text(lecture.comments)
                         }
                     }

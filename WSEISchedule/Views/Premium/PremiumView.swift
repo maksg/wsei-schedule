@@ -20,7 +20,7 @@ struct PremiumView: View {
         VStack(spacing: 16) {
             ScrollView {
                 VStack(spacing: 40) {
-                    Text(Translation.Premium.title.localized)
+                    Text(.premium(.title))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
@@ -28,28 +28,28 @@ struct PremiumView: View {
                     PremiumItem(
                         image: .grades,
                         color: .orange,
-                        title: Translation.Premium.Grades.title.localized,
-                        content: Translation.Premium.Grades.content.localized
+                        title: .premium(.gradesTitle),
+                        content: .premium(.gradesContent)
                     )
 
                     PremiumItem(
                         image: .scheduleHistory,
                         color: .blue,
-                        title: Translation.Premium.ScheduleHistory.title.localized,
-                        content: Translation.Premium.ScheduleHistory.content.localized
+                        title: .premium(.scheduleHistoryTitle),
+                        content: .premium(.scheduleHistoryContent)
                     )
 
                     PremiumItem(
                         image: .comingSoon,
                         color: .gray,
-                        title: Translation.Premium.ComingSoon.title.localized,
-                        content: Translation.Premium.ComingSoon.content.localized
+                        title: .premium(.comingSoonTitle),
+                        content: .premium(.comingSoonContent)
                     )
                 }
                 .padding(.horizontal, 16)
             }
 
-            Button("\(Translation.Premium.buy.localized) \(viewModel.price)", action: buyPremium)
+            Button("\(.premium(.buy)) \(viewModel.price)", action: buyPremium)
                 .font(.headline)
                 .padding(16)
                 .frame(maxWidth: .infinity)
@@ -58,7 +58,7 @@ struct PremiumView: View {
                 .foregroundColor(.white)
 
             Button(action: restorePurchase) {
-                Text(Translation.Premium.restore.localized)
+                Text(.premium(.restore))
                     .foregroundColor(.main)
             }
         }

@@ -21,7 +21,7 @@ struct ContentView: View {
     var body: some View {
         List {
             if viewModel.lectureDays.isEmpty {
-                Text(Translation.Watch.noLectures.localized)
+                Text(.watch(.noLectures))
             } else {
                 ForEach(viewModel.lectureDays) { lectureDay in
                     Section(header: DayHeader(date: lectureDay.date)) {

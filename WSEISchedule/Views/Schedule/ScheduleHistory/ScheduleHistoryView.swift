@@ -30,8 +30,8 @@ struct ScheduleHistoryView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .navigationTitle(Translation.ScheduleHistory.title.localized)
-            .accessibilityHint(Text(Translation.Accessibility.ScheduleHistory.list.localized))
+            .navigationTitle(.scheduleHistory(.title))
+            .accessibilityHint(Text(.accessibility(.scheduleHistoryList)))
         } else {
             PremiumView()
         }

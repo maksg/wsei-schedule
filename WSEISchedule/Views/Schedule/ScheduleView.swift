@@ -36,7 +36,7 @@ struct ScheduleView: View {
             }
 
             if viewModel.lectureWeeks.isEmpty {
-                Text(Translation.Schedule.noLectures.localized)
+                Text(.schedule(.noLectures))
             } else {
                 ForEach(viewModel.lectureWeeks) { lectureWeek in
                     Section {
@@ -83,7 +83,7 @@ struct ScheduleView: View {
             }
         }
         .accessibilityIdentifier("ScheduleList")
-        .accessibilityHint(Text(Translation.Accessibility.Schedule.upcomingLecturesList.localized))
+        .accessibilityHint(Text(.accessibility(.scheduleUpcomingLecturesList)))
         .onKeyboardShortcut("r", perform: reload)
     }
 

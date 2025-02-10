@@ -15,7 +15,7 @@ enum WebAuthenticationSessionError: Error {
 
 extension WebAuthenticationSessionError: LocalizedError {
     public var errorDescription: String? {
-        return Translation.Error.unknown.localized
+        return .other(.errorUnknown)
     }
 }
 

@@ -16,22 +16,22 @@ enum Tab: Int, CaseIterable {
     var image: Image {
         switch self {
         case .schedule:
-            return Image.schedule
+            return .schedule
         case .grades:
-            return Image.grades
+            return .grades
         case .settings:
-            return Image.settings
+            return .settings
         }
     }
     
     var title: String {
         switch self {
         case .schedule:
-            return Translation.Schedule.title.localized
+            return .schedule(.title)
         case .grades:
-            return Translation.Grades.title.localized
+            return .grades(.title)
         case .settings:
-            return Translation.Settings.title.localized
+            return .settings(.title)
         }
     }
 

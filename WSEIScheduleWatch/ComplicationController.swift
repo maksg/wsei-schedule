@@ -166,7 +166,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
 
     private var noLecturesTextProvider: CLKSimpleTextProvider {
-        CLKSimpleTextProvider(text: Translation.Watch.noLectures.localized)
+        CLKSimpleTextProvider(text: .watch(.noLectures))
     }
 
     // MARK: - Templates
@@ -318,7 +318,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
         let scheduleDescriptor = CLKComplicationDescriptor(
             identifier: "ScheduleDescriptor",
-            displayName: Translation.Watch.Complications.schedule.localized,
+            displayName: .watch(.complicationsSchedule),
             supportedFamilies: scheduleSupportedFamilies
         )
 
@@ -334,7 +334,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
         let upcomingLectureDescriptor = CLKComplicationDescriptor(
             identifier: "UpcomingLectureDescriptor",
-            displayName: Translation.Watch.Complications.upcomingLecture.localized,
+            displayName: .watch(.complicationsUpcomingLecture),
             supportedFamilies: upcomingLectureSupportedFamilies
         )
 

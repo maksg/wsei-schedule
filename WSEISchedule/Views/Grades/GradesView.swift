@@ -54,7 +54,7 @@ struct GradesView: View {
                 }
 
                 if viewModel.gradeSemesters.isEmpty {
-                    Text(Translation.Grades.noGrades.localized)
+                    Text(.grades(.noGrades))
                 } else {
                     Section {
                         ForEach(viewModel.gradeSemesters) { semester in
@@ -65,7 +65,7 @@ struct GradesView: View {
                                             .frame(maxWidth: .infinity)
                                             .id(UUID())
                                     } else {
-                                        Text(Translation.Grades.noGrades.localized)
+                                        Text(.grades(.noGrades))
                                     }
                                 } else {
                                     ForEach(semester.grades, content: GradeRow.init)
@@ -99,7 +99,7 @@ struct GradesView: View {
             }
             #endif
             .accessibilityIdentifier("GradesList")
-            .accessibilityHint(Text(Translation.Accessibility.Grades.list.localized))
+            .accessibilityHint(Text(.accessibility(.gradesList)))
             .onKeyboardShortcut("r", perform: reload)
         } else {
             PremiumView()

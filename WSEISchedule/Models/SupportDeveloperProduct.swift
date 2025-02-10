@@ -11,7 +11,7 @@ import StoreKit
 struct SupportDeveloperProduct {
     let image: UIImage
     var title: String {
-        "\(Translation.Settings.Support.donate.localized) \(product.localizedPrice)"
+        "\(String.settings(.supportDonate)) \(product.localizedPrice)"
     }
     let product: SKProduct
 }

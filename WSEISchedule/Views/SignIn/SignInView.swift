@@ -27,14 +27,14 @@ struct SignInView: View {
 
             Spacer()
             
-            Text(Translation.SignIn.title.localized)
+            Text(.signIn(.title))
                 .font(.title)
                 .fontWeight(.bold)
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
 
-            Text(Translation.SignIn.privacyMessage.localized)
+            Text(.signIn(.privacyMessage))
                 .font(.footnote)
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)
@@ -43,7 +43,7 @@ struct SignInView: View {
             Spacer()
             
             Button(action: signIn) {
-                Text(Translation.SignIn.signIn.localized)
+                Text(.signIn(.signIn))
                     .font(.headline)
                     .padding(16)
                     .frame(maxWidth: .infinity)

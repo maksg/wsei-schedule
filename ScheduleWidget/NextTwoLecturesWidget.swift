@@ -16,10 +16,11 @@ struct NextTwoLecturesWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             NextTwoLecturesWidgetEntryView(entry: entry)
                 .frame(maxWidth: .infinity, maxHeight:  .infinity)
-                .background(Color("WidgetBackground"))
+                .widgetBackground(Color("WidgetBackground"))
         }
-        .configurationDisplayName("WSEI Schedule")
-        .description(Translation.Widget.About.nextTwoLectures.localized)
+        .configurationDisplayName(String.other(.wseiSchedule))
+        .description(String.widget(.aboutNextTwoLectures))
         .supportedFamilies([.systemLarge])
+        .widgetContentMarginsDisabled()
     }
 }

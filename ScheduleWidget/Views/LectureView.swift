@@ -109,7 +109,7 @@ struct LectureView: View {
                 }
             }
 
-            if enabledModules.contains(.comments) {
+            if enabledModules.contains(.comments), !lecture.comments.isEmpty {
                 HStack(alignment: .top) {
                     Image.comments.foregroundColor(.indigo)
                     Text(lecture.comments)
