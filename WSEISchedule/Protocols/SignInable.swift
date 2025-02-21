@@ -10,6 +10,7 @@ import UIKit
 
 protocol SignInable {
     var checkIfIsSignedIn: ((Error) -> Void)? { get set }
+    var startSigningIn: (() -> Void)? { get set }
     func showError(_ error: Error?)
 }
 

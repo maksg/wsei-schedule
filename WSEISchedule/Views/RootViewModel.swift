@@ -95,11 +95,11 @@ final class RootViewModel: NSObject, ObservableObject {
         apiRequest.setCookies(cookies)
         isSignedIn = !cookies.isEmpty
 
-        signInViewModel.startSigningIn = { [weak self] in
-            Task { @MainActor [weak self] in
-                self?.startSigningIn(silently: false)
-            }
-        }
+        signInViewModel.startSigningIn = presentSignInWebView
+        scheduleViewModel.startSigningIn = presentSignInWebView
+        gradesViewModel.startSigningIn = presentSignInWebView
+        settingsViewModel.startSigningIn = presentSignInWebView
+
         scheduleViewModel.checkIfIsSignedIn = { [weak self] error in
             self?.checkIfIsSignedIn(error: error, tab: .schedule)
         }
@@ -132,12 +132,20 @@ final class RootViewModel: NSObject, ObservableObject {
             isSignedIn = !cookies.isEmpty
         }
     }
+
+    private func presentSignInWebView() {
+        Task { @MainActor [weak self] in
+            self?.startSigningIn(silently: false)
+        }
+    }
 }
 
 extension RootViewModel: @preconcurrency WebAuthenticationPresentationContextProviding {
 
     func onSignIn(cookies: [HTTPCookie]) {
-        cookies.forEach(HTTPCookieStorage.shared.setCookie)
+        Task(priority: .background) {
+            cookies.forEach(HTTPCookieStorage.shared.setCookie)
+        }
         UserDefaults.standard.cookies = cookies
         apiRequest.setCookies(cookies)
 

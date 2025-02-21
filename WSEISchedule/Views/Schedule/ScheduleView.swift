@@ -22,11 +22,9 @@ struct ScheduleView: View {
             ScrollToTopView()
 
             if let error = viewModel.error {
-                Text(error.localizedDescription)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .listRowBackground(Color.red)
+                SignInPromptView(error: error) {
+                    viewModel.startSigningIn?()
+                }
             }
 
             if viewModel.isRefreshing {

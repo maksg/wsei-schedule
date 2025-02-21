@@ -30,6 +30,7 @@ final class GradesViewModel: ObservableObject {
     @DispatchMainPublished var gradeSemesters: [GradeSemester] = UserDefaults.standard.gradeSemesters
 
     var checkIfIsSignedIn: ((Error) -> Void)?
+    var startSigningIn: (() -> Void)?
 
     let apiRequest: APIRequestable
     let htmlReader: HTMLReader

@@ -35,6 +35,23 @@
         }
       }
     },
+    "sign.in.again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign In Again"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaloguj się ponownie"
+          }
+        }
+      }
+    },
     "sign.out" : {
       "extractionState" : "manual",
       "localizations" : {

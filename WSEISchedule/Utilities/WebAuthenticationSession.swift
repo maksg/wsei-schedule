@@ -11,6 +11,7 @@ import WebKit
 
 enum WebAuthenticationSessionError: Error {
     case cancelled
+    case signedOut
 }
 
 extension WebAuthenticationSessionError: LocalizedError {
@@ -286,7 +287,7 @@ extension WebAuthenticationSession: WKNavigationDelegate {
             }
         } else {
             timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
-                self?.present()
+                self?.onFailure?(WebAuthenticationSessionError.signedOut)
             }
         }
     }
