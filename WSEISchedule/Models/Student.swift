@@ -12,7 +12,7 @@ struct Student: Codable {
     let name: String
     let albumNumber: String
     let courseName: String
-    let photoUrl: URL?
+    let photoSource: String?
 }
 
 extension Student {
@@ -20,6 +20,6 @@ extension Student {
         name = ""
         albumNumber = ""
         courseName = ""
-        photoUrl = nil
+        photoSource = nil
     }
 }

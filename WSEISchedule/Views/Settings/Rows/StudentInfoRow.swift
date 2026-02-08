@@ -18,9 +18,18 @@ struct StudentInfoRow: View {
     
     var body: some View {
         HStack {
-            URLImage(url: viewModel.photoUrl, placeholder: .placeholder, customCacheRequest: viewModel.cacheRequest)
-                .cornerRadius(6)
-                .accessibilityHint(Text(.accessibility(.settingsProfilePhoto)))
+            Group {
+                if let photoData = viewModel.photoData, let image = UIImage(data: photoData) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    URLImage(url: viewModel.photoUrl, placeholder: .placeholder, customCacheRequest: viewModel.cacheRequest)
+                }
+            }
+            .cornerRadius(6)
+            .accessibilityHint(Text(.accessibility(.settingsProfilePhoto)))
+
             VStack {
                 Text(viewModel.name)
                     .font(.headline)
@@ -44,7 +53,7 @@ struct StudentInfoRow: View {
 
 struct StudentInfoRow_Previews: PreviewProvider {
     static var previews: some View {
-        StudentInfoRow(viewModel: StudentInfoRowViewModel(name: "John Appleseed", number: "12345", courseName: "WSEI Programming", photoUrl: nil))
+        StudentInfoRow(viewModel: StudentInfoRowViewModel(name: "John Appleseed", number: "12345", courseName: "WSEI Programming", photoSource: nil))
             .previewLayout(.fixed(width: 300, height: 80))
     }
 }

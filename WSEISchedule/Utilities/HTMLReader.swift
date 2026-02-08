@@ -29,21 +29,19 @@ final class HTMLReader {
 
     func readStudentInfo(fromHtml html: String) throws -> Student {
         let doc = try SwiftSoup.parse(html)
-        guard
-            let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src"),
-            let infoElement = try doc.select(".identify").first()
+        guard let infoElement = try doc.select(".identify").first()
         else { throw HTMLReaderError.invalidHtml }
-
-        let photoUrl = URL(string: "https://dziekanat.wsei.edu.pl\(photoSource)")!
 
         try infoElement.select("p").append("\\n")
         let info = try infoElement.text().replacingOccurrences(of: "\\n", with: "\n")
         let infoLines = info.split(separator: "\n").map({ $0.trimmingCharacters(in: .whitespaces) })
 
+        let photoSource = try doc.select("#zdjecie_glowne").first()?.attr("src")
+
         if infoLines.count >= 4 {
-            return Student(name: infoLines[1], albumNumber: infoLines[2], courseName: infoLines[3], photoUrl: photoUrl)
+            return Student(name: infoLines[1], albumNumber: infoLines[2], courseName: infoLines[3], photoSource: photoSource)
         } else {
-            return Student(name: "", albumNumber: "", courseName: "", photoUrl: photoUrl)
+            return Student(name: "", albumNumber: "", courseName: "", photoSource: photoSource)
         }
     }
 

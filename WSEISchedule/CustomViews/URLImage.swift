@@ -27,17 +27,9 @@ struct URLImage: View {
     // MARK: - Views
     
     var body: some View {
-        Group {
-            if imageDownloader.image == nil {
-                Image(uiImage: placeholder ?? UIImage())
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } else {
-                Image(uiImage: imageDownloader.image!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
-        }
+        Image(uiImage: imageDownloader.image ?? placeholder ?? UIImage())
+            .resizable()
+            .aspectRatio(contentMode: .fit)
     }
 }
 
