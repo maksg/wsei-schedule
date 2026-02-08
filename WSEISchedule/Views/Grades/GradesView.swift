@@ -78,6 +78,7 @@ struct GradesView: View {
                                 }
                                 .font(.headline)
                             }
+                            .buttonStyle(.borderless)
                         }
                     }
                 }

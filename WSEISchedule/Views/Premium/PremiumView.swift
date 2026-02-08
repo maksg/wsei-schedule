@@ -62,6 +62,7 @@ struct PremiumView: View {
                     .foregroundColor(.main)
             }
         }
+        .buttonStyle(.borderless)
         .padding(32)
     }
 
