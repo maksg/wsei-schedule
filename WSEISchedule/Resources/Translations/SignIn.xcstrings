@@ -24,7 +24,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sign In"
+            "value" : "Sign in"
           }
         },
         "pl" : {
@@ -41,7 +41,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sign In Again"
+            "value" : "Sign in again"
           }
         },
         "pl" : {
@@ -58,7 +58,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sign Out"
+            "value" : "Sign out"
           }
         },
         "pl" : {

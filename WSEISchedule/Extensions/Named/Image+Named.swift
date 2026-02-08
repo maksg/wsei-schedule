@@ -26,5 +26,6 @@ extension Image {
     static var lecturer: Image { Image(systemName: "person.fill") }
     static var comments: Image { Image(systemName: "info.circle.fill") }
 
+    static var issue: Image { Image(systemName: "ladybug") }
     static var signOut: Image { Image(systemName: "power") }
 }

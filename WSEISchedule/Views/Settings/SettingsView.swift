@@ -69,6 +69,17 @@ struct SettingsViewContent: View {
             }
 
             Section {
+                Link(destination: viewModel.reportIssueUrl) {
+                    HStack {
+                        Image.issue
+                            .foregroundColor(.blue)
+                        Text(.settings(.issue))
+                            .foregroundColor(.main)
+                    }
+                }
+            }
+
+            Section {
                 Button(action: signOut) {
                     HStack {
                         Image.signOut

@@ -24,7 +24,9 @@ final class SettingsViewModel: NSObject, ObservableObject {
             UserDefaults.standard.student = newValue
         }
     }
-    
+
+    let reportIssueUrl: URL = URL(string: "https://github.com/maksg/wsei-schedule/issues")!
+
     @DispatchMainPublished var studentInfoRowViewModel: StudentInfoRowViewModel = StudentInfoRowViewModel(student: Student())
     @DispatchMainPublished var supportDeveloperProducts: [SupportDeveloperProduct] = []
     @DispatchMainPublished var showThankYouAlert: Bool = false
