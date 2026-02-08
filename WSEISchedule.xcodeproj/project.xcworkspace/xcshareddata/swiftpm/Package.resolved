@@ -2,12 +2,30 @@
   "originHash" : "4ca2a50ec4f51fb164f3b6d59153052626585b8a75fb9c5309890f1f2701db5e",
   "pins" : [
     {
+      "identity" : "lrucache",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nicklockwood/LRUCache.git",
+      "state" : {
+        "revision" : "cb5b2bd0da83ad29c0bec762d39f41c8ad0eaf3e",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "b601256eab081c0f92f059e12818ac1d4f178ff7",
+        "version" : "1.3.0"
+      }
+    },
+    {
       "identity" : "swiftsoup",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup.git",
       "state" : {
-        "revision" : "6b4930da67b462d3f200472c902dd016d37a554d",
-        "version" : "2.7.7"
+        "revision" : "c1f3348d1845302b8e99b1c0787d9417ffa11053",
+        "version" : "2.11.2"
       }
     },
     {
@@ -15,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/liamnichols/xcstrings-tool-plugin",
       "state" : {
-        "revision" : "448890f1c47c0d70b6e539341f623c33bd1385af",
-        "version" : "1.0.0"
+        "revision" : "bebb29f791e92f6ee5d9b6200f89c45249149957",
+        "version" : "1.2.0"
       }
     }
   ],
