@@ -96,12 +96,7 @@ final class RootViewModel: NSObject, ObservableObject {
         isSignedIn = !cookies.isEmpty
 
         signInViewModel.signIntoTestAccount = { [weak self] in
-            guard let self else { return }
-            apiRequest = APIRequestMock()
-            scheduleViewModel.apiRequest = apiRequest
-            gradesViewModel.apiRequest = apiRequest
-            settingsViewModel.apiRequest = apiRequest
-            isSignedIn = true
+            self?.signIntoTestAccount()
         }
 
         signInViewModel.startSigningIn = presentSignInWebView
@@ -145,6 +140,28 @@ final class RootViewModel: NSObject, ObservableObject {
     private func presentSignInWebView() {
         Task { @MainActor [weak self] in
             self?.startSigningIn(silently: false)
+        }
+    }
+
+    private func signIntoTestAccount() {
+        apiRequest = APIRequestMock()
+        scheduleViewModel.apiRequest = apiRequest
+        gradesViewModel.apiRequest = apiRequest
+        settingsViewModel.apiRequest = apiRequest
+
+        let properties: [HTTPCookiePropertyKey: Any] = [
+            .name: "test",
+            .value: "test",
+            .domain: "wsei.edu.pl",
+            .path: "/",
+        ]
+        HTTPCookieStorage.shared.setCookie(HTTPCookie(properties: properties)!)
+        isSignedIn = true
+
+        Task {
+            await scheduleViewModel.fetchSchedule()
+            await gradesViewModel.fetchGradeSemesters()
+            await settingsViewModel.loadStudentInfo()
         }
     }
 }

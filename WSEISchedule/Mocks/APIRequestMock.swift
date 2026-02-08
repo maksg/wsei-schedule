@@ -10,7 +10,6 @@ import Foundation
 
 final class APIRequestMock: APIRequestable {
 
-    
     func getMainHtml() async throws -> String {
         return contentsOfFile(name: "Main")
     }
