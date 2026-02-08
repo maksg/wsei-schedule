@@ -32,7 +32,7 @@ final class GradesViewModel: ObservableObject {
     var checkIfIsSignedIn: ((Error) -> Void)?
     var startSigningIn: (() -> Void)?
 
-    let apiRequest: APIRequestable
+    var apiRequest: APIRequestable
     let htmlReader: HTMLReader
 
     // MARK: - Initialization

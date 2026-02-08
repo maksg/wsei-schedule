@@ -16,7 +16,8 @@ final class APIRequestMock: APIRequestable {
     }
 
     func getScheduleHtml(parameters: ScheduleParameters) async throws -> String {
-        return contentsOfFile(name: "Schedule")
+        let year = Calendar.current.component(.year, from: Date()) + 1
+        return contentsOfFile(name: "Schedule").replacingOccurrences(of: "2024", with: String(year))
     }
 
     func getGradeSemestersHtml() async throws -> String {

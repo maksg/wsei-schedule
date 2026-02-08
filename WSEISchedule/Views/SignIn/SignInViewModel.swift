@@ -14,11 +14,16 @@ final class SignInViewModel: ObservableObject {
 
     var isSigningIn: Bool = false
     var startSigningIn: (() -> Void)?
+    var signIntoTestAccount: (() -> Void)?
 
     // MARK: - Methods
 
     func signIn() {
         startSigningIn?()
     }
-    
+
+    func developerMode() {
+        signIntoTestAccount?()
+    }
+
 }

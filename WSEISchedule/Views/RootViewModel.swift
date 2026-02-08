@@ -12,7 +12,7 @@ final class RootViewModel: NSObject, ObservableObject {
 
     // MARK: - Properties
 
-    let apiRequest: APIRequestable
+    var apiRequest: APIRequestable
     let htmlReader: HTMLReader = HTMLReader()
 
     let signInViewModel: SignInViewModel
@@ -94,6 +94,15 @@ final class RootViewModel: NSObject, ObservableObject {
         }
         apiRequest.setCookies(cookies)
         isSignedIn = !cookies.isEmpty
+
+        signInViewModel.signIntoTestAccount = { [weak self] in
+            guard let self else { return }
+            apiRequest = APIRequestMock()
+            scheduleViewModel.apiRequest = apiRequest
+            gradesViewModel.apiRequest = apiRequest
+            settingsViewModel.apiRequest = apiRequest
+            isSignedIn = true
+        }
 
         signInViewModel.startSigningIn = presentSignInWebView
         scheduleViewModel.startSigningIn = presentSignInWebView

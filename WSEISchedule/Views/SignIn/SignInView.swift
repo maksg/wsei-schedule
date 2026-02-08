@@ -24,6 +24,7 @@ struct SignInView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(maxHeight: 200)
+                .onTapGesture(count: 5, perform: developerMode)
 
             Spacer()
             
@@ -62,6 +63,10 @@ struct SignInView: View {
 
     private func signIn() {
         viewModel.signIn()
+    }
+
+    private func developerMode() {
+        viewModel.developerMode()
     }
 
 }

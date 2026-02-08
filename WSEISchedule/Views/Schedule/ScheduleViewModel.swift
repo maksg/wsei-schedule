@@ -38,7 +38,7 @@ final class ScheduleViewModel: NSObject, ObservableObject {
     var checkIfIsSignedIn: ((Error) -> Void)?
     var startSigningIn: (() -> Void)?
 
-    let apiRequest: APIRequestable
+    var apiRequest: APIRequestable
     let htmlReader: HTMLReader
     private let lecturesDataManager: DataManager<CoreDataLecture> = DataManager(persistentContainerName: "Lectures")
 
